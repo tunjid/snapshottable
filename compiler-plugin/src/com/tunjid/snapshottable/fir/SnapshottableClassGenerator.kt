@@ -1,72 +1,181 @@
 package com.tunjid.snapshottable.fir
 
-import org.jetbrains.kotlin.GeneratedDeclarationKey
+import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.Snapshottable.snapshottableSourceSymbol
+import org.jetbrains.kotlin.descriptors.Visibilities
 import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.extensions.ExperimentalTopLevelDeclarationsGenerationApi
-import org.jetbrains.kotlin.fir.extensions.FirDeclarationGenerationExtension
-import org.jetbrains.kotlin.fir.extensions.MemberGenerationContext
+import org.jetbrains.kotlin.fir.declarations.primaryConstructorIfAny
+import org.jetbrains.kotlin.fir.extensions.*
+import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createConstructor
-import org.jetbrains.kotlin.fir.plugin.createMemberFunction
-import org.jetbrains.kotlin.fir.plugin.createTopLevelClass
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
-import org.jetbrains.kotlin.name.*
+import org.jetbrains.kotlin.fir.plugin.createDefaultPrivateConstructor
+import org.jetbrains.kotlin.fir.symbols.impl.*
+import org.jetbrains.kotlin.name.CallableId
+import org.jetbrains.kotlin.name.Name
+import org.jetbrains.kotlin.name.SpecialNames
 
-/*
- * Generates top level class
- *
- * public final class foo.bar.MyClass {
- *     fun foo(): String = "Hello world"
- * }
- */
-class SnapshottableClassGenerator(session: FirSession) : FirDeclarationGenerationExtension(session) {
-    companion object {
-        val MY_CLASS_ID = ClassId(FqName.fromSegments(listOf("foo", "bar")), Name.identifier("MyClass"))
+class SnapshottableClassGenerator(
+    session: FirSession
+) : FirDeclarationGenerationExtension(session) {
 
-        val FOO_ID = CallableId(MY_CLASS_ID, Name.identifier("foo"))
+    // Symbols for classes which have Snapshottable annotation.
+    private val snapshottableClasses by lazy {
+        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.ANNOTATION_PREDICATE)
+            .filterIsInstance<FirRegularClassSymbol>()
+            .filter { symbol ->
+                val sourceClassSymbol = session.snapshottableSourceSymbol(symbol)
+                    ?: return@filter false
+
+                if (sourceClassSymbol !is FirRegularClassSymbol) return@filter false
+
+                val sourcePrimaryCtor = sourceClassSymbol.primaryConstructorIfAny(session) ?: return@filter false
+                sourcePrimaryCtor.rawStatus.visibility != Visibilities.Private
+            }
+            .toSet()
     }
 
-    @ExperimentalTopLevelDeclarationsGenerationApi
-    override fun generateTopLevelClassLikeDeclaration(classId: ClassId): FirClassLikeSymbol<*>? {
-        if (classId != MY_CLASS_ID) return null
-        val klass = createTopLevelClass(MY_CLASS_ID, Key)
-        return klass.symbol
+    private val snapshottableClassIds by lazy {
+        snapshottableClasses.map { it.classId }.toSet()
     }
 
-    override fun generateConstructors(context: MemberGenerationContext): List<FirConstructorSymbol> {
-        val classId = context.owner.classId
-        require(classId == MY_CLASS_ID)
-        val constructor = createConstructor(context.owner, Key, /*generateDelegatedNoArgConstructorCall = true*/)
-        return listOf(constructor.symbol)
+    // IDs for Snapshottable-annotated classes' companion objects.
+    private val snapshottableCompanionClassIds by lazy {
+        snapshottableClasses.map { it.classId.companion }.toSet()
     }
+
+    // IDs for nested Mutable classes.
+    private val mutableSnapshotClassIds by lazy {
+        snapshottableClasses.map { it.classId.mutable }
+            .toSet()
+    }
+
+    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
+        register(Snapshottable.SNAPSHOTTABLE_PREDICATE)
+        register(Snapshottable.HAS_SNAPSHOTTABLE_PREDICATE)
+    }
+
 
     override fun generateFunctions(
         callableId: CallableId,
-        context: MemberGenerationContext?
+        context: MemberGenerationContext?,
     ): List<FirNamedFunctionSymbol> {
         val owner = context?.owner ?: return emptyList()
-        val function = createMemberFunction(owner, Key, callableId.callableName, returnType = session.builtinTypes.stringType.coneType)
+
+        val function = when (callableId.classId) {
+            in mutableSnapshotClassIds -> when (callableId.callableName) {
+                // TODO generate other functions
+                else -> createFunMutableSetter(
+                    mutableClassSymbol = owner,
+                    callableId = callableId,
+                )
+            }
+
+            else -> null
+        }
+
+        if (function == null) return emptyList()
         return listOf(function.symbol)
     }
 
+    override fun generateProperties(
+        callableId: CallableId,
+        context: MemberGenerationContext?
+    ): List<FirPropertySymbol> {
+        val owner = context?.owner ?: return emptyList()
+
+        if (callableId.classId in mutableSnapshotClassIds) {
+            val property = createPropertyMutableValue(
+                mutableClassSymbol = owner,
+                callableId = callableId,
+            ) ?: return emptyList()
+
+            return listOf(property.symbol)
+        }
+
+        return emptyList()
+    }
+
+    override fun generateConstructors(
+        context: MemberGenerationContext
+    ): List<FirConstructorSymbol> {
+        val constructor = when (val ownerClassId = context.owner.classId) {
+            in mutableSnapshotClassIds -> createConstructor(
+                owner = context.owner,
+                key = Snapshottable.Key,
+                isPrimary = true
+            )
+
+            in snapshottableCompanionClassIds -> createDefaultPrivateConstructor(
+                owner = context.owner,
+                key = Snapshottable.Key
+            )
+
+            else -> error("Can't generate constructor for ${ownerClassId.asSingleFqName()}")
+        }
+        return listOf(constructor.symbol)
+    }
+
     override fun getCallableNamesForClass(classSymbol: FirClassSymbol<*>, context: MemberGenerationContext): Set<Name> {
-        return if (classSymbol.classId == MY_CLASS_ID) {
-            setOf(FOO_ID.callableName, SpecialNames.INIT)
-        } else {
-            emptySet()
+        return when (val classId = classSymbol.classId) {
+            in snapshottableClassIds -> {
+                emptySet()
+            }
+
+            in snapshottableCompanionClassIds -> {
+                setOf(
+                    SpecialNames.INIT
+                )
+            }
+
+            in mutableSnapshotClassIds -> {
+                val snapshottableClassId = classId.outerClassId!!
+                val sourceClassSymbol = requireNotNull(
+                    session.snapshottableSourceSymbol(
+                        snapshottableSymbol = session.findClassSymbol(snapshottableClassId)!!
+                    )
+                )
+                val parameters = session.getPrimaryConstructorValueParameters(sourceClassSymbol)
+                buildSet {
+                    add(SpecialNames.INIT)
+                    addAll(parameters.map { it.name })
+                }
+            }
+
+            else -> emptySet()
         }
     }
 
-    @ExperimentalTopLevelDeclarationsGenerationApi
-    override fun getTopLevelClassIds(): Set<ClassId> {
-        return setOf(MY_CLASS_ID)
+    override fun getNestedClassifiersNames(
+        classSymbol: FirClassSymbol<*>,
+        context: NestedClassGenerationContext,
+    ): Set<Name> {
+        return when (classSymbol) {
+            in snapshottableClasses -> setOf(
+                MUTABLE_CLASS_NAME,
+                SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT,
+            )
+
+            else -> emptySet()
+        }
     }
 
-    override fun hasPackage(packageFqName: FqName): Boolean {
-        return packageFqName == MY_CLASS_ID.packageFqName
+    override fun generateNestedClassLikeDeclaration(
+        owner: FirClassSymbol<*>,
+        name: Name,
+        context: NestedClassGenerationContext
+    ): FirClassLikeSymbol<*>? {
+        if (owner !is FirRegularClassSymbol) return null
+        if (owner !in snapshottableClasses) return null
+        return when (name) {
+            MUTABLE_CLASS_NAME -> generateMutableClass(owner).symbol
+            SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanionDeclaration(owner)
+            else -> error("Can't generate class ${owner.classId.createNestedClassId(name).asSingleFqName()}")
+        }
     }
 
-    object Key : GeneratedDeclarationKey()
+    private fun generateCompanionDeclaration(owner: FirRegularClassSymbol): FirRegularClassSymbol? {
+        if (owner.resolvedCompanionObjectSymbol != null) return null
+        val companion = createCompanionObject(owner, Snapshottable.Key)
+        return companion.symbol
+    }
 }
