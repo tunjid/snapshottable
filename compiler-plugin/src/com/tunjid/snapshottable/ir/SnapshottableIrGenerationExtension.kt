@@ -7,7 +7,9 @@ import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
 
 class SnapshottableIrGenerationExtension: IrGenerationExtension {
     override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
-        val transformers = listOf(SnapshottableIrBodyGenerator(pluginContext))
+        val transformers = listOf(
+            SnapshottableIrBodyGenerator(pluginContext)
+        )
         for (transformer in transformers) {
             moduleFragment.acceptChildrenVoid(transformer)
         }
