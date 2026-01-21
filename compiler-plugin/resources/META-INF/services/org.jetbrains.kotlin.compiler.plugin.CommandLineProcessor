@@ -1,1 +1,1 @@
-org.jetbrains.kotlin.compiler.plugin.template.SimpleCommandLineProcessor
+org.jetbrains.kotlin.compiler.plugin.template.SnapshottableCommandLineProcessor
