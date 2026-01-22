@@ -17,7 +17,6 @@
 package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.Snapshottable.snapshottableSourceSymbol
 import com.tunjid.snapshottable.Snapshottable.toJavaSetter
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
@@ -32,7 +31,6 @@ import org.jetbrains.kotlin.fir.plugin.createNestedClass
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
 import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
-import org.jetbrains.kotlin.fir.resolve.toSymbol
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
@@ -122,17 +120,18 @@ fun FirSession.getPrimaryConstructorValueParameters(
 }
 
 fun FirExtension.generateMutableClass(
+    mutableClassSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
 ): FirRegularClass {
+    println("generateMutableClass")
+
     return createNestedClass(
-        owner = snapshottableClassSymbol,
+        owner = mutableClassSymbol,
         name = MUTABLE_CLASS_NAME,
         key = Snapshottable.Key,
     ) {
         copyTypeParametersFrom(
-            sourceSymbol = session.snapshottableSourceSymbol(
-                snapshottableSymbol = snapshottableClassSymbol,
-            )!!,
+            sourceSymbol = snapshottableClassSymbol,
             session = session
         )
     }
@@ -140,21 +139,18 @@ fun FirExtension.generateMutableClass(
 
 fun FirExtension.createFunMutableSetter(
     mutableClassSymbol: FirClassSymbol<*>,
+    snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirSimpleFunction? {
-    val snapshottableClassId = mutableClassSymbol.classId.outerClassId!!
-    val snapshottableSymbol = snapshottableClassId.toSymbol(session)
-    val snapshottableSourceSymbol = session.snapshottableSourceSymbol(snapshottableSymbol)!!
-
     val typeArguments = mutableClassSymbol.typeParameterSymbols.map { it.toConeType() }
 
     val parameterSymbol = session.getPrimaryConstructorValueParameters(
-        classSymbol = snapshottableSourceSymbol
+        classSymbol = snapshottableClassSymbol
     )
         .singleOrNull { it.name.toJavaSetter() == callableId.callableName } ?: return null
 
     val substitutor = substitutor(
-        sourceSymbol = snapshottableSourceSymbol,
+        sourceSymbol = snapshottableClassSymbol,
         mutableClassSymbol = mutableClassSymbol,
         session = session
     )
@@ -173,18 +169,15 @@ fun FirExtension.createFunMutableSetter(
 
 fun FirExtension.createPropertyMutableValue(
     mutableClassSymbol: FirClassSymbol<*>,
+    snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId
 ): FirProperty? {
-    val snapshottableClassId = mutableClassSymbol.classId.outerClassId!!
-    val snapshottableSymbol = snapshottableClassId.toSymbol(session)
-    val snapshottableSourceSymbol = session.snapshottableSourceSymbol(snapshottableSymbol)!!
-
     val parameter = session.getPrimaryConstructorValueParameters(
-        classSymbol = snapshottableSourceSymbol
+        classSymbol = snapshottableClassSymbol
     )
         .singleOrNull { it.name == callableId.callableName } ?: return null
     val substitutor = substitutor(
-        sourceSymbol = snapshottableSourceSymbol,
+        sourceSymbol = snapshottableClassSymbol,
         mutableClassSymbol = mutableClassSymbol,
         session = session,
     )

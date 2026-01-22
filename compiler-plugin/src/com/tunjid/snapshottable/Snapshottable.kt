@@ -16,78 +16,26 @@
 
 package com.tunjid.snapshottable
 
-import com.tunjid.snapshottable.fir.findClassSymbol
 import org.jetbrains.kotlin.GeneratedDeclarationKey
-import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.declarations.getAnnotationByClassId
-import org.jetbrains.kotlin.fir.expressions.FirGetClassCall
 import org.jetbrains.kotlin.fir.extensions.predicate.DeclarationPredicate
-import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotated
-import org.jetbrains.kotlin.fir.resolve.toSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassifierSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
-import org.jetbrains.kotlin.fir.types.ConeKotlinType
-import org.jetbrains.kotlin.fir.types.classId
-import org.jetbrains.kotlin.fir.types.resolvedType
+import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotatedOrUnder
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin.GeneratedByPlugin
-import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
 object Snapshottable {
-    val ANNOTATION_FQ_NAME = FqName("com.tunjid.snapshottable.Snapshottable")
-    val ANNOTATION_CLASS_ID = ClassId.topLevel(ANNOTATION_FQ_NAME)
-    val ANNOTATION_PREDICATE = annotated(ANNOTATION_FQ_NAME)
-    val SOURCE_NAME = Name.identifier("source")
-
-    val SNAPSHOTTABLE_PREDICATE = DeclarationPredicate.create {
-        annotated(FqName("com.tunjid.snapshottable.Snapshottable"))
-    }
-
-    val HAS_SNAPSHOTTABLE_PREDICATE = DeclarationPredicate.create {
-        hasAnnotated(FqName("com.tunjid.snapshottable.Snapshottable"))
+    private const val ANNOTATION = "com.tunjid.snapshottable.Snapshottable"
+    val ANNOTATION_FQ_NAME = FqName(ANNOTATION)
+    val ANNOTATION_PREDICATE = annotatedOrUnder(ANNOTATION_FQ_NAME)
+    val ANNOTATION_DECLARATION_PREDICATE = DeclarationPredicate.create {
+        annotatedOrUnder(FqName(ANNOTATION))
     }
 
     object Key : GeneratedDeclarationKey() {
         override fun toString(): String = "SnapshottableKey"
     }
 
-    data class Pair(
-        val annotatedClassSymbol: FirRegularClassSymbol,
-        val sourceClassType: ConeKotlinType,
-    )
-
     val ORIGIN = GeneratedByPlugin(Key)
-
-    /**
-     * Fetches the class that the Snapshottable interface mirrors
-     */
-    internal fun FirSession.snapshottableSourceSymbol(
-        snapshottableSymbol: FirClassifierSymbol<*>?,
-    ): FirClassSymbol<*>? {
-        snapshottableSymbol ?: return null
-        val sourceAnnotationClassCall = snapshottableSymbol.resolvedAnnotationsWithArguments
-            .getAnnotationByClassId(
-                classId = ANNOTATION_CLASS_ID,
-                session = this
-            )
-            ?.argumentMapping
-            ?.mapping
-            ?.get(SOURCE_NAME)
-            ?: return null
-
-        // 3. Resolve the type of the class reference.
-        // The typeRef of the argument is usually KClass<T>, so we look at the argument of that type.
-        // A more direct way in recent FIR versions is usually checking the type of the reference:
-        val sourceConeType = when (sourceAnnotationClassCall) {
-            is FirGetClassCall -> sourceAnnotationClassCall.argument.resolvedType
-            else -> null
-        } ?: return null
-
-        return sourceConeType.classId
-            ?.let(::findClassSymbol)
-    }
 
     internal fun Name.toJavaSetter(): Name {
         val name = asString()
