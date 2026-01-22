@@ -28,6 +28,7 @@ import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
 import org.jetbrains.kotlin.fir.plugin.createNestedClass
+import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
 import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
@@ -120,16 +121,16 @@ fun FirSession.getPrimaryConstructorValueParameters(
 }
 
 fun FirExtension.generateMutableClass(
+    parentClassSymbol: FirClassSymbol<*>,
     mutableClassSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
 ): FirRegularClass {
-    println("generateMutableClass")
-
     return createNestedClass(
         owner = mutableClassSymbol,
         name = MUTABLE_CLASS_NAME,
         key = Snapshottable.Key,
     ) {
+        superType(parentClassSymbol.defaultType())
         copyTypeParametersFrom(
             sourceSymbol = snapshottableClassSymbol,
             session = session

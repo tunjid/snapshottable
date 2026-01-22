@@ -189,6 +189,7 @@ class SnapshottableClassGenerator(
 
         return when (name) {
             MUTABLE_CLASS_NAME -> generateMutableClass(
+                parentClassSymbol = owner,
                 mutableClassSymbol = owner,
                 snapshottableClassSymbol = resolveSnapshottableSymbol(
                     parentClassId = owner.classId
