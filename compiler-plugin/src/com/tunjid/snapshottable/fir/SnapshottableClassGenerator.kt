@@ -134,7 +134,21 @@ class SnapshottableClassGenerator(
                 owner = context.owner,
                 key = Snapshottable.Key,
                 isPrimary = true
-            )
+            ) {
+                val parameters = snapshottableSourceParameterSymbols(
+                    snapshottableParentId = resolveSnapshottableParentSymbol(
+                        mutableClassId = context.owner.classId,
+                    )
+                )
+                parameters.forEach { parameter ->
+                    valueParameter(
+                        name = parameter.name,
+                        type = parameter.resolvedReturnType,
+                        hasDefaultValue = parameter.hasDefaultValue,
+                        key = Snapshottable.Key,
+                    )
+                }
+            }
 
             in snapshottableCompanionClassIds -> createDefaultPrivateConstructor(
                 owner = context.owner,
@@ -152,7 +166,7 @@ class SnapshottableClassGenerator(
     ): Set<Name> {
         return when (val classId = classSymbol.classId) {
             in snapshottableParentInterfaceIds ->
-                snapshottableSourceParameters(snapshottableParentId = classId)
+                snapshottableSourceParameterNames(snapshottableParentId = classId)
                     .toSet()
 
             in snapshottableCompanionClassIds ->
@@ -164,7 +178,7 @@ class SnapshottableClassGenerator(
                 buildSet {
                     add(SpecialNames.INIT)
                     addAll(
-                        snapshottableSourceParameters(
+                        snapshottableSourceParameterNames(
                             snapshottableParentId = resolveSnapshottableParentSymbol(
                                 mutableClassId = classId,
                             )
@@ -220,15 +234,21 @@ class SnapshottableClassGenerator(
         return companion.symbol
     }
 
-    private fun snapshottableSourceParameters(
+    private fun snapshottableSourceParameterSymbols(
         snapshottableParentId: ClassId
-    ): List<Name> {
+    ): List<FirValueParameterSymbol> {
         val sourceClassSymbol = resolveSnapshottableSymbol(
             parentClassId = snapshottableParentId,
         )
         val parameters = session.getPrimaryConstructorValueParameters(sourceClassSymbol)
-        return parameters.map(FirValueParameterSymbol::name)
+        return parameters
     }
+
+    private fun snapshottableSourceParameterNames(
+        snapshottableParentId: ClassId
+    ): List<Name> =
+        snapshottableSourceParameterSymbols(snapshottableParentId)
+            .map(FirValueParameterSymbol::name)
 
     private fun resolveSnapshottableParentSymbol(
         mutableClassId: ClassId
