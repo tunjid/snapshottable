@@ -69,16 +69,27 @@ class SnapshottableClassGenerator(
         val function = when (val classId = callableId.classId) {
             null -> null
             in mutableSnapshotClassIds -> when (callableId.callableName) {
-                // TODO generate other functions
-                else -> createFunMutableSetter(
-                    mutableClassSymbol = owner,
-                    snapshottableClassSymbol = resolveSnapshottableSymbol(
-                        parentClassId = resolveSnapshottableParentSymbol(
-                            mutableClassId = classId,
-                        )
-                    ),
-                    callableId = callableId,
-                )
+                UPDATE_FUN_NAME ->
+                    createFunMutableMutate(
+                        mutableClassSymbol = owner,
+                        snapshottableClassSymbol = resolveSnapshottableSymbol(
+                            parentClassId = resolveSnapshottableParentSymbol(
+                                mutableClassId = classId,
+                            )
+                        ),
+                        callableId = callableId,
+                    )
+
+                else ->
+                    createFunMutableSetter(
+                        mutableClassSymbol = owner,
+                        snapshottableClassSymbol = resolveSnapshottableSymbol(
+                            parentClassId = resolveSnapshottableParentSymbol(
+                                mutableClassId = classId,
+                            )
+                        ),
+                        callableId = callableId,
+                    )
             }
 
             else -> null
@@ -184,6 +195,7 @@ class SnapshottableClassGenerator(
                             )
                         )
                     )
+                    add(UPDATE_FUN_NAME)
                 }
 
             else -> emptySet()

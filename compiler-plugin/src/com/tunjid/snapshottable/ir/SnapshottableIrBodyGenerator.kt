@@ -6,7 +6,7 @@
 package com.tunjid.snapshottable.ir
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.Snapshottable.toJavaSetter
+import com.tunjid.snapshottable.fir.UPDATE_FUN_NAME
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.backend.common.lower.irThrow
@@ -47,7 +47,9 @@ class SnapshottableIrBodyGenerator(
                 parameter.type == nullableStringType
             }
 
-    override fun visitElement(element: IrElement) {
+    override fun visitElement(
+        element: IrElement
+    ) {
         when (element) {
             is IrDeclaration,
             is IrFile,
@@ -57,7 +59,9 @@ class SnapshottableIrBodyGenerator(
         }
     }
 
-    override fun visitClass(declaration: IrClass) {
+    override fun visitClass(
+        declaration: IrClass
+    ) {
         if (declaration.origin == Snapshottable.ORIGIN) {
             val declarations = declaration.declarations
 
@@ -71,17 +75,21 @@ class SnapshottableIrBodyGenerator(
         declaration.acceptChildrenVoid(this)
     }
 
-    override fun visitSimpleFunction(declaration: IrSimpleFunction) {
+    override fun visitSimpleFunction(
+        declaration: IrSimpleFunction
+    ) {
         if (declaration.origin == Snapshottable.ORIGIN && declaration.body == null) {
+            declaration.parameters
             declaration.body = when (declaration.name) {
-                // TODO other generations
-
-                else -> generateMutableSetter(declaration)
+                UPDATE_FUN_NAME -> generateUpdateFunction(declaration)
+                else -> declaration.body
             }
         }
     }
 
-    override fun visitConstructor(declaration: IrConstructor) {
+    override fun visitConstructor(
+        declaration: IrConstructor
+    ) {
         if (declaration.origin == Snapshottable.ORIGIN) {
             if (declaration.body == null) {
                 declaration.body = generateDefaultConstructor(declaration)
@@ -89,32 +97,33 @@ class SnapshottableIrBodyGenerator(
         }
     }
 
-    /**
-     * ```kotlin
-     * fun setName(name: String?): Mutable {
-     *     this.name = name
-     *     return this
-     * }
-     * ```
-     */
-    private fun generateMutableSetter(
+    private fun generateUpdateFunction(
         function: IrSimpleFunction
     ): IrBody? {
         val receiver = function.dispatchReceiverParameter ?: return null
         val mutableClass = function.parent as? IrClass ?: return null
-        val property = mutableClass.declarations.filterIsInstance<IrProperty>()
-            .single { it.name.toJavaSetter() == function.name }
+        val properties = mutableClass.declarations.filterIsInstance<IrProperty>()
 
         val irBuilder = DeclarationIrBuilder(context, function.symbol)
-        return irBuilder.irBlockBody {
-            val propertySet = irCall(property.setter!!).apply {
-                dispatchReceiver = irGet(receiver)
-                arguments[0] = irGet(function.parameters[0])
+        return irBuilder
+            .apply {
+                function.parameters.forEachIndexed { index, parameter ->
+                    val property = properties[index]
+                    irCall(property.getter!!).apply {
+                        parameter.defaultValue = irExprBody(irGet(receiver))
+                    }
+                }
             }
+            .irBlockBody {
+                properties.forEachIndexed { index, property ->
+                    +irCall(property.setter!!).apply {
+                        dispatchReceiver = irGet(receiver)
+                        arguments[0] = irGet(function.parameters[index])
+                    }
+                }
 
-            +propertySet
-            +irReturn(irGet(receiver))
-        }
+                +irReturn(irGet(receiver))
+            }
     }
 
     private fun generateDefaultConstructor(

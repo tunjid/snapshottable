@@ -48,6 +48,7 @@ import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.types.Variance
 
 val MUTABLE_CLASS_NAME = Name.identifier("Mutable")
+val UPDATE_FUN_NAME = Name.identifier("update")
 
 val ClassId.mutable: ClassId get() = createNestedClassId(MUTABLE_CLASS_NAME)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
@@ -137,6 +138,36 @@ fun FirExtension.generateMutableClass(
             sourceSymbol = snapshottableClassSymbol,
             session = session
         )
+    }
+}
+
+fun FirExtension.createFunMutableMutate(
+    mutableClassSymbol: FirClassSymbol<*>,
+    snapshottableClassSymbol: FirClassSymbol<*>,
+    callableId: CallableId,
+): FirSimpleFunction {
+    val typeArguments = mutableClassSymbol.typeParameterSymbols.map { it.toConeType() }
+
+    val parameterSymbols = session.getPrimaryConstructorValueParameters(snapshottableClassSymbol)
+    val substitutor = substitutor(
+        sourceSymbol = snapshottableClassSymbol,
+        mutableClassSymbol = mutableClassSymbol,
+        session = session,
+    )
+
+    return createMemberFunction(
+        owner = mutableClassSymbol,
+        key = Snapshottable.Key,
+        name = callableId.callableName,
+        returnType = mutableClassSymbol.constructType(typeArguments.toTypedArray()),
+    ) {
+        parameterSymbols.forEach { parameterSymbol ->
+            valueParameter(
+                name = parameterSymbol.name,
+                type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
+                hasDefaultValue = true,
+            )
+        }
     }
 }
 
