@@ -18,17 +18,27 @@ package com.tunjid.snapshottable
 
 import org.jetbrains.kotlin.GeneratedDeclarationKey
 import org.jetbrains.kotlin.fir.extensions.predicate.DeclarationPredicate
-import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotatedOrUnder
+import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotated
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin.GeneratedByPlugin
+import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
 object Snapshottable {
     private const val ANNOTATION = "com.tunjid.snapshottable.Snapshottable"
-    val ANNOTATION_FQ_NAME = FqName(ANNOTATION)
-    val ANNOTATION_PREDICATE = annotatedOrUnder(ANNOTATION_FQ_NAME)
-    val ANNOTATION_DECLARATION_PREDICATE = DeclarationPredicate.create {
-        annotatedOrUnder(FqName(ANNOTATION))
+    private const val PARENT_ANNOTATION = "com.tunjid.snapshottable.Snapshottable.Parent"
+
+    private val annotationFullyQualifiedName = FqName(ANNOTATION)
+    val annotationClassId = ClassId.topLevel(annotationFullyQualifiedName)
+    val annotationLookupPredicate = annotated(annotationFullyQualifiedName)
+    val annotationDeclarationPredicate = DeclarationPredicate.create {
+        annotated(FqName(ANNOTATION))
+    }
+
+    private val parentFullyQualifiedName = FqName(PARENT_ANNOTATION)
+    val parentAnnotationLookupPredicate = annotated(parentFullyQualifiedName)
+    val parentAnnotationDeclarationPredicate = DeclarationPredicate.create {
+        annotated(FqName(PARENT_ANNOTATION))
     }
 
     object Key : GeneratedDeclarationKey() {

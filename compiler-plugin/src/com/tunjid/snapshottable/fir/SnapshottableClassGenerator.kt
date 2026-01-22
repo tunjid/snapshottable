@@ -20,7 +20,7 @@ class SnapshottableClassGenerator(
 
     // Symbols for classes which have Snapshottable annotation.
     private val snapshottableParentInterfaces by lazy {
-        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.ANNOTATION_PREDICATE)
+        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.parentAnnotationLookupPredicate)
             .filterIsInstance<FirRegularClassSymbol>()
             // TODO: This check should be more rigid
             .filter(FirRegularClassSymbol::isInterface)
@@ -28,7 +28,7 @@ class SnapshottableClassGenerator(
     }
 
     private val snapshottableParentInterfaceIdsToSnapshottableSymbols by lazy {
-        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.ANNOTATION_PREDICATE)
+        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.annotationLookupPredicate)
             .filterIsInstance<FirRegularClassSymbol>()
             .mapNotNull { symbol ->
                 symbol.resolvedSuperTypes.firstNotNullOfOrNull {
@@ -55,14 +55,9 @@ class SnapshottableClassGenerator(
             .toSet()
     }
 
-    // IDs for nested Snapshottable classes.
-    private val snapshottableClassIds by lazy {
-        snapshottableParentInterfaceIdsToSnapshottableSymbols.values.map { it.classId }
-            .toSet()
-    }
-
     override fun FirDeclarationPredicateRegistrar.registerPredicates() {
-        register(Snapshottable.ANNOTATION_DECLARATION_PREDICATE)
+        register(Snapshottable.annotationDeclarationPredicate)
+        register(Snapshottable.parentAnnotationDeclarationPredicate)
     }
 
     override fun generateFunctions(

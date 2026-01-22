@@ -7,13 +7,14 @@ package diagnostics
 import com.tunjid.snapshottable.Snapshottable
 
 
-@Snapshottable
+@Snapshottable.Parent
 public interface Person {
+    @Snapshottable
     public class Immutable(
-        val name: String,
-        val nickname: String? = name,
-        val age: Int = 0,
-    ): Person
+        public val name: String,
+        public val nickname: String? = name,
+        public val age: Int = 0,
+    ) : Person
 }
 
 fun person1(): Person.Mutable {
