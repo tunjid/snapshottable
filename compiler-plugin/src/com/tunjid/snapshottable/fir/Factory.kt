@@ -18,11 +18,13 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.Snapshottable.toJavaSetter
+import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
 import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
 import org.jetbrains.kotlin.fir.declarations.processAllDeclarations
+import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtension
 import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
@@ -121,7 +123,7 @@ fun FirSession.getPrimaryConstructorValueParameters(
 }
 
 fun FirExtension.generateMutableClass(
-    parentClassSymbol: FirClassSymbol<*>,
+    parentInterfaceSymbol: FirClassSymbol<*>,
     mutableClassSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
 ): FirRegularClass {
@@ -130,7 +132,7 @@ fun FirExtension.generateMutableClass(
         name = MUTABLE_CLASS_NAME,
         key = Snapshottable.Key,
     ) {
-        superType(parentClassSymbol.defaultType())
+        superType(parentInterfaceSymbol.defaultType())
         copyTypeParametersFrom(
             sourceSymbol = snapshottableClassSymbol,
             session = session
@@ -168,8 +170,8 @@ fun FirExtension.createFunMutableSetter(
     }
 }
 
-fun FirExtension.createPropertyMutableValue(
-    mutableClassSymbol: FirClassSymbol<*>,
+fun FirExtension.createInterfaceOrMutableProperty(
+    classSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId
 ): FirProperty? {
@@ -179,15 +181,18 @@ fun FirExtension.createPropertyMutableValue(
         .singleOrNull { it.name == callableId.callableName } ?: return null
     val substitutor = substitutor(
         sourceSymbol = snapshottableClassSymbol,
-        mutableClassSymbol = mutableClassSymbol,
+        mutableClassSymbol = classSymbol,
         session = session,
     )
     return createMemberProperty(
-        owner = mutableClassSymbol,
+        owner = classSymbol,
         key = Snapshottable.Key,
         name = callableId.callableName,
         returnType = substitutor.substituteOrSelf(parameter.resolvedReturnType),
-        isVal = false,
+        isVal = classSymbol.isInterface,
         hasBackingField = false,
-    )
+    ) {
+        status { isOverride = !classSymbol.isInterface }
+        if (classSymbol.isInterface) modality = Modality.ABSTRACT
+    }
 }
