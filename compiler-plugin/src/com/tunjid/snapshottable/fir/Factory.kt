@@ -1,7 +1,6 @@
 package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.Snapshottable.toJavaSetter
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
@@ -25,10 +24,7 @@ import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
 import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.*
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.constructType
 import org.jetbrains.kotlin.ir.util.kotlinPackageFqn
@@ -46,12 +42,6 @@ val COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable"
 
 val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
-
-private fun Name.toParameterName(): Name {
-    return asString().removePrefix("set").let { name ->
-        Name.identifier(name[0].lowercase() + name.substring(1))
-    }
-}
 
 fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
@@ -140,9 +130,6 @@ fun FirExtension.createFunMutableMutate(
     snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirSimpleFunction {
-    val typeArguments = mutableClassSymbol.typeParameterSymbols.map { it.toConeType() }
-
-    val parameterSymbols = session.getPrimaryConstructorValueParameters(snapshottableClassSymbol)
     val substitutor = substitutor(
         sourceSymbol = snapshottableClassSymbol,
         mutableClassSymbol = mutableClassSymbol,
@@ -153,15 +140,20 @@ fun FirExtension.createFunMutableMutate(
         owner = mutableClassSymbol,
         key = Snapshottable.Key,
         name = callableId.callableName,
-        returnType = mutableClassSymbol.constructType(typeArguments.toTypedArray()),
+        returnType = mutableClassSymbol.constructType(
+            mutableClassSymbol.typeParameterSymbols
+                .map(FirTypeParameterSymbol::toConeType)
+                .toTypedArray()
+        ),
     ) {
-        parameterSymbols.forEach { parameterSymbol ->
-            valueParameter(
-                name = parameterSymbol.name,
-                type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
-                hasDefaultValue = true,
-            )
-        }
+        session.getPrimaryConstructorValueParameters(snapshottableClassSymbol)
+            .forEach { parameterSymbol ->
+                valueParameter(
+                    name = parameterSymbol.name,
+                    type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
+                    hasDefaultValue = true,
+                )
+            }
     }
         .apply {
             for (param in valueParameters) {
@@ -172,32 +164,26 @@ fun FirExtension.createFunMutableMutate(
         }
 }
 
-fun FirExtension.createFunMutableSetter(
-    mutableClassSymbol: FirClassSymbol<*>,
-    snapshottableClassSymbol: FirClassSymbol<*>,
+fun FirExtension.createFunCompanionConversion(
+    companionSymbol: FirClassSymbol<*>,
+    inputClassSymbol: FirClassSymbol<*>,
+    outputClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
-): FirSimpleFunction? {
-    val typeArguments = mutableClassSymbol.typeParameterSymbols.map { it.toConeType() }
-
-    val parameterSymbol = session.getPrimaryConstructorValueParameters(
-        classSymbol = snapshottableClassSymbol
-    )
-        .singleOrNull { it.name.toJavaSetter() == callableId.callableName } ?: return null
-
-    val substitutor = substitutor(
-        sourceSymbol = snapshottableClassSymbol,
-        mutableClassSymbol = mutableClassSymbol,
-        session = session
-    )
-    return createMemberFunction(
-        owner = mutableClassSymbol,
-        key = Snapshottable.Key,
-        name = callableId.callableName,
-        returnType = mutableClassSymbol.constructType(typeArguments.toTypedArray()),
-    ) {
-        valueParameter(
-            name = callableId.callableName.toParameterName(),
-            type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
+): FirSimpleFunction = createMemberFunction(
+    owner = companionSymbol,
+    key = Snapshottable.Key,
+    name = callableId.callableName,
+    returnType = outputClassSymbol.constructType(
+        typeArguments = outputClassSymbol.typeParameterSymbols
+            .map(FirTypeParameterSymbol::toConeType)
+            .toTypedArray()
+    ),
+) {
+    extensionReceiverType {
+        inputClassSymbol.constructType(
+            typeArguments = inputClassSymbol.typeParameterSymbols
+                .map(FirTypeParameterSymbol::toConeType)
+                .toTypedArray()
         )
     }
 }
@@ -237,9 +223,9 @@ private fun buildSafeDefaultValueStub(
     return buildFunctionCall {
         this.coneTypeOrNull = session.builtinTypes.nothingType.coneType
         this.calleeReference = buildResolvedNamedReference {
-           val errorFunctionSymbol =  session.symbolProvider.getTopLevelFunctionSymbols(
-               packageFqName = kotlinPackageFqn,
-               name = Name.identifier("error")
+            val errorFunctionSymbol = session.symbolProvider.getTopLevelFunctionSymbols(
+                packageFqName = kotlinPackageFqn,
+                name = Name.identifier("error")
             ).first {
                 it.valueParameterSymbols.size == 1
             }

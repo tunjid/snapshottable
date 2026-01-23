@@ -6,6 +6,8 @@
 package com.tunjid.snapshottable.ir
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.fir.COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE
+import com.tunjid.snapshottable.fir.COMPANION_FUN_NAME_TO_SPEC
 import com.tunjid.snapshottable.fir.MEMBER_FUN_NAME_UPDATE
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
@@ -18,12 +20,9 @@ import org.jetbrains.kotlin.ir.declarations.*
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
-import org.jetbrains.kotlin.ir.types.IrSimpleType
-import org.jetbrains.kotlin.ir.types.IrTypeArgument
-import org.jetbrains.kotlin.ir.types.typeOrNull
-import org.jetbrains.kotlin.ir.util.hasDefaultValue
-import org.jetbrains.kotlin.ir.util.nonDispatchParameters
-import org.jetbrains.kotlin.ir.util.primaryConstructor
+import org.jetbrains.kotlin.ir.symbols.IrConstructorSymbol
+import org.jetbrains.kotlin.ir.types.*
+import org.jetbrains.kotlin.ir.util.*
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
 import org.jetbrains.kotlin.name.Name
@@ -68,7 +67,13 @@ class SnapshottableIrBodyGenerator(
         if (declaration.origin != Snapshottable.ORIGIN || declaration.body != null) return
 
         declaration.body = when (declaration.name) {
-            MEMBER_FUN_NAME_UPDATE -> generateUpdateFunction(declaration)
+            MEMBER_FUN_NAME_UPDATE ->
+                generateUpdateFunction(declaration)
+
+            COMPANION_FUN_NAME_TO_SPEC,
+            COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE ->
+                generateConversionFunction(declaration)
+
             else -> declaration.body
         }
     }
@@ -111,6 +116,48 @@ class SnapshottableIrBodyGenerator(
                 }
             }
             +irReturn(irGet(receiver))
+        }
+            .doBuild()
+    }
+
+    private fun generateConversionFunction(
+        function: IrSimpleFunction
+    ): IrBody? {
+        val irClass = function.returnType.getClass() ?: return null
+        val constructorSymbol = irClass.primaryConstructor?.symbol ?: return null
+
+        val extensionReceiver = function.parameters
+            .first { it.kind == IrParameterKind.ExtensionReceiver }
+
+        val properties = extensionReceiver.type
+            .getClass()
+            ?.declarations
+            ?.filterIsInstance<IrProperty>()
+            ?: return null
+
+        val irBuilder = MutableStateFunctionBuilder(
+            context = context,
+            function = function,
+        )
+        return irBuilder.apply {
+            +irReturn(
+                irCall(
+                    callee = constructorSymbol,
+                    type = irClass.defaultType,
+                    constructedClass = irClass
+                ).apply {
+                    for ((i, typeParameterType) in constructorSymbol.typesOfTypeParameters().withIndex()) {
+                        typeArguments[i] = typeParameterType
+                    }
+                    for (index in properties.indices) {
+                        val property = properties[index]
+                        val getter = requireNotNull(property.getter)
+                        arguments[index] = irCall(getter).apply {
+                            dispatchReceiver = irGet(extensionReceiver)
+                        }
+                    }
+                }
+            )
         }
             .doBuild()
     }
@@ -212,6 +259,11 @@ class SnapshottableIrBodyGenerator(
 
         return holderField
     }
+}
+
+private fun IrConstructorSymbol.typesOfTypeParameters(): List<IrType> {
+    val allParameters = owner.constructedClass.typeParameters + owner.typeParameters
+    return allParameters.map { it.defaultType }
 }
 
 private const val MutableClassSetterArgumentIndex = 1

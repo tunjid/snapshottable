@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
+import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.name.ClassId
@@ -60,16 +61,16 @@ class SnapshottableFilters(
         classId: ClassId
     ) = snapshotSpecClassIds.contains(classId)
 
-    fun mutableClassIdToSnapshottableInterfaceSymbol(
-        mutableClassId: ClassId
+    fun nestedClassIdToSnapshottableInterfaceClassId(
+        nestedClassId: ClassId
     ): ClassId = requireNotNull(
         value = generateSequence(
-            seed = mutableClassId,
+            seed = nestedClassId,
             nextFunction = ClassId::outerClassId
         )
             .firstOrNull(snapshottableInterfaceIds::contains),
         lazyMessage = {
-            "Unable to resolve parent sealed interface for $mutableClassId"
+            "Unable to resolve parent sealed interface for $nestedClassId"
         }
     )
 
@@ -82,11 +83,21 @@ class SnapshottableFilters(
         }
     )
 
-    fun mutableClassIdToSpecSymbol(
-        mutableClassId: ClassId
+    fun nestedClassIdToSpecSymbol(
+        nestedClassId: ClassId
     ): FirRegularClassSymbol = snapshottableInterfaceIdToSpecSymbol(
-        snapshottableInterfaceId = mutableClassIdToSnapshottableInterfaceSymbol(
-            mutableClassId = mutableClassId,
+        snapshottableInterfaceId = nestedClassIdToSnapshottableInterfaceClassId(
+            nestedClassId = nestedClassId,
+        )
+    )
+
+    fun nestedClassIdToMutableSymbol(
+        nestedClassId: ClassId
+    ): FirClassSymbol<*> = requireNotNull(
+        session.findClassSymbol(
+            nestedClassIdToSnapshottableInterfaceClassId(
+                nestedClassId = nestedClassId,
+            ).mutable
         )
     )
 }

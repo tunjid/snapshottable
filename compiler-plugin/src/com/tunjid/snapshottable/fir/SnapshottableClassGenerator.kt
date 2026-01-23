@@ -36,13 +36,42 @@ class SnapshottableClassGenerator(
                 MEMBER_FUN_NAME_UPDATE ->
                     createFunMutableMutate(
                         mutableClassSymbol = owner,
-                        snapshottableClassSymbol = session.filters.mutableClassIdToSpecSymbol(
-                            mutableClassId = classId,
+                        snapshottableClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                            nestedClassId = classId,
                         ),
                         callableId = callableId,
                     )
 
                 else -> null
+            }
+
+            in session.filters.snapshottableCompanionClassIds -> when (callableId.callableName) {
+                COMPANION_FUN_NAME_TO_SPEC ->
+                    createFunCompanionConversion(
+                        companionSymbol = owner,
+                        inputClassSymbol = session.filters.nestedClassIdToMutableSymbol(
+                            nestedClassId = owner.classId,
+                        ),
+                        outputClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                            nestedClassId = owner.classId,
+                        ),
+                        callableId = callableId,
+                    )
+
+                COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE ->
+                    createFunCompanionConversion(
+                        companionSymbol = owner,
+                        inputClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                            nestedClassId = owner.classId,
+                        ),
+                        outputClassSymbol = session.filters.nestedClassIdToMutableSymbol(
+                            nestedClassId = owner.classId,
+                        ),
+                        callableId = callableId,
+                    )
+
+                else -> null
+
             }
 
             else -> null
@@ -75,8 +104,8 @@ class SnapshottableClassGenerator(
             in session.filters.mutableSnapshotClassIds ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
-                    snapshottableClassSymbol = session.filters.mutableClassIdToSpecSymbol(
-                        mutableClassId = classId,
+                    snapshottableClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                        nestedClassId = classId,
                     ),
                     callableId = callableId,
                 )
@@ -98,8 +127,8 @@ class SnapshottableClassGenerator(
                 isPrimary = true
             ) {
                 val parameters = snapshottableSourceParameterSymbols(
-                    snapshottableParentId = session.filters.mutableClassIdToSnapshottableInterfaceSymbol(
-                        mutableClassId = context.owner.classId,
+                    snapshottableParentId = session.filters.nestedClassIdToSnapshottableInterfaceClassId(
+                        nestedClassId = context.owner.classId,
                     )
                 )
                 parameters.forEach { parameter ->
@@ -133,7 +162,9 @@ class SnapshottableClassGenerator(
 
             in session.filters.snapshottableCompanionClassIds ->
                 setOf(
-                    SpecialNames.INIT
+                    SpecialNames.INIT,
+                    COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE,
+                    COMPANION_FUN_NAME_TO_SPEC,
                 )
 
             in session.filters.mutableSnapshotClassIds ->
@@ -141,8 +172,8 @@ class SnapshottableClassGenerator(
                     add(SpecialNames.INIT)
                     addAll(
                         snapshottableSourceParameterNames(
-                            snapshottableParentId = session.filters.mutableClassIdToSnapshottableInterfaceSymbol(
-                                mutableClassId = classId,
+                            snapshottableParentId = session.filters.nestedClassIdToSnapshottableInterfaceClassId(
+                                nestedClassId = classId,
                             )
                         )
                     )
