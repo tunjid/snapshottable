@@ -17,6 +17,8 @@ object Main {
         println("nickname: ${person.nickname}; age: ${person.age}")
         person.update(nickname = "ppppp", age = 8)
         println("nickname: ${person.nickname}; age: ${person.age}")
+        person.update(age = 14)
+        println("nickname: ${person.nickname}; age: ${person.age}")
 
     }
 }

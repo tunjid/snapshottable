@@ -18,6 +18,7 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.Snapshottable.toJavaSetter
+import org.jetbrains.kotlin.backend.common.ir.Symbols
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
@@ -25,11 +26,17 @@ import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
 import org.jetbrains.kotlin.fir.declarations.processAllDeclarations
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
+import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
+import org.jetbrains.kotlin.fir.expressions.buildResolvedArgumentList
+import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
+import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
+import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
 import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
 import org.jetbrains.kotlin.fir.plugin.createNestedClass
+import org.jetbrains.kotlin.fir.references.builder.buildResolvedNamedReference
 import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
@@ -41,10 +48,12 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.constructType
+import org.jetbrains.kotlin.ir.util.kotlinPackageFqn
 import org.jetbrains.kotlin.name.CallableId
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.name.SpecialNames
+import org.jetbrains.kotlin.types.ConstantValueKind
 import org.jetbrains.kotlin.types.Variance
 
 val MUTABLE_CLASS_NAME = Name.identifier("Mutable")
@@ -165,10 +174,17 @@ fun FirExtension.createFunMutableMutate(
             valueParameter(
                 name = parameterSymbol.name,
                 type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
-                hasDefaultValue = false,
+                hasDefaultValue = true,
             )
         }
     }
+        .apply {
+            for (param in valueParameters) {
+                if (param.defaultValue != null) {
+                    param.replaceDefaultValue(buildSafeDefaultValueStub(session))
+                }
+            }
+        }
 }
 
 fun FirExtension.createFunMutableSetter(
@@ -225,5 +241,38 @@ fun FirExtension.createInterfaceOrMutableProperty(
     ) {
         status { isOverride = !classSymbol.isInterface }
         if (classSymbol.isInterface) modality = Modality.ABSTRACT
+    }
+}
+
+// Workaround for https://youtrack.jetbrains.com/issue/KT-81808
+private fun buildSafeDefaultValueStub(
+    session: FirSession,
+    message: String = "Stub!",
+): FirFunctionCall {
+    return buildFunctionCall {
+        this.coneTypeOrNull = session.builtinTypes.nothingType.coneType
+        this.calleeReference = buildResolvedNamedReference {
+           val errorFunctionSymbol =  session.symbolProvider.getTopLevelFunctionSymbols(
+               packageFqName = kotlinPackageFqn,
+               name = Name.identifier("error")
+            ).first {
+                it.valueParameterSymbols.size == 1
+            }
+            this.resolvedSymbol = errorFunctionSymbol
+            this.name = errorFunctionSymbol.name
+        }
+        argumentList =
+            buildResolvedArgumentList(
+                buildArgumentList {
+                    this.arguments +=
+                        buildLiteralExpression(
+                            source = null,
+                            kind = ConstantValueKind.String,
+                            value = message,
+                            setType = true,
+                        )
+                },
+                LinkedHashMap(),
+            )
     }
 }

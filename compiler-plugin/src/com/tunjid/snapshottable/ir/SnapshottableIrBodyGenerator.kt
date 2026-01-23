@@ -20,6 +20,7 @@ import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.IrSimpleType
+import org.jetbrains.kotlin.ir.util.hasDefaultValue
 import org.jetbrains.kotlin.ir.util.nonDispatchParameters
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
@@ -86,8 +87,16 @@ class SnapshottableIrBodyGenerator(
         val mutableClass = function.parent as? IrClass ?: return null
         val properties = mutableClass.declarations.filterIsInstance<IrProperty>()
 
-        val irBuilder = DeclarationIrBuilder(context, function.symbol)
-        return irBuilder.irBlockBody {
+        val irBuilder = MutableStateFunctionBuilder(
+            context = context,
+            function = function,
+        )
+        return irBuilder.apply {
+            function.parameters
+                .filter { it.kind == IrParameterKind.Regular && it.hasDefaultValue() }
+                .forEach { irValueParameter ->
+                    irValueParameter.defaultValue = defaultValue(irValueParameter)
+                }
             function.nonDispatchParameters.forEach { parameter ->
                 val property = properties.single {
                     it.name == parameter.name
@@ -101,6 +110,7 @@ class SnapshottableIrBodyGenerator(
             }
             +irReturn(irGet(receiver))
         }
+            .doBuild()
     }
 
     private fun generateDefaultConstructor(
