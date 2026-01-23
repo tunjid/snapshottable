@@ -37,17 +37,17 @@ class SnapshottableFilters(
             .toMap()
     }
 
-    val snapshottableInterfaceIds by lazy {
+    private val snapshottableInterfaceIds by lazy {
         snapshottableParentInterfaces.mapToSetOrEmpty { it.classId }
     }
 
     // IDs for Snapshottable-annotated classes' companion objects.
-    val snapshottableCompanionClassIds by lazy {
+    private val snapshottableCompanionClassIds by lazy {
         snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.companion }
     }
 
     // IDs for nested Mutable classes.
-    val mutableSnapshotClassIds by lazy {
+    private val mutableSnapshotClassIds by lazy {
         snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.mutable }
     }
 
@@ -57,9 +57,21 @@ class SnapshottableFilters(
             .mapToSetOrEmpty(FirRegularClassSymbol::classId)
     }
 
+    fun isSnapshottableInterface(
+        classId: ClassId
+    ) = snapshottableInterfaceIds.contains(classId)
+
+    fun isSnapshottableInterfaceCompanion(
+        classId: ClassId
+    ) = snapshottableCompanionClassIds.contains(classId)
+
     fun isSnapshottableSpec(
         classId: ClassId
     ) = snapshotSpecClassIds.contains(classId)
+
+    fun isMutableSnapshot(
+        classId: ClassId
+    ) = mutableSnapshotClassIds.contains(classId)
 
     fun nestedClassIdToSnapshottableInterfaceClassId(
         nestedClassId: ClassId
@@ -68,7 +80,7 @@ class SnapshottableFilters(
             seed = nestedClassId,
             nextFunction = ClassId::outerClassId
         )
-            .firstOrNull(snapshottableInterfaceIds::contains),
+            .firstOrNull(::isSnapshottableInterface),
         lazyMessage = {
             "Unable to resolve parent sealed interface for $nestedClassId"
         }
