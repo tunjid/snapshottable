@@ -19,6 +19,8 @@ import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.IrSimpleType
+import org.jetbrains.kotlin.ir.types.IrTypeArgument
+import org.jetbrains.kotlin.ir.types.typeOrNull
 import org.jetbrains.kotlin.ir.util.hasDefaultValue
 import org.jetbrains.kotlin.ir.util.nonDispatchParameters
 import org.jetbrains.kotlin.ir.util.primaryConstructor
@@ -167,7 +169,11 @@ class SnapshottableIrBodyGenerator(
             parent = klass
             initializer = factory.createExpressionBody(
                 builder.irCall(snapshotStateMetadata.factoryFunction).apply {
-                    if (snapshotStateMetadata.hasGenericType) typeArguments[0] = backingType
+                    typeArguments.addAll(
+                        snapshotStateMetadata.type
+                            .arguments
+                            .map(IrTypeArgument::typeOrNull)
+                    )
                     arguments[0] = builder.irGet(targetValueParameter)
                 }
             )

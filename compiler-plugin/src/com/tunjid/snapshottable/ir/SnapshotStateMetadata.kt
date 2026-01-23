@@ -20,6 +20,7 @@ import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.ir.symbols.IrClassSymbol
 import org.jetbrains.kotlin.ir.symbols.IrPropertySymbol
 import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
+import org.jetbrains.kotlin.ir.types.IrSimpleType
 import org.jetbrains.kotlin.ir.types.IrType
 import org.jetbrains.kotlin.ir.types.isDouble
 import org.jetbrains.kotlin.ir.types.isFloat
@@ -36,8 +37,7 @@ data class SnapshotStateMetadata(
     val factoryFunction: IrSimpleFunctionSymbol,
     val snapshotStateClass: IrClassSymbol,
     val valueProperty: IrPropertySymbol,
-    val hasGenericType: Boolean,
-    val type: IrType,
+    val type: IrSimpleType,
 )
 
 private val composeRuntimeFullyQualifiedName = FqName(fqName = "androidx.compose.runtime")
@@ -73,7 +73,6 @@ fun IrPluginContext.snapshotStateMetadata(
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -88,7 +87,6 @@ fun IrPluginContext.snapshotStateMetadata(
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -103,7 +101,6 @@ fun IrPluginContext.snapshotStateMetadata(
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -118,7 +115,6 @@ fun IrPluginContext.snapshotStateMetadata(
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -135,7 +131,6 @@ fun IrPluginContext.snapshotStateMetadata(
                 stateClassName = composeMutableState
             ),
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasGenericType = true,
             type = snapshotStateClass.typeWith(backingType),
         )
     }

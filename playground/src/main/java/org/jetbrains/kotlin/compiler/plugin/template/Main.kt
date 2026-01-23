@@ -17,7 +17,8 @@ object Main {
         println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
         person.update(age = 14)
         println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-
+        person.update(date = Date().time)
+        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
     }
 }
 
