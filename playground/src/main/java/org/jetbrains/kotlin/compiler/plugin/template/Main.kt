@@ -34,8 +34,8 @@ public interface Person {
     ) : Person
 }
 
-fun person(): Person.Mutable {
-    return Person.Mutable(
+fun person(): Person.SnapshotMutable {
+    return Person.SnapshotMutable(
         nickname = "John",
         age = 7,
     )

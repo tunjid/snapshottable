@@ -56,7 +56,7 @@ import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.types.ConstantValueKind
 import org.jetbrains.kotlin.types.Variance
 
-val MUTABLE_CLASS_NAME = Name.identifier("Mutable")
+val MUTABLE_CLASS_NAME = Name.identifier("SnapshotMutable")
 val UPDATE_FUN_NAME = Name.identifier("update")
 
 val ClassId.mutable: ClassId get() = createNestedClassId(MUTABLE_CLASS_NAME)
