@@ -2,6 +2,8 @@ package org.jetbrains.kotlin.compiler.plugin.template
 
 import com.tunjid.snapshottable.Snapshottable
 import java.util.*
+import org.jetbrains.kotlin.compiler.plugin.template.Person.Companion.toSpec
+import org.jetbrains.kotlin.compiler.plugin.template.Person.Companion.toSnapshotMutable
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 object Main {
@@ -19,6 +21,10 @@ object Main {
         println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
         person.update(date = Date().time)
         println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
+
+        println(person.toSpec())
+        println(person.toSpec().toSnapshotMutable())
+        println(person.toSpec().toSnapshotMutable().toSpec())
     }
 }
 
