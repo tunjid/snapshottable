@@ -19,7 +19,6 @@ class SnapshottableFilters(
     private val snapshottableParentInterfaces by lazy {
         session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.annotationLookupPredicate)
             .filterIsInstance<FirRegularClassSymbol>()
-            // TODO: This check should be more rigid
             .filter(FirRegularClassSymbol::isInterface)
             .toSet()
     }
