@@ -27,6 +27,12 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                             source = declaration.source,
                             factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_INTERFACE
                         )
+
+                    snapshottableInterfaceIdToSpecSymbol(declaration.classId) == null ->
+                        reporter.reportOn(
+                            source = declaration.source,
+                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_SPEC
+                        )
                 }
             }
 
@@ -49,6 +55,12 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                         reporter.reportOn(
                             source = declaration.source,
                             factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_SPEC,
+                        )
+
+                    nestedClassIdToSnapshottableInterfaceClassId(declaration.classId) == null ->
+                        reporter.reportOn(
+                            source = declaration.source,
+                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_INTERFACE,
                         )
                 }
             }

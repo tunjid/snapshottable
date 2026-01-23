@@ -74,43 +74,29 @@ class SnapshottableFilters(
 
     fun nestedClassIdToSnapshottableInterfaceClassId(
         nestedClassId: ClassId
-    ): ClassId = requireNotNull(
-        value = generateSequence(
-            seed = nestedClassId,
-            nextFunction = ClassId::outerClassId
-        )
-            .firstOrNull(::isSnapshottableInterface),
-        lazyMessage = {
-            "Unable to resolve parent sealed interface for $nestedClassId"
-        }
+    ): ClassId? = generateSequence(
+        seed = nestedClassId,
+        nextFunction = ClassId::outerClassId
     )
+        .firstOrNull(::isSnapshottableInterface)
 
     fun snapshottableInterfaceIdToSpecSymbol(
         snapshottableInterfaceId: ClassId
-    ): FirRegularClassSymbol = requireNotNull(
-        value = snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId],
-        lazyMessage = {
-            "Unable to resolve source snapshottable class under $snapshottableInterfaceId"
-        }
-    )
+    ): FirRegularClassSymbol? =
+        snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId]
 
     fun nestedClassIdToSpecSymbol(
         nestedClassId: ClassId
-    ): FirRegularClassSymbol = snapshottableInterfaceIdToSpecSymbol(
-        snapshottableInterfaceId = nestedClassIdToSnapshottableInterfaceClassId(
-            nestedClassId = nestedClassId,
-        )
-    )
+    ): FirRegularClassSymbol? =
+        nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
+            ?.let(::snapshottableInterfaceIdToSpecSymbol)
 
     fun nestedClassIdToMutableSymbol(
         nestedClassId: ClassId
-    ): FirClassSymbol<*> = requireNotNull(
-        session.findClassSymbol(
-            nestedClassIdToSnapshottableInterfaceClassId(
-                nestedClassId = nestedClassId,
-            ).mutable
-        )
-    )
+    ): FirClassSymbol<*>? =
+        nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
+            ?.mutable
+            ?.let(session::findClassSymbol)
 }
 
 internal val FirSession.filters: SnapshottableFilters by FirSession.sessionComponentAccessor()

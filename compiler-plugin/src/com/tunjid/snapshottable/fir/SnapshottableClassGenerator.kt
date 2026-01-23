@@ -35,9 +35,9 @@ class SnapshottableClassGenerator(
                 MEMBER_FUN_NAME_UPDATE ->
                     createFunMutableMutate(
                         mutableClassSymbol = owner,
-                        snapshottableClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                        snapshottableClassSymbol = nestedClassIdToSpecSymbol(
                             nestedClassId = classId,
-                        ),
+                        ) ?: return emptyList(),
                         callableId = callableId,
                     )
 
@@ -48,24 +48,24 @@ class SnapshottableClassGenerator(
                 COMPANION_FUN_NAME_TO_SPEC ->
                     createFunCompanionConversion(
                         companionSymbol = owner,
-                        inputClassSymbol = session.filters.nestedClassIdToMutableSymbol(
+                        inputClassSymbol = nestedClassIdToMutableSymbol(
                             nestedClassId = owner.classId,
-                        ),
-                        outputClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                        ) ?: return emptyList(),
+                        outputClassSymbol = nestedClassIdToSpecSymbol(
                             nestedClassId = owner.classId,
-                        ),
+                        ) ?: return emptyList(),
                         callableId = callableId,
                     )
 
                 COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE ->
                     createFunCompanionConversion(
                         companionSymbol = owner,
-                        inputClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                        inputClassSymbol = nestedClassIdToSpecSymbol(
                             nestedClassId = owner.classId,
-                        ),
-                        outputClassSymbol = session.filters.nestedClassIdToMutableSymbol(
+                        ) ?: return emptyList(),
+                        outputClassSymbol = nestedClassIdToMutableSymbol(
                             nestedClassId = owner.classId,
-                        ),
+                        ) ?: return emptyList(),
                         callableId = callableId,
                     )
 
@@ -83,28 +83,28 @@ class SnapshottableClassGenerator(
     override fun generateProperties(
         callableId: CallableId,
         context: MemberGenerationContext?
-    ): List<FirPropertySymbol> {
+    ): List<FirPropertySymbol> = with(session.filters) {
         val owner = context?.owner ?: return emptyList()
         val classId = callableId.classId ?: return emptyList()
-        return when {
-            session.filters.isSnapshottableInterface(classId) ->
+        when {
+            isSnapshottableInterface(classId) ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
-                    snapshottableClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
+                    snapshottableClassSymbol = snapshottableInterfaceIdToSpecSymbol(
                         snapshottableInterfaceId = classId,
-                    ),
+                    ) ?: return emptyList(),
                     callableId = callableId,
                 )
                     ?.symbol
                     ?.let(::listOf)
                     .orEmpty()
 
-            session.filters.isMutableSnapshot(classId) ->
+            isMutableSnapshot(classId) ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
-                    snapshottableClassSymbol = session.filters.nestedClassIdToSpecSymbol(
+                    snapshottableClassSymbol = nestedClassIdToSpecSymbol(
                         nestedClassId = classId,
-                    ),
+                    ) ?: return emptyList(),
                     callableId = callableId,
                 )
                     ?.symbol
@@ -125,11 +125,12 @@ class SnapshottableClassGenerator(
                 key = Snapshottable.Key,
                 isPrimary = true
             ) {
-                val parameters = snapshottableSourceParameterSymbols(
-                    snapshottableParentId = session.filters.nestedClassIdToSnapshottableInterfaceClassId(
-                        nestedClassId = context.owner.classId,
-                    )
+                val parameters = nestedClassIdToSnapshottableInterfaceClassId(
+                    nestedClassId = context.owner.classId,
                 )
+                    ?.let(::snapshottableSourceParameterSymbols)
+                    ?: return@createConstructor
+
                 parameters.forEach { parameter ->
                     valueParameter(
                         name = parameter.name,
@@ -171,11 +172,9 @@ class SnapshottableClassGenerator(
                 buildSet {
                     add(SpecialNames.INIT)
                     addAll(
-                        snapshottableSourceParameterNames(
-                            snapshottableParentId = session.filters.nestedClassIdToSnapshottableInterfaceClassId(
-                                nestedClassId = classId,
-                            )
-                        )
+                        elements = nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = classId)
+                            ?.let(::snapshottableSourceParameterNames)
+                            .orEmpty()
                     )
                     add(MEMBER_FUN_NAME_UPDATE)
                 }
@@ -202,17 +201,17 @@ class SnapshottableClassGenerator(
         owner: FirClassSymbol<*>,
         name: Name,
         context: NestedClassGenerationContext
-    ): FirClassLikeSymbol<*>? {
+    ): FirClassLikeSymbol<*>? = with(session.filters) {
         if (owner !is FirRegularClassSymbol) return null
-        if (!session.filters.isSnapshottableInterface(owner.classId)) return null
+        if (!isSnapshottableInterface(owner.classId)) return null
 
         return when (name) {
             CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableClass(
                 parentInterfaceSymbol = owner,
                 mutableClassSymbol = owner,
-                snapshottableClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
+                snapshottableClassSymbol = snapshottableInterfaceIdToSpecSymbol(
                     snapshottableInterfaceId = owner.classId
-                ),
+                ) ?: return@with null,
             ).symbol
 
             SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanionDeclaration(owner)
@@ -231,7 +230,7 @@ class SnapshottableClassGenerator(
     ): List<FirValueParameterSymbol> {
         val sourceClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
             snapshottableInterfaceId = snapshottableParentId,
-        )
+        ) ?: return emptyList()
         val parameters = session.getPrimaryConstructorValueParameters(sourceClassSymbol)
         return parameters
     }
