@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.ir.symbols.IrClassSymbol
 import org.jetbrains.kotlin.ir.symbols.IrPropertySymbol
 import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
 import org.jetbrains.kotlin.ir.types.IrType
+import org.jetbrains.kotlin.ir.types.isDouble
 import org.jetbrains.kotlin.ir.types.isFloat
 import org.jetbrains.kotlin.ir.types.isInt
 import org.jetbrains.kotlin.ir.types.isLong
@@ -52,6 +53,10 @@ private val composeMutableFloatState = Name.identifier("MutableFloatState")
 
 private val composeMutableLongStateFactory = Name.identifier("mutableLongStateOf")
 private val composeMutableLongState = Name.identifier("MutableLongState")
+
+private val composeMutableDoubleStateFactory = Name.identifier("mutableDoubleStateOf")
+private val composeMutableDoubleState = Name.identifier("MutableDoubleState")
+
 
 val composeStateValue = Name.identifier("value")
 
@@ -95,6 +100,21 @@ fun IrPluginContext.snapshotStateMetadata(
         MutablePropertyBacking(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName = composeMutableLongStateFactory
+            ),
+            snapshotStateClass = snapshotStateClass,
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            hasBackingType = false,
+            type = snapshotStateClass.typeWith(),
+        )
+    }
+
+    backingType.isDouble() -> {
+        val snapshotStateClass = snapshotStateClass(
+            stateClassName = composeMutableDoubleState
+        )
+        MutablePropertyBacking(
+            factoryFunction = snapshotStateFactory(
+                stateFactoryMethodName = composeMutableDoubleStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),

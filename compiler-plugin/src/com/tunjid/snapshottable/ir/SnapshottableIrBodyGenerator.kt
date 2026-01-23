@@ -45,15 +45,17 @@ class SnapshottableIrBodyGenerator(
     override fun visitClass(
         declaration: IrClass
     ) {
-        if (declaration.origin == Snapshottable.ORIGIN) {
-            val declarations = declaration.declarations
-
-            val mutablePropertyBackings = declarations
-                .filterIsInstance<IrProperty>()
-                .map { generateBacking(declaration, it, context) }
-
-            declarations.addAll(0, mutablePropertyBackings)
+        if (declaration.origin != Snapshottable.ORIGIN) {
+            return declaration.acceptChildrenVoid(this)
         }
+
+        val declarations = declaration.declarations
+
+        val mutablePropertyBackings = declarations
+            .filterIsInstance<IrProperty>()
+            .map { generateBacking(declaration, it, context) }
+
+        declarations.addAll(0, mutablePropertyBackings)
 
         declaration.acceptChildrenVoid(this)
     }
@@ -61,21 +63,20 @@ class SnapshottableIrBodyGenerator(
     override fun visitSimpleFunction(
         declaration: IrSimpleFunction
     ) {
-        if (declaration.origin == Snapshottable.ORIGIN && declaration.body == null) {
-            declaration.body = when (declaration.name) {
-                UPDATE_FUN_NAME -> generateUpdateFunction(declaration)
-                else -> declaration.body
-            }
+        if (declaration.origin != Snapshottable.ORIGIN || declaration.body != null) return
+
+        declaration.body = when (declaration.name) {
+            UPDATE_FUN_NAME -> generateUpdateFunction(declaration)
+            else -> declaration.body
         }
     }
 
     override fun visitConstructor(
         declaration: IrConstructor
     ) {
-        if (declaration.origin == Snapshottable.ORIGIN) {
-            if (declaration.body == null) {
-                declaration.body = generateDefaultConstructor(declaration)
-            }
+        if (declaration.origin != Snapshottable.ORIGIN) return
+        if (declaration.body == null) {
+            declaration.body = generateDefaultConstructor(declaration)
         }
     }
 
