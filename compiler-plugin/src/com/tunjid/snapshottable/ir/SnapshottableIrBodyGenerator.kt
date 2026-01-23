@@ -18,19 +18,12 @@ import org.jetbrains.kotlin.ir.declarations.*
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
-import org.jetbrains.kotlin.ir.symbols.IrClassSymbol
-import org.jetbrains.kotlin.ir.symbols.IrPropertySymbol
-import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
 import org.jetbrains.kotlin.ir.types.IrSimpleType
-import org.jetbrains.kotlin.ir.types.typeWith
 import org.jetbrains.kotlin.ir.util.hasDefaultValue
 import org.jetbrains.kotlin.ir.util.nonDispatchParameters
 import org.jetbrains.kotlin.ir.util.primaryConstructor
-import org.jetbrains.kotlin.ir.util.properties
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
-import org.jetbrains.kotlin.name.CallableId
-import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.Name
 
 class SnapshottableIrBodyGenerator(
@@ -160,20 +153,20 @@ class SnapshottableIrBodyGenerator(
             .firstOrNull { it.name == property.name }
             ?: error("Constructor parameter 'myParam' not found")
 
-        val (mutableStateOfSymbol, mutableStateClass, snapshotStateSymbol) = context.snapshotStateMetadata()
+        val snapshotStateMetadata = context.snapshotStateMetadata(backingType)
 
         val builder = DeclarationIrBuilder(context, klass.symbol)
         val holderField = context.irFactory.buildField {
             origin = Snapshottable.ORIGIN
             visibility = DescriptorVisibilities.PRIVATE
             name = Name.identifier("${property.name}\$SnapshottableHolder")
-            type = mutableStateClass.typeWith(backingType)
+            type = snapshotStateMetadata.type
             isFinal = true
         }.apply {
             parent = klass
             initializer = factory.createExpressionBody(
-                builder.irCall(mutableStateOfSymbol).apply {
-                    typeArguments[0] = backingType
+                builder.irCall(snapshotStateMetadata.factoryFunction).apply {
+                    if (snapshotStateMetadata.hasBackingType) typeArguments[0] = backingType
                     arguments[0] = builder.irGet(targetValueParameter)
                 }
             )
@@ -186,7 +179,7 @@ class SnapshottableIrBodyGenerator(
         ).irBlockBody {
             val dispatch = getter.dispatchReceiverParameter!!
             +irReturn(
-                irCall(snapshotStateSymbol.owner.getter!!).apply {
+                irCall(snapshotStateMetadata.valueProperty.owner.getter!!).apply {
                     dispatchReceiver = irGetField(
                         receiver = irGet(dispatch),
                         field = holderField
@@ -201,41 +194,17 @@ class SnapshottableIrBodyGenerator(
             symbol = setter.symbol
         ).irBlockBody {
             val dispatch = setter.dispatchReceiverParameter!!
-            +irCall(snapshotStateSymbol.owner.setter!!).apply {
+            +irCall(snapshotStateMetadata.valueProperty.owner.setter!!).apply {
                 dispatchReceiver = irGetField(
                     receiver = irGet(dispatch),
                     field = holderField
                 )
                 arguments[MutableClassSetterArgumentIndex] = irGet(setter.nonDispatchParameters[0])
             }
-
         }
 
         return holderField
     }
-}
-
-private fun IrPluginContext.snapshotStateMetadata(): Triple<IrSimpleFunctionSymbol, IrClassSymbol, IrPropertySymbol> {
-    val mutableStateOfSymbol = referenceFunctions(
-        CallableId(
-            packageName = Snapshottable.composeRuntimeFullyQualifiedName,
-            callableName = Snapshottable.composeMutableStateFactory
-        )
-    ).first { it.owner.parameters.isNotEmpty() } // Simple check for the one with args
-
-    val mutableStateClass = referenceClass(
-        ClassId(
-            packageFqName = Snapshottable.composeRuntimeFullyQualifiedName,
-            topLevelName = Snapshottable.composeMutableState
-        )
-    ) ?: error("MutableState not found")
-
-    val snapshotStateSymbol = mutableStateClass.owner.properties
-        .find { it.name == Snapshottable.composeStateValue }
-        ?.symbol
-        ?: error("MutableState.value property not found")
-
-    return Triple(mutableStateOfSymbol, mutableStateClass, snapshotStateSymbol)
 }
 
 private const val MutableClassSetterArgumentIndex = 1

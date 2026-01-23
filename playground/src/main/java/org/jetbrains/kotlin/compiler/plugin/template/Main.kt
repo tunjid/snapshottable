@@ -1,36 +1,36 @@
 package org.jetbrains.kotlin.compiler.plugin.template
 
 import com.tunjid.snapshottable.Snapshottable
+import java.util.*
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!")
+        println("Hello and welcome!")
 
-//        println(person().toString())
         val person = person()
-        println("nickname: ${person.nickname}; age: ${person.age}")
+        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
         person.nickname = "Pt"
-        println("nickname: ${person.nickname}; age: ${person.age}")
+        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
         person.update(nickname = "ppppp", age = 8)
-        println("nickname: ${person.nickname}; age: ${person.age}")
+        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
         person.update(age = 14)
-        println("nickname: ${person.nickname}; age: ${person.age}")
+        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
 
     }
 }
 
 @Snapshottable.Parent
-public interface Person {
+interface Person {
 
 
     @Snapshottable
     data class Immutable(
         val nickname: String,
         val age: Int,
+        val date: Long,
+        val progress: Float,
     ) : Person
 }
 
@@ -38,5 +38,7 @@ fun person(): Person.SnapshotMutable {
     return Person.SnapshotMutable(
         nickname = "John",
         age = 7,
+        date = Date().time,
+        progress = 0.8f,
     )
 }

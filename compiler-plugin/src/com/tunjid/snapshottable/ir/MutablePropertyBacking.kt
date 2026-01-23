@@ -16,13 +16,130 @@
 
 package com.tunjid.snapshottable.ir
 
-import org.jetbrains.kotlin.ir.declarations.IrField
-import org.jetbrains.kotlin.ir.declarations.IrProperty
-import org.jetbrains.kotlin.ir.irAttribute
+import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
+import org.jetbrains.kotlin.ir.symbols.IrClassSymbol
+import org.jetbrains.kotlin.ir.symbols.IrPropertySymbol
+import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
+import org.jetbrains.kotlin.ir.types.IrType
+import org.jetbrains.kotlin.ir.types.isFloat
+import org.jetbrains.kotlin.ir.types.isInt
+import org.jetbrains.kotlin.ir.types.isLong
+import org.jetbrains.kotlin.ir.types.typeWith
+import org.jetbrains.kotlin.ir.util.properties
+import org.jetbrains.kotlin.name.CallableId
+import org.jetbrains.kotlin.name.ClassId
+import org.jetbrains.kotlin.name.FqName
+import org.jetbrains.kotlin.name.Name
 
-class MutablePropertyBacking(
-  val holder: IrField,
-  val flag: IrField
+data class MutablePropertyBacking(
+    val factoryFunction: IrSimpleFunctionSymbol,
+    val snapshotStateClass: IrClassSymbol,
+    val valueProperty: IrPropertySymbol,
+    val hasBackingType: Boolean,
+    val type: IrType,
 )
 
-var IrProperty.mutablePropertyBacking: MutablePropertyBacking? by irAttribute(copyByDefault = false)
+private val composeRuntimeFullyQualifiedName = FqName(fqName = "androidx.compose.runtime")
+
+private val composeMutableStateFactory = Name.identifier("mutableStateOf")
+private val composeMutableState = Name.identifier("MutableState")
+
+private val composeMutableIntStateFactory = Name.identifier("mutableIntStateOf")
+private val composeMutableIntState = Name.identifier("MutableIntState")
+
+private val composeMutableFloatStateFactory = Name.identifier("mutableFloatStateOf")
+private val composeMutableFloatState = Name.identifier("MutableFloatState")
+
+private val composeMutableLongStateFactory = Name.identifier("mutableLongStateOf")
+private val composeMutableLongState = Name.identifier("MutableLongState")
+
+val composeStateValue = Name.identifier("value")
+
+fun IrPluginContext.snapshotStateMetadata(
+    backingType: IrType
+): MutablePropertyBacking = when {
+    backingType.isInt() -> {
+        val snapshotStateClass = snapshotStateClass(
+            stateClassName = composeMutableIntState
+        )
+        MutablePropertyBacking(
+            factoryFunction = snapshotStateFactory(
+                stateFactoryMethodName = composeMutableIntStateFactory
+            ),
+            snapshotStateClass = snapshotStateClass,
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            hasBackingType = false,
+            type = snapshotStateClass.typeWith(),
+        )
+    }
+
+    backingType.isFloat() -> {
+        val snapshotStateClass = snapshotStateClass(
+            stateClassName = composeMutableFloatState
+        )
+        MutablePropertyBacking(
+            factoryFunction = snapshotStateFactory(
+                stateFactoryMethodName = composeMutableFloatStateFactory
+            ),
+            snapshotStateClass = snapshotStateClass,
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            hasBackingType = false,
+            type = snapshotStateClass.typeWith(),
+        )
+    }
+
+    backingType.isLong() -> {
+        val snapshotStateClass = snapshotStateClass(
+            stateClassName = composeMutableLongState
+        )
+        MutablePropertyBacking(
+            factoryFunction = snapshotStateFactory(
+                stateFactoryMethodName = composeMutableLongStateFactory
+            ),
+            snapshotStateClass = snapshotStateClass,
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            hasBackingType = false,
+            type = snapshotStateClass.typeWith(),
+        )
+    }
+
+    else -> {
+        val snapshotStateClass = snapshotStateClass(
+            stateClassName = composeMutableState
+        )
+        MutablePropertyBacking(
+            factoryFunction = snapshotStateFactory(
+                stateFactoryMethodName =  composeMutableStateFactory
+            ),
+            snapshotStateClass = snapshotStateClass(
+                stateClassName = composeMutableState
+            ),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            hasBackingType = true,
+            type = snapshotStateClass.typeWith(backingType),
+        )
+    }
+}
+
+private fun IrPluginContext.snapshotStateFactory(
+    stateFactoryMethodName: Name
+): IrSimpleFunctionSymbol = referenceFunctions(
+    CallableId(
+        packageName = composeRuntimeFullyQualifiedName,
+        callableName = stateFactoryMethodName,
+    )
+).first { it.owner.parameters.isNotEmpty() } // Simple check for the one with args
+
+private fun IrPluginContext.snapshotStateClass(
+    stateClassName: Name
+): IrClassSymbol = referenceClass(
+    ClassId(
+        packageFqName = composeRuntimeFullyQualifiedName,
+        topLevelName = stateClassName,
+    )
+) ?: error("MutableState not found")
+
+private fun IrClassSymbol.snapshotValuePropertySymbol(): IrPropertySymbol = (owner.properties
+    .find { it.name == composeStateValue }
+    ?.symbol
+    ?: error("MutableState.value property not found"))
