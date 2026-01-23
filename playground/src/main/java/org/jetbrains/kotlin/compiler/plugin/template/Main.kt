@@ -12,17 +12,23 @@ object Main {
         println("Hello and welcome!")
 
         val person = person()
-        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-        person.nickname = "Pt"
-        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-        person.update(nickname = "ppppp", age = 8)
-        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-        person.update(age = 14)
-        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-        person.update(date = Date().time)
-        println("nickname: ${person.nickname}; age: ${person.age}; date: ${person.date}; progress: ${person.progress}")
-
         println(person.toSnapshotSpec())
+
+        person.nickname = "Pt"
+        println(person.toSnapshotSpec())
+
+        person.update(nickname = "ppppp", age = 8)
+        println(person.toSnapshotSpec())
+
+        person.update(age = 14)
+        println(person.toSnapshotSpec())
+
+        person.update(date = Date().time)
+        println(person.toSnapshotSpec())
+
+        person.update(progress = 0.9f)
+        println(person.toSnapshotSpec())
+
         println(person.toSnapshotSpec().toSnapshotMutable())
         println(person.toSnapshotSpec().toSnapshotMutable().toSnapshotSpec())
     }
