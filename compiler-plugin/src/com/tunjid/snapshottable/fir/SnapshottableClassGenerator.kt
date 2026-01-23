@@ -2,13 +2,14 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.declarations.utils.isInterface
-import org.jetbrains.kotlin.fir.extensions.*
+import org.jetbrains.kotlin.fir.extensions.FirDeclarationGenerationExtension
+import org.jetbrains.kotlin.fir.extensions.FirDeclarationPredicateRegistrar
+import org.jetbrains.kotlin.fir.extensions.MemberGenerationContext
+import org.jetbrains.kotlin.fir.extensions.NestedClassGenerationContext
 import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createConstructor
 import org.jetbrains.kotlin.fir.plugin.createDefaultPrivateConstructor
 import org.jetbrains.kotlin.fir.symbols.impl.*
-import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.name.CallableId
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.Name
@@ -18,46 +19,9 @@ class SnapshottableClassGenerator(
     session: FirSession
 ) : FirDeclarationGenerationExtension(session) {
 
-    // Symbols for classes which have Snapshottable annotation.
-    private val snapshottableParentInterfaces by lazy {
-        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.parentAnnotationLookupPredicate)
-            .filterIsInstance<FirRegularClassSymbol>()
-            // TODO: This check should be more rigid
-            .filter(FirRegularClassSymbol::isInterface)
-            .toSet()
-    }
-
-    private val snapshottableParentInterfaceIdsToSnapshottableSymbols by lazy {
-        session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.annotationLookupPredicate)
-            .filterIsInstance<FirRegularClassSymbol>()
-            .mapNotNull { symbol ->
-                symbol.resolvedSuperTypes.firstNotNullOfOrNull {
-                    val parentInterfaceId = it.classId ?: return@mapNotNull null
-                    if (parentInterfaceId !in snapshottableParentInterfaceIds) return@mapNotNull null
-                    parentInterfaceId to symbol
-                }
-            }
-            .toMap()
-    }
-
-    private val snapshottableParentInterfaceIds by lazy {
-        snapshottableParentInterfaces.map { it.classId }.toSet()
-    }
-
-    // IDs for Snapshottable-annotated classes' companion objects.
-    private val snapshottableCompanionClassIds by lazy {
-        snapshottableParentInterfaces.map { it.classId.companion }.toSet()
-    }
-
-    // IDs for nested Mutable classes.
-    private val mutableSnapshotClassIds by lazy {
-        snapshottableParentInterfaces.map { it.classId.mutable }
-            .toSet()
-    }
-
     override fun FirDeclarationPredicateRegistrar.registerPredicates() {
+        register(Snapshottable.specAnnotationDeclarationPredicate)
         register(Snapshottable.annotationDeclarationPredicate)
-        register(Snapshottable.parentAnnotationDeclarationPredicate)
     }
 
     override fun generateFunctions(
@@ -68,7 +32,7 @@ class SnapshottableClassGenerator(
 
         val function = when (val classId = callableId.classId) {
             null -> null
-            in mutableSnapshotClassIds -> when (callableId.callableName) {
+            in session.filters.mutableSnapshotClassIds -> when (callableId.callableName) {
                 UPDATE_FUN_NAME ->
                     createFunMutableMutate(
                         mutableClassSymbol = owner,
@@ -97,7 +61,7 @@ class SnapshottableClassGenerator(
 
         return when (val classId = callableId.classId) {
             null -> emptyList()
-            in snapshottableParentInterfaceIds ->
+            in session.filters.snapshottableInterfaceIds ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
                     snapshottableClassSymbol = resolveSnapshottableSymbol(
@@ -109,7 +73,7 @@ class SnapshottableClassGenerator(
                     ?.let(::listOf)
                     .orEmpty()
 
-            in mutableSnapshotClassIds ->
+            in session.filters.mutableSnapshotClassIds ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
                     snapshottableClassSymbol = resolveSnapshottableSymbol(
@@ -131,7 +95,7 @@ class SnapshottableClassGenerator(
         context: MemberGenerationContext
     ): List<FirConstructorSymbol> {
         val constructor = when (val ownerClassId = context.owner.classId) {
-            in mutableSnapshotClassIds -> createConstructor(
+            in session.filters.mutableSnapshotClassIds -> createConstructor(
                 owner = context.owner,
                 key = Snapshottable.Key,
                 isPrimary = true
@@ -151,7 +115,7 @@ class SnapshottableClassGenerator(
                 }
             }
 
-            in snapshottableCompanionClassIds -> createDefaultPrivateConstructor(
+            in session.filters.snapshottableCompanionClassIds -> createDefaultPrivateConstructor(
                 owner = context.owner,
                 key = Snapshottable.Key
             )
@@ -166,16 +130,16 @@ class SnapshottableClassGenerator(
         context: MemberGenerationContext
     ): Set<Name> {
         return when (val classId = classSymbol.classId) {
-            in snapshottableParentInterfaceIds ->
+            in session.filters.snapshottableInterfaceIds ->
                 snapshottableSourceParameterNames(snapshottableParentId = classId)
                     .toSet()
 
-            in snapshottableCompanionClassIds ->
+            in session.filters.snapshottableCompanionClassIds ->
                 setOf(
                     SpecialNames.INIT
                 )
 
-            in mutableSnapshotClassIds ->
+            in session.filters.mutableSnapshotClassIds ->
                 buildSet {
                     add(SpecialNames.INIT)
                     addAll(
@@ -196,8 +160,8 @@ class SnapshottableClassGenerator(
         classSymbol: FirClassSymbol<*>,
         context: NestedClassGenerationContext,
     ): Set<Name> {
-        return when (classSymbol) {
-            in snapshottableParentInterfaces ->
+        return when (classSymbol.classId) {
+            in session.filters.snapshottableInterfaceIds ->
                 setOf(
                     MUTABLE_CLASS_NAME,
                     SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT,
@@ -214,7 +178,7 @@ class SnapshottableClassGenerator(
         context: NestedClassGenerationContext
     ): FirClassLikeSymbol<*>? {
         if (owner !is FirRegularClassSymbol) return null
-        if (owner !in snapshottableParentInterfaces) return null
+        if (owner.classId !in session.filters.snapshottableInterfaceIds) return null
 
         return when (name) {
             MUTABLE_CLASS_NAME -> generateMutableClass(
@@ -259,7 +223,7 @@ class SnapshottableClassGenerator(
             seed = mutableClassId,
             nextFunction = ClassId::outerClassId
         )
-            .firstOrNull(snapshottableParentInterfaceIds::contains),
+            .firstOrNull(session.filters.snapshottableInterfaceIds::contains),
         lazyMessage = {
             "Unable to resolve parent sealed interface for $mutableClassId"
         }
@@ -268,7 +232,7 @@ class SnapshottableClassGenerator(
     private fun resolveSnapshottableSymbol(
         parentClassId: ClassId
     ): FirRegularClassSymbol = requireNotNull(
-        value = snapshottableParentInterfaceIdsToSnapshottableSymbols[parentClassId],
+        value = session.filters.snapshottableSpec(parentClassId),
         lazyMessage = {
             "Unable to resolve source snapshottable class under $parentClassId"
         }

@@ -20,25 +20,23 @@ import org.jetbrains.kotlin.GeneratedDeclarationKey
 import org.jetbrains.kotlin.fir.extensions.predicate.DeclarationPredicate
 import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotated
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin.GeneratedByPlugin
-import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
 object Snapshottable {
+    private const val SPEC_ANNOTATION = "com.tunjid.snapshottable.Snapshottable.Spec"
     private const val ANNOTATION = "com.tunjid.snapshottable.Snapshottable"
-    private const val PARENT_ANNOTATION = "com.tunjid.snapshottable.Snapshottable.Parent"
+
+    private val specAnnotationFullyQualifiedName = FqName(SPEC_ANNOTATION)
+    val specAnnotationLookupPredicate = annotated(specAnnotationFullyQualifiedName)
+    val specAnnotationDeclarationPredicate = DeclarationPredicate.create {
+        annotated(FqName(SPEC_ANNOTATION))
+    }
 
     private val annotationFullyQualifiedName = FqName(ANNOTATION)
-    val annotationClassId = ClassId.topLevel(annotationFullyQualifiedName)
     val annotationLookupPredicate = annotated(annotationFullyQualifiedName)
     val annotationDeclarationPredicate = DeclarationPredicate.create {
         annotated(FqName(ANNOTATION))
-    }
-
-    private val parentFullyQualifiedName = FqName(PARENT_ANNOTATION)
-    val parentAnnotationLookupPredicate = annotated(parentFullyQualifiedName)
-    val parentAnnotationDeclarationPredicate = DeclarationPredicate.create {
-        annotated(FqName(PARENT_ANNOTATION))
     }
 
     object Key : GeneratedDeclarationKey() {

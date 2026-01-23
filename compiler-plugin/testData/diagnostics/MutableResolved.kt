@@ -7,9 +7,10 @@ package diagnostics
 import com.tunjid.snapshottable.Snapshottable
 
 
-@Snapshottable.Parent
+@Snapshottable
 public interface Person {
-    @Snapshottable
+    @Deprecated("Hi")
+    @Snapshottable.Spec
     public class Immutable(
         public val name: String,
         public val nickname: String? = name,

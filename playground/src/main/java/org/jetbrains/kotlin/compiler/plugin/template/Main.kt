@@ -22,11 +22,9 @@ object Main {
     }
 }
 
-@Snapshottable.Parent
+@Snapshottable
 interface Person {
-
-
-    @Snapshottable
+    @Snapshottable.Spec
     data class Immutable(
         val nickname: String,
         val age: Int,
