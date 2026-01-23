@@ -37,7 +37,7 @@ import org.jetbrains.kotlin.types.Variance
 
 val CLASS_NAME_SNAPSHOT_MUTABLE = Name.identifier("SnapshotMutable")
 val MEMBER_FUN_NAME_UPDATE = Name.identifier("update")
-val COMPANION_FUN_NAME_TO_SPEC = Name.identifier("toSpec")
+val COMPANION_FUN_NAME_TO_SPEC = Name.identifier("toSnapshotSpec")
 val COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable")
 
 val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
