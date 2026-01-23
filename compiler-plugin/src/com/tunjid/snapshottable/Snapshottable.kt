@@ -41,6 +41,11 @@ object Snapshottable {
         annotated(FqName(PARENT_ANNOTATION))
     }
 
+    val composeRuntimeFullyQualifiedName = FqName(fqName = "androidx.compose.runtime")
+    val composeMutableStateFactory = Name.identifier("mutableStateOf")
+    val composeMutableState = Name.identifier("MutableState")
+    val composeStateValue = Name.identifier("value")
+
     object Key : GeneratedDeclarationKey() {
         override fun toString(): String = "SnapshottableKey"
     }

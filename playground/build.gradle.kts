@@ -11,12 +11,15 @@ version = "0.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
     add(PLUGIN_CLASSPATH_CONFIGURATION_NAME, project(":compiler-plugin"))
     add(NATIVE_COMPILER_PLUGIN_CLASSPATH_CONFIGURATION_NAME, project(":compiler-plugin"))
     compileOnly(project(":plugin-annotations"))
+
+    implementation("androidx.compose.runtime:runtime:1.10.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
