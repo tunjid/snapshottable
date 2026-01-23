@@ -9,7 +9,6 @@ import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.fir.UPDATE_FUN_NAME
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
-import org.jetbrains.kotlin.backend.common.lower.irThrow
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.UNDEFINED_OFFSET
@@ -17,35 +16,18 @@ import org.jetbrains.kotlin.ir.builders.*
 import org.jetbrains.kotlin.ir.builders.declarations.buildField
 import org.jetbrains.kotlin.ir.declarations.*
 import org.jetbrains.kotlin.ir.expressions.IrBody
-import org.jetbrains.kotlin.ir.expressions.impl.IrConstImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
+import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.IrSimpleType
-import org.jetbrains.kotlin.ir.types.isPrimitiveType
-import org.jetbrains.kotlin.ir.types.makeNullable
-import org.jetbrains.kotlin.ir.util.SYNTHETIC_OFFSET
-import org.jetbrains.kotlin.ir.util.defaultValueForType
 import org.jetbrains.kotlin.ir.util.primaryConstructor
-import org.jetbrains.kotlin.ir.util.toIrConst
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
-import org.jetbrains.kotlin.name.ClassId
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
 class SnapshottableIrBodyGenerator(
     private val context: IrPluginContext
 ) : IrVisitorVoid() {
-
-    private val nullableStringType = context.irBuiltIns.stringType.makeNullable()
-    private val illegalStateExceptionConstructor =
-        context.referenceConstructors(ClassId.topLevel(FqName("kotlin.IllegalStateException")))
-            .single { constructor ->
-                val parameter = constructor.owner
-                    .parameters
-                    .singleOrNull() ?: return@single false
-                parameter.type == nullableStringType
-            }
 
     override fun visitElement(
         element: IrElement
@@ -69,7 +51,7 @@ class SnapshottableIrBodyGenerator(
                 .filterIsInstance<IrProperty>()
                 .map { generateBacking(declaration, it) }
 
-            declarations.addAll(0, mutablePropertyBackings.flatMap { listOf(it.flag, it.holder) })
+            declarations.addAll(0, mutablePropertyBackings)
         }
 
         declaration.acceptChildrenVoid(this)
@@ -79,7 +61,6 @@ class SnapshottableIrBodyGenerator(
         declaration: IrSimpleFunction
     ) {
         if (declaration.origin == Snapshottable.ORIGIN && declaration.body == null) {
-            declaration.parameters
             declaration.body = when (declaration.name) {
                 UPDATE_FUN_NAME -> generateUpdateFunction(declaration)
                 else -> declaration.body
@@ -106,21 +87,8 @@ class SnapshottableIrBodyGenerator(
 
         val irBuilder = DeclarationIrBuilder(context, function.symbol)
         return irBuilder
-            .apply {
-                function.parameters.forEachIndexed { index, parameter ->
-                    val property = properties[index]
-                    irCall(property.getter!!).apply {
-                        parameter.defaultValue = irExprBody(irGet(receiver))
-                    }
-                }
-            }
             .irBlockBody {
-                properties.forEachIndexed { index, property ->
-                    +irCall(property.setter!!).apply {
-                        dispatchReceiver = irGet(receiver)
-                        arguments[0] = irGet(function.parameters[index])
-                    }
-                }
+
 
                 +irReturn(irGet(receiver))
             }
@@ -152,28 +120,21 @@ class SnapshottableIrBodyGenerator(
     private fun generateBacking(
         klass: IrClass,
         property: IrProperty,
-    ): MutablePropertyBacking {
+    ): IrField {
         val getter = requireNotNull(property.getter)
         val setter = requireNotNull(property.setter)
         property.backingField = null
 
-        val isPrimitive = getter.returnType.isPrimitiveType()
-        val backingType = when {
-            isPrimitive -> getter.returnType
-            else -> getter.returnType.makeNullable()
-        }
+        val backingType = getter.returnType
 
-        val flagField = context.irFactory.buildField {
-            origin = Snapshottable.ORIGIN
-            visibility = DescriptorVisibilities.PRIVATE
-            name = Name.identifier("${property.name}\$SnapshottableFlag")
-            type = context.irBuiltIns.booleanType
-        }.apply {
-            parent = klass
-            initializer = context.irFactory.createExpressionBody(
-                expression = false.toIrConst(context.irBuiltIns.booleanType)
-            )
-        }
+        val primaryConstructor = klass.primaryConstructor
+            ?: error("Class does not have a primary constructor")
+
+        // 3. Find the specific parameter by name (e.g., "myParam")
+        val targetValueParameter: IrValueParameter = primaryConstructor.parameters
+            .firstOrNull { it.name == property.name }
+            ?: error("Constructor parameter 'myParam' not found")
+
 
         val holderField = context.irFactory.buildField {
             origin = Snapshottable.ORIGIN
@@ -183,31 +144,19 @@ class SnapshottableIrBodyGenerator(
         }.apply {
             parent = klass
             initializer = context.irFactory.createExpressionBody(
-                expression = when (isPrimitive) {
-                    true -> IrConstImpl.defaultValueForType(
-                        startOffset = SYNTHETIC_OFFSET,
-                        endOffset = SYNTHETIC_OFFSET,
-                        type = backingType
-                    )
-
-                    false -> null.toIrConst(backingType)
-                }
+                expression = IrGetValueImpl(
+                    startOffset = UNDEFINED_OFFSET, // or copy from source
+                    endOffset = UNDEFINED_OFFSET,
+                    type = targetValueParameter.type,
+                    symbol = targetValueParameter.symbol
+                )
             )
         }
 
         getter.origin = Snapshottable.ORIGIN
         getter.body = DeclarationIrBuilder(context, getter.symbol).irBlockBody {
             val dispatch = getter.dispatchReceiverParameter!!
-            +irIfThenElse(
-                type = getter.returnType,
-                condition = irGetField(irGet(dispatch), flagField),
-                thenPart = irReturn(irGetField(irGet(dispatch), holderField)),
-                elsePart = irThrow(
-                    irCall(illegalStateExceptionConstructor).apply {
-                        arguments[0] = irString("Uninitialized property '${property.name}'.")
-                    }
-                )
-            )
+            +irReturn(irGetField(irGet(dispatch), holderField))
         }
 
         setter.origin = Snapshottable.ORIGIN
@@ -218,15 +167,7 @@ class SnapshottableIrBodyGenerator(
                 field = holderField,
                 value = irGet(setter.parameters[0])
             )
-            +irSetField(
-                receiver = irGet(dispatch),
-                field = flagField,
-                value = true.toIrConst(context.irBuiltIns.booleanType)
-            )
         }
-
-        val mutablePropertyBacking = MutablePropertyBacking(holderField, flagField)
-        property.mutablePropertyBacking = mutablePropertyBacking
-        return mutablePropertyBacking
+        return holderField
     }
 }

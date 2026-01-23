@@ -80,18 +80,8 @@ class SnapshottableClassGenerator(
                         callableId = callableId,
                     )
 
-                else ->
-                    createFunMutableSetter(
-                        mutableClassSymbol = owner,
-                        snapshottableClassSymbol = resolveSnapshottableSymbol(
-                            parentClassId = resolveSnapshottableParentSymbol(
-                                mutableClassId = classId,
-                            )
-                        ),
-                        callableId = callableId,
-                    )
+                else -> null
             }
-
             else -> null
         }
 
@@ -155,7 +145,7 @@ class SnapshottableClassGenerator(
                     valueParameter(
                         name = parameter.name,
                         type = parameter.resolvedReturnType,
-                        hasDefaultValue = parameter.hasDefaultValue,
+                        hasDefaultValue = false,
                         key = Snapshottable.Key,
                     )
                 }

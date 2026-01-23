@@ -165,7 +165,7 @@ fun FirExtension.createFunMutableMutate(
             valueParameter(
                 name = parameterSymbol.name,
                 type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
-                hasDefaultValue = true,
+                hasDefaultValue = false,
             )
         }
     }

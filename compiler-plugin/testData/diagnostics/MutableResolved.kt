@@ -1,4 +1,4 @@
-// RUN_PIPELINE_TILL: FRONTEND
+// RUN_PIPELINE_TILL: BACKEND
 // FIR_DUMP
 // ENABLE_JAVA_SETTERS
 
@@ -18,12 +18,25 @@ public interface Person {
 }
 
 fun person1(): Person.Mutable {
-    return Person.Mutable()
-        .setName("John")
+    return Person.Mutable(
+        name = "John",
+        nickname = null,
+        age = 9,
+    )
+        .update(
+            name = "John",
+            nickname = null,
+            age = 9,
+        )
 }
 
 fun person2(): Person.Mutable {
-    return Person.Mutable().apply {
-        name = "John"
-    }
+    return Person.Mutable(
+        name = "John",
+        nickname = null,
+        age = 9,
+    )
+        .update(
+            name = "John",
+        )
 }
