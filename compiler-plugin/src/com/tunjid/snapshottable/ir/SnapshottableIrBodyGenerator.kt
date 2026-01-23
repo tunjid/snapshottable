@@ -167,7 +167,7 @@ class SnapshottableIrBodyGenerator(
             parent = klass
             initializer = factory.createExpressionBody(
                 builder.irCall(snapshotStateMetadata.factoryFunction).apply {
-                    if (snapshotStateMetadata.hasBackingType) typeArguments[0] = backingType
+                    if (snapshotStateMetadata.hasGenericType) typeArguments[0] = backingType
                     arguments[0] = builder.irGet(targetValueParameter)
                 }
             )

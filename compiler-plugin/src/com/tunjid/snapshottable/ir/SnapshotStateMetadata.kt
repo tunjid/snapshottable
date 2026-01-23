@@ -32,11 +32,11 @@ import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
-data class MutablePropertyBacking(
+data class SnapshotStateMetadata(
     val factoryFunction: IrSimpleFunctionSymbol,
     val snapshotStateClass: IrClassSymbol,
     val valueProperty: IrPropertySymbol,
-    val hasBackingType: Boolean,
+    val hasGenericType: Boolean,
     val type: IrType,
 )
 
@@ -62,18 +62,18 @@ val composeStateValue = Name.identifier("value")
 
 fun IrPluginContext.snapshotStateMetadata(
     backingType: IrType
-): MutablePropertyBacking = when {
+): SnapshotStateMetadata = when {
     backingType.isInt() -> {
         val snapshotStateClass = snapshotStateClass(
             stateClassName = composeMutableIntState
         )
-        MutablePropertyBacking(
+        SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName = composeMutableIntStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasBackingType = false,
+            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -82,13 +82,13 @@ fun IrPluginContext.snapshotStateMetadata(
         val snapshotStateClass = snapshotStateClass(
             stateClassName = composeMutableFloatState
         )
-        MutablePropertyBacking(
+        SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName = composeMutableFloatStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasBackingType = false,
+            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -97,13 +97,13 @@ fun IrPluginContext.snapshotStateMetadata(
         val snapshotStateClass = snapshotStateClass(
             stateClassName = composeMutableLongState
         )
-        MutablePropertyBacking(
+        SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName = composeMutableLongStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasBackingType = false,
+            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -112,13 +112,13 @@ fun IrPluginContext.snapshotStateMetadata(
         val snapshotStateClass = snapshotStateClass(
             stateClassName = composeMutableDoubleState
         )
-        MutablePropertyBacking(
+        SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName = composeMutableDoubleStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasBackingType = false,
+            hasGenericType = false,
             type = snapshotStateClass.typeWith(),
         )
     }
@@ -127,7 +127,7 @@ fun IrPluginContext.snapshotStateMetadata(
         val snapshotStateClass = snapshotStateClass(
             stateClassName = composeMutableState
         )
-        MutablePropertyBacking(
+        SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
                 stateFactoryMethodName =  composeMutableStateFactory
             ),
@@ -135,7 +135,7 @@ fun IrPluginContext.snapshotStateMetadata(
                 stateClassName = composeMutableState
             ),
             valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
-            hasBackingType = true,
+            hasGenericType = true,
             type = snapshotStateClass.typeWith(backingType),
         )
     }
