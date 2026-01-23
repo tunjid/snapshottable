@@ -20,6 +20,7 @@ import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.IrSimpleType
+import org.jetbrains.kotlin.ir.util.nonDispatchParameters
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
@@ -86,12 +87,20 @@ class SnapshottableIrBodyGenerator(
         val properties = mutableClass.declarations.filterIsInstance<IrProperty>()
 
         val irBuilder = DeclarationIrBuilder(context, function.symbol)
-        return irBuilder
-            .irBlockBody {
+        return irBuilder.irBlockBody {
+            function.nonDispatchParameters.forEach { parameter ->
+                val property = properties.single {
+                    it.name == parameter.name
+                }
+                val setter = requireNotNull(property.setter)
 
-
-                +irReturn(irGet(receiver))
+                +irCall(setter).apply {
+                    dispatchReceiver = irGet(receiver)
+                    arguments[MutableClassSetterArgumentIndex] = irGet(parameter)
+                }
             }
+            +irReturn(irGet(receiver))
+        }
     }
 
     private fun generateDefaultConstructor(
@@ -165,9 +174,11 @@ class SnapshottableIrBodyGenerator(
             +irSetField(
                 receiver = irGet(dispatch),
                 field = holderField,
-                value = irGet(setter.parameters[0])
+                value = irGet(setter.nonDispatchParameters[0])
             )
         }
         return holderField
     }
 }
+
+private const val MutableClassSetterArgumentIndex = 1

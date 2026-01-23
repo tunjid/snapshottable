@@ -10,9 +10,13 @@ object Main {
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("Hello and welcome!")
 
-        println(person().toString())
-        println(person().name)
-        person().update(name = "p")
+//        println(person().toString())
+        val person = person()
+        println("nickname: ${person.nickname}; age: ${person.age}")
+        person.nickname = "Pt"
+        println("nickname: ${person.nickname}; age: ${person.age}")
+        person.update(nickname = "ppppp", age = 8)
+        println("nickname: ${person.nickname}; age: ${person.age}")
 
     }
 }
@@ -23,12 +27,14 @@ public interface Person {
 
     @Snapshottable
     data class Immutable(
-        val name: String,
+        val nickname: String,
+        val age: Int,
     ) : Person
 }
 
 fun person(): Person.Mutable {
     return Person.Mutable(
-        name = "John",
+        nickname = "John",
+        age = 7,
     )
 }
