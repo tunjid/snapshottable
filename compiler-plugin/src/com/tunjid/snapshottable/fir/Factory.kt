@@ -2,7 +2,6 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.Snapshottable.toJavaSetter
-import org.jetbrains.kotlin.backend.common.ir.Symbols
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
@@ -40,10 +39,12 @@ import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.types.ConstantValueKind
 import org.jetbrains.kotlin.types.Variance
 
-val MUTABLE_CLASS_NAME = Name.identifier("SnapshotMutable")
-val UPDATE_FUN_NAME = Name.identifier("update")
+val CLASS_NAME_SNAPSHOT_MUTABLE = Name.identifier("SnapshotMutable")
+val MEMBER_FUN_NAME_UPDATE = Name.identifier("update")
+val COMPANION_FUN_NAME_TO_SPEC = Name.identifier("toSpec")
+val COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable")
 
-val ClassId.mutable: ClassId get() = createNestedClassId(MUTABLE_CLASS_NAME)
+val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
 
 private fun Name.toParameterName(): Name {
@@ -123,7 +124,7 @@ fun FirExtension.generateMutableClass(
 ): FirRegularClass {
     return createNestedClass(
         owner = mutableClassSymbol,
-        name = MUTABLE_CLASS_NAME,
+        name = CLASS_NAME_SNAPSHOT_MUTABLE,
         key = Snapshottable.Key,
     ) {
         superType(parentInterfaceSymbol.defaultType())

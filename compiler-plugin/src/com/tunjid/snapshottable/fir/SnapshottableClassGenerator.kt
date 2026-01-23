@@ -33,19 +33,18 @@ class SnapshottableClassGenerator(
         val function = when (val classId = callableId.classId) {
             null -> null
             in session.filters.mutableSnapshotClassIds -> when (callableId.callableName) {
-                UPDATE_FUN_NAME ->
+                MEMBER_FUN_NAME_UPDATE ->
                     createFunMutableMutate(
                         mutableClassSymbol = owner,
-                        snapshottableClassSymbol = resolveSnapshottableSymbol(
-                            parentClassId = resolveSnapshottableParentSymbol(
-                                mutableClassId = classId,
-                            )
+                        snapshottableClassSymbol = session.filters.mutableClassIdToSpecSymbol(
+                            mutableClassId = classId,
                         ),
                         callableId = callableId,
                     )
 
                 else -> null
             }
+
             else -> null
         }
 
@@ -64,8 +63,8 @@ class SnapshottableClassGenerator(
             in session.filters.snapshottableInterfaceIds ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
-                    snapshottableClassSymbol = resolveSnapshottableSymbol(
-                        parentClassId = classId,
+                    snapshottableClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
+                        snapshottableInterfaceId = classId,
                     ),
                     callableId = callableId,
                 )
@@ -76,10 +75,8 @@ class SnapshottableClassGenerator(
             in session.filters.mutableSnapshotClassIds ->
                 createInterfaceOrMutableProperty(
                     classSymbol = owner,
-                    snapshottableClassSymbol = resolveSnapshottableSymbol(
-                        parentClassId = resolveSnapshottableParentSymbol(
-                            mutableClassId = classId,
-                        )
+                    snapshottableClassSymbol = session.filters.mutableClassIdToSpecSymbol(
+                        mutableClassId = classId,
                     ),
                     callableId = callableId,
                 )
@@ -101,7 +98,7 @@ class SnapshottableClassGenerator(
                 isPrimary = true
             ) {
                 val parameters = snapshottableSourceParameterSymbols(
-                    snapshottableParentId = resolveSnapshottableParentSymbol(
+                    snapshottableParentId = session.filters.mutableClassIdToSnapshottableInterfaceSymbol(
                         mutableClassId = context.owner.classId,
                     )
                 )
@@ -144,12 +141,12 @@ class SnapshottableClassGenerator(
                     add(SpecialNames.INIT)
                     addAll(
                         snapshottableSourceParameterNames(
-                            snapshottableParentId = resolveSnapshottableParentSymbol(
+                            snapshottableParentId = session.filters.mutableClassIdToSnapshottableInterfaceSymbol(
                                 mutableClassId = classId,
                             )
                         )
                     )
-                    add(UPDATE_FUN_NAME)
+                    add(MEMBER_FUN_NAME_UPDATE)
                 }
 
             else -> emptySet()
@@ -163,7 +160,7 @@ class SnapshottableClassGenerator(
         return when (classSymbol.classId) {
             in session.filters.snapshottableInterfaceIds ->
                 setOf(
-                    MUTABLE_CLASS_NAME,
+                    CLASS_NAME_SNAPSHOT_MUTABLE,
                     SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT,
                 )
 
@@ -181,11 +178,11 @@ class SnapshottableClassGenerator(
         if (owner.classId !in session.filters.snapshottableInterfaceIds) return null
 
         return when (name) {
-            MUTABLE_CLASS_NAME -> generateMutableClass(
+            CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableClass(
                 parentInterfaceSymbol = owner,
                 mutableClassSymbol = owner,
-                snapshottableClassSymbol = resolveSnapshottableSymbol(
-                    parentClassId = owner.classId
+                snapshottableClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
+                    snapshottableInterfaceId = owner.classId
                 ),
             ).symbol
 
@@ -203,8 +200,8 @@ class SnapshottableClassGenerator(
     private fun snapshottableSourceParameterSymbols(
         snapshottableParentId: ClassId
     ): List<FirValueParameterSymbol> {
-        val sourceClassSymbol = resolveSnapshottableSymbol(
-            parentClassId = snapshottableParentId,
+        val sourceClassSymbol = session.filters.snapshottableInterfaceIdToSpecSymbol(
+            snapshottableInterfaceId = snapshottableParentId,
         )
         val parameters = session.getPrimaryConstructorValueParameters(sourceClassSymbol)
         return parameters
@@ -215,26 +212,4 @@ class SnapshottableClassGenerator(
     ): List<Name> =
         snapshottableSourceParameterSymbols(snapshottableParentId)
             .map(FirValueParameterSymbol::name)
-
-    private fun resolveSnapshottableParentSymbol(
-        mutableClassId: ClassId
-    ): ClassId = requireNotNull(
-        value = generateSequence(
-            seed = mutableClassId,
-            nextFunction = ClassId::outerClassId
-        )
-            .firstOrNull(session.filters.snapshottableInterfaceIds::contains),
-        lazyMessage = {
-            "Unable to resolve parent sealed interface for $mutableClassId"
-        }
-    )
-
-    private fun resolveSnapshottableSymbol(
-        parentClassId: ClassId
-    ): FirRegularClassSymbol = requireNotNull(
-        value = session.filters.snapshottableSpec(parentClassId),
-        lazyMessage = {
-            "Unable to resolve source snapshottable class under $parentClassId"
-        }
-    )
 }

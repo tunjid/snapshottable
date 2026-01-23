@@ -60,9 +60,35 @@ class SnapshottableFilters(
         classId: ClassId
     ) = snapshotSpecClassIds.contains(classId)
 
-    fun snapshottableSpec(
+    fun mutableClassIdToSnapshottableInterfaceSymbol(
+        mutableClassId: ClassId
+    ): ClassId = requireNotNull(
+        value = generateSequence(
+            seed = mutableClassId,
+            nextFunction = ClassId::outerClassId
+        )
+            .firstOrNull(snapshottableInterfaceIds::contains),
+        lazyMessage = {
+            "Unable to resolve parent sealed interface for $mutableClassId"
+        }
+    )
+
+    fun snapshottableInterfaceIdToSpecSymbol(
         snapshottableInterfaceId: ClassId
-    ) = snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId]
+    ): FirRegularClassSymbol = requireNotNull(
+        value = snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId],
+        lazyMessage = {
+            "Unable to resolve source snapshottable class under $snapshottableInterfaceId"
+        }
+    )
+
+    fun mutableClassIdToSpecSymbol(
+        mutableClassId: ClassId
+    ): FirRegularClassSymbol = snapshottableInterfaceIdToSpecSymbol(
+        snapshottableInterfaceId = mutableClassIdToSnapshottableInterfaceSymbol(
+            mutableClassId = mutableClassId,
+        )
+    )
 }
 
 internal val FirSession.filters: SnapshottableFilters by FirSession.sessionComponentAccessor()

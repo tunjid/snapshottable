@@ -6,7 +6,7 @@
 package com.tunjid.snapshottable.ir
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.fir.UPDATE_FUN_NAME
+import com.tunjid.snapshottable.fir.MEMBER_FUN_NAME_UPDATE
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
@@ -68,7 +68,7 @@ class SnapshottableIrBodyGenerator(
         if (declaration.origin != Snapshottable.ORIGIN || declaration.body != null) return
 
         declaration.body = when (declaration.name) {
-            UPDATE_FUN_NAME -> generateUpdateFunction(declaration)
+            MEMBER_FUN_NAME_UPDATE -> generateUpdateFunction(declaration)
             else -> declaration.body
         }
     }
