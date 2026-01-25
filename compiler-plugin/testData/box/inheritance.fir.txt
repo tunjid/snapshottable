@@ -69,9 +69,6 @@ FILE: inheritance.kt
 
         }
 
-        public abstract val id: R|kotlin/String|
-            public get(): R|kotlin/String|
-
         public abstract val name: R|kotlin/String|
             public get(): R|kotlin/String|
 
