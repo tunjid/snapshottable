@@ -5,38 +5,40 @@
 package diagnostics
 
 import com.tunjid.snapshottable.Snapshottable
+import diagnostics.State.Companion.toSnapshotMutable
+import diagnostics.State.Companion.toSnapshotSpec
 
 @Snapshottable
-public interface Person {
-    @Deprecated("Hi")
+interface State {
     @Snapshottable.Spec
-    public class Immutable(
-        public val name: String,
-        public val nickname: String? = name,
-        public val age: Int = 0,
-    ) : Person
+    data class Immutable(
+        val activity: String = "jog",
+        val stepCount: Int = 42,
+        val startTimeStamp: Long = 1700923000L,
+        val totalDistanceInMiles: Float = 45.5f,
+        val stepsPerSecond: Double = 1.99234,
+    ) : State
 }
 
-fun person1(): Person.Mutable {
-    return Person.Mutable(
-        name = "John",
-        nickname = null,
-        age = 9,
-    )
+fun state1(): State.SnapshotMutable {
+    return State.Immutable()
+        .toSnapshotMutable()
         .update(
-            name = "John",
-            nickname = null,
-            age = 9,
+            activity = "dash",
+            stepsPerSecond = 0.7,
+            stepCount = 9,
         )
 }
 
-fun person2(): Person.Mutable {
-    return Person.Mutable(
-        name = "John",
-        nickname = null,
-        age = 9,
+fun person2(): State.SnapshotMutable {
+    return State.SnapshotMutable(
+        activity = "walk",
+        stepCount = 25,
+        startTimeStamp = 1769355431964,
+        totalDistanceInMiles = 45.5f,
+        stepsPerSecond = 0.1,
     )
         .update(
-            name = "John",
+            activity = "sprint",
         )
 }

@@ -14,11 +14,11 @@ object Main {
         val state = state()
         println(state.toSnapshotSpec())
 
-        state.activityName = "run"
+        state.activity = "run"
         println(state.toSnapshotSpec())
 
         state.update(
-            activityName = "sprint",
+            activity = "sprint",
             stepCount = 8,
         )
         println(state.toSnapshotSpec())
@@ -41,20 +41,20 @@ object Main {
 interface State {
     @Snapshottable.Spec
     data class Immutable(
-        val activityName: String = "jog",
+        val activity: String = "jog",
         val stepCount: Int = 42,
         val startTimeStamp: Long = 1700923000L,
         val totalDistanceInMiles: Float = 45.5f,
-        val stepsPerSecond: Double = 1.99234,
+        val stepsPerSecond: Double = 0.4
     ) : State
 }
 
 fun state(): State.SnapshotMutable {
     return State.SnapshotMutable(
-        activityName = "walk",
+        activity = "walk",
         stepCount = 25,
         startTimeStamp = Date().time,
         totalDistanceInMiles = 45.5f,
-        stepsPerSecond = 1.99234,
+        stepsPerSecond = 0.3,
     )
 }

@@ -32,6 +32,7 @@ dependencies {
     testFixturesApi(libs.kotlin.test.junit5)
     testFixturesApi(libs.kotlin.test.framework)
     testFixturesApi(libs.kotlin.compiler)
+    testFixturesImplementation(libs.compose.multiplatform.runtime)
 
     annotationsRuntimeClasspath(project(":plugin-annotations"))
 

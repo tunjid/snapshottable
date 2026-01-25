@@ -1,24 +1,111 @@
 FILE: simple.kt
     package foo.bar
 
-    public final fun box(): R|kotlin/String| {
-        lval result: R|kotlin/String| = R|foo/bar/MyClass|().R|foo/bar/MyClass.foo|()
-        ^box when () {
-            ==(R|<local>/result|, String(Hello world)) ->  {
-                String(OK)
+    public final fun box(): R|kotlin/Unit| {
+        lval state: R|foo/bar/State.SnapshotMutable| = (Q|foo/bar/State.Companion|, Q|foo/bar/State|.R|foo/bar/State.Immutable.Immutable|()).R|foo/bar/State.Companion.toSnapshotMutable|()
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|<local>/state|.R|foo/bar/State.SnapshotMutable.activity| = String(run)
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(String(sprint), Int(8))
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Int(14))
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Long(1700923400))
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Float(1.2))
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|())
+        R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|()).R|foo/bar/State.Companion.toSnapshotSpec|())
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface State : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/State| {
+            public constructor(activity: R|kotlin/String| = String(jog), stepCount: R|kotlin/Int| = Int(42), startTimeStamp: R|kotlin/Long| = Long(1700923000), totalDistanceInMiles: R|kotlin/Float| = Float(45.5), stepsPerSecond: R|kotlin/Double| = Double(0.4)): R|foo/bar/State.Immutable| {
+                super<R|kotlin/Any|>()
             }
-            else ->  {
-                <strcat>(String(Fail: ), R|<local>/result|)
+
+            public final override val activity: R|kotlin/String| = R|<local>/activity|
+                public get(): R|kotlin/String|
+
+            public final override val stepCount: R|kotlin/Int| = R|<local>/stepCount|
+                public get(): R|kotlin/Int|
+
+            public final override val startTimeStamp: R|kotlin/Long| = R|<local>/startTimeStamp|
+                public get(): R|kotlin/Long|
+
+            public final override val totalDistanceInMiles: R|kotlin/Float| = R|<local>/totalDistanceInMiles|
+                public get(): R|kotlin/Float|
+
+            public final override val stepsPerSecond: R|kotlin/Double| = R|<local>/stepsPerSecond|
+                public get(): R|kotlin/Double|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            public final operator fun component2(): R|kotlin/Int|
+
+            public final operator fun component3(): R|kotlin/Long|
+
+            public final operator fun component4(): R|kotlin/Float|
+
+            public final operator fun component5(): R|kotlin/Double|
+
+            public final fun copy(activity: R|kotlin/String| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.activity|, stepCount: R|kotlin/Int| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.stepCount|, startTimeStamp: R|kotlin/Long| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.startTimeStamp|, totalDistanceInMiles: R|kotlin/Float| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.totalDistanceInMiles|, stepsPerSecond: R|kotlin/Double| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.stepsPerSecond|): R|foo/bar/State.Immutable|
+
+        }
+
+        public abstract val activity: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public abstract val stepCount: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val startTimeStamp: R|kotlin/Long|
+            public get(): R|kotlin/Long|
+
+        public abstract val totalDistanceInMiles: R|kotlin/Float|
+            public get(): R|kotlin/Float|
+
+        public abstract val stepsPerSecond: R|kotlin/Double|
+            public get(): R|kotlin/Double|
+
+        public final class SnapshotMutable : R|foo/bar/State| {
+            public final override var activity: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final override var stepCount: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var startTimeStamp: R|kotlin/Long|
+                public get(): R|kotlin/Long|
+                public set(value: R|kotlin/Long|): R|kotlin/Unit|
+
+            public final override var totalDistanceInMiles: R|kotlin/Float|
+                public get(): R|kotlin/Float|
+                public set(value: R|kotlin/Float|): R|kotlin/Unit|
+
+            public final override var stepsPerSecond: R|kotlin/Double|
+                public get(): R|kotlin/Double|
+                public set(value: R|kotlin/Double|): R|kotlin/Unit|
+
+            public final fun update(activity: R|kotlin/String| = R|kotlin/error|(), stepCount: R|kotlin/Int| = R|kotlin/error|(), startTimeStamp: R|kotlin/Long| = R|kotlin/error|(), totalDistanceInMiles: R|kotlin/Float| = R|kotlin/error|(), stepsPerSecond: R|kotlin/Double| = R|kotlin/error|()): R|foo/bar/State.SnapshotMutable|
+
+            public constructor(activity: R|kotlin/String|, stepCount: R|kotlin/Int|, startTimeStamp: R|kotlin/Long|, totalDistanceInMiles: R|kotlin/Float|, stepsPerSecond: R|kotlin/Double|): R|foo/bar/State.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/State.Immutable|.toSnapshotMutable(): R|foo/bar/State.SnapshotMutable|
+
+            public final fun R|foo/bar/State.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/State.Immutable|
+
+            private constructor(): R|foo/bar/State.Companion| {
+                super<R|kotlin/Any|>()
             }
+
         }
 
     }
-FILE: foo/bar/MyClass.kt
-    package foo.bar
-
-    public final class MyClass : R|kotlin/Any| {
-        public final fun foo(): R|kotlin/String|
-
-        public constructor(): R|foo/bar/MyClass|
-
+    public final fun state(): R|foo/bar/State.SnapshotMutable| {
+        ^state Q|foo/bar/State|.R|foo/bar/State.SnapshotMutable|(String(walk), Int(25), Long(1700923000), Float(45.5), Double(0.3))
     }

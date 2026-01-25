@@ -1,4 +1,6 @@
 [versions]
+composeMultiplatform = "1.10.0"
+
 # https://github.com/JetBrains/kotlin
 kotlin = "2.3.0"
 
@@ -10,6 +12,7 @@ buildconfig = "5.6.5"
 
 
 [libraries]
+compose-multiplatform-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
