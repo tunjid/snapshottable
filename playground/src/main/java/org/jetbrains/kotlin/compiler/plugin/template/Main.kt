@@ -1,9 +1,9 @@
 package org.jetbrains.kotlin.compiler.plugin.template
 
 import com.tunjid.snapshottable.Snapshottable
+import org.jetbrains.kotlin.compiler.plugin.template.State.Companion.toSnapshotMutable
+import org.jetbrains.kotlin.compiler.plugin.template.State.Companion.toSnapshotSpec
 import java.util.*
-import org.jetbrains.kotlin.compiler.plugin.template.Person.Companion.toSnapshotSpec
-import org.jetbrains.kotlin.compiler.plugin.template.Person.Companion.toSnapshotMutable
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 object Main {
@@ -11,45 +11,50 @@ object Main {
     fun main(args: Array<String>) {
         println("Hello and welcome!")
 
-        val person = person()
-        println(person.toSnapshotSpec())
+        val state = state()
+        println(state.toSnapshotSpec())
 
-        person.nickname = "Pt"
-        println(person.toSnapshotSpec())
+        state.activityName = "run"
+        println(state.toSnapshotSpec())
 
-        person.update(nickname = "ppppp", age = 8)
-        println(person.toSnapshotSpec())
+        state.update(
+            activityName = "sprint",
+            stepCount = 8,
+        )
+        println(state.toSnapshotSpec())
 
-        person.update(age = 14)
-        println(person.toSnapshotSpec())
+        state.update(stepCount = 14)
+        println(state.toSnapshotSpec())
 
-        person.update(date = Date().time)
-        println(person.toSnapshotSpec())
+        state.update(startTimeStamp = Date().time)
+        println(state.toSnapshotSpec())
 
-        person.update(progress = 0.9f)
-        println(person.toSnapshotSpec())
+        state.update(totalDistanceInMiles = 1.2f)
+        println(state.toSnapshotSpec())
 
-        println(person.toSnapshotSpec().toSnapshotMutable())
-        println(person.toSnapshotSpec().toSnapshotMutable().toSnapshotSpec())
+        println(state.toSnapshotSpec().toSnapshotMutable())
+        println(state.toSnapshotSpec().toSnapshotMutable().toSnapshotSpec())
     }
 }
 
 @Snapshottable
-interface Person {
+interface State {
     @Snapshottable.Spec
     data class Immutable(
-        val nickname: String,
-        val age: Int,
-        val date: Long,
-        val progress: Float,
-    ) : Person
+        val activityName: String = "jog",
+        val stepCount: Int = 42,
+        val startTimeStamp: Long = 1700923000L,
+        val totalDistanceInMiles: Float = 45.5f,
+        val stepsPerSecond: Double = 1.99234
+    ) : State
 }
 
-fun person(): Person.SnapshotMutable {
-    return Person.SnapshotMutable(
-        nickname = "John",
-        age = 7,
-        date = Date().time,
-        progress = 0.8f,
+fun state(): State.SnapshotMutable {
+    return State.SnapshotMutable(
+        activityName = "walk",
+        stepCount = 25,
+        startTimeStamp = Date().time,
+        totalDistanceInMiles = 45.5f,
+        stepsPerSecond = 1.99234,
     )
 }
