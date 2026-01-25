@@ -91,10 +91,4 @@ public class JvmBoxTestGenerated extends AbstractJvmBoxTest {
   public void testSimple() {
     runTest("compiler-plugin/testData/box/simple.kt");
   }
-
-  @Test
-  @TestMetadata("visibility.kt")
-  public void testVisibility() {
-    runTest("compiler-plugin/testData/box/visibility.kt");
-  }
 }

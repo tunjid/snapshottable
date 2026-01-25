@@ -1,0 +1,266 @@
+FILE: SnapshottableDiagnostics.kt
+    package diagnostics
+
+    public abstract interface NormalInterface : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|kotlin/Any| {
+            public constructor(i: R|kotlin/Int|): R|diagnostics/NormalInterface.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final val i: R|kotlin/Int| = R|<local>/i|
+                public get(): R|kotlin/Int|
+
+            public final operator fun component1(): R|kotlin/Int|
+
+            public final fun copy(i: R|kotlin/Int| = this@R|diagnostics/NormalInterface.Spec|.R|diagnostics/NormalInterface.Spec.i|): R|diagnostics/NormalInterface.Spec|
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public final class NotInterface : R|kotlin/Any| {
+        public constructor(): R|diagnostics/NotInterface| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NoSpec : R|kotlin/Any| {
+        public final companion object Companion : R|kotlin/Any| {
+            private constructor(): R|diagnostics/NoSpec.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NoPrimary : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final class Spec : R|diagnostics/NoPrimary| {
+            public constructor(i: R|kotlin/Int|): R|diagnostics/NoPrimary.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+        public final class SnapshotMutable : R|diagnostics/NoPrimary| {
+            public final fun update(): R|diagnostics/NoPrimary.SnapshotMutable|
+
+            public constructor(): R|diagnostics/NoPrimary.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|diagnostics/NoPrimary.Spec|.toSnapshotMutable(): R|diagnostics/NoPrimary.SnapshotMutable|
+
+            public final fun R|diagnostics/NoPrimary.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/NoPrimary.Spec|
+
+            private constructor(): R|diagnostics/NoPrimary.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface PrivateConstructor : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|diagnostics/PrivateConstructor| {
+            private constructor(i: R|kotlin/Int|): R|diagnostics/PrivateConstructor.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val i: R|kotlin/Int| = R|<local>/i|
+                public get(): R|kotlin/Int|
+
+            public final operator fun component1(): R|kotlin/Int|
+
+            public final fun copy(i: R|kotlin/Int| = this@R|diagnostics/PrivateConstructor.Spec|.R|diagnostics/PrivateConstructor.Spec.i|): R|diagnostics/PrivateConstructor.Spec|
+
+        }
+
+        public abstract val i: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public final class SnapshotMutable : R|diagnostics/PrivateConstructor| {
+            public final override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final fun update(i: R|kotlin/Int| = R|kotlin/error|()): R|diagnostics/PrivateConstructor.SnapshotMutable|
+
+            public constructor(i: R|kotlin/Int|): R|diagnostics/PrivateConstructor.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|diagnostics/PrivateConstructor.Spec|.toSnapshotMutable(): R|diagnostics/PrivateConstructor.SnapshotMutable|
+
+            public final fun R|diagnostics/PrivateConstructor.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/PrivateConstructor.Spec|
+
+            private constructor(): R|diagnostics/PrivateConstructor.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface OpenSpec : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public open class Spec : R|diagnostics/OpenSpec| {
+            public constructor(i: R|kotlin/Int|): R|diagnostics/OpenSpec.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val i: R|kotlin/Int| = R|<local>/i|
+                public get(): R|kotlin/Int|
+
+        }
+
+        public abstract val i: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public final class SnapshotMutable : R|diagnostics/OpenSpec| {
+            public final override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final fun update(i: R|kotlin/Int| = R|kotlin/error|()): R|diagnostics/OpenSpec.SnapshotMutable|
+
+            public constructor(i: R|kotlin/Int|): R|diagnostics/OpenSpec.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|diagnostics/OpenSpec.Spec|.toSnapshotMutable(): R|diagnostics/OpenSpec.SnapshotMutable|
+
+            public final fun R|diagnostics/OpenSpec.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/OpenSpec.Spec|
+
+            private constructor(): R|diagnostics/OpenSpec.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class OrphanSpec : R|kotlin/Any| {
+        public constructor(i: R|kotlin/Int|): R|diagnostics/OrphanSpec| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val i: R|kotlin/Int| = R|<local>/i|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/Int|
+
+        public final fun copy(i: R|kotlin/Int| = this@R|diagnostics/OrphanSpec|.R|diagnostics/OrphanSpec.i|): R|diagnostics/OrphanSpec|
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface AbstractSpec : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public abstract class Spec : R|diagnostics/AbstractSpec| {
+            public constructor(i: R|kotlin/Int|): R|diagnostics/AbstractSpec.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val i: R|kotlin/Int| = R|<local>/i|
+                public get(): R|kotlin/Int|
+
+        }
+
+        public abstract val i: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public final class SnapshotMutable : R|diagnostics/AbstractSpec| {
+            public final override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final fun update(i: R|kotlin/Int| = R|kotlin/error|()): R|diagnostics/AbstractSpec.SnapshotMutable|
+
+            public constructor(i: R|kotlin/Int|): R|diagnostics/AbstractSpec.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|diagnostics/AbstractSpec.Spec|.toSnapshotMutable(): R|diagnostics/AbstractSpec.SnapshotMutable|
+
+            public final fun R|diagnostics/AbstractSpec.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/AbstractSpec.Spec|
+
+            private constructor(): R|diagnostics/AbstractSpec.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface VisibilityCheck : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|diagnostics/VisibilityCheck| {
+            public constructor(p: R|kotlin/Int|, pro: R|kotlin/Int|, i: R|kotlin/Int|, pub: R|kotlin/Int|): R|diagnostics/VisibilityCheck.Spec| {
+                super<R|kotlin/Any|>()
+            }
+
+            private final override val p: R|kotlin/Int| = R|<local>/p|
+                private get(): R|kotlin/Int|
+
+            protected final override val pro: R|kotlin/Int| = R|<local>/pro|
+                protected get(): R|kotlin/Int|
+
+            internal final override val i: R|kotlin/Int| = R|<local>/i|
+                internal get(): R|kotlin/Int|
+
+            public final override val pub: R|kotlin/Int| = R|<local>/pub|
+                public get(): R|kotlin/Int|
+
+            private final operator fun component1(): R|kotlin/Int|
+
+            protected final operator fun component2(): R|kotlin/Int|
+
+            internal final operator fun component3(): R|kotlin/Int|
+
+            public final operator fun component4(): R|kotlin/Int|
+
+            public final fun copy(p: R|kotlin/Int| = this@R|diagnostics/VisibilityCheck.Spec|.R|diagnostics/VisibilityCheck.Spec.p|, pro: R|kotlin/Int| = this@R|diagnostics/VisibilityCheck.Spec|.R|diagnostics/VisibilityCheck.Spec.pro|, i: R|kotlin/Int| = this@R|diagnostics/VisibilityCheck.Spec|.R|diagnostics/VisibilityCheck.Spec.i|, pub: R|kotlin/Int| = this@R|diagnostics/VisibilityCheck.Spec|.R|diagnostics/VisibilityCheck.Spec.pub|): R|diagnostics/VisibilityCheck.Spec|
+
+        }
+
+        public abstract val p: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val pro: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val i: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val pub: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public final class SnapshotMutable : R|diagnostics/VisibilityCheck| {
+            public final override var p: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var pro: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var pub: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final fun update(p: R|kotlin/Int| = R|kotlin/error|(), pro: R|kotlin/Int| = R|kotlin/error|(), i: R|kotlin/Int| = R|kotlin/error|(), pub: R|kotlin/Int| = R|kotlin/error|()): R|diagnostics/VisibilityCheck.SnapshotMutable|
+
+            public constructor(p: R|kotlin/Int|, pro: R|kotlin/Int|, i: R|kotlin/Int|, pub: R|kotlin/Int|): R|diagnostics/VisibilityCheck.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|diagnostics/VisibilityCheck.Spec|.toSnapshotMutable(): R|diagnostics/VisibilityCheck.SnapshotMutable|
+
+            public final fun R|diagnostics/VisibilityCheck.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/VisibilityCheck.Spec|
+
+            private constructor(): R|diagnostics/VisibilityCheck.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

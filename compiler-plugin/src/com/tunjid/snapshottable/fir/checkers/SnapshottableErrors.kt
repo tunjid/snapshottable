@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.diagnostics.SourceElementPositioningStrategies
 import org.jetbrains.kotlin.diagnostics.error0
 import org.jetbrains.kotlin.diagnostics.rendering.BaseDiagnosticRendererFactory
 import org.jetbrains.kotlin.psi.KtNamedDeclaration
+import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.kotlin.psi.KtPrimaryConstructor
 
 internal object SnapshottableErrors : KtDiagnosticsContainer() {
@@ -17,7 +18,7 @@ internal object SnapshottableErrors : KtDiagnosticsContainer() {
 
     val NO_PRIMARY_CONSTRUCTOR by error0<KtNamedDeclaration>(SourceElementPositioningStrategies.DECLARATION_NAME)
     val PRIVATE_CONSTRUCTOR by error0<KtPrimaryConstructor>(SourceElementPositioningStrategies.VISIBILITY_MODIFIER)
-    val ILLEGAL_VISIBILITY_MODIFIER by error0<KtPrimaryConstructor>(SourceElementPositioningStrategies.VISIBILITY_MODIFIER)
+    val ILLEGAL_VISIBILITY_MODIFIER by error0<KtParameter>(SourceElementPositioningStrategies.VISIBILITY_MODIFIER)
 
     override fun getRendererFactory(): BaseDiagnosticRendererFactory = Renderers
 
