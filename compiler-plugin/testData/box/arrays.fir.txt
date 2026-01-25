@@ -1,0 +1,134 @@
+FILE: arrays.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/ArrayState.SnapshotMutable| = (Q|foo/bar/ArrayState.Companion|, Q|foo/bar/ArrayState|.R|foo/bar/ArrayState.Immutable.Immutable|(R|kotlin/intArrayOf|(vararg(Int(1), Int(2))), R|kotlin/arrayOf|<R|kotlin/String|>(vararg(String(a), String(b))))).R|foo/bar/ArrayState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.intArray|.R|kotlin/IntArray.get|(Int(0)), Int(1)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.stringArray|.R|SubstitutionOverride<kotlin/Array.get: R|kotlin/String|>|(Int(1)), String(b)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.intArray|.R|kotlin/IntArray.set|(Int(0), Int(3))
+        Unit
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.intArray|.R|kotlin/IntArray.get|(Int(0)), Int(3)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.stringArray| = R|kotlin/arrayOf|<R|kotlin/String|>(vararg(String(c), String(d)))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.stringArray|.R|SubstitutionOverride<kotlin/Array.get: R|kotlin/String|>|(Int(0)), String(c)) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        lval spec: R|foo/bar/ArrayState.Immutable| = (Q|foo/bar/ArrayState.Companion|, R|<local>/state|).R|foo/bar/ArrayState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/ArrayState.Immutable.intArray|.R|kotlin/IntArray.get|(Int(0)), Int(3)) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/ArrayState.Immutable.stringArray|.R|SubstitutionOverride<kotlin/Array.get: R|kotlin/String|>|(Int(0)), String(c)) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface ArrayState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/ArrayState| {
+            public constructor(intArray: R|kotlin/IntArray|, stringArray: R|kotlin/Array<kotlin/String>|): R|foo/bar/ArrayState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val intArray: R|kotlin/IntArray| = R|<local>/intArray|
+                public get(): R|kotlin/IntArray|
+
+            public final override val stringArray: R|kotlin/Array<kotlin/String>| = R|<local>/stringArray|
+                public get(): R|kotlin/Array<kotlin/String>|
+
+            public open override operator fun equals(other: R|kotlin/Any?|): R|kotlin/Boolean| {
+                when () {
+                    ===(this@R|foo/bar/ArrayState.Immutable|, R|<local>/other|) ->  {
+                        ^equals Boolean(true)
+                    }
+                }
+
+                when () {
+                    (R|<local>/other| !is R|foo/bar/ArrayState.Immutable|) ->  {
+                        ^equals Boolean(false)
+                    }
+                }
+
+                when () {
+                    this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.intArray|.R|kotlin/collections/contentEquals|(R|<local>/other|.R|foo/bar/ArrayState.Immutable.intArray|).R|kotlin/Boolean.not|() ->  {
+                        ^equals Boolean(false)
+                    }
+                }
+
+                when () {
+                    this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.stringArray|.R|kotlin/collections/contentEquals|<R|kotlin/String|>(R|<local>/other|.R|foo/bar/ArrayState.Immutable.stringArray|).R|kotlin/Boolean.not|() ->  {
+                        ^equals Boolean(false)
+                    }
+                }
+
+                ^equals Boolean(true)
+            }
+
+            public open override fun hashCode(): R|kotlin/Int| {
+                lvar result: R|kotlin/Int| = this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.intArray|.R|kotlin/collections/contentHashCode|()
+                R|<local>/result| = Int(31).R|kotlin/Int.times|(R|<local>/result|).R|kotlin/Int.plus|(this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.stringArray|.R|kotlin/collections/contentHashCode|<R|kotlin/String|>())
+                ^hashCode R|<local>/result|
+            }
+
+            public final operator fun component1(): R|kotlin/IntArray|
+
+            public final operator fun component2(): R|kotlin/Array<kotlin/String>|
+
+            public final fun copy(intArray: R|kotlin/IntArray| = this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.intArray|, stringArray: R|kotlin/Array<kotlin/String>| = this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.stringArray|): R|foo/bar/ArrayState.Immutable|
+
+        }
+
+        public abstract val intArray: R|kotlin/IntArray|
+            public get(): R|kotlin/IntArray|
+
+        public abstract val stringArray: R|kotlin/Array<kotlin/String>|
+            public get(): R|kotlin/Array<kotlin/String>|
+
+        public final class SnapshotMutable : R|foo/bar/ArrayState| {
+            public final override var intArray: R|kotlin/IntArray|
+                public get(): R|kotlin/IntArray|
+                public set(value: R|kotlin/IntArray|): R|kotlin/Unit|
+
+            public final override var stringArray: R|kotlin/Array<kotlin/String>|
+                public get(): R|kotlin/Array<kotlin/String>|
+                public set(value: R|kotlin/Array<kotlin/String>|): R|kotlin/Unit|
+
+            public final fun update(intArray: R|kotlin/IntArray| = R|kotlin/error|(), stringArray: R|kotlin/Array<kotlin/String>| = R|kotlin/error|()): R|foo/bar/ArrayState.SnapshotMutable|
+
+            public constructor(intArray: R|kotlin/IntArray|, stringArray: R|kotlin/Array<kotlin/String>|): R|foo/bar/ArrayState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/ArrayState.Immutable|.toSnapshotMutable(): R|foo/bar/ArrayState.SnapshotMutable|
+
+            public final fun R|foo/bar/ArrayState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/ArrayState.Immutable|
+
+            private constructor(): R|foo/bar/ArrayState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

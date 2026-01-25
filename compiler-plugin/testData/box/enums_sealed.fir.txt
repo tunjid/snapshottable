@@ -1,0 +1,171 @@
+FILE: enums_sealed.kt
+    package foo.bar
+
+    public final enum class Status : R|kotlin/Enum<foo/bar/Status>| {
+        private constructor(): R|foo/bar/Status| {
+            super<R|kotlin/Enum<foo/bar/Status>|>()
+        }
+
+        public final static enum entry IDLE: R|foo/bar/Status|
+        public final static enum entry RUNNING: R|foo/bar/Status|
+        public final static enum entry FINISHED: R|foo/bar/Status|
+        public final static fun values(): R|kotlin/Array<foo/bar/Status>| {
+        }
+
+        public final static fun valueOf(value: R|kotlin/String|): R|foo/bar/Status| {
+        }
+
+        public final static val entries: R|kotlin/enums/EnumEntries<foo/bar/Status>|
+            public get(): R|kotlin/enums/EnumEntries<foo/bar/Status>|
+
+    }
+    public sealed class Result : R|kotlin/Any| {
+        protected constructor(): R|foo/bar/Result| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final data class Success : R|foo/bar/Result| {
+            public constructor(data: R|kotlin/String|): R|foo/bar/Result.Success| {
+                super<R|foo/bar/Result|>()
+            }
+
+            public final val data: R|kotlin/String| = R|<local>/data|
+                public get(): R|kotlin/String|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            public final fun copy(data: R|kotlin/String| = this@R|foo/bar/Result.Success|.R|foo/bar/Result.Success.data|): R|foo/bar/Result.Success|
+
+        }
+
+        public final data class Error : R|foo/bar/Result| {
+            public constructor(message: R|kotlin/String|): R|foo/bar/Result.Error| {
+                super<R|foo/bar/Result|>()
+            }
+
+            public final val message: R|kotlin/String| = R|<local>/message|
+                public get(): R|kotlin/String|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            public final fun copy(message: R|kotlin/String| = this@R|foo/bar/Result.Error|.R|foo/bar/Result.Error.message|): R|foo/bar/Result.Error|
+
+        }
+
+        public final object None : R|foo/bar/Result| {
+            private constructor(): R|foo/bar/Result.None| {
+                super<R|foo/bar/Result|>()
+            }
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/EnumSealedState.SnapshotMutable| = (Q|foo/bar/EnumSealedState.Companion|, Q|foo/bar/EnumSealedState|.R|foo/bar/EnumSealedState.Immutable.Immutable|(Q|foo/bar/Status|.R|foo/bar/Status.IDLE|, Q|foo/bar/Result.None|)).R|foo/bar/EnumSealedState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.IDLE|) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.result|, Q|foo/bar/Result.None|) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.status| = Q|foo/bar/Status|.R|foo/bar/Status.RUNNING|
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.RUNNING|) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.update|(Q|foo/bar/Result|.R|foo/bar/Result.Success.Success|(String(Ok)))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.result|, Q|foo/bar/Result|.R|foo/bar/Result.Success.Success|(String(Ok))) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.update|(Q|foo/bar/Status|.R|foo/bar/Status.FINISHED|, Q|foo/bar/Result|.R|foo/bar/Result.Error.Error|(String(Bad)))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.FINISHED|) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.result|, Q|foo/bar/Result|.R|foo/bar/Result.Error.Error|(String(Bad))) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        lval spec: R|foo/bar/EnumSealedState.Immutable| = (Q|foo/bar/EnumSealedState.Companion|, R|<local>/state|).R|foo/bar/EnumSealedState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/EnumSealedState.Immutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.FINISHED|) ->  {
+                ^box String(Fail 7)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/EnumSealedState.Immutable.result|, Q|foo/bar/Result|.R|foo/bar/Result.Error.Error|(String(Bad))) ->  {
+                ^box String(Fail 8)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface EnumSealedState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/EnumSealedState| {
+            public constructor(status: R|foo/bar/Status|, result: R|foo/bar/Result|): R|foo/bar/EnumSealedState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val status: R|foo/bar/Status| = R|<local>/status|
+                public get(): R|foo/bar/Status|
+
+            public final override val result: R|foo/bar/Result| = R|<local>/result|
+                public get(): R|foo/bar/Result|
+
+            public final operator fun component1(): R|foo/bar/Status|
+
+            public final operator fun component2(): R|foo/bar/Result|
+
+            public final fun copy(status: R|foo/bar/Status| = this@R|foo/bar/EnumSealedState.Immutable|.R|foo/bar/EnumSealedState.Immutable.status|, result: R|foo/bar/Result| = this@R|foo/bar/EnumSealedState.Immutable|.R|foo/bar/EnumSealedState.Immutable.result|): R|foo/bar/EnumSealedState.Immutable|
+
+        }
+
+        public abstract val status: R|foo/bar/Status|
+            public get(): R|foo/bar/Status|
+
+        public abstract val result: R|foo/bar/Result|
+            public get(): R|foo/bar/Result|
+
+        public final class SnapshotMutable : R|foo/bar/EnumSealedState| {
+            public final override var status: R|foo/bar/Status|
+                public get(): R|foo/bar/Status|
+                public set(value: R|foo/bar/Status|): R|kotlin/Unit|
+
+            public final override var result: R|foo/bar/Result|
+                public get(): R|foo/bar/Result|
+                public set(value: R|foo/bar/Result|): R|kotlin/Unit|
+
+            public final fun update(status: R|foo/bar/Status| = R|kotlin/error|(), result: R|foo/bar/Result| = R|kotlin/error|()): R|foo/bar/EnumSealedState.SnapshotMutable|
+
+            public constructor(status: R|foo/bar/Status|, result: R|foo/bar/Result|): R|foo/bar/EnumSealedState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/EnumSealedState.Immutable|.toSnapshotMutable(): R|foo/bar/EnumSealedState.SnapshotMutable|
+
+            public final fun R|foo/bar/EnumSealedState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/EnumSealedState.Immutable|
+
+            private constructor(): R|foo/bar/EnumSealedState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

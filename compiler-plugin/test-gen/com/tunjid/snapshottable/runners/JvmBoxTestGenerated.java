@@ -21,8 +21,86 @@ public class JvmBoxTestGenerated extends AbstractJvmBoxTest {
   }
 
   @Test
+  @TestMetadata("arrays.kt")
+  public void testArrays() {
+    runTest("compiler-plugin/testData/box/arrays.kt");
+  }
+
+  @Test
+  @TestMetadata("collections.kt")
+  public void testCollections() {
+    runTest("compiler-plugin/testData/box/collections.kt");
+  }
+
+  @Test
+  @TestMetadata("complex_types.kt")
+  public void testComplex_types() {
+    runTest("compiler-plugin/testData/box/complex_types.kt");
+  }
+
+  @Test
+  @TestMetadata("data_class_methods.kt")
+  public void testData_class_methods() {
+    runTest("compiler-plugin/testData/box/data_class_methods.kt");
+  }
+
+  @Test
+  @TestMetadata("default_values.kt")
+  public void testDefault_values() {
+    runTest("compiler-plugin/testData/box/default_values.kt");
+  }
+
+  @Test
+  @TestMetadata("enums_sealed.kt")
+  public void testEnums_sealed() {
+    runTest("compiler-plugin/testData/box/enums_sealed.kt");
+  }
+
+  @Test
+  @TestMetadata("extra_properties.kt")
+  public void testExtra_properties() {
+    runTest("compiler-plugin/testData/box/extra_properties.kt");
+  }
+
+  @Test
+  @TestMetadata("generics.kt")
+  public void testGenerics() {
+    runTest("compiler-plugin/testData/box/generics.kt");
+  }
+
+  @Test
+  @TestMetadata("inheritance.kt")
+  public void testInheritance() {
+    runTest("compiler-plugin/testData/box/inheritance.kt");
+  }
+
+  @Test
+  @TestMetadata("nested_classes.kt")
+  public void testNested_classes() {
+    runTest("compiler-plugin/testData/box/nested_classes.kt");
+  }
+
+  @Test
+  @TestMetadata("nullable.kt")
+  public void testNullable() {
+    runTest("compiler-plugin/testData/box/nullable.kt");
+  }
+
+  @Test
+  @TestMetadata("recursive.kt")
+  public void testRecursive() {
+    runTest("compiler-plugin/testData/box/recursive.kt");
+  }
+
+  @Test
   @TestMetadata("simple.kt")
   public void testSimple() {
     runTest("compiler-plugin/testData/box/simple.kt");
+  }
+
+  @Test
+  @TestMetadata("visibility.kt")
+  public void testVisibility() {
+    runTest("compiler-plugin/testData/box/visibility.kt");
   }
 }

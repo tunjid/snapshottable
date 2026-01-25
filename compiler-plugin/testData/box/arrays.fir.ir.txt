@@ -1,0 +1,409 @@
+FILE fqName:foo.bar fileName:/arrays.kt
+  CLASS INTERFACE name:ArrayState modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.ArrayState]
+      annotations:
+        Spec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState.Immutable
+      PROPERTY name:intArray visibility:public modality:FINAL [val]
+        overridden:
+          public abstract intArray: kotlin.IntArray declared in foo.bar.ArrayState
+        FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'intArray: kotlin.IntArray declared in foo.bar.ArrayState.Immutable.<init>' type=kotlin.IntArray origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-intArray> visibility:public modality:FINAL returnType:kotlin.IntArray
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+          correspondingProperty: PROPERTY name:intArray visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]' type=kotlin.IntArray origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.<get-intArray>' type=foo.bar.ArrayState.Immutable origin=null
+      PROPERTY name:stringArray visibility:public modality:FINAL [val]
+        overridden:
+          public abstract stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState
+        FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable.<init>' type=kotlin.Array<kotlin.String> origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stringArray> visibility:public modality:FINAL returnType:kotlin.Array<kotlin.String>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+          correspondingProperty: PROPERTY name:stringArray visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]' type=kotlin.Array<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.<get-stringArray>' type=foo.bar.ArrayState.Immutable origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.ArrayState.Immutable [primary]
+        VALUE_PARAMETER kind:Regular name:intArray index:0 type:kotlin.IntArray
+        VALUE_PARAMETER kind:Regular name:stringArray index:1 type:kotlin.Array<kotlin.String>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.ArrayState]' type=kotlin.Unit
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.IntArray [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]' type=kotlin.IntArray origin=null
+              receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.component1' type=foo.bar.ArrayState.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.Array<kotlin.String> [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]' type=kotlin.Array<kotlin.String> origin=null
+              receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.component2' type=foo.bar.ArrayState.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.ArrayState.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        VALUE_PARAMETER kind:Regular name:intArray index:1 type:kotlin.IntArray
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]' type=kotlin.IntArray origin=null
+              receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.copy' type=foo.bar.ArrayState.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:stringArray index:2 type:kotlin.Array<kotlin.String>
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]' type=kotlin.Array<kotlin.String> origin=null
+              receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.copy' type=foo.bar.ArrayState.Immutable origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>): foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>) declared in foo.bar.ArrayState.Immutable' type=foo.bar.ArrayState.Immutable origin=null
+              ARG intArray: GET_VAR 'intArray: kotlin.IntArray declared in foo.bar.ArrayState.Immutable.copy' type=kotlin.IntArray origin=null
+              ARG stringArray: GET_VAR 'stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable.copy' type=kotlin.Array<kotlin.String> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.ArrayState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.ArrayState.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="intArray="
+              CALL 'public final fun dataClassArrayMemberToString (arg0: kotlin.Any?): kotlin.String declared in kotlin.internal.ir' type=kotlin.String origin=null
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]' type=kotlin.IntArray origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toString' type=foo.bar.ArrayState.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="stringArray="
+              CALL 'public final fun dataClassArrayMemberToString (arg0: kotlin.Any?): kotlin.String declared in kotlin.internal.ir' type=kotlin.String origin=null
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]' type=kotlin.Array<kotlin.String> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toString' type=foo.bar.ArrayState.Immutable origin=null
+              CONST String type=kotlin.String value=")"
+      FUN name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=IF
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.equals' type=foo.bar.ArrayState.Immutable origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.ArrayState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=IF
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.ArrayState.Immutable
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.ArrayState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=IF
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                ARG <this>: CALL 'public final fun contentEquals (<this>: kotlin.IntArray?, other: kotlin.IntArray?): kotlin.Boolean declared in kotlin.collections' type=kotlin.Boolean origin=null
+                  ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=GET_PROPERTY
+                    ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.equals' type=foo.bar.ArrayState.Immutable origin=IMPLICIT_ARGUMENT
+                  ARG other: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=GET_PROPERTY
+                    ARG <this>: TYPE_OP type=foo.bar.ArrayState.Immutable origin=IMPLICIT_CAST typeOperand=foo.bar.ArrayState.Immutable
+                      GET_VAR 'other: kotlin.Any? declared in foo.bar.ArrayState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=IF
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                ARG <this>: CALL 'public final fun contentEquals <T> (<this>: kotlin.Array<out T of kotlin.collections.contentEquals>?, other: kotlin.Array<out T of kotlin.collections.contentEquals>?): kotlin.Boolean declared in kotlin.collections' type=kotlin.Boolean origin=null
+                  TYPE_ARG T: kotlin.String
+                  ARG <this>: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                    ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.equals' type=foo.bar.ArrayState.Immutable origin=IMPLICIT_ARGUMENT
+                  ARG other: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                    ARG <this>: TYPE_OP type=foo.bar.ArrayState.Immutable origin=IMPLICIT_CAST typeOperand=foo.bar.ArrayState.Immutable
+                      GET_VAR 'other: kotlin.Any? declared in foo.bar.ArrayState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.ArrayState
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public final fun contentHashCode (<this>: kotlin.IntArray?): kotlin.Int declared in kotlin.collections' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=GET_PROPERTY
+                ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.hashCode' type=foo.bar.ArrayState.Immutable origin=IMPLICIT_ARGUMENT
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.ArrayState.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUS
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=MUL
+                ARG <this>: CONST Int type=kotlin.Int value=31
+                ARG other: GET_VAR 'var result: kotlin.Int declared in foo.bar.ArrayState.Immutable.hashCode' type=kotlin.Int origin=null
+              ARG other: CALL 'public final fun contentHashCode <T> (<this>: kotlin.Array<out T of kotlin.collections.contentHashCode>?): kotlin.Int declared in kotlin.collections' type=kotlin.Int origin=null
+                TYPE_ARG T: kotlin.String
+                ARG <this>: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.hashCode' type=foo.bar.ArrayState.Immutable origin=IMPLICIT_ARGUMENT
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.ArrayState.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.bar.ArrayState.Immutable.hashCode' type=kotlin.Int origin=null
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ArrayState]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState.SnapshotMutable
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.IntArray> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.IntArray
+            ARG value: GET_VAR 'intArray: kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable.<init>' type=kotlin.IntArray origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.Array<kotlin.String>> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.Array<kotlin.String>
+            ARG value: GET_VAR 'stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable.<init>' type=kotlin.Array<kotlin.String> origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:public returnType:foo.bar.ArrayState.SnapshotMutable [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:intArray index:0 type:kotlin.IntArray
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stringArray index:1 type:kotlin.Array<kotlin.String>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ArrayState]' type=foo.bar.ArrayState.SnapshotMutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ArrayState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.ArrayState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.ArrayState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:update visibility:public modality:FINAL returnType:foo.bar.ArrayState.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:intArray index:1 type:kotlin.IntArray
+          EXPRESSION_BODY
+            CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.IntArray origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.update' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stringArray index:2 type:kotlin.Array<kotlin.String>
+          EXPRESSION_BODY
+            CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Array<kotlin.String> origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.update' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-intArray> (<set-?>: kotlin.IntArray): kotlin.Unit declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.update' type=foo.bar.ArrayState.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'intArray: kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable.update' type=kotlin.IntArray origin=null
+          CALL 'public final fun <set-stringArray> (<set-?>: kotlin.Array<kotlin.String>): kotlin.Unit declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.update' type=foo.bar.ArrayState.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable.update' type=kotlin.Array<kotlin.String> origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.update' type=foo.bar.ArrayState.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray visibility:public modality:FINAL [var]
+        overridden:
+          public abstract intArray: kotlin.IntArray declared in foo.bar.ArrayState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-intArray> visibility:public modality:FINAL returnType:kotlin.IntArray
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.IntArray> visibility:private [final] declared in foo.bar.ArrayState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.IntArray> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.<get-intArray>' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-intArray> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.IntArray
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.IntArray> visibility:private [final] declared in foo.bar.ArrayState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.IntArray> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.<set-intArray>' type=foo.bar.ArrayState.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable.<set-intArray>' type=kotlin.IntArray origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray visibility:public modality:FINAL [var]
+        overridden:
+          public abstract stringArray: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-stringArray> visibility:public modality:FINAL returnType:kotlin.Array<kotlin.String>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.Array<kotlin.String>> visibility:private [final] declared in foo.bar.ArrayState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.Array<kotlin.String>> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.<get-stringArray>' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-stringArray> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Array<kotlin.String>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.Array<kotlin.String>> visibility:private [final] declared in foo.bar.ArrayState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.Array<kotlin.String>> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.SnapshotMutable.<set-stringArray>' type=foo.bar.ArrayState.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable.<set-stringArray>' type=kotlin.Array<kotlin.String> origin=null
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState.Companion
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:private returnType:foo.bar.ArrayState.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.ArrayState.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.ArrayState.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (<this>: foo.bar.ArrayState.Immutable): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>) declared in foo.bar.ArrayState.SnapshotMutable' type=foo.bar.ArrayState.SnapshotMutable origin=null
+              ARG intArray: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Companion.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
+              ARG stringArray: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Companion.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.ArrayState.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.ArrayState.SnapshotMutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (<this>: foo.bar.ArrayState.SnapshotMutable): foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>) declared in foo.bar.ArrayState.Immutable' type=foo.bar.ArrayState.Immutable origin=null
+              ARG intArray: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.IntArray origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.Companion.toSnapshotSpec' type=foo.bar.ArrayState.SnapshotMutable origin=null
+              ARG stringArray: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Array<kotlin.String> origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.Companion.toSnapshotSpec' type=foo.bar.ArrayState.SnapshotMutable origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-intArray> visibility:public modality:ABSTRACT returnType:kotlin.IntArray
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:intArray visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stringArray> visibility:public modality:ABSTRACT returnType:kotlin.Array<kotlin.String>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stringArray visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:state type:foo.bar.ArrayState.SnapshotMutable [val]
+        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.ArrayState.Immutable): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.Companion' type=foo.bar.ArrayState.SnapshotMutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ArrayState.Companion
+          ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>) declared in foo.bar.ArrayState.Immutable' type=foo.bar.ArrayState.Immutable origin=null
+            ARG intArray: CALL 'public final fun intArrayOf (vararg elements: kotlin.Int): kotlin.IntArray declared in kotlin' type=kotlin.IntArray origin=null
+              ARG elements: VARARG type=kotlin.IntArray varargElementType=kotlin.Int
+                CONST Int type=kotlin.Int value=1
+                CONST Int type=kotlin.Int value=2
+            ARG stringArray: CALL 'public final fun arrayOf <T> (vararg elements: T of kotlin.arrayOf): kotlin.Array<T of kotlin.arrayOf> declared in kotlin' type=kotlin.Array<kotlin.String> origin=null
+              TYPE_ARG T: kotlin.String
+              ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                CONST String type=kotlin.String value="a"
+                CONST String type=kotlin.String value="b"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): kotlin.Int declared in kotlin.IntArray' type=kotlin.Int origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.IntArray origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=0
+              ARG arg1: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 1"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): T of kotlin.Array declared in kotlin.Array' type=kotlin.String origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=1
+              ARG arg1: CONST String type=kotlin.String value="b"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 2"
+      CALL 'public final fun set (index: kotlin.Int, value: kotlin.Int): kotlin.Unit declared in kotlin.IntArray' type=kotlin.Unit origin=EQ
+        ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.IntArray origin=GET_PROPERTY
+          ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        ARG index: CONST Int type=kotlin.Int value=0
+        ARG value: CONST Int type=kotlin.Int value=3
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): kotlin.Int declared in kotlin.IntArray' type=kotlin.Int origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.IntArray origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=0
+              ARG arg1: CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 3"
+      CALL 'public final fun <set-stringArray> (<set-?>: kotlin.Array<kotlin.String>): kotlin.Unit declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+        ARG <set-?>: CALL 'public final fun arrayOf <T> (vararg elements: T of kotlin.arrayOf): kotlin.Array<T of kotlin.arrayOf> declared in kotlin' type=kotlin.Array<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="c"
+            CONST String type=kotlin.String value="d"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): T of kotlin.Array declared in kotlin.Array' type=kotlin.String origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.SnapshotMutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=0
+              ARG arg1: CONST String type=kotlin.String value="c"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 4"
+      VAR name:spec type:foo.bar.ArrayState.Immutable [val]
+        CALL 'public final fun toSnapshotSpec (<this>: foo.bar.ArrayState.SnapshotMutable): foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Companion' type=foo.bar.ArrayState.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ArrayState.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.ArrayState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ArrayState.SnapshotMutable origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): kotlin.Int declared in kotlin.IntArray' type=kotlin.Int origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val spec: foo.bar.ArrayState.Immutable declared in foo.bar.box' type=foo.bar.ArrayState.Immutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=0
+              ARG arg1: CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 5"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun get (index: kotlin.Int): T of kotlin.Array declared in kotlin.Array' type=kotlin.String origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val spec: foo.bar.ArrayState.Immutable declared in foo.bar.box' type=foo.bar.ArrayState.Immutable origin=null
+                ARG index: CONST Int type=kotlin.Int value=0
+              ARG arg1: CONST String type=kotlin.String value="c"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 6"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+        CONST String type=kotlin.String value="OK"

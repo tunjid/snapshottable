@@ -1,0 +1,98 @@
+FILE: default_values.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/DefaultState.SnapshotMutable| = (Q|foo/bar/DefaultState.Companion|, Q|foo/bar/DefaultState|.R|foo/bar/DefaultState.Immutable.Immutable|()).R|foo/bar/DefaultState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/DefaultState.SnapshotMutable.name|, String(default)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/DefaultState.SnapshotMutable.count|, Int(0)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/DefaultState.SnapshotMutable.update|(Int(10))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/DefaultState.SnapshotMutable.name|, String(default)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/DefaultState.SnapshotMutable.count|, Int(10)) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        lval spec: R|foo/bar/DefaultState.Immutable| = (Q|foo/bar/DefaultState.Companion|, R|<local>/state|).R|foo/bar/DefaultState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/DefaultState.Immutable.name|, String(default)) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/DefaultState.Immutable.count|, Int(10)) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface DefaultState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/DefaultState| {
+            public constructor(name: R|kotlin/String| = String(default), count: R|kotlin/Int| = Int(0)): R|foo/bar/DefaultState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val name: R|kotlin/String| = R|<local>/name|
+                public get(): R|kotlin/String|
+
+            public final override val count: R|kotlin/Int| = R|<local>/count|
+                public get(): R|kotlin/Int|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            public final operator fun component2(): R|kotlin/Int|
+
+            public final fun copy(name: R|kotlin/String| = this@R|foo/bar/DefaultState.Immutable|.R|foo/bar/DefaultState.Immutable.name|, count: R|kotlin/Int| = this@R|foo/bar/DefaultState.Immutable|.R|foo/bar/DefaultState.Immutable.count|): R|foo/bar/DefaultState.Immutable|
+
+        }
+
+        public abstract val name: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public abstract val count: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public final class SnapshotMutable : R|foo/bar/DefaultState| {
+            public final override var name: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final override var count: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final fun update(name: R|kotlin/String| = R|kotlin/error|(), count: R|kotlin/Int| = R|kotlin/error|()): R|foo/bar/DefaultState.SnapshotMutable|
+
+            public constructor(name: R|kotlin/String|, count: R|kotlin/Int|): R|foo/bar/DefaultState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/DefaultState.Immutable|.toSnapshotMutable(): R|foo/bar/DefaultState.SnapshotMutable|
+
+            public final fun R|foo/bar/DefaultState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/DefaultState.Immutable|
+
+            private constructor(): R|foo/bar/DefaultState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

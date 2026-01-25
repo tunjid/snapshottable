@@ -1,0 +1,75 @@
+FILE: nested_classes.kt
+    package foo.bar
+
+    public final class Outer : R|kotlin/Any| {
+        public constructor(): R|foo/bar/Outer| {
+            super<R|kotlin/Any|>()
+        }
+
+        @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface InnerState : R|kotlin/Any| {
+            @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/Outer.InnerState| {
+                public constructor(value: R|kotlin/String|): R|foo/bar/Outer.InnerState.Immutable| {
+                    super<R|kotlin/Any|>()
+                }
+
+                public final override val value: R|kotlin/String| = R|<local>/value|
+                    public get(): R|kotlin/String|
+
+                public final operator fun component1(): R|kotlin/String|
+
+                public final fun copy(value: R|kotlin/String| = this@R|foo/bar/Outer.InnerState.Immutable|.R|foo/bar/Outer.InnerState.Immutable.value|): R|foo/bar/Outer.InnerState.Immutable|
+
+            }
+
+            public abstract val value: R|kotlin/String|
+                public get(): R|kotlin/String|
+
+            public final class SnapshotMutable : R|foo/bar/Outer.InnerState| {
+                public final override var value: R|kotlin/String|
+                    public get(): R|kotlin/String|
+                    public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+                public final fun update(value: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/Outer.InnerState.SnapshotMutable|
+
+                public constructor(value: R|kotlin/String|): R|foo/bar/Outer.InnerState.SnapshotMutable|
+
+            }
+
+            public final companion object Companion : R|kotlin/Any| {
+                public final fun R|foo/bar/Outer.InnerState.Immutable|.toSnapshotMutable(): R|foo/bar/Outer.InnerState.SnapshotMutable|
+
+                public final fun R|foo/bar/Outer.InnerState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/Outer.InnerState.Immutable|
+
+                private constructor(): R|foo/bar/Outer.InnerState.Companion| {
+                    super<R|kotlin/Any|>()
+                }
+
+            }
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/Outer.InnerState.SnapshotMutable| = (Q|foo/bar/Outer.InnerState.Companion|, Q|foo/bar/Outer.InnerState|.R|foo/bar/Outer.InnerState.Immutable.Immutable|(String(inner))).R|foo/bar/Outer.InnerState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/Outer.InnerState.SnapshotMutable.value|, String(inner)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/Outer.InnerState.SnapshotMutable.value| = String(changed)
+        when () {
+            !=(R|<local>/state|.R|foo/bar/Outer.InnerState.SnapshotMutable.value|, String(changed)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        lval spec: R|foo/bar/Outer.InnerState.Immutable| = (Q|foo/bar/Outer.InnerState.Companion|, R|<local>/state|).R|foo/bar/Outer.InnerState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/Outer.InnerState.Immutable.value|, String(changed)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        ^box String(OK)
+    }

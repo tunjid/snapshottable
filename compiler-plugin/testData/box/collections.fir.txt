@@ -1,0 +1,99 @@
+FILE: collections.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/CollectionState.SnapshotMutable| = (Q|foo/bar/CollectionState.Companion|, Q|foo/bar/CollectionState|.R|foo/bar/CollectionState.Immutable.Immutable|(R|kotlin/collections/listOf|<R|kotlin/String|>(vararg(String(a), String(b))), R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(key).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(1))))).R|foo/bar/CollectionState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.list|, R|kotlin/collections/listOf|<R|kotlin/String|>(vararg(String(a), String(b)))) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.map|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(key).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(1)))) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.list| = R|kotlin/collections/listOf|<R|kotlin/String|>(String(c))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.list|, R|kotlin/collections/listOf|<R|kotlin/String|>(String(c))) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.update|(R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(key2).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(2))))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/CollectionState.SnapshotMutable.map|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(key2).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(2)))) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        lval spec: R|foo/bar/CollectionState.Immutable| = (Q|foo/bar/CollectionState.Companion|, R|<local>/state|).R|foo/bar/CollectionState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/CollectionState.Immutable.list|, R|kotlin/collections/listOf|<R|kotlin/String|>(String(c))) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/CollectionState.Immutable.map|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(key2).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(2)))) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface CollectionState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/CollectionState| {
+            public constructor(list: R|kotlin/collections/List<kotlin/String>|, map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|): R|foo/bar/CollectionState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val list: R|kotlin/collections/List<kotlin/String>| = R|<local>/list|
+                public get(): R|kotlin/collections/List<kotlin/String>|
+
+            public final override val map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>| = R|<local>/map|
+                public get(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+
+            public final operator fun component1(): R|kotlin/collections/List<kotlin/String>|
+
+            public final operator fun component2(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+
+            public final fun copy(list: R|kotlin/collections/List<kotlin/String>| = this@R|foo/bar/CollectionState.Immutable|.R|foo/bar/CollectionState.Immutable.list|, map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>| = this@R|foo/bar/CollectionState.Immutable|.R|foo/bar/CollectionState.Immutable.map|): R|foo/bar/CollectionState.Immutable|
+
+        }
+
+        public abstract val list: R|kotlin/collections/List<kotlin/String>|
+            public get(): R|kotlin/collections/List<kotlin/String>|
+
+        public abstract val map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+            public get(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+
+        public final class SnapshotMutable : R|foo/bar/CollectionState| {
+            public final override var list: R|kotlin/collections/List<kotlin/String>|
+                public get(): R|kotlin/collections/List<kotlin/String>|
+                public set(value: R|kotlin/collections/List<kotlin/String>|): R|kotlin/Unit|
+
+            public final override var map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+                public get(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+                public set(value: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|): R|kotlin/Unit|
+
+            public final fun update(list: R|kotlin/collections/List<kotlin/String>| = R|kotlin/error|(), map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>| = R|kotlin/error|()): R|foo/bar/CollectionState.SnapshotMutable|
+
+            public constructor(list: R|kotlin/collections/List<kotlin/String>|, map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|): R|foo/bar/CollectionState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/CollectionState.Immutable|.toSnapshotMutable(): R|foo/bar/CollectionState.SnapshotMutable|
+
+            public final fun R|foo/bar/CollectionState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/CollectionState.Immutable|
+
+            private constructor(): R|foo/bar/CollectionState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

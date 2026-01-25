@@ -1,0 +1,87 @@
+FILE: data_class_methods.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state1: R|foo/bar/DataMethodsState.SnapshotMutable| = (Q|foo/bar/DataMethodsState.Companion|, Q|foo/bar/DataMethodsState|.R|foo/bar/DataMethodsState.Immutable.Immutable|(Int(1), String(a))).R|foo/bar/DataMethodsState.Companion.toSnapshotMutable|()
+        lval state2: R|foo/bar/DataMethodsState.SnapshotMutable| = (Q|foo/bar/DataMethodsState.Companion|, Q|foo/bar/DataMethodsState|.R|foo/bar/DataMethodsState.Immutable.Immutable|(Int(1), String(a))).R|foo/bar/DataMethodsState.Companion.toSnapshotMutable|()
+        lval state3: R|foo/bar/DataMethodsState.SnapshotMutable| = (Q|foo/bar/DataMethodsState.Companion|, Q|foo/bar/DataMethodsState|.R|foo/bar/DataMethodsState.Immutable.Immutable|(Int(2), String(b))).R|foo/bar/DataMethodsState.Companion.toSnapshotMutable|()
+        when () {
+            !=((Q|foo/bar/DataMethodsState.Companion|, R|<local>/state1|).R|foo/bar/DataMethodsState.Companion.toSnapshotSpec|(), (Q|foo/bar/DataMethodsState.Companion|, R|<local>/state2|).R|foo/bar/DataMethodsState.Companion.toSnapshotSpec|()) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            ==((Q|foo/bar/DataMethodsState.Companion|, R|<local>/state1|).R|foo/bar/DataMethodsState.Companion.toSnapshotSpec|(), (Q|foo/bar/DataMethodsState.Companion|, R|<local>/state3|).R|foo/bar/DataMethodsState.Companion.toSnapshotSpec|()) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        lval str: R|kotlin/String| = (Q|foo/bar/DataMethodsState.Companion|, R|<local>/state1|).R|foo/bar/DataMethodsState.Companion.toSnapshotSpec|().R|foo/bar/DataMethodsState.Immutable.toString|()
+        when () {
+            R|<local>/str|.R|kotlin/text/contains|(String(id=1)).R|kotlin/Boolean.not|() ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        when () {
+            R|<local>/str|.R|kotlin/text/contains|(String(data=a)).R|kotlin/Boolean.not|() ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface DataMethodsState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/DataMethodsState| {
+            public constructor(id: R|kotlin/Int|, data: R|kotlin/String|): R|foo/bar/DataMethodsState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val id: R|kotlin/Int| = R|<local>/id|
+                public get(): R|kotlin/Int|
+
+            public final override val data: R|kotlin/String| = R|<local>/data|
+                public get(): R|kotlin/String|
+
+            public final operator fun component1(): R|kotlin/Int|
+
+            public final operator fun component2(): R|kotlin/String|
+
+            public final fun copy(id: R|kotlin/Int| = this@R|foo/bar/DataMethodsState.Immutable|.R|foo/bar/DataMethodsState.Immutable.id|, data: R|kotlin/String| = this@R|foo/bar/DataMethodsState.Immutable|.R|foo/bar/DataMethodsState.Immutable.data|): R|foo/bar/DataMethodsState.Immutable|
+
+        }
+
+        public abstract val id: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val data: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public final class SnapshotMutable : R|foo/bar/DataMethodsState| {
+            public final override var id: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var data: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final fun update(id: R|kotlin/Int| = R|kotlin/error|(), data: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/DataMethodsState.SnapshotMutable|
+
+            public constructor(id: R|kotlin/Int|, data: R|kotlin/String|): R|foo/bar/DataMethodsState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/DataMethodsState.Immutable|.toSnapshotMutable(): R|foo/bar/DataMethodsState.SnapshotMutable|
+
+            public final fun R|foo/bar/DataMethodsState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/DataMethodsState.Immutable|
+
+            private constructor(): R|foo/bar/DataMethodsState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

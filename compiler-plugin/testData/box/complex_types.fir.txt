@@ -1,0 +1,119 @@
+FILE: complex_types.kt
+    package foo.bar
+
+    public final data class Address : R|kotlin/Any| {
+        public constructor(street: R|kotlin/String|, city: R|kotlin/String|): R|foo/bar/Address| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val street: R|kotlin/String| = R|<local>/street|
+            public get(): R|kotlin/String|
+
+        public final val city: R|kotlin/String| = R|<local>/city|
+            public get(): R|kotlin/String|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/String|
+
+        public final fun copy(street: R|kotlin/String| = this@R|foo/bar/Address|.R|foo/bar/Address.street|, city: R|kotlin/String| = this@R|foo/bar/Address|.R|foo/bar/Address.city|): R|foo/bar/Address|
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval initialAddress: R|foo/bar/Address| = R|foo/bar/Address.Address|(String(123 Main St), String(City))
+        lval state: R|foo/bar/ComplexState.SnapshotMutable| = (Q|foo/bar/ComplexState.Companion|, Q|foo/bar/ComplexState|.R|foo/bar/ComplexState.Immutable.Immutable|(String(User), R|<local>/initialAddress|)).R|foo/bar/ComplexState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.address|, R|<local>/initialAddress|) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        lval newAddress: R|foo/bar/Address| = R|foo/bar/Address.Address|(String(456 Elm St), String(Town))
+        R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.address| = R|<local>/newAddress|
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.address|, R|<local>/newAddress|) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.update|(String(New User))
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.user|, String(New User)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/ComplexState.SnapshotMutable.address|, R|<local>/newAddress|) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        lval spec: R|foo/bar/ComplexState.Immutable| = (Q|foo/bar/ComplexState.Companion|, R|<local>/state|).R|foo/bar/ComplexState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/ComplexState.Immutable.user|, String(New User)) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/ComplexState.Immutable.address|, R|<local>/newAddress|) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface ComplexState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/ComplexState| {
+            public constructor(user: R|kotlin/String|, address: R|foo/bar/Address|): R|foo/bar/ComplexState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val user: R|kotlin/String| = R|<local>/user|
+                public get(): R|kotlin/String|
+
+            public final override val address: R|foo/bar/Address| = R|<local>/address|
+                public get(): R|foo/bar/Address|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            public final operator fun component2(): R|foo/bar/Address|
+
+            public final fun copy(user: R|kotlin/String| = this@R|foo/bar/ComplexState.Immutable|.R|foo/bar/ComplexState.Immutable.user|, address: R|foo/bar/Address| = this@R|foo/bar/ComplexState.Immutable|.R|foo/bar/ComplexState.Immutable.address|): R|foo/bar/ComplexState.Immutable|
+
+        }
+
+        public abstract val user: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public abstract val address: R|foo/bar/Address|
+            public get(): R|foo/bar/Address|
+
+        public final class SnapshotMutable : R|foo/bar/ComplexState| {
+            public final override var user: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final override var address: R|foo/bar/Address|
+                public get(): R|foo/bar/Address|
+                public set(value: R|foo/bar/Address|): R|kotlin/Unit|
+
+            public final fun update(user: R|kotlin/String| = R|kotlin/error|(), address: R|foo/bar/Address| = R|kotlin/error|()): R|foo/bar/ComplexState.SnapshotMutable|
+
+            public constructor(user: R|kotlin/String|, address: R|foo/bar/Address|): R|foo/bar/ComplexState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/ComplexState.Immutable|.toSnapshotMutable(): R|foo/bar/ComplexState.SnapshotMutable|
+
+            public final fun R|foo/bar/ComplexState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/ComplexState.Immutable|
+
+            private constructor(): R|foo/bar/ComplexState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

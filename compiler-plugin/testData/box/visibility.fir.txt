@@ -1,0 +1,99 @@
+FILE: visibility.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/VisibilityState.SnapshotMutable| = (Q|foo/bar/VisibilityState.Companion|, Q|foo/bar/VisibilityState|.R|foo/bar/VisibilityState.Immutable.Immutable|(String(public), String(internal))).R|foo/bar/VisibilityState.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.publicVal|, String(public)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.internalVal|, String(internal)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.publicVal| = String(new public)
+        R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.internalVal| = String(new internal)
+        when () {
+            !=(R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.publicVal|, String(new public)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/VisibilityState.SnapshotMutable.internalVal|, String(new internal)) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        lval spec: R|foo/bar/VisibilityState.Immutable| = (Q|foo/bar/VisibilityState.Companion|, R|<local>/state|).R|foo/bar/VisibilityState.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/VisibilityState.Immutable.publicVal|, String(new public)) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/VisibilityState.Immutable.internalVal|, String(new internal)) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface VisibilityState : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/VisibilityState| {
+            public constructor(publicVal: R|kotlin/String|, internalVal: R|kotlin/String|): R|foo/bar/VisibilityState.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final override val publicVal: R|kotlin/String| = R|<local>/publicVal|
+                public get(): R|kotlin/String|
+
+            internal final override val internalVal: R|kotlin/String| = R|<local>/internalVal|
+                internal get(): R|kotlin/String|
+
+            public final operator fun component1(): R|kotlin/String|
+
+            internal final operator fun component2(): R|kotlin/String|
+
+            public final fun copy(publicVal: R|kotlin/String| = this@R|foo/bar/VisibilityState.Immutable|.R|foo/bar/VisibilityState.Immutable.publicVal|, internalVal: R|kotlin/String| = this@R|foo/bar/VisibilityState.Immutable|.R|foo/bar/VisibilityState.Immutable.internalVal|): R|foo/bar/VisibilityState.Immutable|
+
+        }
+
+        public abstract val publicVal: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public abstract val internalVal: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public final class SnapshotMutable : R|foo/bar/VisibilityState| {
+            public final override var publicVal: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final override var internalVal: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final fun update(publicVal: R|kotlin/String| = R|kotlin/error|(), internalVal: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/VisibilityState.SnapshotMutable|
+
+            public constructor(publicVal: R|kotlin/String|, internalVal: R|kotlin/String|): R|foo/bar/VisibilityState.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/VisibilityState.Immutable|.toSnapshotMutable(): R|foo/bar/VisibilityState.SnapshotMutable|
+
+            public final fun R|foo/bar/VisibilityState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/VisibilityState.Immutable|
+
+            private constructor(): R|foo/bar/VisibilityState.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

@@ -1,0 +1,95 @@
+FILE: recursive.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval node2: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(2), Null(null))
+        lval node1: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(1), R|<local>/node2|)
+        lval state: R|foo/bar/Node.SnapshotMutable| = (Q|foo/bar/Node.Companion|, R|<local>/node1|).R|foo/bar/Node.Companion.toSnapshotMutable|()
+        when () {
+            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.value|, Int(1)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(2)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        lval node3: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(3), Null(null))
+        R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next| = R|<local>/node3|
+        when () {
+            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(3)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        lval spec: R|foo/bar/Node.Immutable| = (Q|foo/bar/Node.Companion|, R|<local>/state|).R|foo/bar/Node.Companion.toSnapshotSpec|()
+        when () {
+            !=(R|<local>/spec|.R|foo/bar/Node.Immutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(3)) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface Node : R|kotlin/Any| {
+        public abstract val value: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val next: R|foo/bar/Node?|
+            public get(): R|foo/bar/Node?|
+
+        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/Node| {
+            public constructor(value: R|kotlin/Int|, next: R|foo/bar/Node?|): R|foo/bar/Node.Immutable| {
+                super<R|kotlin/Any|>()
+            }
+
+            public open override val value: R|kotlin/Int| = R|<local>/value|
+                public get(): R|kotlin/Int|
+
+            public open override val next: R|foo/bar/Node?| = R|<local>/next|
+                public get(): R|foo/bar/Node?|
+
+            public final operator fun component1(): R|kotlin/Int|
+
+            public final operator fun component2(): R|foo/bar/Node?|
+
+            public final fun copy(value: R|kotlin/Int| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.value|, next: R|foo/bar/Node?| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.next|): R|foo/bar/Node.Immutable|
+
+        }
+
+        public abstract val value: R|kotlin/Int|
+            public get(): R|kotlin/Int|
+
+        public abstract val next: R|foo/bar/Node?|
+            public get(): R|foo/bar/Node?|
+
+        public final class SnapshotMutable : R|foo/bar/Node| {
+            public final override var value: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public final override var next: R|foo/bar/Node?|
+                public get(): R|foo/bar/Node?|
+                public set(value: R|foo/bar/Node?|): R|kotlin/Unit|
+
+            public final fun update(value: R|kotlin/Int| = R|kotlin/error|(), next: R|foo/bar/Node?| = R|kotlin/error|()): R|foo/bar/Node.SnapshotMutable|
+
+            public constructor(value: R|kotlin/Int|, next: R|foo/bar/Node?|): R|foo/bar/Node.SnapshotMutable|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun R|foo/bar/Node.Immutable|.toSnapshotMutable(): R|foo/bar/Node.SnapshotMutable|
+
+            public final fun R|foo/bar/Node.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/Node.Immutable|
+
+            private constructor(): R|foo/bar/Node.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
