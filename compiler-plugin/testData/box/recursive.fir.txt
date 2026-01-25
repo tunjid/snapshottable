@@ -12,7 +12,7 @@ FILE: recursive.kt
         }
 
         when () {
-            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(2)) ->  {
+            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.R|foo/bar/Node.value| }, Int(2)) ->  {
                 ^box String(Fail 2)
             }
         }
@@ -20,14 +20,14 @@ FILE: recursive.kt
         lval node3: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(3), Null(null))
         R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next| = R|<local>/node3|
         when () {
-            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(3)) ->  {
+            !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.next|?.{ $subj$.R|foo/bar/Node.value| }, Int(3)) ->  {
                 ^box String(Fail 3)
             }
         }
 
         lval spec: R|foo/bar/Node.Immutable| = (Q|foo/bar/Node.Companion|, R|<local>/state|).R|foo/bar/Node.Companion.toSnapshotSpec|()
         when () {
-            !=(R|<local>/spec|.R|foo/bar/Node.Immutable.next|?.{ $subj$.<Ambiguity: value, [foo/bar/Node.value, foo/bar/Node.value]># }, Int(3)) ->  {
+            !=(R|<local>/spec|.R|foo/bar/Node.Immutable.next|?.{ $subj$.R|foo/bar/Node.value| }, Int(3)) ->  {
                 ^box String(Fail 4)
             }
         }
@@ -59,12 +59,6 @@ FILE: recursive.kt
             public final fun copy(value: R|kotlin/Int| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.value|, next: R|foo/bar/Node?| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.next|): R|foo/bar/Node.Immutable|
 
         }
-
-        public abstract val value: R|kotlin/Int|
-            public get(): R|kotlin/Int|
-
-        public abstract val next: R|foo/bar/Node?|
-            public get(): R|foo/bar/Node?|
 
         public final class SnapshotMutable : R|foo/bar/Node| {
             public final override var value: R|kotlin/Int|

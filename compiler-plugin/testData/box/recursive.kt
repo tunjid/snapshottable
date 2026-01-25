@@ -11,23 +11,23 @@ fun box(): String {
     val state = node1.toSnapshotMutable()
 
     if (state.value != 1) return "Fail 1"
-    if (state.next?.<!OVERLOAD_RESOLUTION_AMBIGUITY!>value<!> != 2) return "Fail 2"
+    if (state.next?.value != 2) return "Fail 2"
 
     val node3 = Node.Immutable(value = 3, next = null)
     state.next = node3
 
-    if (state.next?.<!OVERLOAD_RESOLUTION_AMBIGUITY!>value<!> != 3) return "Fail 3"
+    if (state.next?.value != 3) return "Fail 3"
 
     val spec = state.toSnapshotSpec()
-    if (spec.next?.<!OVERLOAD_RESOLUTION_AMBIGUITY!>value<!> != 3) return "Fail 4"
+    if (spec.next?.value != 3) return "Fail 4"
 
     return "OK"
 }
 
 @Snapshottable
-interface <!REDECLARATION, REDECLARATION!>Node<!> {
-    val <!REDECLARATION!>value<!>: Int
-    val <!REDECLARATION!>next<!>: Node?
+interface Node {
+    val value: Int
+    val next: Node?
 
     @Snapshottable.Spec
     data class Immutable(
