@@ -6,7 +6,9 @@ import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirProperty
 import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
-import org.jetbrains.kotlin.fir.declarations.processAllDeclarations
+import org.jetbrains.kotlin.fir.declarations.declaredProperties
+import org.jetbrains.kotlin.fir.declarations.primaryConstructorIfAny
+import org.jetbrains.kotlin.fir.declarations.processAllDeclaredCallables
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
 import org.jetbrains.kotlin.fir.expressions.buildResolvedArgumentList
@@ -26,7 +28,7 @@ import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirPropertySymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
@@ -102,11 +104,8 @@ private fun substitutor(
 fun FirSession.getPrimaryConstructorValueParameters(
     classSymbol: FirClassSymbol<*>,
 ): List<FirValueParameterSymbol> {
-    val declarationSymbols = mutableListOf<FirConstructorSymbol>()
-    classSymbol.processAllDeclarations(session = this) { symbol ->
-        if (symbol is FirConstructorSymbol && symbol.isPrimary) declarationSymbols.add(symbol)
-    }
-    val outerPrimaryConstructor = declarationSymbols.firstOrNull() ?: return emptyList()
+    val outerPrimaryConstructor = classSymbol.primaryConstructorIfAny(session = this)
+        ?: return emptyList()
 
     return outerPrimaryConstructor.valueParameterSymbols
 }
@@ -192,11 +191,18 @@ fun FirExtension.createFunCompanionConversion(
     }
 }
 
-fun FirExtension.createInterfaceOrMutableProperty(
+fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     classSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirProperty? {
+    val isInterface = classSymbol.isInterface
+    if (isInterface) {
+        val isRedeclaration = snapshottableClassSymbol.declaredProperties(session)
+            .any { it.name == callableId.callableName && it.rawStatus.isOverride }
+
+        if (isRedeclaration) return null
+    }
     val parameter = session.getPrimaryConstructorValueParameters(
         classSymbol = snapshottableClassSymbol,
     )
@@ -214,8 +220,8 @@ fun FirExtension.createInterfaceOrMutableProperty(
         isVal = classSymbol.isInterface,
         hasBackingField = false,
     ) {
-        status { isOverride = !classSymbol.isInterface }
-        if (classSymbol.isInterface) modality = Modality.ABSTRACT
+        status { isOverride = !isInterface }
+        if (isInterface) modality = Modality.ABSTRACT
     }
 }
 

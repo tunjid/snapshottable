@@ -67,9 +67,6 @@ FILE: extra_properties.kt
 
         }
 
-        public abstract val base: R|kotlin/Int|
-            public get(): R|kotlin/Int|
-
         public abstract val extra: R|kotlin/String|
             public get(): R|kotlin/String|
 

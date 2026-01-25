@@ -27,8 +27,8 @@ fun box(): String {
 }
 
 @Snapshottable
-interface <!REDECLARATION!>ExtraState<!> {
-    val <!REDECLARATION!>base<!>: Int
+interface ExtraState {
+    val base: Int
 
     @Snapshottable.Spec
     data class Immutable(

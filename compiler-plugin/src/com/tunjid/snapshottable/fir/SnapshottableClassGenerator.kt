@@ -93,7 +93,7 @@ class SnapshottableClassGenerator(
         val classId = callableId.classId ?: return emptyList()
         when {
             isSnapshottableInterface(classId) ->
-                createInterfaceOrMutableProperty(
+                maybeCreatePropertyOnInterfaceOrMutableClass(
                     classSymbol = owner,
                     snapshottableClassSymbol = snapshottableInterfaceIdToSpecSymbol(
                         snapshottableInterfaceId = classId,
@@ -105,7 +105,7 @@ class SnapshottableClassGenerator(
                     .orEmpty()
 
             isMutableSnapshot(classId) ->
-                createInterfaceOrMutableProperty(
+                maybeCreatePropertyOnInterfaceOrMutableClass(
                     classSymbol = owner,
                     snapshottableClassSymbol = nestedClassIdToSpecSymbol(
                         nestedClassId = classId,
