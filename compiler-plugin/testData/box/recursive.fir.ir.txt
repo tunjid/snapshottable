@@ -1,0 +1,416 @@
+FILE fqName:foo.bar fileName:/recursive.kt
+  CLASS INTERFACE name:Node modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.Node]
+      annotations:
+        Spec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.Immutable
+      PROPERTY name:value visibility:public modality:OPEN [val]
+        overridden:
+          public abstract value: kotlin.Int declared in foo.bar.Node
+        FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'value: kotlin.Int declared in foo.bar.Node.Immutable.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:OPEN returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+          correspondingProperty: PROPERTY name:value visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-value> (): kotlin.Int declared in foo.bar.Node.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.<get-value>' type=foo.bar.Node.Immutable origin=null
+      PROPERTY name:next visibility:public modality:OPEN [val]
+        overridden:
+          public abstract next: foo.bar.Node? declared in foo.bar.Node
+        FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'next: foo.bar.Node? declared in foo.bar.Node.Immutable.<init>' type=foo.bar.Node? origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-next> visibility:public modality:OPEN returnType:foo.bar.Node?
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+          correspondingProperty: PROPERTY name:next visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-next> (): foo.bar.Node? declared in foo.bar.Node
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.<get-next>' type=foo.bar.Node.Immutable origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.Node.Immutable [primary]
+        VALUE_PARAMETER kind:Regular name:value index:0 type:kotlin.Int
+        VALUE_PARAMETER kind:Regular name:next index:1 type:foo.bar.Node?
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.Node]' type=kotlin.Unit
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.Int declared in foo.bar.Node.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.component1' type=foo.bar.Node.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:foo.bar.Node? [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): foo.bar.Node? declared in foo.bar.Node.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+              receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.component2' type=foo.bar.Node.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.Node.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        VALUE_PARAMETER kind:Regular name:value index:1 type:kotlin.Int
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.copy' type=foo.bar.Node.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:next index:2 type:foo.bar.Node?
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+              receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.copy' type=foo.bar.Node.Immutable origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (value: kotlin.Int, next: foo.bar.Node?): foo.bar.Node.Immutable declared in foo.bar.Node.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.Immutable' type=foo.bar.Node.Immutable origin=null
+              ARG value: GET_VAR 'value: kotlin.Int declared in foo.bar.Node.Immutable.copy' type=kotlin.Int origin=null
+              ARG next: GET_VAR 'next: foo.bar.Node? declared in foo.bar.Node.Immutable.copy' type=foo.bar.Node? origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.equals' type=foo.bar.Node.Immutable origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.Node.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.Node.Immutable
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.Node.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.bar.Node.Immutable [val]
+            TYPE_OP type=foo.bar.Node.Immutable origin=IMPLICIT_CAST typeOperand=foo.bar.Node.Immutable
+              GET_VAR 'other: kotlin.Any? declared in foo.bar.Node.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                    receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.equals' type=foo.bar.Node.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.equals' type=foo.bar.Node.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                    receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.equals' type=foo.bar.Node.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.equals' type=foo.bar.Node.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.Node
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.hashCode' type=foo.bar.Node.Immutable origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.Node.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.Node.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: WHEN type=kotlin.Int origin=null
+                BRANCH
+                  if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                    ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                      receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.hashCode' type=foo.bar.Node.Immutable origin=null
+                    ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                  then: CONST Int type=kotlin.Int value=0
+                BRANCH
+                  if: CONST Boolean type=kotlin.Boolean value=true
+                  then: CALL 'public open fun hashCode (): kotlin.Int declared in foo.bar.Node' type=kotlin.Int origin=null
+                    ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                      receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.hashCode' type=foo.bar.Node.Immutable origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.Node.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.bar.Node.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.Node
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.Node.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="value="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toString' type=foo.bar.Node.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="next="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toString' type=foo.bar.Node.Immutable origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.SnapshotMutable
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableIntStateOf (value: kotlin.Int): androidx.compose.runtime.MutableIntState declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableIntState origin=null
+            ARG value: GET_VAR 'value: kotlin.Int declared in foo.bar.Node.SnapshotMutable.<init>' type=kotlin.Int origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Node?> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: foo.bar.Node?
+            ARG value: GET_VAR 'next: foo.bar.Node? declared in foo.bar.Node.SnapshotMutable.<init>' type=foo.bar.Node? origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:public returnType:foo.bar.Node.SnapshotMutable [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:value index:0 type:kotlin.Int
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:next index:1 type:foo.bar.Node?
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node]' type=foo.bar.Node.SnapshotMutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.Node
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.Node
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:update visibility:public modality:FINAL returnType:foo.bar.Node.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:value index:1 type:kotlin.Int
+          EXPRESSION_BODY
+            CALL 'public final fun <get-value> (): kotlin.Int declared in foo.bar.Node.SnapshotMutable' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:next index:2 type:foo.bar.Node?
+          EXPRESSION_BODY
+            CALL 'public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node? origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-value> (<set-?>: kotlin.Int): kotlin.Unit declared in foo.bar.Node.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'value: kotlin.Int declared in foo.bar.Node.SnapshotMutable.update' type=kotlin.Int origin=null
+          CALL 'public final fun <set-next> (<set-?>: foo.bar.Node?): kotlin.Unit declared in foo.bar.Node.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'next: foo.bar.Node? declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node? origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (value: kotlin.Int, next: foo.bar.Node?): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next visibility:public modality:FINAL [var]
+        overridden:
+          public abstract next: foo.bar.Node? declared in foo.bar.Node
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-next> visibility:public modality:FINAL returnType:foo.bar.Node?
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-next> (): foo.bar.Node? declared in foo.bar.Node
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Node?> visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Node?> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.<get-next>' type=foo.bar.Node.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-next> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Node?
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:next$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Node?> visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Node?> origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.<set-next>' type=foo.bar.Node.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: foo.bar.Node? declared in foo.bar.Node.SnapshotMutable.<set-next>' type=foo.bar.Node? origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value visibility:public modality:FINAL [var]
+        overridden:
+          public abstract value: kotlin.Int declared in foo.bar.Node
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-value> visibility:public modality:FINAL returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-value> (): kotlin.Int declared in foo.bar.Node.SnapshotMutable'
+              CALL 'public abstract fun <get-intValue> (): kotlin.Int declared in androidx.compose.runtime.MutableIntState' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null
+                  receiver: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.<get-value>' type=foo.bar.Node.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-value> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-intValue> (<set-?>: kotlin.Int): kotlin.Unit declared in androidx.compose.runtime.MutableIntState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.<set-value>' type=foo.bar.Node.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Int declared in foo.bar.Node.SnapshotMutable.<set-value>' type=kotlin.Int origin=null
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.Companion
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:private returnType:foo.bar.Node.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.Node.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.Node.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (<this>: foo.bar.Node.Immutable): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node.SnapshotMutable origin=null
+              ARG value: CALL 'public open fun <get-value> (): kotlin.Int declared in foo.bar.Node.Immutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.Node.Immutable declared in foo.bar.Node.Companion.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
+              ARG next: CALL 'public open fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.Immutable' type=foo.bar.Node? origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.Node.Immutable declared in foo.bar.Node.Companion.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.Node.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.Node.SnapshotMutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (<this>: foo.bar.Node.SnapshotMutable): foo.bar.Node.Immutable declared in foo.bar.Node.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.Immutable' type=foo.bar.Node.Immutable origin=null
+              ARG value: CALL 'public final fun <get-value> (): kotlin.Int declared in foo.bar.Node.SnapshotMutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.Companion.toSnapshotSpec' type=foo.bar.Node.SnapshotMutable origin=null
+              ARG next: CALL 'public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node? origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.Companion.toSnapshotSpec' type=foo.bar.Node.SnapshotMutable origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:next visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-next> visibility:public modality:ABSTRACT returnType:foo.bar.Node?
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node
+        correspondingProperty: PROPERTY name:next visibility:public modality:ABSTRACT [val]
+    PROPERTY name:value visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node
+        correspondingProperty: PROPERTY name:value visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:node2 type:foo.bar.Node.Immutable [val]
+        CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.Immutable' type=foo.bar.Node.Immutable origin=null
+          ARG value: CONST Int type=kotlin.Int value=2
+          ARG next: CONST Null type=kotlin.Nothing? value=null
+      VAR name:node1 type:foo.bar.Node.Immutable [val]
+        CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.Immutable' type=foo.bar.Node.Immutable origin=null
+          ARG value: CONST Int type=kotlin.Int value=1
+          ARG next: GET_VAR 'val node2: foo.bar.Node.Immutable declared in foo.bar.box' type=foo.bar.Node.Immutable origin=null
+      VAR name:state type:foo.bar.Node.SnapshotMutable [val]
+        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.Node.Immutable): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.Companion' type=foo.bar.Node.SnapshotMutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.Node.Companion
+          ARG <this>(index:1): GET_VAR 'val node1: foo.bar.Node.Immutable declared in foo.bar.box' type=foo.bar.Node.Immutable origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-value> (): kotlin.Int declared in foo.bar.Node.SnapshotMutable' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.Node.SnapshotMutable declared in foo.bar.box' type=foo.bar.Node.SnapshotMutable origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 1"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: BLOCK type=kotlin.Int? origin=SAFE_CALL
+                VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:foo.bar.Node? [val]
+                  CALL 'public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node? origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val state: foo.bar.Node.SnapshotMutable declared in foo.bar.box' type=foo.bar.Node.SnapshotMutable origin=null
+                WHEN type=kotlin.Int? origin=null
+                  BRANCH
+                    if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                      ARG arg0: GET_VAR 'val tmp_1: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+                      ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                    then: CONST Null type=kotlin.Nothing? value=null
+                  BRANCH
+                    if: CONST Boolean type=kotlin.Boolean value=true
+                    then: CALL 'public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node' type=kotlin.Int origin=GET_PROPERTY
+                      ARG <this>: TYPE_OP type=foo.bar.Node origin=IMPLICIT_CAST typeOperand=foo.bar.Node
+                        GET_VAR 'val tmp_1: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=2
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 2"
+      VAR name:node3 type:foo.bar.Node.Immutable [val]
+        CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.Immutable' type=foo.bar.Node.Immutable origin=null
+          ARG value: CONST Int type=kotlin.Int value=3
+          ARG next: CONST Null type=kotlin.Nothing? value=null
+      CALL 'public final fun <set-next> (<set-?>: foo.bar.Node?): kotlin.Unit declared in foo.bar.Node.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val state: foo.bar.Node.SnapshotMutable declared in foo.bar.box' type=foo.bar.Node.SnapshotMutable origin=null
+        ARG <set-?>: GET_VAR 'val node3: foo.bar.Node.Immutable declared in foo.bar.box' type=foo.bar.Node.Immutable origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: BLOCK type=kotlin.Int? origin=SAFE_CALL
+                VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:foo.bar.Node? [val]
+                  CALL 'public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node? origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val state: foo.bar.Node.SnapshotMutable declared in foo.bar.box' type=foo.bar.Node.SnapshotMutable origin=null
+                WHEN type=kotlin.Int? origin=null
+                  BRANCH
+                    if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                      ARG arg0: GET_VAR 'val tmp_2: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+                      ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                    then: CONST Null type=kotlin.Nothing? value=null
+                  BRANCH
+                    if: CONST Boolean type=kotlin.Boolean value=true
+                    then: CALL 'public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node' type=kotlin.Int origin=GET_PROPERTY
+                      ARG <this>: TYPE_OP type=foo.bar.Node origin=IMPLICIT_CAST typeOperand=foo.bar.Node
+                        GET_VAR 'val tmp_2: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 3"
+      VAR name:spec type:foo.bar.Node.Immutable [val]
+        CALL 'public final fun toSnapshotSpec (<this>: foo.bar.Node.SnapshotMutable): foo.bar.Node.Immutable declared in foo.bar.Node.Companion' type=foo.bar.Node.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.Node.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.Node.SnapshotMutable declared in foo.bar.box' type=foo.bar.Node.SnapshotMutable origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: BLOCK type=kotlin.Int? origin=SAFE_CALL
+                VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:foo.bar.Node? [val]
+                  CALL 'public open fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.Immutable' type=foo.bar.Node? origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val spec: foo.bar.Node.Immutable declared in foo.bar.box' type=foo.bar.Node.Immutable origin=null
+                WHEN type=kotlin.Int? origin=null
+                  BRANCH
+                    if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                      ARG arg0: GET_VAR 'val tmp_3: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+                      ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                    then: CONST Null type=kotlin.Nothing? value=null
+                  BRANCH
+                    if: CONST Boolean type=kotlin.Boolean value=true
+                    then: CALL 'public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node' type=kotlin.Int origin=GET_PROPERTY
+                      ARG <this>: TYPE_OP type=foo.bar.Node origin=IMPLICIT_CAST typeOperand=foo.bar.Node
+                        GET_VAR 'val tmp_3: foo.bar.Node? declared in foo.bar.box' type=foo.bar.Node? origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 4"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+        CONST String type=kotlin.String value="OK"
