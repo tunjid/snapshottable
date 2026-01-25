@@ -44,7 +44,7 @@ gradlePlugin {
             id = rootProject.group.toString()
             displayName = "SnapshottablePlugin"
             description = "SnapshottablePlugin"
-            implementationClass = "com.tunjid.snapshottable.SimpleGradlePlugin"
+            implementationClass = "com.tunjid.snapshottable.SnapshottableGradlePlugin"
         }
     }
 }
