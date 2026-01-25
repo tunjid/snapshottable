@@ -17,6 +17,7 @@ internal object SnapshottableErrors : KtDiagnosticsContainer() {
 
     val NO_PRIMARY_CONSTRUCTOR by error0<KtNamedDeclaration>(SourceElementPositioningStrategies.DECLARATION_NAME)
     val PRIVATE_CONSTRUCTOR by error0<KtPrimaryConstructor>(SourceElementPositioningStrategies.VISIBILITY_MODIFIER)
+    val ILLEGAL_VISIBILITY_MODIFIER by error0<KtPrimaryConstructor>(SourceElementPositioningStrategies.VISIBILITY_MODIFIER)
 
     override fun getRendererFactory(): BaseDiagnosticRendererFactory = Renderers
 
@@ -30,6 +31,7 @@ internal object SnapshottableErrors : KtDiagnosticsContainer() {
 
             it.put(NO_PRIMARY_CONSTRUCTOR, "'@Snapshottable.Spec' requires a primary constructor.")
             it.put(PRIVATE_CONSTRUCTOR, "'@Snapshottable.Spec' requires a public constructor.")
+            it.put(ILLEGAL_VISIBILITY_MODIFIER, "'@Snapshottable.Spec' cannot have non public fields in it's primary constructor.")
         }
     }
 }

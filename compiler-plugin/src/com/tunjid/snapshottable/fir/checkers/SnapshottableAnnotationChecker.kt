@@ -13,6 +13,7 @@ import org.jetbrains.kotlin.fir.declarations.utils.classId
 import org.jetbrains.kotlin.fir.declarations.utils.isAbstract
 import org.jetbrains.kotlin.fir.declarations.utils.isFinal
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
+import org.jetbrains.kotlin.fir.declarations.utils.visibility
 
 object SnapshottableAnnotationChecker : FirClassChecker(
     MppCheckerKind.Common,
@@ -62,6 +63,15 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                             source = declaration.source,
                             factory = SnapshottableErrors.NO_SNAPSHOTTABLE_INTERFACE,
                         )
+                }
+
+                primaryConstructor?.valueParameterSymbols?.forEach { parameterSymbol ->
+                    if(!parameterSymbol.visibility.isPublicAPI) {
+                        reporter.reportOn(
+                            source = parameterSymbol.source,
+                            factory = SnapshottableErrors.ILLEGAL_VISIBILITY_MODIFIER,
+                        )
+                    }
                 }
             }
         }
