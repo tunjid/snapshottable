@@ -12,10 +12,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "compiler-plugin-template"
+rootProject.name = "snapshottable"
 
 include("compiler-plugin")
 include("gradle-plugin")
 include("plugin-annotations")
-
-include("playground")
