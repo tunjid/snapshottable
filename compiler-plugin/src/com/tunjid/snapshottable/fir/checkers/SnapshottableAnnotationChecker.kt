@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.fir.declarations.utils.isFinal
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 
 object SnapshottableAnnotationChecker : FirClassChecker(
-    MppCheckerKind.Common
+    MppCheckerKind.Common,
 ) {
     context(context: CheckerContext, reporter: DiagnosticReporter)
     override fun check(declaration: FirClass) = with(context.session.filters) {
@@ -25,13 +25,13 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                     !declaration.isInterface ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_INTERFACE
+                            factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_INTERFACE,
                         )
 
                     snapshottableInterfaceIdToSpecSymbol(declaration.classId) == null ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_SPEC
+                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_SPEC,
                         )
                 }
             }
@@ -42,7 +42,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                     primaryConstructor == null ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NO_PRIMARY_CONSTRUCTOR
+                            factory = SnapshottableErrors.NO_PRIMARY_CONSTRUCTOR,
                         )
 
                     primaryConstructor.rawStatus.visibility == Visibilities.Private ->

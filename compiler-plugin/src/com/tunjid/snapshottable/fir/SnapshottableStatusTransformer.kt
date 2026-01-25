@@ -14,7 +14,7 @@ class SnapshottableStatusTransformer(
 ) : FirStatusTransformerExtension(session) {
 
     override fun needTransformStatus(
-        declaration: FirDeclaration
+        declaration: FirDeclaration,
     ): Boolean {
         if (declaration !is FirProperty) return false
 
@@ -27,7 +27,6 @@ class SnapshottableStatusTransformer(
         status: FirDeclarationStatus,
         property: FirProperty,
         containingClass: FirClassLikeSymbol<*>?,
-        isLocal: Boolean
+        isLocal: Boolean,
     ): FirDeclarationStatus = status.copy(isOverride = true)
-
 }

@@ -34,7 +34,7 @@ buildConfig {
     buildConfigField(
         type = "String",
         name = "ANNOTATIONS_LIBRARY_COORDINATES",
-        expression = "\"${annotationsProject.group}:${annotationsProject.name}:${annotationsProject.version}\""
+        expression = "\"${annotationsProject.group}:${annotationsProject.name}:${annotationsProject.version}\"",
     )
 }
 

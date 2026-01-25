@@ -22,13 +22,12 @@ import org.jetbrains.kotlin.fir.analysis.checkers.declaration.FirClassChecker
 import org.jetbrains.kotlin.fir.analysis.extensions.FirAdditionalCheckersExtension
 
 class SnapshottableAdditionalCheckersExtension(
-  session: FirSession,
+    session: FirSession,
 ) : FirAdditionalCheckersExtension(session) {
-  override val declarationCheckers = object : DeclarationCheckers() {
-    override val classCheckers: Set<FirClassChecker>
-      get() = setOf(
-        SnapshottableAnnotationChecker,
-      )
-  }
+    override val declarationCheckers = object : DeclarationCheckers() {
+        override val classCheckers: Set<FirClassChecker>
+            get() = setOf(
+                SnapshottableAnnotationChecker,
+            )
+    }
 }
-

@@ -14,37 +14,61 @@ import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.UNDEFINED_OFFSET
-import org.jetbrains.kotlin.ir.builders.*
 import org.jetbrains.kotlin.ir.builders.declarations.buildField
-import org.jetbrains.kotlin.ir.declarations.*
+import org.jetbrains.kotlin.ir.builders.irBlockBody
+import org.jetbrains.kotlin.ir.builders.irCall
+import org.jetbrains.kotlin.ir.builders.irGet
+import org.jetbrains.kotlin.ir.builders.irGetField
+import org.jetbrains.kotlin.ir.builders.irReturn
+import org.jetbrains.kotlin.ir.declarations.IrClass
+import org.jetbrains.kotlin.ir.declarations.IrConstructor
+import org.jetbrains.kotlin.ir.declarations.IrDeclaration
+import org.jetbrains.kotlin.ir.declarations.IrField
+import org.jetbrains.kotlin.ir.declarations.IrFile
+import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
+import org.jetbrains.kotlin.ir.declarations.IrParameterKind
+import org.jetbrains.kotlin.ir.declarations.IrProperty
+import org.jetbrains.kotlin.ir.declarations.IrSimpleFunction
+import org.jetbrains.kotlin.ir.declarations.IrValueParameter
+import org.jetbrains.kotlin.ir.declarations.createExpressionBody
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.symbols.IrConstructorSymbol
-import org.jetbrains.kotlin.ir.types.*
-import org.jetbrains.kotlin.ir.util.*
+import org.jetbrains.kotlin.ir.types.IrSimpleType
+import org.jetbrains.kotlin.ir.types.IrType
+import org.jetbrains.kotlin.ir.types.IrTypeArgument
+import org.jetbrains.kotlin.ir.types.defaultType
+import org.jetbrains.kotlin.ir.types.getClass
+import org.jetbrains.kotlin.ir.types.typeOrNull
+import org.jetbrains.kotlin.ir.util.constructedClass
+import org.jetbrains.kotlin.ir.util.defaultType
+import org.jetbrains.kotlin.ir.util.hasDefaultValue
+import org.jetbrains.kotlin.ir.util.nonDispatchParameters
+import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
 import org.jetbrains.kotlin.name.Name
 
 class SnapshottableIrBodyGenerator(
-    private val context: IrPluginContext
+    private val context: IrPluginContext,
 ) : IrVisitorVoid() {
 
     override fun visitElement(
-        element: IrElement
+        element: IrElement,
     ) {
         when (element) {
             is IrDeclaration,
             is IrFile,
-            is IrModuleFragment -> element.acceptChildrenVoid(this)
+            is IrModuleFragment,
+            -> element.acceptChildrenVoid(this)
 
             else -> Unit
         }
     }
 
     override fun visitClass(
-        declaration: IrClass
+        declaration: IrClass,
     ) {
         if (declaration.origin != Snapshottable.ORIGIN) {
             return declaration.acceptChildrenVoid(this)
@@ -62,7 +86,7 @@ class SnapshottableIrBodyGenerator(
     }
 
     override fun visitSimpleFunction(
-        declaration: IrSimpleFunction
+        declaration: IrSimpleFunction,
     ) {
         if (declaration.origin != Snapshottable.ORIGIN || declaration.body != null) return
 
@@ -71,7 +95,8 @@ class SnapshottableIrBodyGenerator(
                 generateUpdateFunction(declaration)
 
             COMPANION_FUN_NAME_TO_SPEC,
-            COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE ->
+            COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE,
+            ->
                 generateConversionFunction(declaration)
 
             else -> declaration.body
@@ -79,7 +104,7 @@ class SnapshottableIrBodyGenerator(
     }
 
     override fun visitConstructor(
-        declaration: IrConstructor
+        declaration: IrConstructor,
     ) {
         if (declaration.origin != Snapshottable.ORIGIN) return
         if (declaration.body == null) {
@@ -88,7 +113,7 @@ class SnapshottableIrBodyGenerator(
     }
 
     private fun generateUpdateFunction(
-        function: IrSimpleFunction
+        function: IrSimpleFunction,
     ): IrBody? {
         val receiver = function.dispatchReceiverParameter ?: return null
         val mutableClass = function.parent as? IrClass ?: return null
@@ -121,7 +146,7 @@ class SnapshottableIrBodyGenerator(
     }
 
     private fun generateConversionFunction(
-        function: IrSimpleFunction
+        function: IrSimpleFunction,
     ): IrBody? {
         val irClass = function.returnType.getClass() ?: return null
         val constructorSymbol = irClass.primaryConstructor?.symbol ?: return null
@@ -144,7 +169,7 @@ class SnapshottableIrBodyGenerator(
                 irCall(
                     callee = constructorSymbol,
                     type = irClass.defaultType,
-                    constructedClass = irClass
+                    constructedClass = irClass,
                 ).apply {
                     for ((i, typeParameterType) in constructorSymbol.typesOfTypeParameters().withIndex()) {
                         typeArguments[i] = typeParameterType
@@ -156,14 +181,14 @@ class SnapshottableIrBodyGenerator(
                             dispatchReceiver = irGet(extensionReceiver)
                         }
                     }
-                }
+                },
             )
         }
             .doBuild()
     }
 
     private fun generateDefaultConstructor(
-        declaration: IrConstructor
+        declaration: IrConstructor,
     ): IrBody? {
         val returnType = declaration.returnType as? IrSimpleType ?: return null
         val parentClass = declaration.parent as? IrClass ?: return null
@@ -172,13 +197,15 @@ class SnapshottableIrBodyGenerator(
         val irBuilder = DeclarationIrBuilder(context, declaration.symbol)
         return irBuilder.irBlockBody {
             +IrDelegatingConstructorCallImpl(
-                UNDEFINED_OFFSET, UNDEFINED_OFFSET,
+                UNDEFINED_OFFSET,
+                UNDEFINED_OFFSET,
                 context.irBuiltIns.anyType,
                 anySymbol,
                 typeArgumentsCount = 0,
             )
             +IrInstanceInitializerCallImpl(
-                UNDEFINED_OFFSET, UNDEFINED_OFFSET,
+                UNDEFINED_OFFSET,
+                UNDEFINED_OFFSET,
                 parentClass.symbol,
                 returnType,
             )
@@ -219,39 +246,39 @@ class SnapshottableIrBodyGenerator(
                     typeArguments.addAll(
                         snapshotStateMetadata.type
                             .arguments
-                            .map(IrTypeArgument::typeOrNull)
+                            .map(IrTypeArgument::typeOrNull),
                     )
                     arguments[0] = builder.irGet(targetValueParameter)
-                }
+                },
             )
         }
 
         getter.origin = Snapshottable.ORIGIN
         getter.body = DeclarationIrBuilder(
             generatorContext = context,
-            symbol = getter.symbol
+            symbol = getter.symbol,
         ).irBlockBody {
             val dispatch = getter.dispatchReceiverParameter!!
             +irReturn(
                 irCall(snapshotStateMetadata.valueProperty.owner.getter!!).apply {
                     dispatchReceiver = irGetField(
                         receiver = irGet(dispatch),
-                        field = holderField
+                        field = holderField,
                     )
-                }
+                },
             )
         }
 
         setter.origin = Snapshottable.ORIGIN
         setter.body = DeclarationIrBuilder(
             generatorContext = context,
-            symbol = setter.symbol
+            symbol = setter.symbol,
         ).irBlockBody {
             val dispatch = setter.dispatchReceiverParameter!!
             +irCall(snapshotStateMetadata.valueProperty.owner.setter!!).apply {
                 dispatchReceiver = irGetField(
                     receiver = irGet(dispatch),
-                    field = holderField
+                    field = holderField,
                 )
                 arguments[MutableClassSetterArgumentIndex] = irGet(setter.nonDispatchParameters[0])
             }

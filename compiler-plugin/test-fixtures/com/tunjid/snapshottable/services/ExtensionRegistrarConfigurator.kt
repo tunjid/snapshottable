@@ -1,7 +1,7 @@
 package com.tunjid.snapshottable.services
 
-import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import com.tunjid.snapshottable.SnapshottablePluginComponentRegistrar
+import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.test.builders.TestConfigurationBuilder
 import org.jetbrains.kotlin.test.model.TestModule
@@ -17,7 +17,7 @@ private class ExtensionRegistrarConfigurator(testServices: TestServices) : Envir
     private val registrar = SnapshottablePluginComponentRegistrar()
     override fun CompilerPluginRegistrar.ExtensionStorage.registerCompilerExtensions(
         module: TestModule,
-        configuration: CompilerConfiguration
+        configuration: CompilerConfiguration,
     ) {
         with(registrar) { registerExtensions(configuration) }
     }

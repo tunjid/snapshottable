@@ -57,42 +57,42 @@ class SnapshottableFilters(
     }
 
     fun isSnapshottableInterface(
-        classId: ClassId
+        classId: ClassId,
     ) = snapshottableInterfaceIds.contains(classId)
 
     fun isSnapshottableInterfaceCompanion(
-        classId: ClassId
+        classId: ClassId,
     ) = snapshottableCompanionClassIds.contains(classId)
 
     fun isSnapshottableSpec(
-        classId: ClassId
+        classId: ClassId,
     ) = snapshotSpecClassIds.contains(classId)
 
     fun isMutableSnapshot(
-        classId: ClassId
+        classId: ClassId,
     ) = mutableSnapshotClassIds.contains(classId)
 
     fun nestedClassIdToSnapshottableInterfaceClassId(
-        nestedClassId: ClassId
+        nestedClassId: ClassId,
     ): ClassId? = generateSequence(
         seed = nestedClassId,
-        nextFunction = ClassId::outerClassId
+        nextFunction = ClassId::outerClassId,
     )
         .firstOrNull(::isSnapshottableInterface)
 
     fun snapshottableInterfaceIdToSpecSymbol(
-        snapshottableInterfaceId: ClassId
+        snapshottableInterfaceId: ClassId,
     ): FirRegularClassSymbol? =
         snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId]
 
     fun nestedClassIdToSpecSymbol(
-        nestedClassId: ClassId
+        nestedClassId: ClassId,
     ): FirRegularClassSymbol? =
         nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
             ?.let(::snapshottableInterfaceIdToSpecSymbol)
 
     fun nestedClassIdToMutableSymbol(
-        nestedClassId: ClassId
+        nestedClassId: ClassId,
     ): FirClassSymbol<*>? =
         nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
             ?.mutable

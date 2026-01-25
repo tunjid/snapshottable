@@ -1,9 +1,9 @@
 package org.jetbrains.kotlin.compiler.plugin.template
 
 import com.tunjid.snapshottable.Snapshottable
+import java.util.*
 import org.jetbrains.kotlin.compiler.plugin.template.State.Companion.toSnapshotMutable
 import org.jetbrains.kotlin.compiler.plugin.template.State.Companion.toSnapshotSpec
-import java.util.*
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 object Main {
@@ -45,7 +45,7 @@ interface State {
         val stepCount: Int = 42,
         val startTimeStamp: Long = 1700923000L,
         val totalDistanceInMiles: Float = 45.5f,
-        val stepsPerSecond: Double = 1.99234
+        val stepsPerSecond: Double = 1.99234,
     ) : State
 }
 

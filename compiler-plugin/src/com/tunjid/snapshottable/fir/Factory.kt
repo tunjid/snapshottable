@@ -24,7 +24,11 @@ import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
 import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
-import org.jetbrains.kotlin.fir.symbols.impl.*
+import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.constructType
 import org.jetbrains.kotlin.ir.util.kotlinPackageFqn
@@ -61,7 +65,7 @@ private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
                     val substitutor = substitutor(
                         sourceSymbol = sourceSymbol,
                         builderArguments = arguments,
-                        session = session
+                        session = session,
                     )
                     substitutor.substituteOrSelf(bound.coneType)
                 }
@@ -120,7 +124,7 @@ fun FirExtension.generateMutableClass(
         superType(parentInterfaceSymbol.defaultType())
         copyTypeParametersFrom(
             sourceSymbol = snapshottableClassSymbol,
-            session = session
+            session = session,
         )
     }
 }
@@ -143,7 +147,7 @@ fun FirExtension.createFunMutableMutate(
         returnType = mutableClassSymbol.constructType(
             mutableClassSymbol.typeParameterSymbols
                 .map(FirTypeParameterSymbol::toConeType)
-                .toTypedArray()
+                .toTypedArray(),
         ),
     ) {
         session.getPrimaryConstructorValueParameters(snapshottableClassSymbol)
@@ -176,14 +180,14 @@ fun FirExtension.createFunCompanionConversion(
     returnType = outputClassSymbol.constructType(
         typeArguments = outputClassSymbol.typeParameterSymbols
             .map(FirTypeParameterSymbol::toConeType)
-            .toTypedArray()
+            .toTypedArray(),
     ),
 ) {
     extensionReceiverType {
         inputClassSymbol.constructType(
             typeArguments = inputClassSymbol.typeParameterSymbols
                 .map(FirTypeParameterSymbol::toConeType)
-                .toTypedArray()
+                .toTypedArray(),
         )
     }
 }
@@ -191,10 +195,10 @@ fun FirExtension.createFunCompanionConversion(
 fun FirExtension.createInterfaceOrMutableProperty(
     classSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
-    callableId: CallableId
+    callableId: CallableId,
 ): FirProperty? {
     val parameter = session.getPrimaryConstructorValueParameters(
-        classSymbol = snapshottableClassSymbol
+        classSymbol = snapshottableClassSymbol,
     )
         .singleOrNull { it.name == callableId.callableName } ?: return null
     val substitutor = substitutor(
@@ -225,7 +229,7 @@ private fun buildSafeDefaultValueStub(
         this.calleeReference = buildResolvedNamedReference {
             val errorFunctionSymbol = session.symbolProvider.getTopLevelFunctionSymbols(
                 packageFqName = kotlinPackageFqn,
-                name = Name.identifier("error")
+                name = Name.identifier("error"),
             ).first {
                 it.valueParameterSymbols.size == 1
             }

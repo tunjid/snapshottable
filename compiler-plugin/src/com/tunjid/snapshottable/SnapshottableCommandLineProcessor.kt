@@ -1,9 +1,9 @@
 package com.tunjid.snapshottable
 
+import com.tunjid.snapshottable.BuildConfig
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
-import com.tunjid.snapshottable.BuildConfig
 import org.jetbrains.kotlin.config.CompilerConfiguration
 
 @Suppress("unused") // Used via reflection.

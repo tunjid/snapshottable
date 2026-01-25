@@ -6,7 +6,6 @@ package diagnostics
 
 import com.tunjid.snapshottable.Snapshottable
 
-
 @Snapshottable
 public interface Person {
     @Deprecated("Hi")

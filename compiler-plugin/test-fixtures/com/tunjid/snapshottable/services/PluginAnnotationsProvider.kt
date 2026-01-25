@@ -1,5 +1,6 @@
 package com.tunjid.snapshottable.services
 
+import java.io.File
 import org.jetbrains.kotlin.cli.jvm.config.addJvmClasspathRoots
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.test.builders.TestConfigurationBuilder
@@ -7,7 +8,6 @@ import org.jetbrains.kotlin.test.model.TestModule
 import org.jetbrains.kotlin.test.services.EnvironmentConfigurator
 import org.jetbrains.kotlin.test.services.RuntimeClasspathProvider
 import org.jetbrains.kotlin.test.services.TestServices
-import java.io.File
 
 private val annotationsRuntimeClasspath =
     System.getProperty("annotationsRuntime.classpath")?.split(File.pathSeparator)?.map(::File)
