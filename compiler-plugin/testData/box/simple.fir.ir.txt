@@ -1,30 +1,558 @@
 FILE fqName:foo.bar fileName:/simple.kt
-  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
-    BLOCK_BODY
-      VAR name:result type:kotlin.String [val]
-        CALL 'public final fun foo (): kotlin.String declared in foo.bar.MyClass' type=kotlin.String origin=null
-          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> () declared in foo.bar.MyClass' type=foo.bar.MyClass origin=null
-      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
-        WHEN type=kotlin.String origin=IF
-          BRANCH
-            if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
-              ARG arg0: GET_VAR 'val result: kotlin.String declared in foo.bar.box' type=kotlin.String origin=null
-              ARG arg1: CONST String type=kotlin.String value="Hello world"
-            then: BLOCK type=kotlin.String origin=null
-              CONST String type=kotlin.String value="OK"
-          BRANCH
-            if: CONST Boolean type=kotlin.Boolean value=true
-            then: BLOCK type=kotlin.String origin=null
-              STRING_CONCATENATION type=kotlin.String
-                CONST String type=kotlin.String value="Fail: "
-                GET_VAR 'val result: kotlin.String declared in foo.bar.box' type=kotlin.String origin=null
-FILE fqName:foo.bar fileName:foo/bar/MyClass.kt
-  CLASS GENERATED[com.tunjid.snapshottable.fir.SimpleClassGenerator.Key] CLASS name:MyClass modality:FINAL visibility:public superTypes:[kotlin.Any]
-    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MyClass
-    CONSTRUCTOR GENERATED[com.tunjid.snapshottable.fir.SimpleClassGenerator.Key] visibility:public returnType:foo.bar.MyClass
-      BLOCK_BODY
-        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.fir.SimpleClassGenerator.Key] CLASS name:MyClass modality:FINAL visibility:public superTypes:[kotlin.Any]' type=foo.bar.MyClass
+  CLASS INTERFACE name:State modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.State
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.State]
+      annotations:
+        Spec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.State.Immutable
+      PROPERTY name:activity visibility:public modality:FINAL [val]
+        overridden:
+          public abstract activity: kotlin.String declared in foo.bar.State
+        FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'activity: kotlin.String declared in foo.bar.State.Immutable.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-activity> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+          correspondingProperty: PROPERTY name:activity visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-activity> (): kotlin.String declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-activity> (): kotlin.String declared in foo.bar.State.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.<get-activity>' type=foo.bar.State.Immutable origin=null
+      PROPERTY name:stepCount visibility:public modality:FINAL [val]
+        overridden:
+          public abstract stepCount: kotlin.Int declared in foo.bar.State
+        FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'stepCount: kotlin.Int declared in foo.bar.State.Immutable.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stepCount> visibility:public modality:FINAL returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+          correspondingProperty: PROPERTY name:stepCount visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-stepCount> (): kotlin.Int declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.<get-stepCount>' type=foo.bar.State.Immutable origin=null
+      PROPERTY name:startTimeStamp visibility:public modality:FINAL [val]
+        overridden:
+          public abstract startTimeStamp: kotlin.Long declared in foo.bar.State
+        FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'startTimeStamp: kotlin.Long declared in foo.bar.State.Immutable.<init>' type=kotlin.Long origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-startTimeStamp> visibility:public modality:FINAL returnType:kotlin.Long
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+          correspondingProperty: PROPERTY name:startTimeStamp visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.<get-startTimeStamp>' type=foo.bar.State.Immutable origin=null
+      PROPERTY name:totalDistanceInMiles visibility:public modality:FINAL [val]
+        overridden:
+          public abstract totalDistanceInMiles: kotlin.Float declared in foo.bar.State
+        FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'totalDistanceInMiles: kotlin.Float declared in foo.bar.State.Immutable.<init>' type=kotlin.Float origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-totalDistanceInMiles> visibility:public modality:FINAL returnType:kotlin.Float
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+          correspondingProperty: PROPERTY name:totalDistanceInMiles visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.<get-totalDistanceInMiles>' type=foo.bar.State.Immutable origin=null
+      PROPERTY name:stepsPerSecond visibility:public modality:FINAL [val]
+        overridden:
+          public abstract stepsPerSecond: kotlin.Double declared in foo.bar.State
+        FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'stepsPerSecond: kotlin.Double declared in foo.bar.State.Immutable.<init>' type=kotlin.Double origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stepsPerSecond> visibility:public modality:FINAL returnType:kotlin.Double
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+          correspondingProperty: PROPERTY name:stepsPerSecond visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.<get-stepsPerSecond>' type=foo.bar.State.Immutable origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.State.Immutable [primary]
+        VALUE_PARAMETER kind:Regular name:activity index:0 type:kotlin.String
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="jog"
+        VALUE_PARAMETER kind:Regular name:stepCount index:1 type:kotlin.Int
+          EXPRESSION_BODY
+            CONST Int type=kotlin.Int value=42
+        VALUE_PARAMETER kind:Regular name:startTimeStamp index:2 type:kotlin.Long
+          EXPRESSION_BODY
+            CONST Long type=kotlin.Long value=1700923000
+        VALUE_PARAMETER kind:Regular name:totalDistanceInMiles index:3 type:kotlin.Float
+          EXPRESSION_BODY
+            CONST Float type=kotlin.Float value=45.5
+        VALUE_PARAMETER kind:Regular name:stepsPerSecond index:4 type:kotlin.Double
+          EXPRESSION_BODY
+            CONST Double type=kotlin.Double value=0.4
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.State]' type=kotlin.Unit
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.String declared in foo.bar.State.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.component1' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.Int [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.Int declared in foo.bar.State.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.component2' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component3 visibility:public modality:FINAL returnType:kotlin.Long [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component3 (): kotlin.Long declared in foo.bar.State.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.component3' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component4 visibility:public modality:FINAL returnType:kotlin.Float [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component4 (): kotlin.Float declared in foo.bar.State.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.component4' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component5 visibility:public modality:FINAL returnType:kotlin.Double [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component5 (): kotlin.Double declared in foo.bar.State.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.component5' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.State.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        VALUE_PARAMETER kind:Regular name:activity index:1 type:kotlin.String
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.copy' type=foo.bar.State.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:stepCount index:2 type:kotlin.Int
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.copy' type=foo.bar.State.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:startTimeStamp index:3 type:kotlin.Long
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.copy' type=foo.bar.State.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:totalDistanceInMiles index:4 type:kotlin.Float
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.copy' type=foo.bar.State.Immutable origin=null
+        VALUE_PARAMETER kind:Regular name:stepsPerSecond index:5 type:kotlin.Double
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+              receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.copy' type=foo.bar.State.Immutable origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.Immutable declared in foo.bar.State.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.Immutable' type=foo.bar.State.Immutable origin=null
+              ARG activity: GET_VAR 'activity: kotlin.String declared in foo.bar.State.Immutable.copy' type=kotlin.String origin=null
+              ARG stepCount: GET_VAR 'stepCount: kotlin.Int declared in foo.bar.State.Immutable.copy' type=kotlin.Int origin=null
+              ARG startTimeStamp: GET_VAR 'startTimeStamp: kotlin.Long declared in foo.bar.State.Immutable.copy' type=kotlin.Long origin=null
+              ARG totalDistanceInMiles: GET_VAR 'totalDistanceInMiles: kotlin.Float declared in foo.bar.State.Immutable.copy' type=kotlin.Float origin=null
+              ARG stepsPerSecond: GET_VAR 'stepsPerSecond: kotlin.Double declared in foo.bar.State.Immutable.copy' type=kotlin.Double origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.State.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.State.Immutable
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.State.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.bar.State.Immutable [val]
+            TYPE_OP type=foo.bar.State.Immutable origin=IMPLICIT_CAST typeOperand=foo.bar.State.Immutable
+              GET_VAR 'other: kotlin.Any? declared in foo.bar.State.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                    receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                    receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                    receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                    receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.State.Immutable declared in foo.bar.State.Immutable.equals' type=foo.bar.State.Immutable origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.State
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.hashCode' type=foo.bar.State.Immutable origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.hashCode' type=foo.bar.State.Immutable origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Long' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.hashCode' type=foo.bar.State.Immutable origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Float' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.hashCode' type=foo.bar.State.Immutable origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Double' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.hashCode' type=foo.bar.State.Immutable origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.State.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.bar.State.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.State
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.State.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="activity="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toString' type=foo.bar.State.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="stepCount="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toString' type=foo.bar.State.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="startTimeStamp="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toString' type=foo.bar.State.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="totalDistanceInMiles="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toString' type=foo.bar.State.Immutable origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="stepsPerSecond="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toString' type=foo.bar.State.Immutable origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.State]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.State.SnapshotMutable
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.String
+            ARG value: GET_VAR 'activity: kotlin.String declared in foo.bar.State.SnapshotMutable.<init>' type=kotlin.String origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableIntStateOf (value: kotlin.Int): androidx.compose.runtime.MutableIntState declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableIntState origin=null
+            ARG value: GET_VAR 'stepCount: kotlin.Int declared in foo.bar.State.SnapshotMutable.<init>' type=kotlin.Int origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp$SnapshottableHolder type:androidx.compose.runtime.MutableLongState visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableLongStateOf (value: kotlin.Long): androidx.compose.runtime.MutableLongState declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableLongState origin=null
+            ARG value: GET_VAR 'startTimeStamp: kotlin.Long declared in foo.bar.State.SnapshotMutable.<init>' type=kotlin.Long origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles$SnapshottableHolder type:androidx.compose.runtime.MutableFloatState visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableFloatStateOf (value: kotlin.Float): androidx.compose.runtime.MutableFloatState declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableFloatState origin=null
+            ARG value: GET_VAR 'totalDistanceInMiles: kotlin.Float declared in foo.bar.State.SnapshotMutable.<init>' type=kotlin.Float origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond$SnapshottableHolder type:androidx.compose.runtime.MutableDoubleState visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableDoubleStateOf (value: kotlin.Double): androidx.compose.runtime.MutableDoubleState declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableDoubleState origin=null
+            ARG value: GET_VAR 'stepsPerSecond: kotlin.Double declared in foo.bar.State.SnapshotMutable.<init>' type=kotlin.Double origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:public returnType:foo.bar.State.SnapshotMutable [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:activity index:0 type:kotlin.String
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stepCount index:1 type:kotlin.Int
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:startTimeStamp index:2 type:kotlin.Long
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:totalDistanceInMiles index:3 type:kotlin.Float
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stepsPerSecond index:4 type:kotlin.Double
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.State]' type=foo.bar.State.SnapshotMutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.State
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.State
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.State
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:update visibility:public modality:FINAL returnType:foo.bar.State.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:activity index:1 type:kotlin.String
+          EXPRESSION_BODY
+            CALL 'public final fun <get-activity> (): kotlin.String declared in foo.bar.State.SnapshotMutable' type=kotlin.String origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stepCount index:2 type:kotlin.Int
+          EXPRESSION_BODY
+            CALL 'public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.SnapshotMutable' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:startTimeStamp index:3 type:kotlin.Long
+          EXPRESSION_BODY
+            CALL 'public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.SnapshotMutable' type=kotlin.Long origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:totalDistanceInMiles index:4 type:kotlin.Float
+          EXPRESSION_BODY
+            CALL 'public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.SnapshotMutable' type=kotlin.Float origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:stepsPerSecond index:5 type:kotlin.Double
+          EXPRESSION_BODY
+            CALL 'public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.SnapshotMutable' type=kotlin.Double origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-activity> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'activity: kotlin.String declared in foo.bar.State.SnapshotMutable.update' type=kotlin.String origin=null
+          CALL 'public final fun <set-stepCount> (<set-?>: kotlin.Int): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'stepCount: kotlin.Int declared in foo.bar.State.SnapshotMutable.update' type=kotlin.Int origin=null
+          CALL 'public final fun <set-startTimeStamp> (<set-?>: kotlin.Long): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'startTimeStamp: kotlin.Long declared in foo.bar.State.SnapshotMutable.update' type=kotlin.Long origin=null
+          CALL 'public final fun <set-totalDistanceInMiles> (<set-?>: kotlin.Float): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'totalDistanceInMiles: kotlin.Float declared in foo.bar.State.SnapshotMutable.update' type=kotlin.Float origin=null
+          CALL 'public final fun <set-stepsPerSecond> (<set-?>: kotlin.Double): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'stepsPerSecond: kotlin.Double declared in foo.bar.State.SnapshotMutable.update' type=kotlin.Double origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.update' type=foo.bar.State.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity visibility:public modality:FINAL [var]
+        overridden:
+          public abstract activity: kotlin.String declared in foo.bar.State
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-activity> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-activity> (): kotlin.String declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-activity> (): kotlin.String declared in foo.bar.State.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<get-activity>' type=foo.bar.State.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-activity> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<set-activity>' type=foo.bar.State.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.bar.State.SnapshotMutable.<set-activity>' type=kotlin.String origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp visibility:public modality:FINAL [var]
+        overridden:
+          public abstract startTimeStamp: kotlin.Long declared in foo.bar.State
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-startTimeStamp> visibility:public modality:FINAL returnType:kotlin.Long
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.SnapshotMutable'
+              CALL 'public abstract fun <get-longValue> (): kotlin.Long declared in androidx.compose.runtime.MutableLongState' type=kotlin.Long origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp$SnapshottableHolder type:androidx.compose.runtime.MutableLongState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableLongState origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<get-startTimeStamp>' type=foo.bar.State.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-startTimeStamp> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Long
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-longValue> (<set-?>: kotlin.Long): kotlin.Unit declared in androidx.compose.runtime.MutableLongState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp$SnapshottableHolder type:androidx.compose.runtime.MutableLongState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableLongState origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<set-startTimeStamp>' type=foo.bar.State.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Long declared in foo.bar.State.SnapshotMutable.<set-startTimeStamp>' type=kotlin.Long origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount visibility:public modality:FINAL [var]
+        overridden:
+          public abstract stepCount: kotlin.Int declared in foo.bar.State
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-stepCount> visibility:public modality:FINAL returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-stepCount> (): kotlin.Int declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.SnapshotMutable'
+              CALL 'public abstract fun <get-intValue> (): kotlin.Int declared in androidx.compose.runtime.MutableIntState' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<get-stepCount>' type=foo.bar.State.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-stepCount> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-intValue> (<set-?>: kotlin.Int): kotlin.Unit declared in androidx.compose.runtime.MutableIntState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<set-stepCount>' type=foo.bar.State.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Int declared in foo.bar.State.SnapshotMutable.<set-stepCount>' type=kotlin.Int origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond visibility:public modality:FINAL [var]
+        overridden:
+          public abstract stepsPerSecond: kotlin.Double declared in foo.bar.State
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-stepsPerSecond> visibility:public modality:FINAL returnType:kotlin.Double
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.SnapshotMutable'
+              CALL 'public abstract fun <get-doubleValue> (): kotlin.Double declared in androidx.compose.runtime.MutableDoubleState' type=kotlin.Double origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond$SnapshottableHolder type:androidx.compose.runtime.MutableDoubleState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableDoubleState origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<get-stepsPerSecond>' type=foo.bar.State.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-stepsPerSecond> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Double
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-doubleValue> (<set-?>: kotlin.Double): kotlin.Unit declared in androidx.compose.runtime.MutableDoubleState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond$SnapshottableHolder type:androidx.compose.runtime.MutableDoubleState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableDoubleState origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<set-stepsPerSecond>' type=foo.bar.State.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Double declared in foo.bar.State.SnapshotMutable.<set-stepsPerSecond>' type=kotlin.Double origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:FINAL [var]
+        overridden:
+          public abstract totalDistanceInMiles: kotlin.Float declared in foo.bar.State
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-totalDistanceInMiles> visibility:public modality:FINAL returnType:kotlin.Float
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.SnapshotMutable'
+              CALL 'public abstract fun <get-floatValue> (): kotlin.Float declared in androidx.compose.runtime.MutableFloatState' type=kotlin.Float origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles$SnapshottableHolder type:androidx.compose.runtime.MutableFloatState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableFloatState origin=null
+                  receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<get-totalDistanceInMiles>' type=foo.bar.State.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-totalDistanceInMiles> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Float
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-floatValue> (<set-?>: kotlin.Float): kotlin.Unit declared in androidx.compose.runtime.MutableFloatState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles$SnapshottableHolder type:androidx.compose.runtime.MutableFloatState visibility:private [final] declared in foo.bar.State.SnapshotMutable' type=androidx.compose.runtime.MutableFloatState origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable.<set-totalDistanceInMiles>' type=foo.bar.State.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.Float declared in foo.bar.State.SnapshotMutable.<set-totalDistanceInMiles>' type=kotlin.Float origin=null
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.State.Companion
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:private returnType:foo.bar.State.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.State.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.State.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (<this>: foo.bar.State.Immutable): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+              ARG activity: CALL 'public final fun <get-activity> (): kotlin.String declared in foo.bar.State.Immutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.Immutable declared in foo.bar.State.Companion.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG stepCount: CALL 'public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.Immutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.Immutable declared in foo.bar.State.Companion.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG startTimeStamp: CALL 'public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.Immutable' type=kotlin.Long origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.Immutable declared in foo.bar.State.Companion.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG totalDistanceInMiles: CALL 'public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.Immutable' type=kotlin.Float origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.Immutable declared in foo.bar.State.Companion.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG stepsPerSecond: CALL 'public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.Immutable' type=kotlin.Double origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.Immutable declared in foo.bar.State.Companion.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.State.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Companion
+        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.State.SnapshotMutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion'
+            CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.Immutable' type=foo.bar.State.Immutable origin=null
+              ARG activity: CALL 'public final fun <get-activity> (): kotlin.String declared in foo.bar.State.SnapshotMutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion.toSnapshotSpec' type=foo.bar.State.SnapshotMutable origin=null
+              ARG stepCount: CALL 'public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.SnapshotMutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion.toSnapshotSpec' type=foo.bar.State.SnapshotMutable origin=null
+              ARG startTimeStamp: CALL 'public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.SnapshotMutable' type=kotlin.Long origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion.toSnapshotSpec' type=foo.bar.State.SnapshotMutable origin=null
+              ARG totalDistanceInMiles: CALL 'public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.SnapshotMutable' type=kotlin.Float origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion.toSnapshotSpec' type=foo.bar.State.SnapshotMutable origin=null
+              ARG stepsPerSecond: CALL 'public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.SnapshotMutable' type=kotlin.Double origin=null
+                ARG <this>: GET_VAR '<this>(index:1): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion.toSnapshotSpec' type=foo.bar.State.SnapshotMutable origin=null
     FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
       VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
@@ -38,8 +566,96 @@ FILE fqName:foo.bar fileName:foo/bar/MyClass.kt
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
       overridden:
         public open fun toString (): kotlin.String declared in kotlin.Any
-    FUN GENERATED[com.tunjid.snapshottable.fir.SimpleClassGenerator.Key] name:foo visibility:public modality:FINAL returnType:kotlin.String
-      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MyClass
-      BLOCK_BODY
-        RETURN type=kotlin.Nothing from='public final fun foo (): kotlin.String declared in foo.bar.MyClass'
-          CONST String type=kotlin.String value="Hello world"
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-activity> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:activity visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-startTimeStamp> visibility:public modality:ABSTRACT returnType:kotlin.Long
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:startTimeStamp visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stepCount> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepCount visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-stepsPerSecond> visibility:public modality:ABSTRACT returnType:kotlin.Double
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:stepsPerSecond visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-totalDistanceInMiles> visibility:public modality:ABSTRACT returnType:kotlin.Float
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.Unit
+    BLOCK_BODY
+      VAR name:state type:foo.bar.State.SnapshotMutable [val]
+        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.State.Immutable): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.Immutable' type=foo.bar.State.Immutable origin=null
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      CALL 'public final fun <set-activity> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.State.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+        ARG <set-?>: CONST String type=kotlin.String value="run"
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+          ARG activity: CONST String type=kotlin.String value="sprint"
+          ARG stepCount: CONST Int type=kotlin.Int value=8
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+          ARG stepCount: CONST Int type=kotlin.Int value=14
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+          ARG startTimeStamp: CONST Long type=kotlin.Long value=1700923400
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double): foo.bar.State.SnapshotMutable declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+          ARG totalDistanceInMiles: CONST Float type=kotlin.Float value=1.2
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotMutable (<this>: foo.bar.State.Immutable): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion' type=foo.bar.State.SnapshotMutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+            ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+            ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit declared in kotlin.io' type=kotlin.Unit origin=null
+        ARG message: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+          ARG <this>(index:1): CALL 'public final fun toSnapshotMutable (<this>: foo.bar.State.Immutable): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion' type=foo.bar.State.SnapshotMutable origin=null
+            ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+            ARG <this>(index:1): CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
+              ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
+              ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+  FUN name:state visibility:public modality:FINAL returnType:foo.bar.State.SnapshotMutable
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun state (): foo.bar.State.SnapshotMutable declared in foo.bar'
+        CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
+          ARG activity: CONST String type=kotlin.String value="walk"
+          ARG stepCount: CONST Int type=kotlin.Int value=25
+          ARG startTimeStamp: CONST Long type=kotlin.Long value=1700923000
+          ARG totalDistanceInMiles: CONST Float type=kotlin.Float value=45.5
+          ARG stepsPerSecond: CONST Double type=kotlin.Double value=0.3

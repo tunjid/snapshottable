@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.test.services.TestServices
 fun TestConfigurationBuilder.configurePlugin() {
     useConfigurators(::ExtensionRegistrarConfigurator)
     configureAnnotations()
+    configureComposeRuntime()
 }
 
 private class ExtensionRegistrarConfigurator(testServices: TestServices) : EnvironmentConfigurator(testServices) {

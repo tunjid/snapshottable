@@ -24,6 +24,8 @@ idea {
 }
 
 val annotationsRuntimeClasspath: Configuration by configurations.creating { isTransitive = false }
+val composeRuntimeClasspath: Configuration by configurations.creating { isTransitive = true }
+
 val testArtifacts: Configuration by configurations.creating
 
 dependencies {
@@ -32,9 +34,9 @@ dependencies {
     testFixturesApi(libs.kotlin.test.junit5)
     testFixturesApi(libs.kotlin.test.framework)
     testFixturesApi(libs.kotlin.compiler)
-    testFixturesImplementation(libs.compose.multiplatform.runtime)
 
     annotationsRuntimeClasspath(project(":plugin-annotations"))
+    composeRuntimeClasspath(libs.compose.multiplatform.runtime)
 
     // Dependencies required to run the internal test framework.
     testArtifacts(libs.kotlin.stdlib)
@@ -61,6 +63,7 @@ tasks.test {
     workingDir = rootDir
 
     systemProperty("annotationsRuntime.classpath", annotationsRuntimeClasspath.asPath)
+    systemProperty("composeRuntime.classpath", composeRuntimeClasspath.asPath)
 
     // Properties required to run the internal test framework.
     setLibraryProperty("org.jetbrains.kotlin.test.kotlin-stdlib", "kotlin-stdlib")
