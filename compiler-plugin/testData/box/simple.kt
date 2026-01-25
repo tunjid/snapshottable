@@ -38,7 +38,7 @@ interface State {
         val stepCount: Int = 42,
         val startTimeStamp: Long = 1700923000L,
         val totalDistanceInMiles: Float = 45.5f,
-        val stepsPerSecond: Double = 0.4
+        val stepsPerSecond: Double = 0.4,
     ) : State
 }
 
