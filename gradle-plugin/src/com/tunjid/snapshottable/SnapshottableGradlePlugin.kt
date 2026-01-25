@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 @Suppress("unused") // Used via reflection.
-class SimpleGradlePlugin : KotlinCompilerPluginSupportPlugin {
+class SnapshottableGradlePlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
-        target.extensions.create("simplePlugin", SimpleGradleExtension::class.java)
+        target.extensions.create("SnapshottablePlugin", SnapshottableGradleExtension::class.java)
     }
 
     override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
@@ -35,7 +35,7 @@ class SimpleGradlePlugin : KotlinCompilerPluginSupportPlugin {
         }
 
         return project.provider {
-            val extension = project.extensions.getByType(SimpleGradleExtension::class.java)
+            val extension = project.extensions.getByType(SnapshottableGradleExtension::class.java)
 
             emptyList()
         }

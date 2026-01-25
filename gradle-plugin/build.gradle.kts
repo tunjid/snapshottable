@@ -40,10 +40,10 @@ buildConfig {
 
 gradlePlugin {
     plugins {
-        create("SimplePlugin") {
+        create("SnapshottablePlugin") {
             id = rootProject.group.toString()
-            displayName = "SimplePlugin"
-            description = "SimplePlugin"
+            displayName = "SnapshottablePlugin"
+            description = "SnapshottablePlugin"
             implementationClass = "com.tunjid.snapshottable.SimpleGradlePlugin"
         }
     }

@@ -12,8 +12,8 @@ user code for interacting with compiler plugin.
 annotation dependency to a Kotlin project. 
 
 Extension point registration:
-- K2 Frontend (FIR) extensions can be registered in `SimplePluginRegistrar`.
-- All other extensions (including K1 frontend and backend) can be registered in `SimplePluginComponentRegistrar`.
+- K2 Frontend (FIR) extensions can be registered in `SnapshottablePluginRegistrar`.
+- All other extensions (including K1 frontend and backend) can be registered in `SnapshottablePluginComponentRegistrar`.
 
 ## Tests
 
