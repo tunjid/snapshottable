@@ -24,97 +24,109 @@ data class SnapshotStateMetadata(
     val type: IrSimpleType,
 )
 
-private val composeRuntimeFullyQualifiedName = FqName(fqName = "androidx.compose.runtime")
+private val SnapshotStatePackageName = FqName(fqName = "androidx.compose.runtime")
 
-private val composeMutableStateFactory = Name.identifier("mutableStateOf")
-private val composeMutableState = Name.identifier("MutableState")
+private val SnapshotMutableStateFactory = Name.identifier("mutableStateOf")
+private val SnapshotMutableState = Name.identifier("MutableState")
+private val SnapshotStateValue = Name.identifier("value")
 
-private val composeMutableIntStateFactory = Name.identifier("mutableIntStateOf")
-private val composeMutableIntState = Name.identifier("MutableIntState")
+private val SnapshotMutableIntStateFactory = Name.identifier("mutableIntStateOf")
+private val SnapshotMutableIntState = Name.identifier("MutableIntState")
+private val SnapshotIntStateValue = Name.identifier("intValue")
 
-private val composeMutableFloatStateFactory = Name.identifier("mutableFloatStateOf")
-private val composeMutableFloatState = Name.identifier("MutableFloatState")
+private val SnapshotMutableFloatStateFactory = Name.identifier("mutableFloatStateOf")
+private val SnapshotMutableFloatState = Name.identifier("MutableFloatState")
+private val SnapshotFloatStateValue = Name.identifier("floatValue")
 
-private val composeMutableLongStateFactory = Name.identifier("mutableLongStateOf")
-private val composeMutableLongState = Name.identifier("MutableLongState")
+private val SnapshotMutableLongStateFactory = Name.identifier("mutableLongStateOf")
+private val SnapshotMutableLongState = Name.identifier("MutableLongState")
+private val SnapshotLongStateValue = Name.identifier("longValue")
 
-private val composeMutableDoubleStateFactory = Name.identifier("mutableDoubleStateOf")
-private val composeMutableDoubleState = Name.identifier("MutableDoubleState")
-
-
-val composeStateValue = Name.identifier("value")
+private val SnapshotMutableDoubleStateFactory = Name.identifier("mutableDoubleStateOf")
+private val SnapshotMutableDoubleState = Name.identifier("MutableDoubleState")
+private val SnapshotDoubleStateValue = Name.identifier("doubleValue")
 
 fun IrPluginContext.snapshotStateMetadata(
     backingType: IrType
 ): SnapshotStateMetadata = when {
     backingType.isInt() -> {
         val snapshotStateClass = snapshotStateClass(
-            stateClassName = composeMutableIntState
+            stateClassName = SnapshotMutableIntState
         )
         SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
-                stateFactoryMethodName = composeMutableIntStateFactory
+                stateFactoryMethodName = SnapshotMutableIntStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
-            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(
+                valueName = SnapshotIntStateValue,
+            ),
             type = snapshotStateClass.typeWith(),
         )
     }
 
     backingType.isFloat() -> {
         val snapshotStateClass = snapshotStateClass(
-            stateClassName = composeMutableFloatState
+            stateClassName = SnapshotMutableFloatState
         )
         SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
-                stateFactoryMethodName = composeMutableFloatStateFactory
+                stateFactoryMethodName = SnapshotMutableFloatStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
-            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(
+                valueName = SnapshotFloatStateValue,
+            ),
             type = snapshotStateClass.typeWith(),
         )
     }
 
     backingType.isLong() -> {
         val snapshotStateClass = snapshotStateClass(
-            stateClassName = composeMutableLongState
+            stateClassName = SnapshotMutableLongState
         )
         SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
-                stateFactoryMethodName = composeMutableLongStateFactory
+                stateFactoryMethodName = SnapshotMutableLongStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
-            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(
+                valueName = SnapshotLongStateValue,
+            ),
             type = snapshotStateClass.typeWith(),
         )
     }
 
     backingType.isDouble() -> {
         val snapshotStateClass = snapshotStateClass(
-            stateClassName = composeMutableDoubleState
+            stateClassName = SnapshotMutableDoubleState
         )
         SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
-                stateFactoryMethodName = composeMutableDoubleStateFactory
+                stateFactoryMethodName = SnapshotMutableDoubleStateFactory
             ),
             snapshotStateClass = snapshotStateClass,
-            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(
+                valueName = SnapshotDoubleStateValue,
+            ),
             type = snapshotStateClass.typeWith(),
         )
     }
 
     else -> {
         val snapshotStateClass = snapshotStateClass(
-            stateClassName = composeMutableState
+            stateClassName = SnapshotMutableState
         )
         SnapshotStateMetadata(
             factoryFunction = snapshotStateFactory(
-                stateFactoryMethodName =  composeMutableStateFactory
+                stateFactoryMethodName = SnapshotMutableStateFactory
             ),
             snapshotStateClass = snapshotStateClass(
-                stateClassName = composeMutableState
+                stateClassName = SnapshotMutableState
             ),
-            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(),
+            valueProperty = snapshotStateClass.snapshotValuePropertySymbol(
+                valueName = SnapshotStateValue
+            ),
             type = snapshotStateClass.typeWith(backingType),
         )
     }
@@ -124,7 +136,7 @@ private fun IrPluginContext.snapshotStateFactory(
     stateFactoryMethodName: Name
 ): IrSimpleFunctionSymbol = referenceFunctions(
     CallableId(
-        packageName = composeRuntimeFullyQualifiedName,
+        packageName = SnapshotStatePackageName,
         callableName = stateFactoryMethodName,
     )
 ).first { it.owner.parameters.isNotEmpty() } // Simple check for the one with args
@@ -133,12 +145,14 @@ private fun IrPluginContext.snapshotStateClass(
     stateClassName: Name
 ): IrClassSymbol = referenceClass(
     ClassId(
-        packageFqName = composeRuntimeFullyQualifiedName,
+        packageFqName = SnapshotStatePackageName,
         topLevelName = stateClassName,
     )
 ) ?: error("MutableState not found")
 
-private fun IrClassSymbol.snapshotValuePropertySymbol(): IrPropertySymbol = (owner.properties
-    .find { it.name == composeStateValue }
+private fun IrClassSymbol.snapshotValuePropertySymbol(
+    valueName: Name,
+): IrPropertySymbol = (owner.properties
+    .find { it.name == valueName }
     ?.symbol
     ?: error("MutableState.value property not found"))
