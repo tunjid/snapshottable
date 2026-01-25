@@ -1,7 +1,7 @@
 FILE: simple.kt
     package foo.bar
 
-    public final fun box(): R|kotlin/Unit| {
+    public final fun box(): R|kotlin/String| {
         lval state: R|foo/bar/State.SnapshotMutable| = (Q|foo/bar/State.Companion|, Q|foo/bar/State|.R|foo/bar/State.Immutable.Immutable|()).R|foo/bar/State.Companion.toSnapshotMutable|()
         R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.activity| = String(run)
@@ -16,6 +16,7 @@ FILE: simple.kt
         R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
         R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|())
         R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|()).R|foo/bar/State.Companion.toSnapshotSpec|())
+        ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface State : R|kotlin/Any| {
         @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/State| {

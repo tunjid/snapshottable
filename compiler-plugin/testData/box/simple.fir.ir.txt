@@ -586,7 +586,7 @@ FILE fqName:foo.bar fileName:/simple.kt
       FUN DEFAULT_PROPERTY_ACCESSOR name:<get-totalDistanceInMiles> visibility:public modality:ABSTRACT returnType:kotlin.Float
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State
         correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:totalDistanceInMiles visibility:public modality:ABSTRACT [val]
-  FUN name:box visibility:public modality:FINAL returnType:kotlin.Unit
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:state type:foo.bar.State.SnapshotMutable [val]
         CALL 'public final fun toSnapshotMutable (<this>: foo.bar.State.Immutable): foo.bar.State.SnapshotMutable declared in foo.bar.State.Companion' type=foo.bar.State.SnapshotMutable origin=null
@@ -650,6 +650,8 @@ FILE fqName:foo.bar fileName:/simple.kt
             ARG <this>(index:1): CALL 'public final fun toSnapshotSpec (<this>: foo.bar.State.SnapshotMutable): foo.bar.State.Immutable declared in foo.bar.State.Companion' type=foo.bar.State.Immutable origin=null
               ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.State.Companion
               ARG <this>(index:1): GET_VAR 'val state: foo.bar.State.SnapshotMutable declared in foo.bar.box' type=foo.bar.State.SnapshotMutable origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+        CONST String type=kotlin.String value="OK"
   FUN name:state visibility:public modality:FINAL returnType:foo.bar.State.SnapshotMutable
     BLOCK_BODY
       RETURN type=kotlin.Nothing from='public final fun state (): foo.bar.State.SnapshotMutable declared in foo.bar'

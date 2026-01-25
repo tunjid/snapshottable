@@ -5,7 +5,7 @@ import com.tunjid.snapshottable.Snapshottable
 import foo.bar.State.Companion.toSnapshotMutable
 import foo.bar.State.Companion.toSnapshotSpec
 
-fun box() {
+fun box(): String {
     val state = State.Immutable().toSnapshotMutable()
     println(state.toSnapshotSpec())
 
@@ -29,6 +29,8 @@ fun box() {
 
     println(state.toSnapshotSpec().toSnapshotMutable())
     println(state.toSnapshotSpec().toSnapshotMutable().toSnapshotSpec())
+
+    return "OK"
 }
 
 @Snapshottable
