@@ -66,7 +66,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                 }
 
                 primaryConstructor?.valueParameterSymbols?.forEach { parameterSymbol ->
-                    if(!parameterSymbol.visibility.isPublicAPI) {
+                    if (!parameterSymbol.visibility.isPublicAPI) {
                         reporter.reportOn(
                             source = parameterSymbol.source,
                             factory = SnapshottableErrors.ILLEGAL_VISIBILITY_MODIFIER,
