@@ -148,7 +148,7 @@ private fun IrPluginContext.snapshotStateClass(
         packageFqName = SnapshotStatePackageName,
         topLevelName = stateClassName,
     ),
-) ?: error("MutableState not found")
+) ?: error("Compose MutableState class not found in classpath.")
 
 private fun IrClassSymbol.snapshotValuePropertySymbol(
     valueName: Name,
@@ -156,5 +156,5 @@ private fun IrClassSymbol.snapshotValuePropertySymbol(
     owner.properties
         .find { it.name == valueName }
         ?.symbol
-        ?: error("MutableState.value property not found")
+        ?: error("MutableState.value property not found.")
     )
