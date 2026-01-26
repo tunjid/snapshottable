@@ -15,8 +15,10 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 class SnapshottableGradlePlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
         target.extensions.create(
-            /* name = */ "SnapshottablePlugin",
-            /* type = */ SnapshottableGradleExtension::class.java,
+            /* name = */
+            "SnapshottablePlugin",
+            /* type = */
+            SnapshottableGradleExtension::class.java,
         )
 
         val annotationDependency = target.providers.provider {
@@ -28,7 +30,6 @@ class SnapshottableGradlePlugin : KotlinCompilerPluginSupportPlugin {
             val commonMainSourceSet = kotlin.sourceSets.getByName(COMMON_MAIN_SOURCE_SET_NAME)
 
             target.configurations.named(commonMainSourceSet.implementationConfigurationName).configure {
-
                 it.dependencies.addLater(annotationDependency)
             }
         }
