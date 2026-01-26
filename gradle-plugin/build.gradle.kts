@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.plugin)
+    id("publishing-library-convention")
 }
 
 sourceSets {
@@ -28,13 +29,13 @@ buildConfig {
     val pluginProject = project(":compiler-plugin")
     buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"${pluginProject.group}\"")
     buildConfigField("String", "KOTLIN_PLUGIN_NAME", "\"${pluginProject.name}\"")
-    buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"${pluginProject.version}\"")
+    buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"${version}\"")
 
     val annotationsProject = project(":plugin-annotations")
     buildConfigField(
         type = "String",
         name = "ANNOTATIONS_LIBRARY_COORDINATES",
-        expression = "\"${annotationsProject.group}:${annotationsProject.name}:${annotationsProject.version}\"",
+        expression = "\"${annotationsProject.group}:${annotationsProject.name}:${version}\"",
     )
 }
 

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.java.test.fixtures)
     alias(libs.plugins.gradle.idea)
+    id("publishing-library-convention")
 }
 
 sourceSets {
