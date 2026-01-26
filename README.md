@@ -6,6 +6,8 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 
 *   **Automatic Generation:** Generates a `SnapshotMutable` class for your state interfaces.
 *   **Compose Integration:** The generated mutable classes are backed by Compose `Snapshot` state, making them observable and thread-safe.
+*   **Flexible Mutation:** Supports both direct property assignment for individual updates and a generated `update` method (similar to `data class copy`) for bulk updates.
+*   **Optimized Primitives:** Automatically delegates to specialized Compose snapshot state implementations for primitives (`Int`, `Float`, `Long`, `Double`) to avoid boxing overhead.
 *   **Two-Way Conversion:** Easily convert between your immutable "Spec" and the mutable "Snapshot" representation.
 *   **Serialization Support:** The separation of concerns allows you to mark the immutable "Spec" class as `@Serializable` or `@Parcelize`. This enables seamless integration with `rememberSaveable`, allowing you to persist state across configuration changes using the serializable spec, while using the mutable version for runtime updates.
 *   **Boilerplate Reduction:** Eliminates the need to manually write mutable state holders and update logic.
@@ -33,7 +35,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
     }
     ```
 
-2.  **Use the Generated Mutable Class:**
+2.  **Use in Composable:**
     The plugin generates a `SnapshotMutable` class nested within your interface (e.g., `State.SnapshotMutable`). You can create instances of this class, modify its properties (which updates the underlying Compose state), and convert back to the immutable spec.
 
     ```kotlin
@@ -75,6 +77,55 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
         }
     }
     ```
+
+3.  **Use in ViewModel:**
+    You can also use the generated mutable class inside a `ViewModel` to manage state. Expose the state as the parent interface (which is read-only from the outside perspective) while mutating the internal `SnapshotMutable` instance.
+
+    ```kotlin
+    import androidx.lifecycle.ViewModel
+    import com.tunjid.snapshottable.toSnapshotMutable
+
+    class MyViewModel : ViewModel() {
+        // Internal mutable state
+        private val mutableState = State.Immutable().toSnapshotMutable()
+        
+        // Public read-only state exposed as the interface
+        val state: State get() = mutableState
+
+        fun increment() {
+            mutableState.count++
+        }
+
+        fun updateText(newText: String) {
+            mutableState.text = newText
+        }
+        
+        fun reset() {
+            // Bulk update
+            mutableState.update(count = 0, text = "Hello")
+        }
+    }
+    ```
+
+    With Kotlin 2.0+ (and enabled in 2.3.0), you can use explicit backing fields for a more concise syntax:
+
+    ```kotlin
+    class MyViewModel : ViewModel() {
+        val state: State
+            field = State.Immutable().toSnapshotMutable()
+
+        fun increment() {
+            // Access the backing field directly to mutate
+            state.field.count++
+        }
+    }
+    ```
+
+## Known Caveats
+
+-   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@Snapshottable.Spec` class are currently not supported.
+-   **Visibility:** All properties in the `@Snapshottable.Spec` data class must be `public`. Private or internal properties
+are not supported for snapshot generation as the parent interface cannot have non-public properties.
 
 ## Project Structure
 
