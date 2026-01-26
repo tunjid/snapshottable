@@ -35,6 +35,38 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
     }
     ```
 
+    The compiler plugin will generate the following code for you:
+
+    ```kotlin
+    @Snapshottable
+    interface State {
+        // ... (Immutable class definition)
+
+        // Generated nested class
+        class SnapshotMutable(
+            count: Int,
+            text: String
+        ) : State {
+            override var count: Int by mutableIntStateOf(count)
+            override var text: String by mutableStateOf(text)
+
+            fun update(
+                count: Int = this.count,
+                text: String = this.text
+            ): SnapshotMutable {
+                this.count = count
+                this.text = text
+                return this
+            }
+        }
+        
+        companion object {
+             fun State.Immutable.toSnapshotMutable(): SnapshotMutable = ...
+             fun State.SnapshotMutable.toSnapshotSpec(): Immutable = ...
+        }
+    }
+    ```
+
 2.  **Use in Composable:**
     The plugin generates a `SnapshotMutable` class nested within your interface (e.g., `State.SnapshotMutable`). You can create instances of this class, modify its properties (which updates the underlying Compose state), and convert back to the immutable spec.
 
