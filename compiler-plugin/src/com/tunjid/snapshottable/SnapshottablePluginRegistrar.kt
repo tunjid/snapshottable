@@ -4,6 +4,7 @@ import com.tunjid.snapshottable.fir.SnapshottableClassGenerator
 import com.tunjid.snapshottable.fir.SnapshottableFilters
 import com.tunjid.snapshottable.fir.SnapshottableStatusTransformer
 import com.tunjid.snapshottable.fir.checkers.SnapshottableAdditionalCheckersExtension
+import com.tunjid.snapshottable.fir.checkers.SnapshottableDiagnostics
 import org.jetbrains.kotlin.fir.extensions.FirExtensionRegistrar
 
 class SnapshottablePluginRegistrar : FirExtensionRegistrar() {
@@ -12,5 +13,7 @@ class SnapshottablePluginRegistrar : FirExtensionRegistrar() {
         +::SnapshottableClassGenerator
         +::SnapshottableStatusTransformer
         +::SnapshottableAdditionalCheckersExtension
+
+        registerDiagnosticContainers(SnapshottableDiagnostics)
     }
 }

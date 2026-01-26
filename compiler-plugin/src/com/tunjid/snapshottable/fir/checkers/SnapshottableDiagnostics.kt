@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.psi.KtNamedDeclaration
 import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.kotlin.psi.KtPrimaryConstructor
 
-internal object SnapshottableErrors : KtDiagnosticsContainer() {
+internal object SnapshottableDiagnostics : KtDiagnosticsContainer() {
     val NOT_SNAPSHOTTABLE_INTERFACE by error0<KtNamedDeclaration>(SourceElementPositioningStrategies.DECLARATION_NAME)
     val NOT_SNAPSHOTTABLE_SPEC by error0<KtNamedDeclaration>(SourceElementPositioningStrategies.DECLARATION_NAME)
 

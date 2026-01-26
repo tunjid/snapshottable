@@ -26,13 +26,13 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                     !declaration.isInterface ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_INTERFACE,
+                            factory = SnapshottableDiagnostics.NOT_SNAPSHOTTABLE_INTERFACE,
                         )
 
                     snapshottableInterfaceIdToSpecSymbol(declaration.classId) == null ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_SPEC,
+                            factory = SnapshottableDiagnostics.NO_SNAPSHOTTABLE_SPEC,
                         )
                 }
             }
@@ -43,25 +43,25 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                     primaryConstructor == null ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NO_PRIMARY_CONSTRUCTOR,
+                            factory = SnapshottableDiagnostics.NO_PRIMARY_CONSTRUCTOR,
                         )
 
                     primaryConstructor.rawStatus.visibility == Visibilities.Private ->
                         reporter.reportOn(
                             source = primaryConstructor.source,
-                            factory = SnapshottableErrors.PRIVATE_CONSTRUCTOR,
+                            factory = SnapshottableDiagnostics.PRIVATE_CONSTRUCTOR,
                         )
 
                     declaration.isAbstract || !declaration.isFinal ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NOT_SNAPSHOTTABLE_SPEC,
+                            factory = SnapshottableDiagnostics.NOT_SNAPSHOTTABLE_SPEC,
                         )
 
                     nestedClassIdToSnapshottableInterfaceClassId(declaration.classId) == null ->
                         reporter.reportOn(
                             source = declaration.source,
-                            factory = SnapshottableErrors.NO_SNAPSHOTTABLE_INTERFACE,
+                            factory = SnapshottableDiagnostics.NO_SNAPSHOTTABLE_INTERFACE,
                         )
                 }
 
@@ -69,7 +69,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                     if (!parameterSymbol.visibility.isPublicAPI) {
                         reporter.reportOn(
                             source = parameterSymbol.source,
-                            factory = SnapshottableErrors.ILLEGAL_VISIBILITY_MODIFIER,
+                            factory = SnapshottableDiagnostics.ILLEGAL_VISIBILITY_MODIFIER,
                         )
                     }
                 }
