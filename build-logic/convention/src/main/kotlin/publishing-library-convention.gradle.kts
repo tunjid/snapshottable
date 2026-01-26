@@ -27,7 +27,7 @@ scmVersion {
 
 allprojects {
     group = "com.tunjid.snapshottable"
-    version = "0.1.0-SNAPSHOT-E"
+    version = "0.1.0-SNAPSHOT"
 //    version = scmVersion.version
 
     task("printProjectVersion") {
