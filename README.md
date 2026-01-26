@@ -83,7 +83,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 
     ```kotlin
     import androidx.lifecycle.ViewModel
-    import com.tunjid.snapshottable.toSnapshotMutable
+    import com.example.mypackage.State.Companion.toSnapshotSpec
 
     class MyViewModel : ViewModel() {
         // Internal mutable state
@@ -116,7 +116,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 
         fun increment() {
             // Access the backing field directly to mutate
-            state.field.count++
+            state.count++
         }
     }
     ```
