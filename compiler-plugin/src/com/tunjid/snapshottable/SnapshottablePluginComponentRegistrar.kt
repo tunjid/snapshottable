@@ -1,6 +1,5 @@
 package com.tunjid.snapshottable
 
-import com.tunjid.snapshottable.BuildConfig
 import com.tunjid.snapshottable.ir.SnapshottableIrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
