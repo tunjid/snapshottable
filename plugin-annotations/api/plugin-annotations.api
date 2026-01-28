@@ -1,6 +1,6 @@
-public abstract interface annotation class com/tunjid/snapshottable/Snapshottable : java/lang/annotation/Annotation {
+public abstract interface annotation class com/tunjid/snapshottable/SnapshotSpec : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class com/tunjid/snapshottable/Snapshottable$Spec : java/lang/annotation/Annotation {
+public abstract interface annotation class com/tunjid/snapshottable/Snapshottable : java/lang/annotation/Annotation {
 }
 
