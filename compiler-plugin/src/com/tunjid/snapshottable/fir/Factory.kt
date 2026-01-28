@@ -234,9 +234,9 @@ private fun buildSafeDefaultValueStub(
             val errorFunctionSymbol = session.symbolProvider.getTopLevelFunctionSymbols(
                 packageFqName = kotlinPackageFqn,
                 name = Name.identifier("error"),
-            ).first {
+            ).firstOrNull {
                 it.valueParameterSymbols.size == 1
-            }
+            } ?: error("Could not find kotlin.error function")
             this.resolvedSymbol = errorFunctionSymbol
             this.name = errorFunctionSymbol.name
         }

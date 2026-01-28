@@ -28,9 +28,4 @@ object Snapshottable {
     }
 
     val ORIGIN = GeneratedByPlugin(Key)
-
-    internal fun Name.toJavaSetter(): Name {
-        val name = asString()
-        return Name.identifier("set" + name[0].uppercase() + name.substring(1))
-    }
 }
