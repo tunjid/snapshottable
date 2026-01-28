@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.EnumSealedState.Companion.toSnapshotMutable
 import foo.bar.EnumSealedState.Companion.toSnapshotSpec
 
@@ -42,7 +43,7 @@ fun box(): String {
 
 @Snapshottable
 interface EnumSealedState {
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         val status: Status,
         val result: Result

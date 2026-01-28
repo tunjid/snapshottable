@@ -48,7 +48,7 @@ FILE: extra_properties.kt
         public abstract val base: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/ExtraState| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/ExtraState| {
             public constructor(base: R|kotlin/Int|, extra: R|kotlin/String|): R|foo/bar/ExtraState.Immutable| {
                 super<R|kotlin/Any|>()
             }

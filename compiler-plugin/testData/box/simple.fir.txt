@@ -19,7 +19,7 @@ FILE: simple.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface State : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/State| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/State| {
             public constructor(activity: R|kotlin/String| = String(jog), stepCount: R|kotlin/Int| = Int(42), startTimeStamp: R|kotlin/Long| = Long(1700923000), totalDistanceInMiles: R|kotlin/Float| = Float(45.5), stepsPerSecond: R|kotlin/Double| = Double(0.4)): R|foo/bar/State.Immutable| {
                 super<R|kotlin/Any|>()
             }

@@ -2,7 +2,7 @@ FILE: SnapshottableDiagnostics.kt
     package diagnostics
 
     public abstract interface NormalInterface : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|kotlin/Any| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Spec : R|kotlin/Any| {
             public constructor(i: R|kotlin/Int|): R|diagnostics/NormalInterface.Spec| {
                 super<R|kotlin/Any|>()
             }
@@ -33,7 +33,7 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NoPrimary : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final class Spec : R|diagnostics/NoPrimary| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final class Spec : R|diagnostics/NoPrimary| {
             public constructor(i: R|kotlin/Int|): R|diagnostics/NoPrimary.Spec| {
                 super<R|kotlin/Any|>()
             }
@@ -60,7 +60,7 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface PrivateConstructor : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|diagnostics/PrivateConstructor| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Spec : R|diagnostics/PrivateConstructor| {
             private constructor(i: R|kotlin/Int|): R|diagnostics/PrivateConstructor.Spec| {
                 super<R|kotlin/Any|>()
             }
@@ -101,7 +101,7 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface OpenSpec : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public open class Spec : R|diagnostics/OpenSpec| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public open class Spec : R|diagnostics/OpenSpec| {
             public constructor(i: R|kotlin/Int|): R|diagnostics/OpenSpec.Spec| {
                 super<R|kotlin/Any|>()
             }
@@ -137,7 +137,7 @@ FILE: SnapshottableDiagnostics.kt
         }
 
     }
-    @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class OrphanSpec : R|kotlin/Any| {
+    @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class OrphanSpec : R|kotlin/Any| {
         public constructor(i: R|kotlin/Int|): R|diagnostics/OrphanSpec| {
             super<R|kotlin/Any|>()
         }
@@ -151,7 +151,7 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface AbstractSpec : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public abstract class Spec : R|diagnostics/AbstractSpec| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public abstract class Spec : R|diagnostics/AbstractSpec| {
             public constructor(i: R|kotlin/Int|): R|diagnostics/AbstractSpec.Spec| {
                 super<R|kotlin/Any|>()
             }
@@ -188,7 +188,7 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface VisibilityCheck : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Spec : R|diagnostics/VisibilityCheck| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Spec : R|diagnostics/VisibilityCheck| {
             public constructor(p: R|kotlin/Int|, pro: R|kotlin/Int|, i: R|kotlin/Int|, pub: R|kotlin/Int|): R|diagnostics/VisibilityCheck.Spec| {
                 super<R|kotlin/Any|>()
             }

@@ -65,7 +65,7 @@ FILE: complex_types.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface ComplexState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/ComplexState| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/ComplexState| {
             public constructor(user: R|kotlin/String|, address: R|foo/bar/Address|): R|foo/bar/ComplexState.Immutable| {
                 super<R|kotlin/Any|>()
             }

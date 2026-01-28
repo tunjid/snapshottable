@@ -15,10 +15,11 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 ## Usage
 
 1.  **Define your State Interface:**
-    Annotate an interface with `@Snapshottable`. Inside, define a nested `data class` annotated with `@Snapshottable.Spec` that implements the interface. This data class represents the immutable snapshot of your state. You can also annotate it with `@Serializable` or `@Parcelize` for persistence.
+    Annotate an interface with `@Snapshottable`. Inside, define a nested `data class` annotated with `@SnapshottableSpec` that implements the interface. This data class represents the immutable snapshot of your state. You can also annotate it with `@Serializable` or `@Parcelize` for persistence.
 
     ```kotlin
     import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
     import kotlinx.serialization.Serializable
     import kotlinx.parcelize.Parcelize
     import android.os.Parcelable
@@ -27,7 +28,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
     interface State {
         @Serializable
         @Parcelize
-        @Snapshottable.Spec
+        @SnapshottableSpec
         data class Immutable(
             val count: Int = 0,
             val text: String = "Hello"
@@ -46,7 +47,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
           
         @Serializable
         @Parcelize
-        @Snapshottable.Spec
+        @SnapshottableSpec
         data class Immutable(
             override val count: Int = 0,
             override val text: String = "Hello"
@@ -86,6 +87,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
     import androidx.compose.runtime.saveable.rememberSaveable
     import androidx.compose.runtime.saveable.Saver
     import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
     // Import generated extension functions
     import com.example.mypackage.State.Companion.toSnapshotMutable
     import com.example.mypackage.State.Companion.toSnapshotSpec
@@ -165,8 +167,8 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 
 ## Known Caveats
 
--   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@Snapshottable.Spec` class are currently not supported.
--   **Visibility:** All properties in the `@Snapshottable.Spec` data class must be `public`. Private or internal properties
+-   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@SnapshottableSpec` class are currently not supported.
+-   **Visibility:** All properties in the `@SnapshottableSpec` data class must be `public`. Private or internal properties
 are not supported for snapshot generation as the parent interface cannot have non-public properties.
 
 ## Project Structure

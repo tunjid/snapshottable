@@ -46,7 +46,7 @@ FILE: arrays.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface ArrayState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/ArrayState| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/ArrayState| {
             public constructor(intArray: R|kotlin/IntArray|, stringArray: R|kotlin/Array<kotlin/String>|): R|foo/bar/ArrayState.Immutable| {
                 super<R|kotlin/Any|>()
             }

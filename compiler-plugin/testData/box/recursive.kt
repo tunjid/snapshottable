@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.Node.Companion.toSnapshotMutable
 import foo.bar.Node.Companion.toSnapshotSpec
 
@@ -29,7 +30,7 @@ interface Node {
     val value: Int
     val next: Node?
 
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         override val value: Int,
         override val next: Node?

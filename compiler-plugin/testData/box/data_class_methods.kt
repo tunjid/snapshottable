@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.DataMethodsState.Companion.toSnapshotMutable
 import foo.bar.DataMethodsState.Companion.toSnapshotSpec
 
@@ -27,7 +28,7 @@ fun box(): String {
 
 @Snapshottable
 interface DataMethodsState {
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         val id: Int,
         val data: String

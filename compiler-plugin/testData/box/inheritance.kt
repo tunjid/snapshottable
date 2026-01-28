@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.InheritanceState.Companion.toSnapshotMutable
 import foo.bar.InheritanceState.Companion.toSnapshotSpec
 
@@ -32,7 +33,7 @@ fun box(): String {
 
 @Snapshottable
 interface InheritanceState : Base {
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         override val id: String,
         val name: String

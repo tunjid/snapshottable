@@ -45,7 +45,7 @@ FILE: collections.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface CollectionState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/CollectionState| {
+        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/CollectionState| {
             public constructor(list: R|kotlin/collections/List<kotlin/String>|, map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|): R|foo/bar/CollectionState.Immutable| {
                 super<R|kotlin/Any|>()
             }

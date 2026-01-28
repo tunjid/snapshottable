@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.CollectionState.Companion.toSnapshotMutable
 import foo.bar.CollectionState.Companion.toSnapshotSpec
 
@@ -28,7 +29,7 @@ fun box(): String {
 
 @Snapshottable
 interface CollectionState {
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         val list: List<String>,
         val map: Map<String, Int>

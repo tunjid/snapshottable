@@ -7,7 +7,7 @@ FILE fqName:foo.bar fileName:/nested_classes.kt
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Outer.InnerState
       CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.Outer.InnerState]
         annotations:
-          Spec
+          SnapshottableSpec
         thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Outer.InnerState.Immutable
         PROPERTY name:value visibility:public modality:FINAL [val]
           overridden:

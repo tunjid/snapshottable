@@ -25,14 +25,14 @@ internal object SnapshottableDiagnostics : KtDiagnosticsContainer() {
     object Renderers : BaseDiagnosticRendererFactory() {
         override val MAP: KtDiagnosticFactoryToRendererMap by KtDiagnosticFactoryToRendererMap("Snapshottable sandbox errors") {
             it.put(NOT_SNAPSHOTTABLE_INTERFACE, "'@Snapshottable' should be declared on an interface.")
-            it.put(NOT_SNAPSHOTTABLE_SPEC, "'@Snapshottable.Spec' requires final classes.")
+            it.put(NOT_SNAPSHOTTABLE_SPEC, "'@SnapshottableSpec' requires final classes.")
 
-            it.put(NO_SNAPSHOTTABLE_SPEC, "'@Snapshottable' interface does not have an accompanying '@Snapshottable.Spec'.")
-            it.put(NO_SNAPSHOTTABLE_INTERFACE, "'@Snapshottable.Spec' is not nested in discoverable '@Snapshottable' parent interface.")
+            it.put(NO_SNAPSHOTTABLE_SPEC, "'@Snapshottable' interface does not have an accompanying '@SnapshottableSpec'.")
+            it.put(NO_SNAPSHOTTABLE_INTERFACE, "'@SnapshottableSpec' is not nested in discoverable '@Snapshottable' parent interface.")
 
-            it.put(NO_PRIMARY_CONSTRUCTOR, "'@Snapshottable.Spec' requires a primary constructor.")
-            it.put(PRIVATE_CONSTRUCTOR, "'@Snapshottable.Spec' requires a public constructor.")
-            it.put(ILLEGAL_VISIBILITY_MODIFIER, "'@Snapshottable.Spec' cannot have non public fields in it's primary constructor.")
+            it.put(NO_PRIMARY_CONSTRUCTOR, "'@SnapshottableSpec' requires a primary constructor.")
+            it.put(PRIVATE_CONSTRUCTOR, "'@SnapshottableSpec' requires a public constructor.")
+            it.put(ILLEGAL_VISIBILITY_MODIFIER, "'@SnapshottableSpec' cannot have non public fields in it's primary constructor.")
         }
     }
 }

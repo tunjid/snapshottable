@@ -5,7 +5,7 @@ FILE fqName:foo.bar fileName:/default_values.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DefaultState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.DefaultState]
       annotations:
-        Spec
+        SnapshottableSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DefaultState.Immutable
       PROPERTY name:name visibility:public modality:FINAL [val]
         overridden:

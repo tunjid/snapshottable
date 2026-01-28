@@ -7,7 +7,7 @@ FILE: nested_classes.kt
         }
 
         @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface InnerState : R|kotlin/Any| {
-            @R|com/tunjid/snapshottable/Snapshottable.Spec|() public final data class Immutable : R|foo/bar/Outer.InnerState| {
+            @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/Outer.InnerState| {
                 public constructor(value: R|kotlin/String|): R|foo/bar/Outer.InnerState.Immutable| {
                     super<R|kotlin/Any|>()
                 }

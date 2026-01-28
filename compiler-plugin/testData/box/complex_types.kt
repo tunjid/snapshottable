@@ -1,6 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.SnapshottableSpec
 import foo.bar.ComplexState.Companion.toSnapshotMutable
 import foo.bar.ComplexState.Companion.toSnapshotSpec
 
@@ -33,7 +34,7 @@ fun box(): String {
 
 @Snapshottable
 interface ComplexState {
-    @Snapshottable.Spec
+    @SnapshottableSpec
     data class Immutable(
         val user: String,
         val address: Address
