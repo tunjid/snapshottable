@@ -41,7 +41,7 @@ FILE: recursive.kt
         public abstract val next: R|foo/bar/Node?|
             public get(): R|foo/bar/Node?|
 
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/Node| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/Node| {
             public constructor(value: R|kotlin/Int|, next: R|foo/bar/Node?|): R|foo/bar/Node.Immutable| {
                 super<R|kotlin/Any|>()
             }

@@ -37,7 +37,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                 }
             }
 
-            isSnapshottableSpec(declaration.classId) -> {
+            isSnapshotSpec(declaration.classId) -> {
                 val primaryConstructor = declaration.primaryConstructorIfAny(context.session)
                 when {
                     primaryConstructor == null ->

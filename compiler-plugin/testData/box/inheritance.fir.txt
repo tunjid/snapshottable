@@ -50,7 +50,7 @@ FILE: inheritance.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface InheritanceState : R|foo/bar/Base| {
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/InheritanceState| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/InheritanceState| {
             public constructor(id: R|kotlin/String|, name: R|kotlin/String|): R|foo/bar/InheritanceState.Immutable| {
                 super<R|kotlin/Any|>()
             }

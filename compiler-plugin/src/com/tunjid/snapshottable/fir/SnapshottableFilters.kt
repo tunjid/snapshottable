@@ -23,7 +23,7 @@ class SnapshottableFilters(
             .toSet()
     }
 
-    private val snapshottableParentInterfaceIdsToSnapshottableSpecSymbols by lazy {
+    private val snapshottableParentInterfaceIdsToSnapshotSpecSymbols by lazy {
         session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.specAnnotationLookupPredicate)
             .filterIsInstance<FirRegularClassSymbol>()
             .mapNotNull { symbol ->
@@ -52,7 +52,7 @@ class SnapshottableFilters(
 
     // IDs for nested Spec classes.
     private val snapshotSpecClassIds by lazy {
-        snapshottableParentInterfaceIdsToSnapshottableSpecSymbols.values
+        snapshottableParentInterfaceIdsToSnapshotSpecSymbols.values
             .mapToSetOrEmpty(FirRegularClassSymbol::classId)
     }
 
@@ -64,7 +64,7 @@ class SnapshottableFilters(
         classId: ClassId,
     ) = snapshottableCompanionClassIds.contains(classId)
 
-    fun isSnapshottableSpec(
+    fun isSnapshotSpec(
         classId: ClassId,
     ) = snapshotSpecClassIds.contains(classId)
 
@@ -83,7 +83,7 @@ class SnapshottableFilters(
     fun snapshottableInterfaceIdToSpecSymbol(
         snapshottableInterfaceId: ClassId,
     ): FirRegularClassSymbol? =
-        snapshottableParentInterfaceIdsToSnapshottableSpecSymbols[snapshottableInterfaceId]
+        snapshottableParentInterfaceIdsToSnapshotSpecSymbols[snapshottableInterfaceId]
 
     fun nestedClassIdToSpecSymbol(
         nestedClassId: ClassId,

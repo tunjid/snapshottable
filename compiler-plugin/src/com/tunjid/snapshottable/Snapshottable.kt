@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 
 object Snapshottable {
-    private const val SPEC_ANNOTATION = "com.tunjid.snapshottable.SnapshottableSpec"
+    private const val SPEC_ANNOTATION = "com.tunjid.snapshottable.SnapshotSpec"
     private const val ANNOTATION = "com.tunjid.snapshottable.Snapshottable"
 
     private val specAnnotationFullyQualifiedName = FqName(SPEC_ANNOTATION)

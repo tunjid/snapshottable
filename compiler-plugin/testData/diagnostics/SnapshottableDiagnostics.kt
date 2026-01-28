@@ -2,10 +2,10 @@
 package diagnostics
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshottableSpec
+import com.tunjid.snapshottable.SnapshotSpec
 
 interface NormalInterface {
-    @SnapshottableSpec
+    @SnapshotSpec
     data class Spec(val i: Int)
 }
 
@@ -17,43 +17,43 @@ class NotInterface
 <!NO_SNAPSHOTTABLE_SPEC!>@Snapshottable
 interface NoSpec<!>
 
-// Case 3: @SnapshottableSpec without primary constructor
+// Case 3: @SnapshotSpec without primary constructor
 @Snapshottable
 interface NoPrimary {
-    @SnapshottableSpec
+    @SnapshotSpec
     <!NO_PRIMARY_CONSTRUCTOR!>class Spec<!> : NoPrimary {
         constructor(i: Int)
     }
 }
 
-// Case 4: @SnapshottableSpec with private constructor
+// Case 4: @SnapshotSpec with private constructor
 @Snapshottable
 interface PrivateConstructor {
-    @SnapshottableSpec
+    @SnapshotSpec
     data class Spec <!DATA_CLASS_COPY_VISIBILITY_WILL_BE_CHANGED_WARNING, PRIVATE_CONSTRUCTOR!>private<!> constructor(val i: Int) : PrivateConstructor
 }
 
-// Case 5: @SnapshottableSpec on open/abstract class
+// Case 5: @SnapshotSpec on open/abstract class
 @Snapshottable
 interface OpenSpec {
-    @SnapshottableSpec
+    @SnapshotSpec
     open <!NOT_SNAPSHOTTABLE_SPEC!>class Spec<!>(val i: Int) : OpenSpec
 }
 
-// Case 6: @SnapshottableSpec not nested in @Snapshottable interface
-@SnapshottableSpec
+// Case 6: @SnapshotSpec not nested in @Snapshottable interface
+@SnapshotSpec
 data class OrphanSpec(val i: Int)
 
 @Snapshottable
 interface AbstractSpec {
-    @SnapshottableSpec
+    @SnapshotSpec
     abstract <!NOT_SNAPSHOTTABLE_SPEC!>class Spec<!>(val i: Int) : AbstractSpec
 }
 
-// Case 7: @SnapshottableSpec parameters with non-public visibility
+// Case 7: @SnapshotSpec parameters with non-public visibility
 @Snapshottable
 interface VisibilityCheck {
-    @SnapshottableSpec
+    @SnapshotSpec
     data class Spec(
         <!CANNOT_WEAKEN_ACCESS_PRIVILEGE!>private<!> val p: Int,
         <!CANNOT_WEAKEN_ACCESS_PRIVILEGE!>protected<!> val pro: Int,

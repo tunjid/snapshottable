@@ -20,7 +20,7 @@ class SnapshottableStatusTransformer(
 
         val containingClass = declaration.getContainingClass() ?: return false
 
-        return session.filters.isSnapshottableSpec(containingClass.symbol.classId)
+        return session.filters.isSnapshotSpec(containingClass.symbol.classId)
     }
 
     override fun transformStatus(

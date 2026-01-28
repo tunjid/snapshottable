@@ -141,7 +141,7 @@ FILE fqName:foo.bar fileName:/complex_types.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ComplexState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.ComplexState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ComplexState.Immutable
       PROPERTY name:user visibility:public modality:FINAL [val]
         overridden:

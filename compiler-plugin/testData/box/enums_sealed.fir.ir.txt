@@ -290,7 +290,7 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.EnumSealedState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.EnumSealedState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.EnumSealedState.Immutable
       PROPERTY name:status visibility:public modality:FINAL [val]
         overridden:

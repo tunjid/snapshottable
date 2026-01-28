@@ -5,7 +5,7 @@ FILE fqName:foo.bar fileName:/extra_properties.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ExtraState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.ExtraState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ExtraState.Immutable
       PROPERTY name:base visibility:public modality:OPEN [val]
         overridden:

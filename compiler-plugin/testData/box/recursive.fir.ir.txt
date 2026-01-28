@@ -5,7 +5,7 @@ FILE fqName:foo.bar fileName:/recursive.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.Node]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.Immutable
       PROPERTY name:value visibility:public modality:OPEN [val]
         overridden:

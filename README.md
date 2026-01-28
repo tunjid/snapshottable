@@ -15,11 +15,11 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 ## Usage
 
 1.  **Define your State Interface:**
-    Annotate an interface with `@Snapshottable`. Inside, define a nested `data class` annotated with `@SnapshottableSpec` that implements the interface. This data class represents the immutable snapshot of your state. You can also annotate it with `@Serializable` or `@Parcelize` for persistence.
+    Annotate an interface with `@Snapshottable`. Inside, define a nested `data class` annotated with `@SnapshotSpec` that implements the interface. This data class represents the immutable snapshot of your state. You can also annotate it with `@Serializable` or `@Parcelize` for persistence.
 
     ```kotlin
     import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshottableSpec
+import com.tunjid.snapshottable.SnapshotSpec
     import kotlinx.serialization.Serializable
     import kotlinx.parcelize.Parcelize
     import android.os.Parcelable
@@ -28,7 +28,7 @@ import com.tunjid.snapshottable.SnapshottableSpec
     interface State {
         @Serializable
         @Parcelize
-        @SnapshottableSpec
+        @SnapshotSpec
         data class Immutable(
             val count: Int = 0,
             val text: String = "Hello"
@@ -47,7 +47,7 @@ import com.tunjid.snapshottable.SnapshottableSpec
           
         @Serializable
         @Parcelize
-        @SnapshottableSpec
+        @SnapshotSpec
         data class Immutable(
             override val count: Int = 0,
             override val text: String = "Hello"
@@ -87,7 +87,7 @@ import com.tunjid.snapshottable.SnapshottableSpec
     import androidx.compose.runtime.saveable.rememberSaveable
     import androidx.compose.runtime.saveable.Saver
     import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshottableSpec
+import com.tunjid.snapshottable.SnapshotSpec
     // Import generated extension functions
     import com.example.mypackage.State.Companion.toSnapshotMutable
     import com.example.mypackage.State.Companion.toSnapshotSpec
@@ -167,8 +167,8 @@ import com.tunjid.snapshottable.SnapshottableSpec
 
 ## Known Caveats
 
--   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@SnapshottableSpec` class are currently not supported.
--   **Visibility:** All properties in the `@SnapshottableSpec` data class must be `public`. Private or internal properties
+-   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@SnapshotSpec` class are currently not supported.
+-   **Visibility:** All properties in the `@SnapshotSpec` data class must be `public`. Private or internal properties
 are not supported for snapshot generation as the parent interface cannot have non-public properties.
 
 ## Project Structure

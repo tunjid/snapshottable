@@ -24,7 +24,7 @@ FILE fqName:foo.bar fileName:/inheritance.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.InheritanceState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.InheritanceState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.InheritanceState.Immutable
       PROPERTY name:id visibility:public modality:OPEN [val]
         overridden:

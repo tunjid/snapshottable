@@ -117,7 +117,7 @@ FILE: enums_sealed.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface EnumSealedState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/EnumSealedState| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/EnumSealedState| {
             public constructor(status: R|foo/bar/Status|, result: R|foo/bar/Result|): R|foo/bar/EnumSealedState.Immutable| {
                 super<R|kotlin/Any|>()
             }

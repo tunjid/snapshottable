@@ -6,4 +6,4 @@ public annotation class Snapshottable
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-public annotation class SnapshottableSpec
+public annotation class SnapshotSpec

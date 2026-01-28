@@ -2,7 +2,7 @@ package foo.bar
 
 import androidx.compose.runtime.mutableFloatStateOf
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshottableSpec
+import com.tunjid.snapshottable.SnapshotSpec
 import foo.bar.State.Companion.toSnapshotMutable
 import foo.bar.State.Companion.toSnapshotSpec
 
@@ -36,7 +36,7 @@ fun box(): String {
 
 @Snapshottable
 interface State {
-    @SnapshottableSpec
+    @SnapshotSpec
     data class Immutable(
         val activity: String = "jog",
         val stepCount: Int = 42,

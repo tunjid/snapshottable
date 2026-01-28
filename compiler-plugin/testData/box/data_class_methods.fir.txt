@@ -33,7 +33,7 @@ FILE: data_class_methods.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface DataMethodsState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/DataMethodsState| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/DataMethodsState| {
             public constructor(id: R|kotlin/Int|, data: R|kotlin/String|): R|foo/bar/DataMethodsState.Immutable| {
                 super<R|kotlin/Any|>()
             }

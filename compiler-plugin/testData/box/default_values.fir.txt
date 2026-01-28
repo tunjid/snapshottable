@@ -44,7 +44,7 @@ FILE: default_values.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface DefaultState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/DefaultState| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/DefaultState| {
             public constructor(name: R|kotlin/String| = String(default), count: R|kotlin/Int| = Int(0)): R|foo/bar/DefaultState.Immutable| {
                 super<R|kotlin/Any|>()
             }

@@ -52,7 +52,7 @@ FILE: nullable.kt
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NullableState : R|kotlin/Any| {
-        @R|com/tunjid/snapshottable/SnapshottableSpec|() public final data class Immutable : R|foo/bar/NullableState| {
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable : R|foo/bar/NullableState| {
             public constructor(name: R|kotlin/String?|, count: R|kotlin/Int?|): R|foo/bar/NullableState.Immutable| {
                 super<R|kotlin/Any|>()
             }

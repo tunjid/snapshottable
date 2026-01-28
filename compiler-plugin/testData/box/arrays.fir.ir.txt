@@ -5,7 +5,7 @@ FILE fqName:foo.bar fileName:/arrays.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.ArrayState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState.Immutable
       PROPERTY name:intArray visibility:public modality:FINAL [val]
         overridden:

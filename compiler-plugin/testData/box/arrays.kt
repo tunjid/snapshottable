@@ -1,7 +1,7 @@
 package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshottableSpec
+import com.tunjid.snapshottable.SnapshotSpec
 import foo.bar.ArrayState.Companion.toSnapshotMutable
 import foo.bar.ArrayState.Companion.toSnapshotSpec
 
@@ -32,7 +32,7 @@ fun box(): String {
 
 @Snapshottable
 interface ArrayState {
-    @SnapshottableSpec
+    @SnapshotSpec
     data class Immutable(
         val intArray: IntArray,
         val stringArray: Array<String>

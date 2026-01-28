@@ -5,7 +5,7 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DataMethodsState
     CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.DataMethodsState]
       annotations:
-        SnapshottableSpec
+        SnapshotSpec
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DataMethodsState.Immutable
       PROPERTY name:id visibility:public modality:FINAL [val]
         overridden:
