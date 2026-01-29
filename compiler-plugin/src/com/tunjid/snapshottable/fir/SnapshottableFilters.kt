@@ -46,7 +46,7 @@ class SnapshottableFilters(
 
     fun isSnapshotSpec(
         symbol: FirClassSymbol<*>,
-    ) = snapshotSpecClasses.contains(symbol)
+    ) = snapshotSpecClasses.contains(symbol) && nestedClassSymbolToSnapshottableInterfaceClassSymbol(symbol) != null
 
     fun isMutableSnapshot(
         symbol: FirClassSymbol<*>,
