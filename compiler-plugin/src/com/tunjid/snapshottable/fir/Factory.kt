@@ -3,7 +3,6 @@ package com.tunjid.snapshottable.fir
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.analysis.checkers.declaredMemberScope
 import org.jetbrains.kotlin.fir.declarations.FirProperty
 import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
@@ -16,7 +15,6 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
 import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
-import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
 import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
@@ -26,8 +24,6 @@ import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
 import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
-import org.jetbrains.kotlin.fir.scopes.FirScope
-import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
@@ -55,10 +51,10 @@ fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
 
 private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
-    sourceSymbol: FirClassSymbol<*>,
+    specSymbol: FirClassSymbol<*>,
     session: FirSession,
 ) {
-    for (parameter in sourceSymbol.typeParameterSymbols) {
+    for (parameter in specSymbol.typeParameterSymbols) {
         typeParameter(
             name = parameter.name,
             variance = Variance.INVARIANT, // Type must always be invariant to support read and write access.
@@ -67,7 +63,7 @@ private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
                 bound { typeParameters ->
                     val arguments = typeParameters.map { it.toConeType() }
                     val substitutor = substitutor(
-                        sourceSymbol = sourceSymbol,
+                        sourceSymbol = specSymbol,
                         builderArguments = arguments,
                         session = session,
                     )
@@ -123,7 +119,7 @@ fun FirExtension.generateMutableClass(
     ) {
         superType(parentInterfaceSymbol.defaultType())
         copyTypeParametersFrom(
-            sourceSymbol = snapshottableClassSymbol,
+            specSymbol = snapshottableClassSymbol,
             session = session,
         )
     }
