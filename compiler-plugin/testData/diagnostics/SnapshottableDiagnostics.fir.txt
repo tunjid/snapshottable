@@ -40,18 +40,7 @@ FILE: SnapshottableDiagnostics.kt
 
         }
 
-        public final class SnapshotMutable : R|diagnostics/NoPrimary| {
-            public final fun update(): R|diagnostics/NoPrimary.SnapshotMutable|
-
-            public constructor(): R|diagnostics/NoPrimary.SnapshotMutable|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
-            public final fun R|diagnostics/NoPrimary.Spec|.toSnapshotMutable(): R|diagnostics/NoPrimary.SnapshotMutable|
-
-            public final fun R|diagnostics/NoPrimary.SnapshotMutable|.toSnapshotSpec(): R|diagnostics/NoPrimary.Spec|
-
             private constructor(): R|diagnostics/NoPrimary.Companion| {
                 super<R|kotlin/Any|>()
             }

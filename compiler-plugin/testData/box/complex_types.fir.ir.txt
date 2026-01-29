@@ -285,108 +285,12 @@ FILE fqName:foo.bar fileName:/complex_types.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:address type:foo.bar.Address visibility:private [final]' type=foo.bar.Address origin=null
                 receiver: GET_VAR '<this>: foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Immutable.toString' type=foo.bar.ComplexState.Immutable origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ComplexState]
-      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ComplexState.SnapshotMutable
-      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final]
-        EXPRESSION_BODY
-          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
-            TYPE_ARG T: <none>
-            TYPE_ARG 2: kotlin.String
-            ARG value: GET_VAR 'user: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.<init>' type=kotlin.String origin=null
-      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final]
-        EXPRESSION_BODY
-          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
-            TYPE_ARG T: <none>
-            TYPE_ARG 2: foo.bar.Address
-            ARG value: GET_VAR 'address: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.<init>' type=foo.bar.Address origin=null
-      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:public returnType:foo.bar.ComplexState.SnapshotMutable [primary]
-        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:user index:0 type:kotlin.String
-        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:address index:1 type:foo.bar.Address
-        BLOCK_BODY
-          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ComplexState]' type=foo.bar.ComplexState.SnapshotMutable
-      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
-        overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ComplexState
-      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.ComplexState
-      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.ComplexState
-      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:update visibility:public modality:FINAL returnType:foo.bar.ComplexState.SnapshotMutable
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
-        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:user index:1 type:kotlin.String
-          EXPRESSION_BODY
-            CALL 'public final fun <get-user> (): kotlin.String declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.String origin=null
-              ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
-        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Key] kind:Regular name:address index:2 type:foo.bar.Address
-          EXPRESSION_BODY
-            CALL 'public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable' type=foo.bar.Address origin=null
-              ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
-        BLOCK_BODY
-          CALL 'public final fun <set-user> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.Unit origin=null
-            ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
-            ARG <set-?>: GET_VAR 'user: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.update' type=kotlin.String origin=null
-          CALL 'public final fun <set-address> (<set-?>: foo.bar.Address): kotlin.Unit declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.Unit origin=null
-            ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
-            ARG <set-?>: GET_VAR 'address: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.Address origin=null
-          RETURN type=kotlin.Nothing from='public final fun update (user: kotlin.String, address: foo.bar.Address): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable'
-            GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
-      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address visibility:public modality:FINAL [var]
-        overridden:
-          public abstract address: foo.bar.Address declared in foo.bar.ComplexState
-        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-address> visibility:public modality:FINAL returnType:foo.bar.Address
-          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
-          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address visibility:public modality:FINAL [var]
-          overridden:
-            public abstract fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState
-          BLOCK_BODY
-            RETURN type=kotlin.Nothing from='public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable'
-              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
-                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Address> origin=null
-                  receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<get-address>' type=foo.bar.ComplexState.SnapshotMutable origin=null
-        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-address> visibility:public modality:FINAL returnType:kotlin.Unit
-          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
-          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Address
-          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address visibility:public modality:FINAL [var]
-          BLOCK_BODY
-            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
-              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Address> origin=null
-                receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<set-address>' type=foo.bar.ComplexState.SnapshotMutable origin=null
-              ARG <set-?>: GET_VAR '<set-?>: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.<set-address>' type=foo.bar.Address origin=null
-      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user visibility:public modality:FINAL [var]
-        overridden:
-          public abstract user: kotlin.String declared in foo.bar.ComplexState
-        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<get-user> visibility:public modality:FINAL returnType:kotlin.String
-          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
-          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user visibility:public modality:FINAL [var]
-          overridden:
-            public abstract fun <get-user> (): kotlin.String declared in foo.bar.ComplexState
-          BLOCK_BODY
-            RETURN type=kotlin.Nothing from='public final fun <get-user> (): kotlin.String declared in foo.bar.ComplexState.SnapshotMutable'
-              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
-                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
-                  receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<get-user>' type=foo.bar.ComplexState.SnapshotMutable origin=null
-        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:<set-user> visibility:public modality:FINAL returnType:kotlin.Unit
-          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
-          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
-          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user visibility:public modality:FINAL [var]
-          BLOCK_BODY
-            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
-              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
-                receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<set-user>' type=foo.bar.ComplexState.SnapshotMutable origin=null
-              ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.<set-user>' type=kotlin.String origin=null
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ComplexState.Companion
-      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Key] visibility:private returnType:foo.bar.ComplexState.Companion [primary]
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] visibility:private returnType:foo.bar.ComplexState.Companion [primary]
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
@@ -400,7 +304,7 @@ FILE fqName:foo.bar fileName:/complex_types.kt
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
           public open fun toString (): kotlin.String declared in kotlin.Any
-      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.ComplexState.SnapshotMutable
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.ComplexState.SnapshotMutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.Companion
         VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.ComplexState.Immutable
         BLOCK_BODY
@@ -410,7 +314,7 @@ FILE fqName:foo.bar fileName:/complex_types.kt
                 ARG <this>: GET_VAR '<this>(index:1): foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Companion.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
               ARG address: CALL 'public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.Immutable' type=foo.bar.Address origin=null
                 ARG <this>: GET_VAR '<this>(index:1): foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Companion.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
-      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.ComplexState.Immutable
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.ComplexState.Immutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.Companion
         VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.ComplexState.SnapshotMutable
         BLOCK_BODY
@@ -420,6 +324,102 @@ FILE fqName:foo.bar fileName:/complex_types.kt
                 ARG <this>: GET_VAR '<this>(index:1): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.Companion.toSnapshotSpec' type=foo.bar.ComplexState.SnapshotMutable origin=null
               ARG address: CALL 'public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable' type=foo.bar.Address origin=null
                 ARG <this>: GET_VAR '<this>(index:1): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.Companion.toSnapshotSpec' type=foo.bar.ComplexState.SnapshotMutable origin=null
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ComplexState]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ComplexState.SnapshotMutable
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.String
+            ARG value: GET_VAR 'user: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.<init>' type=kotlin.String origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: foo.bar.Address
+            ARG value: GET_VAR 'address: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.<init>' type=foo.bar.Address origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.bar.ComplexState.SnapshotMutable [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:user index:0 type:kotlin.String
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:address index:1 type:foo.bar.Address
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.ComplexState]' type=foo.bar.ComplexState.SnapshotMutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.ComplexState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.ComplexState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.ComplexState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.bar.ComplexState.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:user index:1 type:kotlin.String
+          EXPRESSION_BODY
+            CALL 'public final fun <get-user> (): kotlin.String declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.String origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:address index:2 type:foo.bar.Address
+          EXPRESSION_BODY
+            CALL 'public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable' type=foo.bar.Address origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-user> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'user: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.update' type=kotlin.String origin=null
+          CALL 'public final fun <set-address> (<set-?>: foo.bar.Address): kotlin.Unit declared in foo.bar.ComplexState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
+            ARG <set-?>: GET_VAR 'address: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.Address origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (user: kotlin.String, address: foo.bar.Address): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.update' type=foo.bar.ComplexState.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:address visibility:public modality:FINAL [var]
+        overridden:
+          public abstract address: foo.bar.Address declared in foo.bar.ComplexState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-address> visibility:public modality:FINAL returnType:foo.bar.Address
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:address visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Address> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<get-address>' type=foo.bar.ComplexState.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-address> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Address
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:address visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:address$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Address> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Address> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<set-address>' type=foo.bar.ComplexState.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: foo.bar.Address declared in foo.bar.ComplexState.SnapshotMutable.<set-address>' type=foo.bar.Address origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:user visibility:public modality:FINAL [var]
+        overridden:
+          public abstract user: kotlin.String declared in foo.bar.ComplexState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-user> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:user visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-user> (): kotlin.String declared in foo.bar.ComplexState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-user> (): kotlin.String declared in foo.bar.ComplexState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<get-user>' type=foo.bar.ComplexState.SnapshotMutable origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-user> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.SnapshotMutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:user visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:user$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.ComplexState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.SnapshotMutable.<set-user>' type=foo.bar.ComplexState.SnapshotMutable origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.bar.ComplexState.SnapshotMutable.<set-user>' type=kotlin.String origin=null
     FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
       VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
@@ -433,14 +433,14 @@ FILE fqName:foo.bar fileName:/complex_types.kt
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
       overridden:
         public open fun toString (): kotlin.String declared in kotlin.Any
-    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:address visibility:public modality:ABSTRACT [val]
       FUN DEFAULT_PROPERTY_ACCESSOR name:<get-address> visibility:public modality:ABSTRACT returnType:foo.bar.Address
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState
-        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:address visibility:public modality:ABSTRACT [val]
-    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user visibility:public modality:ABSTRACT [val]
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:address visibility:public modality:ABSTRACT [val]
+    PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:user visibility:public modality:ABSTRACT [val]
       FUN DEFAULT_PROPERTY_ACCESSOR name:<get-user> visibility:public modality:ABSTRACT returnType:kotlin.String
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState
-        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Key] name:user visibility:public modality:ABSTRACT [val]
+        correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:user visibility:public modality:ABSTRACT [val]
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:initialAddress type:foo.bar.Address [val]
@@ -449,7 +449,7 @@ FILE fqName:foo.bar fileName:/complex_types.kt
           ARG city: CONST String type=kotlin.String value="City"
       VAR name:state type:foo.bar.ComplexState.SnapshotMutable [val]
         CALL 'public final fun toSnapshotMutable (<this>: foo.bar.ComplexState.Immutable): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.Companion' type=foo.bar.ComplexState.SnapshotMutable origin=null
-          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ComplexState.Companion
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ComplexState.Companion
           ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (user: kotlin.String, address: foo.bar.Address) declared in foo.bar.ComplexState.Immutable' type=foo.bar.ComplexState.Immutable origin=null
             ARG user: CONST String type=kotlin.String value="User"
             ARG address: GET_VAR 'val initialAddress: foo.bar.Address declared in foo.bar.box' type=foo.bar.Address origin=null
@@ -502,7 +502,7 @@ FILE fqName:foo.bar fileName:/complex_types.kt
             CONST String type=kotlin.String value="Fail 4"
       VAR name:spec type:foo.bar.ComplexState.Immutable [val]
         CALL 'public final fun toSnapshotSpec (<this>: foo.bar.ComplexState.SnapshotMutable): foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Companion' type=foo.bar.ComplexState.Immutable origin=null
-          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Key] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ComplexState.Companion
+          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.ComplexState.Companion
           ARG <this>(index:1): GET_VAR 'val state: foo.bar.ComplexState.SnapshotMutable declared in foo.bar.box' type=foo.bar.ComplexState.SnapshotMutable origin=null
       WHEN type=kotlin.Unit origin=IF
         BRANCH
