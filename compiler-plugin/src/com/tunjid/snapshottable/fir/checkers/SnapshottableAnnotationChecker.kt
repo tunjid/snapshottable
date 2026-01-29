@@ -9,7 +9,6 @@ import org.jetbrains.kotlin.fir.analysis.checkers.context.CheckerContext
 import org.jetbrains.kotlin.fir.analysis.checkers.declaration.FirClassChecker
 import org.jetbrains.kotlin.fir.declarations.FirClass
 import org.jetbrains.kotlin.fir.declarations.primaryConstructorIfAny
-import org.jetbrains.kotlin.fir.declarations.utils.classId
 import org.jetbrains.kotlin.fir.declarations.utils.isAbstract
 import org.jetbrains.kotlin.fir.declarations.utils.isFinal
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
@@ -21,7 +20,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
     context(context: CheckerContext, reporter: DiagnosticReporter)
     override fun check(declaration: FirClass) = with(context.session.filters) {
         when {
-            isSnapshottableInterface(declaration.classId) -> {
+            isSnapshottableInterface(declaration.symbol) -> {
                 when {
                     !declaration.isInterface ->
                         reporter.reportOn(
@@ -29,7 +28,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                             factory = SnapshottableDiagnostics.NOT_SNAPSHOTTABLE_INTERFACE,
                         )
 
-                    snapshottableInterfaceIdToSpecSymbol(declaration.classId) == null ->
+                    snapshottableInterfaceSymbolToSpecSymbol(declaration.symbol) == null ->
                         reporter.reportOn(
                             source = declaration.source,
                             factory = SnapshottableDiagnostics.NO_SNAPSHOTTABLE_SPEC,
@@ -37,7 +36,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                 }
             }
 
-            isSnapshotSpec(declaration.classId) -> {
+            isSnapshotSpec(declaration.symbol) -> {
                 val primaryConstructor = declaration.primaryConstructorIfAny(context.session)
                 when {
                     primaryConstructor == null ->
@@ -58,7 +57,7 @@ object SnapshottableAnnotationChecker : FirClassChecker(
                             factory = SnapshottableDiagnostics.NOT_SNAPSHOTTABLE_SPEC,
                         )
 
-                    nestedClassIdToSnapshottableInterfaceClassId(declaration.classId) == null ->
+                    nestedClassSymbolToSnapshottableInterfaceClassSymbol(declaration.symbol) == null ->
                         reporter.reportOn(
                             source = declaration.source,
                             factory = SnapshottableDiagnostics.NO_SNAPSHOTTABLE_INTERFACE,

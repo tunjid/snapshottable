@@ -2,12 +2,12 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.fir.FirSession
+import org.jetbrains.kotlin.fir.declarations.utils.isCompanion
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
-import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.utils.mapToSetOrEmpty
 
@@ -23,26 +23,12 @@ class SnapshottableFilters(
             .toSet()
     }
 
-    private val snapshottableParentInterfaceIdsToSnapshotSpecSymbols by lazy {
+    // IDs for nested Spec classes.
+    private val snapshotSpecClasses by lazy {
         session.predicateBasedProvider.getSymbolsByPredicate(Snapshottable.specAnnotationLookupPredicate)
             .filterIsInstance<FirRegularClassSymbol>()
-            .mapNotNull { symbol ->
-                symbol.resolvedSuperTypes.firstNotNullOfOrNull { superType ->
-                    val parentInterfaceId = superType.classId ?: return@mapNotNull null
-                    if (parentInterfaceId !in snapshottableInterfaceIds) return@mapNotNull null
-                    parentInterfaceId to symbol
-                }
-            }
-            .toMap()
-    }
-
-    private val snapshottableInterfaceIds by lazy {
-        snapshottableParentInterfaces.mapToSetOrEmpty { it.classId }
-    }
-
-    // IDs for Snapshottable-annotated classes' companion objects.
-    private val snapshottableCompanionClassIds by lazy {
-        snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.companion }
+            .filterNot(FirRegularClassSymbol::isInterface)
+            .toSet()
     }
 
     // IDs for nested Mutable classes.
@@ -50,51 +36,49 @@ class SnapshottableFilters(
         snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.mutable }
     }
 
-    // IDs for nested Spec classes.
-    private val snapshotSpecClassIds by lazy {
-        snapshottableParentInterfaceIdsToSnapshotSpecSymbols.values
-            .mapToSetOrEmpty(FirRegularClassSymbol::classId)
-    }
-
     fun isSnapshottableInterface(
-        classId: ClassId,
-    ) = snapshottableInterfaceIds.contains(classId)
+        symbol: FirClassSymbol<*>,
+    ): Boolean = snapshottableParentInterfaces.contains(symbol)
 
     fun isSnapshottableInterfaceCompanion(
-        classId: ClassId,
-    ) = snapshottableCompanionClassIds.contains(classId)
+        symbol: FirClassSymbol<*>,
+    ) = symbol.isCompanion && snapshottableParentInterfaces.any { it.classId.companion == symbol.classId }
 
     fun isSnapshotSpec(
-        classId: ClassId,
-    ) = snapshotSpecClassIds.contains(classId)
+        symbol: FirClassSymbol<*>,
+    ) = snapshotSpecClasses.contains(symbol)
 
     fun isMutableSnapshot(
-        classId: ClassId,
-    ) = mutableSnapshotClassIds.contains(classId)
+        symbol: FirClassSymbol<*>,
+    ) = mutableSnapshotClassIds.contains(symbol.classId)
 
-    fun nestedClassIdToSnapshottableInterfaceClassId(
-        nestedClassId: ClassId,
-    ): ClassId? = generateSequence(
-        seed = nestedClassId,
+    fun nestedClassSymbolToSnapshottableInterfaceClassSymbol(
+        nestedClassSymbol: FirClassSymbol<*>,
+    ): FirClassSymbol<*>? = generateSequence(
+        seed = nestedClassSymbol.classId,
         nextFunction = ClassId::outerClassId,
     )
-        .firstOrNull(::isSnapshottableInterface)
+        .firstNotNullOfOrNull { classId ->
+            snapshottableParentInterfaces.singleOrNull { it.classId == classId }
+        }
 
-    fun snapshottableInterfaceIdToSpecSymbol(
-        snapshottableInterfaceId: ClassId,
+    fun snapshottableInterfaceSymbolToSpecSymbol(
+        snapshottableInterfaceSymbol: FirClassSymbol<*>,
+    ): FirRegularClassSymbol? = snapshotSpecClasses.singleOrNull {
+        it.classId.parentClassId == snapshottableInterfaceSymbol.classId
+    }
+
+    fun nestedClassSymbolToSpecSymbol(
+        nestedClassSymbol: FirClassSymbol<*>,
     ): FirRegularClassSymbol? =
-        snapshottableParentInterfaceIdsToSnapshotSpecSymbols[snapshottableInterfaceId]
+        nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = nestedClassSymbol)
+            ?.let(::snapshottableInterfaceSymbolToSpecSymbol)
 
-    fun nestedClassIdToSpecSymbol(
-        nestedClassId: ClassId,
-    ): FirRegularClassSymbol? =
-        nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
-            ?.let(::snapshottableInterfaceIdToSpecSymbol)
-
-    fun nestedClassIdToMutableSymbol(
-        nestedClassId: ClassId,
+    fun nestedClassSymbolToMutableSymbol(
+        nestedClassSymbol: FirClassSymbol<*>,
     ): FirClassSymbol<*>? =
-        nestedClassIdToSnapshottableInterfaceClassId(nestedClassId = nestedClassId)
+        nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = nestedClassSymbol)
+            ?.classId
             ?.mutable
             ?.let(session::findClassSymbol)
 }
