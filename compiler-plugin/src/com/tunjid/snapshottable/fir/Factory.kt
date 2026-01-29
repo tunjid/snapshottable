@@ -28,7 +28,6 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
-import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.constructType
 import org.jetbrains.kotlin.ir.util.kotlinPackageFqn
 import org.jetbrains.kotlin.name.CallableId
@@ -99,20 +98,10 @@ private fun substitutor(
     mutableClassSymbol: FirClassLikeSymbol<*>,
     session: FirSession,
 ): ConeSubstitutor {
-    val builderArguments = mutableClassSymbol.typeParameterSymbols.map { it.toConeType() }
-    return substitutor(
-        sourceSymbol = sourceSymbol,
-        builderArguments = builderArguments,
-        session = session,
-    )
-}
-
-private fun substitutor(
-    sourceSymbol: FirClassLikeSymbol<*>,
-    builderArguments: List<ConeKotlinType>,
-    session: FirSession,
-): ConeSubstitutor {
     val parameters = sourceSymbol.typeParameterSymbols
+    val builderArguments = mutableClassSymbol.typeParameterSymbols
+        .map(FirTypeParameterSymbol::toConeType)
+
     return substitutorByMap(
         substitution = parameters.zip(builderArguments).toMap(),
         useSiteSession = session,
