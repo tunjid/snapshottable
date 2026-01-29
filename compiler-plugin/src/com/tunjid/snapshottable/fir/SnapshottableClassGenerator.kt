@@ -74,7 +74,6 @@ class SnapshottableClassGenerator(
                 snapshottableInterfaceSymbolToSpecSymbol(classSymbol)
                     ?.let(::specPrimaryConstructor)
                     ?.valueParameterSymbols
-                    ?.also { println("interface: ${it.map { it.name }}") }
                     ?.mapToSetOrEmpty(FirValueParameterSymbol::name)
                     .orEmpty()
 
@@ -93,7 +92,6 @@ class SnapshottableClassGenerator(
                             .requireKey<Snapshottable.Keys.SnapshotMutable>()
                             .specPrimaryConstructor
                             .valueParameterSymbols
-                            .also { println("mutable: ${it.map { it.name }}") }
                             .map(FirValueParameterSymbol::name),
                     )
                     add(MEMBER_FUN_NAME_UPDATE)
