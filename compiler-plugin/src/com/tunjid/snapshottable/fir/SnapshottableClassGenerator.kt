@@ -74,7 +74,7 @@ class SnapshottableClassGenerator(
     ): Set<Name> = with(session.filters) {
         when {
             isSnapshottableInterface(classSymbol) ->
-                snapshottableSourceParameterNames(snapshottableParentSymbol = classSymbol)
+                snapshottableSpecParameterNames(snapshottableParentSymbol = classSymbol)
                     .toSet()
 
             isSnapshottableInterfaceCompanion(classSymbol) ->
@@ -89,7 +89,7 @@ class SnapshottableClassGenerator(
                     add(SpecialNames.INIT)
                     addAll(
                         elements = nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = classSymbol)
-                            ?.let(::snapshottableSourceParameterNames)
+                            ?.let(::snapshottableSpecParameterNames)
                             .orEmpty(),
                     )
                     add(MEMBER_FUN_NAME_UPDATE)
@@ -249,7 +249,7 @@ private fun SnapshottableFilters.snapshottableSpecParameterSymbols(
     return primaryConstructor.valueParameterSymbols
 }
 
-private fun SnapshottableFilters.snapshottableSourceParameterNames(
+private fun SnapshottableFilters.snapshottableSpecParameterNames(
     snapshottableParentSymbol: FirClassSymbol<*>,
 ): List<Name> =
     snapshottableSpecParameterSymbols(snapshottableParentSymbol)
