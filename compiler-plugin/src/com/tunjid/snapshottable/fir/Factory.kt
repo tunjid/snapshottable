@@ -59,12 +59,22 @@ fun FirSession.findClassSymbol(classId: ClassId) =
 
 fun FirExtension.generateCompanionDeclaration(
     parentInterfaceSymbol: FirRegularClassSymbol,
-): FirRegularClassSymbol? {
-    if (parentInterfaceSymbol.resolvedCompanionObjectSymbol != null) return null
+): FirRegularClassSymbol? = with(session.filters) {
+    if (parentInterfaceSymbol.resolvedCompanionObjectSymbol != null) return@with null
+
+    val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
+        snapshottableInterfaceSymbol = parentInterfaceSymbol,
+    ) ?: return@with null
+
+    val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
+        ?: return@with null
 
     val companion = createCompanionObject(
         owner = parentInterfaceSymbol,
-        key = Snapshottable.Keys.Companion(classId = parentInterfaceSymbol.classId),
+        key = Snapshottable.Keys.Companion(
+            parentInterfaceClassId = parentInterfaceSymbol.classId,
+            specPrimaryConstructor = specPrimaryConstructor,
+        ),
     )
     return companion.symbol
 }
@@ -79,7 +89,7 @@ fun FirExtension.generateMutableClass(
     val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
         ?: return@with null
 
-    return createNestedClass(
+    createNestedClass(
         owner = parentInterfaceSymbol,
         name = CLASS_NAME_SNAPSHOT_MUTABLE,
         key = Snapshottable.Keys.SnapshotMutable(

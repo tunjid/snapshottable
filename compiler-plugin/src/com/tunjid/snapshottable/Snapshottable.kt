@@ -26,7 +26,8 @@ object Snapshottable {
 
     sealed class Keys : GeneratedDeclarationKey() {
         data class Companion(
-            val classId: ClassId,
+            val parentInterfaceClassId: ClassId,
+            val specPrimaryConstructor: FirConstructorSymbol,
         ) : Keys()
 
         data class SnapshotMutable(
