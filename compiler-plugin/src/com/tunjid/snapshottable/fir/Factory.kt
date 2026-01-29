@@ -138,22 +138,25 @@ fun FirExtension.createFunCompanionConversion(
     inputClassSymbol: FirClassSymbol<*>,
     outputClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
-): FirSimpleFunction = createMemberFunction(
-    owner = companionSymbol,
-    key = companionSymbol.requireKey(),
-    name = callableId.callableName,
-    returnType = outputClassSymbol.constructType(
-        typeArguments = outputClassSymbol.typeParameterSymbols
-            .map(FirTypeParameterSymbol::toConeType)
-            .toTypedArray(),
-    ),
-) {
-    extensionReceiverType {
-        inputClassSymbol.constructType(
-            typeArguments = inputClassSymbol.typeParameterSymbols
+): FirSimpleFunction {
+    val key = companionSymbol.requireKey<Snapshottable.Keys.Companion>()
+    return createMemberFunction(
+        owner = companionSymbol,
+        key = key,
+        name = callableId.callableName,
+        returnType = outputClassSymbol.constructType(
+            typeArguments = key.specPrimaryConstructor.typeParameterSymbols
                 .map(FirTypeParameterSymbol::toConeType)
                 .toTypedArray(),
-        )
+        ),
+    ) {
+        extensionReceiverType {
+            inputClassSymbol.constructType(
+                typeArguments = key.specPrimaryConstructor.typeParameterSymbols
+                    .map(FirTypeParameterSymbol::toConeType)
+                    .toTypedArray(),
+            )
+        }
     }
 }
 
