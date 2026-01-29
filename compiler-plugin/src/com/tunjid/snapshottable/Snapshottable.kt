@@ -25,14 +25,18 @@ object Snapshottable {
     }
 
     sealed class Keys : GeneratedDeclarationKey() {
+        sealed class WithSpec : Keys() {
+            abstract val specPrimaryConstructor: FirConstructorSymbol
+        }
+
         data class Companion(
             val parentInterfaceClassId: ClassId,
-            val specPrimaryConstructor: FirConstructorSymbol,
-        ) : Keys()
+            override val specPrimaryConstructor: FirConstructorSymbol,
+        ) : WithSpec()
 
         data class SnapshotMutable(
-            val specPrimaryConstructor: FirConstructorSymbol,
-        ) : Keys()
+            override val specPrimaryConstructor: FirConstructorSymbol,
+        ) : WithSpec()
 
         data object Default : Keys()
     }
