@@ -24,24 +24,10 @@ FILE: SnapshottableDiagnostics.kt
 
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NoSpec : R|kotlin/Any| {
-        public final companion object Companion : R|kotlin/Any| {
-            private constructor(): R|diagnostics/NoSpec.Companion| {
-                super<R|kotlin/Any|>()
-            }
-
-        }
-
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface NoPrimary : R|kotlin/Any| {
         @R|com/tunjid/snapshottable/SnapshotSpec|() public final class Spec : R|diagnostics/NoPrimary| {
             public constructor(i: R|kotlin/Int|): R|diagnostics/NoPrimary.Spec| {
-                super<R|kotlin/Any|>()
-            }
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            private constructor(): R|diagnostics/NoPrimary.Companion| {
                 super<R|kotlin/Any|>()
             }
 
