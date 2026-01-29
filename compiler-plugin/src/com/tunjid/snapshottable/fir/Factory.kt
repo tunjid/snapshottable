@@ -94,17 +94,17 @@ fun FirExtension.createFunMutableMutate(
     mutableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirSimpleFunction {
+    val key = mutableClassSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
     return createMemberFunction(
         owner = mutableClassSymbol,
         key = mutableClassSymbol.requireKey(),
         name = callableId.callableName,
         returnType = mutableClassSymbol.constructType(
-            mutableClassSymbol.typeParameterSymbols
+            key.specPrimaryConstructor.typeParameterSymbols
                 .map(FirTypeParameterSymbol::toConeType)
                 .toTypedArray(),
         ),
     ) {
-        val key = mutableClassSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
         key.specPrimaryConstructor.valueParameterSymbols
             .forEach { parameterSymbol ->
                 valueParameter(
