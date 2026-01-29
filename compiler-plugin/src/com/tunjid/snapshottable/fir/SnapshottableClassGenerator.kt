@@ -111,9 +111,6 @@ class SnapshottableClassGenerator(
                 MEMBER_FUN_NAME_UPDATE ->
                     createFunMutableMutate(
                         mutableClassSymbol = owner,
-                        snapshottableClassSymbol = nestedClassSymbolToSpecSymbol(
-                            nestedClassSymbol = owner,
-                        ) ?: return emptyList(),
                         callableId = callableId,
                     )
 

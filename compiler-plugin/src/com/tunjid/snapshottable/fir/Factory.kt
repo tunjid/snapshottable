@@ -21,10 +21,7 @@ import org.jetbrains.kotlin.fir.plugin.createNestedClass
 import org.jetbrains.kotlin.fir.references.builder.buildResolvedNamedReference
 import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
-import org.jetbrains.kotlin.fir.resolve.substitution.ConeSubstitutor
-import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
-import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
@@ -93,32 +90,10 @@ fun FirExtension.generateMutableClass(
     }.symbol
 }
 
-private fun substitutor(
-    sourceSymbol: FirClassLikeSymbol<*>,
-    mutableClassSymbol: FirClassLikeSymbol<*>,
-    session: FirSession,
-): ConeSubstitutor {
-    val parameters = sourceSymbol.typeParameterSymbols
-    val builderArguments = mutableClassSymbol.typeParameterSymbols
-        .map(FirTypeParameterSymbol::toConeType)
-
-    return substitutorByMap(
-        substitution = parameters.zip(builderArguments).toMap(),
-        useSiteSession = session,
-    )
-}
-
 fun FirExtension.createFunMutableMutate(
     mutableClassSymbol: FirClassSymbol<*>,
-    snapshottableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirSimpleFunction {
-    val substitutor = substitutor(
-        sourceSymbol = snapshottableClassSymbol,
-        mutableClassSymbol = mutableClassSymbol,
-        session = session,
-    )
-
     return createMemberFunction(
         owner = mutableClassSymbol,
         key = mutableClassSymbol.requireKey(),
@@ -134,7 +109,7 @@ fun FirExtension.createFunMutableMutate(
             .forEach { parameterSymbol ->
                 valueParameter(
                     name = parameterSymbol.name,
-                    type = substitutor.substituteOrSelf(parameterSymbol.resolvedReturnType),
+                    type = parameterSymbol.resolvedReturnType,
                     hasDefaultValue = true,
                 )
             }
@@ -196,16 +171,11 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     val parameter = valueParameterSymbols
         .singleOrNull { it.name == callableId.callableName } ?: return null
 
-    val substitutor = substitutor(
-        sourceSymbol = specSymbol,
-        mutableClassSymbol = classSymbol,
-        session = session,
-    )
     return createMemberProperty(
         owner = classSymbol,
         key = if (isInterface) Snapshottable.Keys.Default else classSymbol.requireKey(),
         name = callableId.callableName,
-        returnType = substitutor.substituteOrSelf(parameter.resolvedReturnType),
+        returnType = parameter.resolvedReturnType,
         isVal = classSymbol.isInterface,
         hasBackingField = false,
     ) {
