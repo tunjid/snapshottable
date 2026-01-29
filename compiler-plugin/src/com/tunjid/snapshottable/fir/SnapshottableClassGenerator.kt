@@ -9,6 +9,8 @@ import org.jetbrains.kotlin.fir.extensions.NestedClassGenerationContext
 import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createConstructor
 import org.jetbrains.kotlin.fir.plugin.createDefaultPrivateConstructor
+import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
+import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
@@ -187,7 +189,7 @@ class SnapshottableClassGenerator(
 
     override fun generateConstructors(
         context: MemberGenerationContext,
-    ): List<FirConstructorSymbol> = with(session.filters) {
+    ): List<FirConstructorSymbol> = with(session.filters) filters@{
         val constructor = when {
             isMutableSnapshot(context.owner) -> createConstructor(
                 owner = context.owner,
@@ -197,7 +199,7 @@ class SnapshottableClassGenerator(
                 val parameters = nestedClassSymbolToSnapshottableInterfaceClassSymbol(
                     nestedClassSymbol = context.owner,
                 )
-                    ?.let(::snapshottableSourceParameterSymbols)
+                    ?.let(this@filters::snapshottableSpecParameterSymbols)
                     ?: return@createConstructor
 
                 parameters.forEach { parameter ->
@@ -227,20 +229,28 @@ class SnapshottableClassGenerator(
         val companion = createCompanionObject(owner, Snapshottable.Key)
         return companion.symbol
     }
-
-    private fun snapshottableSourceParameterSymbols(
-        snapshottableParentSymbol: FirClassSymbol<*>,
-    ): List<FirValueParameterSymbol> {
-        val sourceClassSymbol = session.filters.snapshottableInterfaceSymbolToSpecSymbol(
-            snapshottableInterfaceSymbol = snapshottableParentSymbol,
-        ) ?: return emptyList()
-        val parameters = session.getPrimaryConstructorValueParameters(sourceClassSymbol)
-        return parameters
-    }
-
-    private fun snapshottableSourceParameterNames(
-        snapshottableParentSymbol: FirClassSymbol<*>,
-    ): List<Name> =
-        snapshottableSourceParameterSymbols(snapshottableParentSymbol)
-            .map(FirValueParameterSymbol::name)
 }
+
+private fun SnapshottableFilters.snapshottableSpecParameterSymbols(
+    snapshottableParentSymbol: FirClassSymbol<*>,
+): List<FirValueParameterSymbol> {
+    val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
+        snapshottableInterfaceSymbol = snapshottableParentSymbol,
+    )
+    val scope = specSymbol?.declaredMemberScope(
+        session,
+        memberRequiredPhase = null,
+    ) ?: return emptyList()
+
+    val primaryConstructor = scope.getDeclaredConstructors()
+        .firstOrNull(FirConstructorSymbol::isPrimary)
+        ?: return emptyList()
+
+    return primaryConstructor.valueParameterSymbols
+}
+
+private fun SnapshottableFilters.snapshottableSourceParameterNames(
+    snapshottableParentSymbol: FirClassSymbol<*>,
+): List<Name> =
+    snapshottableSpecParameterSymbols(snapshottableParentSymbol)
+        .map(FirValueParameterSymbol::name)
