@@ -3,8 +3,8 @@ package com.tunjid.snapshottable.fir
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
+import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
 import org.jetbrains.kotlin.fir.declarations.FirProperty
-import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
 import org.jetbrains.kotlin.fir.declarations.declaredProperties
 import org.jetbrains.kotlin.fir.declarations.primaryConstructorIfAny
@@ -15,7 +15,6 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
 import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
-import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
 import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
@@ -49,62 +48,71 @@ val COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable"
 val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
 
+inline fun <reified T : Snapshottable.Keys> FirClassSymbol<*>.requireKey(): T {
+    val plugin = origin as? FirDeclarationOrigin.Plugin
+        ?: throw IllegalArgumentException("key cannot be fetched. Expected FirDeclarationOrigin.Plugin, was $origin")
+
+    val key = plugin.key
+
+    check(key is T) {
+        "Expected key of ${T::class} instead was $key"
+    }
+
+    return key
+}
+
 fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
 
- fun FirExtension.generateCompanionDeclaration(
-    owner: FirRegularClassSymbol,
+fun FirExtension.generateCompanionDeclaration(
+    parentInterfaceSymbol: FirRegularClassSymbol,
 ): FirRegularClassSymbol? {
-    if (owner.resolvedCompanionObjectSymbol != null) return null
-    val companion = createCompanionObject(owner, Snapshottable.Key)
+    if (parentInterfaceSymbol.resolvedCompanionObjectSymbol != null) return null
+
+    val companion = createCompanionObject(
+        owner = parentInterfaceSymbol,
+        key = Snapshottable.Keys.Companion(classId = parentInterfaceSymbol.classId),
+    )
     return companion.symbol
 }
 
 fun FirExtension.generateMutableClass(
     parentInterfaceSymbol: FirClassSymbol<*>,
-    snapshottableClassSymbol: FirClassSymbol<*>,
-): FirRegularClass {
+): FirRegularClassSymbol? = with(session.filters) {
+    val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
+        snapshottableInterfaceSymbol = parentInterfaceSymbol,
+    ) ?: return@with null
+
+    val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
+        ?: return@with null
+
     return createNestedClass(
         owner = parentInterfaceSymbol,
         name = CLASS_NAME_SNAPSHOT_MUTABLE,
-        key = Snapshottable.Key,
+        key = Snapshottable.Keys.SnapshotMutable(
+            specPrimaryConstructor = specPrimaryConstructor,
+        ),
     ) {
         superType(parentInterfaceSymbol.defaultType())
-        copyTypeParametersFrom(
-            specSymbol = snapshottableClassSymbol,
-            session = session,
-        )
-    }
-}
-
-private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
-    specSymbol: FirClassSymbol<*>,
-    session: FirSession,
-) = with(session.filters) {
-    val constructorTypeParameterSymbols = specPrimaryConstructor(
-        snapshottableParentSymbol = nestedClassSymbolToSnapshottableInterfaceClassSymbol(specSymbol) ?: return@with,
-    )
-        ?.typeParameterSymbols
-        .orEmpty()
-
-    for (parameter in constructorTypeParameterSymbols) {
-        typeParameter(
-            name = parameter.name,
-            variance = Variance.INVARIANT, // Type must always be invariant to support read and write access.
-        ) {
-            for (bound in parameter.resolvedBounds) {
-                bound { typeParameters ->
-                    val arguments = typeParameters.map { it.toConeType() }
-                    val substitutor = substitutor(
-                        sourceSymbol = specSymbol,
-                        builderArguments = arguments,
-                        session = session,
-                    )
-                    substitutor.substituteOrSelf(bound.coneType)
+        for (parameter in specPrimaryConstructor.typeParameterSymbols) {
+            typeParameter(
+                name = parameter.name,
+                variance = Variance.INVARIANT, // Type must always be invariant to support read and write access.
+            ) {
+                for (bound in parameter.resolvedBounds) {
+                    bound { typeParameters ->
+                        val arguments = typeParameters.map { it.toConeType() }
+                        val substitutor = substitutor(
+                            sourceSymbol = specSymbol,
+                            builderArguments = arguments,
+                            session = session,
+                        )
+                        substitutor.substituteOrSelf(bound.coneType)
+                    }
                 }
             }
         }
-    }
+    }.symbol
 }
 
 private fun substitutor(
@@ -154,7 +162,7 @@ fun FirExtension.createFunMutableMutate(
 
     return createMemberFunction(
         owner = mutableClassSymbol,
-        key = Snapshottable.Key,
+        key = mutableClassSymbol.requireKey(),
         name = callableId.callableName,
         returnType = mutableClassSymbol.constructType(
             mutableClassSymbol.typeParameterSymbols
@@ -187,7 +195,7 @@ fun FirExtension.createFunCompanionConversion(
     callableId: CallableId,
 ): FirSimpleFunction = createMemberFunction(
     owner = companionSymbol,
-    key = Snapshottable.Key,
+    key = companionSymbol.requireKey(),
     name = callableId.callableName,
     returnType = outputClassSymbol.constructType(
         typeArguments = outputClassSymbol.typeParameterSymbols
@@ -227,7 +235,7 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     )
     return createMemberProperty(
         owner = classSymbol,
-        key = Snapshottable.Key,
+        key = if (isInterface) Snapshottable.Keys.Default else classSymbol.requireKey(),
         name = callableId.callableName,
         returnType = substitutor.substituteOrSelf(parameter.resolvedReturnType),
         isVal = classSymbol.isInterface,

@@ -6,11 +6,8 @@ import org.jetbrains.kotlin.fir.extensions.FirDeclarationGenerationExtension
 import org.jetbrains.kotlin.fir.extensions.FirDeclarationPredicateRegistrar
 import org.jetbrains.kotlin.fir.extensions.MemberGenerationContext
 import org.jetbrains.kotlin.fir.extensions.NestedClassGenerationContext
-import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createConstructor
 import org.jetbrains.kotlin.fir.plugin.createDefaultPrivateConstructor
-import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
-import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
@@ -21,6 +18,7 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.name.CallableId
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.name.SpecialNames
+import org.jetbrains.kotlin.utils.mapToSetOrEmpty
 
 class SnapshottableClassGenerator(
     session: FirSession,
@@ -58,12 +56,11 @@ class SnapshottableClassGenerator(
         return when (name) {
             CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableClass(
                 parentInterfaceSymbol = owner,
-                snapshottableClassSymbol = snapshottableInterfaceSymbolToSpecSymbol(
-                    snapshottableInterfaceSymbol = owner,
-                ) ?: return@with null,
-            ).symbol
+            )
 
-            SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanionDeclaration(owner)
+            SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanionDeclaration(
+                parentInterfaceSymbol = owner,
+            )
             else -> error("Can't generate class ${owner.classId.createNestedClassId(name).asSingleFqName()}")
         }
     }
@@ -74,8 +71,12 @@ class SnapshottableClassGenerator(
     ): Set<Name> = with(session.filters) {
         when {
             isSnapshottableInterface(classSymbol) ->
-                snapshottableSpecParameterNames(snapshottableParentSymbol = classSymbol)
-                    .toSet()
+                snapshottableInterfaceSymbolToSpecSymbol(classSymbol)
+                    ?.let(::specPrimaryConstructor)
+                    ?.valueParameterSymbols
+                    ?.also { println("interface: ${it.map { it.name }}") }
+                    ?.mapToSetOrEmpty(FirValueParameterSymbol::name)
+                    .orEmpty()
 
             isSnapshottableInterfaceCompanion(classSymbol) ->
                 setOf(
@@ -88,9 +89,12 @@ class SnapshottableClassGenerator(
                 buildSet {
                     add(SpecialNames.INIT)
                     addAll(
-                        elements = nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = classSymbol)
-                            ?.let(::snapshottableSpecParameterNames)
-                            .orEmpty(),
+                        context.owner
+                            .requireKey<Snapshottable.Keys.SnapshotMutable>()
+                            .specPrimaryConstructor
+                            .valueParameterSymbols
+                            .also { println("mutable: ${it.map { it.name }}") }
+                            .map(FirValueParameterSymbol::name),
                     )
                     add(MEMBER_FUN_NAME_UPDATE)
                 }
@@ -193,28 +197,25 @@ class SnapshottableClassGenerator(
         val constructor = when {
             isMutableSnapshot(context.owner) -> createConstructor(
                 owner = context.owner,
-                key = Snapshottable.Key,
+                key = context.owner.requireKey(),
                 isPrimary = true,
             ) {
-                val parameters = nestedClassSymbolToSnapshottableInterfaceClassSymbol(
-                    nestedClassSymbol = context.owner,
-                )
-                    ?.let(this@filters::snapshottableSpecParameterSymbols)
-                    ?: return@createConstructor
+                val constructor = context.owner
+                    .requireKey<Snapshottable.Keys.SnapshotMutable>()
+                    .specPrimaryConstructor
 
-                parameters.forEach { parameter ->
+                constructor.valueParameterSymbols.forEach { parameter ->
                     valueParameter(
                         name = parameter.name,
                         type = parameter.resolvedReturnType,
                         hasDefaultValue = false,
-                        key = Snapshottable.Key,
                     )
                 }
             }
 
             isSnapshottableInterfaceCompanion(context.owner) -> createDefaultPrivateConstructor(
                 owner = context.owner,
-                key = Snapshottable.Key,
+                key = context.owner.requireKey(),
             )
 
             else -> error("Can't generate constructor for ${context.owner.classId.asSingleFqName()}")
@@ -222,16 +223,3 @@ class SnapshottableClassGenerator(
         return listOf(constructor.symbol)
     }
 }
-
-private fun SnapshottableFilters.snapshottableSpecParameterSymbols(
-    snapshottableParentSymbol: FirClassSymbol<*>,
-): List<FirValueParameterSymbol> =
-    specPrimaryConstructor(snapshottableParentSymbol)
-        ?.valueParameterSymbols
-        .orEmpty()
-
-private fun SnapshottableFilters.snapshottableSpecParameterNames(
-    snapshottableParentSymbol: FirClassSymbol<*>,
-): List<Name> =
-    snapshottableSpecParameterSymbols(snapshottableParentSymbol)
-        .map(FirValueParameterSymbol::name)

@@ -3,7 +3,9 @@ package com.tunjid.snapshottable
 import org.jetbrains.kotlin.GeneratedDeclarationKey
 import org.jetbrains.kotlin.fir.extensions.predicate.DeclarationPredicate
 import org.jetbrains.kotlin.fir.extensions.predicate.LookupPredicate.BuilderContext.annotated
+import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin.GeneratedByPlugin
+import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
 object Snapshottable {
@@ -22,9 +24,17 @@ object Snapshottable {
         annotated(FqName(ANNOTATION))
     }
 
-    object Key : GeneratedDeclarationKey() {
-        override fun toString(): String = "SnapshottableKey"
+    sealed class Keys : GeneratedDeclarationKey() {
+        data class Companion(
+            val classId: ClassId,
+        ) : Keys()
+
+        data class SnapshotMutable(
+            val specPrimaryConstructor: FirConstructorSymbol,
+        ) : Keys()
+
+        data object Default : Keys()
     }
 
-    val ORIGIN = GeneratedByPlugin(Key)
+    val ORIGIN = GeneratedByPlugin(Keys.Default)
 }

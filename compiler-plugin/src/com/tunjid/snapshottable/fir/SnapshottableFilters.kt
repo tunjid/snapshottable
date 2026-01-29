@@ -86,15 +86,12 @@ class SnapshottableFilters(
             ?.let(session::findClassSymbol)
 
     fun specPrimaryConstructor(
-        snapshottableParentSymbol: FirClassSymbol<*>,
+        specSymbol: FirClassSymbol<*>,
     ): FirConstructorSymbol? {
-        val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
-            snapshottableInterfaceSymbol = snapshottableParentSymbol,
-        )
-        val scope = specSymbol?.declaredMemberScope(
+        val scope = specSymbol.declaredMemberScope(
             session,
             memberRequiredPhase = null,
-        ) ?: return null
+        )
 
         return scope.getDeclaredConstructors()
             .firstOrNull(FirConstructorSymbol::isPrimary)

@@ -23,6 +23,8 @@ import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.declarations.IrClass
 import org.jetbrains.kotlin.ir.declarations.IrConstructor
 import org.jetbrains.kotlin.ir.declarations.IrDeclaration
+import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin
+import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin.GeneratedByPlugin
 import org.jetbrains.kotlin.ir.declarations.IrField
 import org.jetbrains.kotlin.ir.declarations.IrFile
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
@@ -70,7 +72,7 @@ class SnapshottableIrBodyGenerator(
     override fun visitClass(
         declaration: IrClass,
     ) {
-        if (declaration.origin != Snapshottable.ORIGIN) {
+        if (!declaration.origin.isSnapshottableOrigin()) {
             return declaration.acceptChildrenVoid(this)
         }
 
@@ -88,7 +90,7 @@ class SnapshottableIrBodyGenerator(
     override fun visitSimpleFunction(
         declaration: IrSimpleFunction,
     ) {
-        if (declaration.origin != Snapshottable.ORIGIN || declaration.body != null) return
+        if (!declaration.origin.isSnapshottableOrigin() || declaration.body != null) return
 
         declaration.body = when (declaration.name) {
             MEMBER_FUN_NAME_UPDATE ->
@@ -106,7 +108,7 @@ class SnapshottableIrBodyGenerator(
     override fun visitConstructor(
         declaration: IrConstructor,
     ) {
-        if (declaration.origin != Snapshottable.ORIGIN) return
+        if (!declaration.origin.isSnapshottableOrigin()) return
         if (declaration.body == null) {
             declaration.body = generateDefaultConstructor(declaration)
         }
@@ -287,6 +289,9 @@ class SnapshottableIrBodyGenerator(
         return holderField
     }
 }
+
+private fun IrDeclarationOrigin.isSnapshottableOrigin() =
+    this is GeneratedByPlugin && pluginKey is Snapshottable.Keys
 
 private fun IrConstructorSymbol.typesOfTypeParameters(): List<IrType> {
     val allParameters = owner.constructedClass.typeParameters + owner.typeParameters
