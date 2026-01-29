@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
 import org.jetbrains.kotlin.fir.declarations.FirProperty
 import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
 import org.jetbrains.kotlin.fir.declarations.declaredProperties
-import org.jetbrains.kotlin.fir.declarations.primaryConstructorIfAny
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
 import org.jetbrains.kotlin.fir.expressions.buildResolvedArgumentList
@@ -29,7 +28,6 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
 import org.jetbrains.kotlin.fir.types.constructType
 import org.jetbrains.kotlin.ir.util.kotlinPackageFqn
@@ -38,7 +36,6 @@ import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.types.ConstantValueKind
-import org.jetbrains.kotlin.types.Variance
 
 val CLASS_NAME_SNAPSHOT_MUTABLE = Name.identifier("SnapshotMutable")
 val MEMBER_FUN_NAME_UPDATE = Name.identifier("update")
@@ -94,24 +91,6 @@ fun FirExtension.generateMutableClass(
         ),
     ) {
         superType(parentInterfaceSymbol.defaultType())
-        for (parameter in specPrimaryConstructor.typeParameterSymbols) {
-            typeParameter(
-                name = parameter.name,
-                variance = Variance.INVARIANT, // Type must always be invariant to support read and write access.
-            ) {
-                for (bound in parameter.resolvedBounds) {
-                    bound { typeParameters ->
-                        val arguments = typeParameters.map { it.toConeType() }
-                        val substitutor = substitutor(
-                            sourceSymbol = specSymbol,
-                            builderArguments = arguments,
-                            session = session,
-                        )
-                        substitutor.substituteOrSelf(bound.coneType)
-                    }
-                }
-            }
-        }
     }.symbol
 }
 
@@ -140,15 +119,6 @@ private fun substitutor(
     )
 }
 
-fun FirSession.getPrimaryConstructorValueParameters(
-    classSymbol: FirClassSymbol<*>,
-): List<FirValueParameterSymbol> {
-    val outerPrimaryConstructor = classSymbol.primaryConstructorIfAny(session = this)
-        ?: return emptyList()
-
-    return outerPrimaryConstructor.valueParameterSymbols
-}
-
 fun FirExtension.createFunMutableMutate(
     mutableClassSymbol: FirClassSymbol<*>,
     snapshottableClassSymbol: FirClassSymbol<*>,
@@ -170,7 +140,8 @@ fun FirExtension.createFunMutableMutate(
                 .toTypedArray(),
         ),
     ) {
-        session.getPrimaryConstructorValueParameters(snapshottableClassSymbol)
+        val key = mutableClassSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
+        key.specPrimaryConstructor.valueParameterSymbols
             .forEach { parameterSymbol ->
                 valueParameter(
                     name = parameterSymbol.name,
@@ -214,22 +185,30 @@ fun FirExtension.createFunCompanionConversion(
 
 fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     classSymbol: FirClassSymbol<*>,
-    snapshottableClassSymbol: FirClassSymbol<*>,
+    specSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirProperty? {
     val isInterface = classSymbol.isInterface
     if (isInterface) {
-        val isRedeclaration = snapshottableClassSymbol.declaredProperties(session)
+        val isRedeclaration = specSymbol.declaredProperties(session)
             .any { it.name == callableId.callableName && it.rawStatus.isOverride }
 
         if (isRedeclaration) return null
     }
-    val parameter = session.getPrimaryConstructorValueParameters(
-        classSymbol = snapshottableClassSymbol,
-    )
+
+    val valueParameterSymbols =
+        if (isInterface) session.filters.specPrimaryConstructor(specSymbol)
+            ?.valueParameterSymbols
+            ?: return null
+        else classSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
+            .specPrimaryConstructor
+            .valueParameterSymbols
+
+    val parameter = valueParameterSymbols
         .singleOrNull { it.name == callableId.callableName } ?: return null
+
     val substitutor = substitutor(
-        sourceSymbol = snapshottableClassSymbol,
+        sourceSymbol = specSymbol,
         mutableClassSymbol = classSymbol,
         session = session,
     )

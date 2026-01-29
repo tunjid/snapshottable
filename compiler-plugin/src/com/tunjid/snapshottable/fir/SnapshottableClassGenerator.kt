@@ -164,7 +164,7 @@ class SnapshottableClassGenerator(
             isSnapshottableInterface(owner) ->
                 maybeCreatePropertyOnInterfaceOrMutableClass(
                     classSymbol = owner,
-                    snapshottableClassSymbol = snapshottableInterfaceSymbolToSpecSymbol(
+                    specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
                         snapshottableInterfaceSymbol = owner,
                     ) ?: return emptyList(),
                     callableId = callableId,
@@ -176,7 +176,7 @@ class SnapshottableClassGenerator(
             isMutableSnapshot(owner) ->
                 maybeCreatePropertyOnInterfaceOrMutableClass(
                     classSymbol = owner,
-                    snapshottableClassSymbol = nestedClassSymbolToSpecSymbol(
+                    specSymbol = nestedClassSymbolToSpecSymbol(
                         nestedClassSymbol = owner,
                     ) ?: return emptyList(),
                     callableId = callableId,
