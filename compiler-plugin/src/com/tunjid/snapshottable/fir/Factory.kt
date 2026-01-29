@@ -16,6 +16,7 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
 import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
 import org.jetbrains.kotlin.fir.plugin.DeclarationBuildingContext
+import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
 import org.jetbrains.kotlin.fir.plugin.createNestedClass
@@ -27,6 +28,7 @@ import org.jetbrains.kotlin.fir.resolve.substitution.substitutorByMap
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.ConeKotlinType
@@ -49,6 +51,31 @@ val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_
 
 fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
+
+ fun FirExtension.generateCompanionDeclaration(
+    owner: FirRegularClassSymbol,
+): FirRegularClassSymbol? {
+    if (owner.resolvedCompanionObjectSymbol != null) return null
+    val companion = createCompanionObject(owner, Snapshottable.Key)
+    return companion.symbol
+}
+
+fun FirExtension.generateMutableClass(
+    parentInterfaceSymbol: FirClassSymbol<*>,
+    snapshottableClassSymbol: FirClassSymbol<*>,
+): FirRegularClass {
+    return createNestedClass(
+        owner = parentInterfaceSymbol,
+        name = CLASS_NAME_SNAPSHOT_MUTABLE,
+        key = Snapshottable.Key,
+    ) {
+        superType(parentInterfaceSymbol.defaultType())
+        copyTypeParametersFrom(
+            specSymbol = snapshottableClassSymbol,
+            session = session,
+        )
+    }
+}
 
 private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
     specSymbol: FirClassSymbol<*>,
@@ -112,23 +139,6 @@ fun FirSession.getPrimaryConstructorValueParameters(
         ?: return emptyList()
 
     return outerPrimaryConstructor.valueParameterSymbols
-}
-
-fun FirExtension.generateMutableClass(
-    parentInterfaceSymbol: FirClassSymbol<*>,
-    snapshottableClassSymbol: FirClassSymbol<*>,
-): FirRegularClass {
-    return createNestedClass(
-        owner = parentInterfaceSymbol,
-        name = CLASS_NAME_SNAPSHOT_MUTABLE,
-        key = Snapshottable.Key,
-    ) {
-        superType(parentInterfaceSymbol.defaultType())
-        copyTypeParametersFrom(
-            specSymbol = snapshottableClassSymbol,
-            session = session,
-        )
-    }
 }
 
 fun FirExtension.createFunMutableMutate(

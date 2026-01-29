@@ -221,14 +221,6 @@ class SnapshottableClassGenerator(
         }
         return listOf(constructor.symbol)
     }
-
-    private fun generateCompanionDeclaration(
-        owner: FirRegularClassSymbol,
-    ): FirRegularClassSymbol? {
-        if (owner.resolvedCompanionObjectSymbol != null) return null
-        val companion = createCompanionObject(owner, Snapshottable.Key)
-        return companion.symbol
-    }
 }
 
 private fun SnapshottableFilters.snapshottableSpecParameterSymbols(
