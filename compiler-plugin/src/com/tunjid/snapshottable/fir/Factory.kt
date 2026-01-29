@@ -100,7 +100,7 @@ fun FirExtension.generateMutableClass(
     }.symbol
 }
 
-fun FirExtension.createFunMutableMutate(
+fun FirExtension.createFunSnapshotUpdate(
     mutableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirSimpleFunction {

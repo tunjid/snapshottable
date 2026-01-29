@@ -109,7 +109,7 @@ class SnapshottableClassGenerator(
         val function = when {
             isMutableSnapshot(owner) -> when (callableId.callableName) {
                 MEMBER_FUN_NAME_UPDATE ->
-                    createFunMutableMutate(
+                    createFunSnapshotUpdate(
                         mutableClassSymbol = owner,
                         callableId = callableId,
                     )
