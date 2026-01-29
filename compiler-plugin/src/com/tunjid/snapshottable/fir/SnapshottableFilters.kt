@@ -6,7 +6,10 @@ import org.jetbrains.kotlin.fir.declarations.utils.isCompanion
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
+import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
+import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.utils.mapToSetOrEmpty
@@ -81,6 +84,21 @@ class SnapshottableFilters(
             ?.classId
             ?.mutable
             ?.let(session::findClassSymbol)
+
+    fun specPrimaryConstructor(
+        snapshottableParentSymbol: FirClassSymbol<*>,
+    ): FirConstructorSymbol? {
+        val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
+            snapshottableInterfaceSymbol = snapshottableParentSymbol,
+        )
+        val scope = specSymbol?.declaredMemberScope(
+            session,
+            memberRequiredPhase = null,
+        ) ?: return null
+
+        return scope.getDeclaredConstructors()
+            .firstOrNull(FirConstructorSymbol::isPrimary)
+    }
 }
 
 internal val FirSession.filters: SnapshottableFilters by FirSession.sessionComponentAccessor()

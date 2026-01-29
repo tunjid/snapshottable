@@ -233,21 +233,10 @@ class SnapshottableClassGenerator(
 
 private fun SnapshottableFilters.snapshottableSpecParameterSymbols(
     snapshottableParentSymbol: FirClassSymbol<*>,
-): List<FirValueParameterSymbol> {
-    val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
-        snapshottableInterfaceSymbol = snapshottableParentSymbol,
-    )
-    val scope = specSymbol?.declaredMemberScope(
-        session,
-        memberRequiredPhase = null,
-    ) ?: return emptyList()
-
-    val primaryConstructor = scope.getDeclaredConstructors()
-        .firstOrNull(FirConstructorSymbol::isPrimary)
-        ?: return emptyList()
-
-    return primaryConstructor.valueParameterSymbols
-}
+): List<FirValueParameterSymbol> =
+    specPrimaryConstructor(snapshottableParentSymbol)
+        ?.valueParameterSymbols
+        .orEmpty()
 
 private fun SnapshottableFilters.snapshottableSpecParameterNames(
     snapshottableParentSymbol: FirClassSymbol<*>,

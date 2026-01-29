@@ -53,8 +53,14 @@ fun FirSession.findClassSymbol(classId: ClassId) =
 private fun DeclarationBuildingContext<*>.copyTypeParametersFrom(
     specSymbol: FirClassSymbol<*>,
     session: FirSession,
-) {
-    for (parameter in specSymbol.typeParameterSymbols) {
+) = with(session.filters) {
+    val constructorTypeParameterSymbols = specPrimaryConstructor(
+        snapshottableParentSymbol = nestedClassSymbolToSnapshottableInterfaceClassSymbol(specSymbol) ?: return@with,
+    )
+        ?.typeParameterSymbols
+        .orEmpty()
+
+    for (parameter in constructorTypeParameterSymbols) {
         typeParameter(
             name = parameter.name,
             variance = Variance.INVARIANT, // Type must always be invariant to support read and write access.
