@@ -149,7 +149,7 @@ class SnapshottableClassGenerator(
         }
 
         if (function == null) return emptyList()
-        return listOf(function.symbol)
+        return listOf(function)
     }
 
     override fun generateProperties(

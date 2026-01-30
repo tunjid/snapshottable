@@ -5,7 +5,6 @@ import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
 import org.jetbrains.kotlin.fir.declarations.FirProperty
-import org.jetbrains.kotlin.fir.declarations.FirSimpleFunction
 import org.jetbrains.kotlin.fir.declarations.declaredProperties
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
@@ -23,6 +22,7 @@ import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirTypeParameterSymbol
 import org.jetbrains.kotlin.fir.types.constructType
@@ -103,7 +103,7 @@ fun FirExtension.generateMutableClass(
 fun FirExtension.createFunSnapshotUpdate(
     mutableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
-): FirSimpleFunction {
+): FirNamedFunctionSymbol {
     val key = mutableClassSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
     return createMemberFunction(
         owner = mutableClassSymbol,
@@ -131,6 +131,7 @@ fun FirExtension.createFunSnapshotUpdate(
                 }
             }
         }
+        .symbol
 }
 
 fun FirExtension.createFunCompanionConversion(
@@ -138,7 +139,7 @@ fun FirExtension.createFunCompanionConversion(
     inputClassSymbol: FirClassSymbol<*>,
     outputClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
-): FirSimpleFunction {
+): FirNamedFunctionSymbol {
     val key = companionSymbol.requireKey<Snapshottable.Keys.Companion>()
     return createMemberFunction(
         owner = companionSymbol,
@@ -158,6 +159,7 @@ fun FirExtension.createFunCompanionConversion(
             )
         }
     }
+        .symbol
 }
 
 fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
