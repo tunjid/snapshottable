@@ -2,7 +2,6 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.declarations.utils.isCompanion
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
@@ -45,13 +44,13 @@ class SnapshottableFilters(
 
     fun isSnapshottableInterfaceCompanion(
         symbol: FirClassSymbol<*>,
-    ) = symbol.isCompanion && snapshottableParentInterfaces.any { it.classId.companion == symbol.classId }
+    ) = snapshottableParentInterfaces.any { it.classId.companion == symbol.classId }
 
     fun isSnapshotSpec(
         symbol: FirClassSymbol<*>,
     ) = snapshotSpecClasses.contains(symbol) && nestedClassSymbolToSnapshottableInterfaceClassSymbol(symbol) != null
 
-    fun isMutableSnapshot(
+    fun isSnapshotMutable(
         symbol: FirClassSymbol<*>,
     ) = mutableSnapshotClassIds.contains(symbol.classId)
 

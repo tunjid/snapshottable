@@ -84,7 +84,7 @@ class SnapshottableClassGenerator(
                     COMPANION_FUN_NAME_TO_SPEC,
                 )
 
-            isMutableSnapshot(classSymbol) ->
+            isSnapshotMutable(classSymbol) ->
                 buildSet {
                     add(SpecialNames.INIT)
                     addAll(
@@ -107,7 +107,7 @@ class SnapshottableClassGenerator(
     ): List<FirNamedFunctionSymbol> = with(session.filters) {
         val owner = context?.owner ?: return emptyList()
         val function = when {
-            isMutableSnapshot(owner) -> when (callableId.callableName) {
+            isSnapshotMutable(owner) -> when (callableId.callableName) {
                 MEMBER_FUN_NAME_UPDATE ->
                     createFunSnapshotUpdate(
                         mutableClassSymbol = owner,
@@ -170,7 +170,7 @@ class SnapshottableClassGenerator(
                     ?.let(::listOf)
                     .orEmpty()
 
-            isMutableSnapshot(owner) ->
+            isSnapshotMutable(owner) ->
                 maybeCreatePropertyOnInterfaceOrMutableClass(
                     classSymbol = owner,
                     specSymbol = nestedClassSymbolToSpecSymbol(
@@ -190,7 +190,7 @@ class SnapshottableClassGenerator(
         context: MemberGenerationContext,
     ): List<FirConstructorSymbol> = with(session.filters) filters@{
         val constructor = when {
-            isMutableSnapshot(context.owner) -> createConstructor(
+            isSnapshotMutable(context.owner) -> createConstructor(
                 owner = context.owner,
                 key = context.owner.requireKey(),
                 isPrimary = true,
