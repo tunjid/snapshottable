@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.plugin)
+    id("kotlin-jvm-convention")
     id("publishing-library-convention")
 }
 

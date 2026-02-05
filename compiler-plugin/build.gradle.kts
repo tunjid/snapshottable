@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.java.test.fixtures)
     alias(libs.plugins.gradle.idea)
+    id("kotlin-jvm-convention")
     id("publishing-library-convention")
 }
 
@@ -82,7 +83,6 @@ kotlin {
     compilerOptions {
         optIn.add("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
         optIn.add("org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI")
-        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }
 

@@ -27,6 +27,7 @@ kotlin-test-framework = { group = "org.jetbrains.kotlin", name = "kotlin-compile
 kotlin-annotations-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-annotations-jvm", version.ref = "kotlin" }
 kotlin-compiler = { group = "org.jetbrains.kotlin", name = "kotlin-compiler", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-gradle-plugin-api  = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin-api", version.ref = "kotlin" }
 maven-publish-gradlePlugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "mavenPublish" }
 
