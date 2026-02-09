@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.DataMethodsState.Companion.toSnapshotMutable
-import foo.bar.DataMethodsState.Companion.toSnapshotSpec
 
 fun box(): String {
     val state1 = DataMethodsState.Immutable(id = 1, data = "a").toSnapshotMutable()

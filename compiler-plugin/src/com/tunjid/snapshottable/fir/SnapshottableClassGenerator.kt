@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.fir.extensions.FirDeclarationPredicateRegistrar
 import org.jetbrains.kotlin.fir.extensions.MemberGenerationContext
 import org.jetbrains.kotlin.fir.extensions.NestedClassGenerationContext
 import org.jetbrains.kotlin.fir.plugin.createConstructor
-import org.jetbrains.kotlin.fir.plugin.createDefaultPrivateConstructor
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
@@ -37,7 +36,6 @@ class SnapshottableClassGenerator(
             isSnapshottableInterface(classSymbol) ->
                 setOf(
                     CLASS_NAME_SNAPSHOT_MUTABLE,
-                    SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT,
                 )
 
             else ->
@@ -57,10 +55,6 @@ class SnapshottableClassGenerator(
             CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableClass(
                 parentInterfaceSymbol = owner,
             )
-
-            SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanionDeclaration(
-                parentInterfaceSymbol = owner,
-            )
             else -> error("Can't generate class ${owner.classId.createNestedClassId(name).asSingleFqName()}")
         }
     }
@@ -77,11 +71,9 @@ class SnapshottableClassGenerator(
                     ?.mapToSetOrEmpty(FirValueParameterSymbol::name)
                     .orEmpty()
 
-            isSnapshottableInterfaceCompanion(classSymbol) ->
+            isSnapshotSpec(classSymbol) ->
                 setOf(
-                    SpecialNames.INIT,
-                    COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE,
-                    COMPANION_FUN_NAME_TO_SPEC,
+                    FUN_NAME_TO_SNAPSHOT_MUTABLE,
                 )
 
             isSnapshotMutable(classSymbol) ->
@@ -94,6 +86,7 @@ class SnapshottableClassGenerator(
                             .valueParameterSymbols
                             .map(FirValueParameterSymbol::name),
                     )
+                    add(FUN_NAME_TO_SPEC)
                     add(MEMBER_FUN_NAME_UPDATE)
                 }
 
@@ -113,29 +106,26 @@ class SnapshottableClassGenerator(
                         mutableClassSymbol = owner,
                         callableId = callableId,
                     )
-
-                else -> null
-            }
-
-            isSnapshottableInterfaceCompanion(owner) -> when (callableId.callableName) {
-                COMPANION_FUN_NAME_TO_SPEC ->
-                    createFunCompanionConversion(
-                        companionSymbol = owner,
-                        inputClassSymbol = nestedClassSymbolToMutableSymbol(
-                            nestedClassSymbol = owner,
-                        ) ?: return emptyList(),
+                FUN_NAME_TO_SPEC ->
+                    createFunConversion(
+                        key = owner.requireKey<Snapshottable.Keys.SnapshotMutable>(),
+                        inputClassSymbol = owner,
                         outputClassSymbol = nestedClassSymbolToSpecSymbol(
                             nestedClassSymbol = owner,
                         ) ?: return emptyList(),
                         callableId = callableId,
                     )
+                else -> null
+            }
 
-                COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE ->
-                    createFunCompanionConversion(
-                        companionSymbol = owner,
-                        inputClassSymbol = nestedClassSymbolToSpecSymbol(
-                            nestedClassSymbol = owner,
-                        ) ?: return emptyList(),
+            isSnapshotSpec(owner) -> when (callableId.callableName) {
+                FUN_NAME_TO_SNAPSHOT_MUTABLE ->
+                    createFunConversion(
+                        key = Snapshottable.Keys.Spec(
+                            specPrimaryConstructor = specPrimaryConstructor(owner)
+                                ?: return emptyList(),
+                        ),
+                        inputClassSymbol = owner,
                         outputClassSymbol = nestedClassSymbolToMutableSymbol(
                             nestedClassSymbol = owner,
                         ) ?: return emptyList(),
@@ -207,11 +197,6 @@ class SnapshottableClassGenerator(
                     )
                 }
             }
-
-            isSnapshottableInterfaceCompanion(context.owner) -> createDefaultPrivateConstructor(
-                owner = context.owner,
-                key = context.owner.requireKey(),
-            )
 
             else -> error("Can't generate constructor for ${context.owner.classId.asSingleFqName()}")
         }

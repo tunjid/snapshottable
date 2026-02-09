@@ -61,7 +61,7 @@ FILE: enums_sealed.kt
 
     }
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/EnumSealedState.SnapshotMutable| = (Q|foo/bar/EnumSealedState.Companion|, Q|foo/bar/EnumSealedState|.R|foo/bar/EnumSealedState.Immutable.Immutable|(Q|foo/bar/Status|.R|foo/bar/Status.IDLE|, Q|foo/bar/Result.None|)).R|foo/bar/EnumSealedState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/EnumSealedState.SnapshotMutable| = Q|foo/bar/EnumSealedState|.R|foo/bar/EnumSealedState.Immutable.Immutable|(Q|foo/bar/Status|.R|foo/bar/Status.IDLE|, Q|foo/bar/Result.None|).R|foo/bar/EnumSealedState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.IDLE|) ->  {
                 ^box String(Fail 1)
@@ -101,7 +101,7 @@ FILE: enums_sealed.kt
             }
         }
 
-        lval spec: R|foo/bar/EnumSealedState.Immutable| = (Q|foo/bar/EnumSealedState.Companion|, R|<local>/state|).R|foo/bar/EnumSealedState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/EnumSealedState.Immutable| = R|<local>/state|.R|foo/bar/EnumSealedState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/EnumSealedState.Immutable.status|, Q|foo/bar/Status|.R|foo/bar/Status.FINISHED|) ->  {
                 ^box String(Fail 7)
@@ -134,6 +134,8 @@ FILE: enums_sealed.kt
 
             public final fun copy(status: R|foo/bar/Status| = this@R|foo/bar/EnumSealedState.Immutable|.R|foo/bar/EnumSealedState.Immutable.status|, result: R|foo/bar/Result| = this@R|foo/bar/EnumSealedState.Immutable|.R|foo/bar/EnumSealedState.Immutable.result|): R|foo/bar/EnumSealedState.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/EnumSealedState.SnapshotMutable|
+
         }
 
         public abstract val status: R|foo/bar/Status|
@@ -151,20 +153,11 @@ FILE: enums_sealed.kt
                 public get(): R|foo/bar/Result|
                 public set(value: R|foo/bar/Result|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/EnumSealedState.Immutable|
+
             public final fun update(status: R|foo/bar/Status| = R|kotlin/error|(), result: R|foo/bar/Result| = R|kotlin/error|()): R|foo/bar/EnumSealedState.SnapshotMutable|
 
             public constructor(status: R|foo/bar/Status|, result: R|foo/bar/Result|): R|foo/bar/EnumSealedState.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/EnumSealedState.Immutable|.toSnapshotMutable(): R|foo/bar/EnumSealedState.SnapshotMutable|
-
-            public final fun R|foo/bar/EnumSealedState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/EnumSealedState.Immutable|
-
-            private constructor(): R|foo/bar/EnumSealedState.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

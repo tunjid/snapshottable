@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
 import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
-import org.jetbrains.kotlin.fir.scopes.getProperties
 import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
@@ -43,10 +42,6 @@ class SnapshottableFilters(
     fun isSnapshottableInterface(
         symbol: FirClassSymbol<*>,
     ): Boolean = snapshottableParentInterfaces.contains(symbol)
-
-    fun isSnapshottableInterfaceCompanion(
-        symbol: FirClassSymbol<*>,
-    ) = snapshottableParentInterfaces.any { it.classId.companion == symbol.classId }
 
     fun isSnapshotSpec(
         symbol: FirClassSymbol<*>,

@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.ExtraState.Companion.toSnapshotMutable
-import foo.bar.ExtraState.Companion.toSnapshotSpec
 
 fun box(): String {
     val state = ExtraState.Immutable(

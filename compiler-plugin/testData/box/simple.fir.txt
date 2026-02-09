@@ -2,20 +2,20 @@ FILE: simple.kt
     package foo.bar
 
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/State.SnapshotMutable| = (Q|foo/bar/State.Companion|, Q|foo/bar/State|.R|foo/bar/State.Immutable.Immutable|()).R|foo/bar/State.Companion.toSnapshotMutable|()
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        lval state: R|foo/bar/State.SnapshotMutable| = Q|foo/bar/State|.R|foo/bar/State.Immutable.Immutable|().R|foo/bar/State.Immutable.toSnapshotMutable|()
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.activity| = String(run)
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(String(sprint), Int(8))
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Int(14))
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Long(1700923400))
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         R|<local>/state|.R|foo/bar/State.SnapshotMutable.update|(Float(1.2))
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|())
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|())
-        R|kotlin/io/println|((Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, (Q|foo/bar/State.Companion|, R|<local>/state|).R|foo/bar/State.Companion.toSnapshotSpec|()).R|foo/bar/State.Companion.toSnapshotMutable|()).R|foo/bar/State.Companion.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|().R|foo/bar/State.Immutable.toSnapshotMutable|())
+        R|kotlin/io/println|(R|<local>/state|.R|foo/bar/State.SnapshotMutable.toSnapshotSpec|().R|foo/bar/State.Immutable.toSnapshotMutable|().R|foo/bar/State.SnapshotMutable.toSnapshotSpec|())
         ^box String(OK)
     }
     @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface State : R|kotlin/Any| {
@@ -50,6 +50,8 @@ FILE: simple.kt
             public final operator fun component5(): R|kotlin/Double|
 
             public final fun copy(activity: R|kotlin/String| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.activity|, stepCount: R|kotlin/Int| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.stepCount|, startTimeStamp: R|kotlin/Long| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.startTimeStamp|, totalDistanceInMiles: R|kotlin/Float| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.totalDistanceInMiles|, stepsPerSecond: R|kotlin/Double| = this@R|foo/bar/State.Immutable|.R|foo/bar/State.Immutable.stepsPerSecond|): R|foo/bar/State.Immutable|
+
+            public final fun toSnapshotMutable(): R|foo/bar/State.SnapshotMutable|
 
         }
 
@@ -89,20 +91,11 @@ FILE: simple.kt
                 public get(): R|kotlin/Double|
                 public set(value: R|kotlin/Double|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/State.Immutable|
+
             public final fun update(activity: R|kotlin/String| = R|kotlin/error|(), stepCount: R|kotlin/Int| = R|kotlin/error|(), startTimeStamp: R|kotlin/Long| = R|kotlin/error|(), totalDistanceInMiles: R|kotlin/Float| = R|kotlin/error|(), stepsPerSecond: R|kotlin/Double| = R|kotlin/error|()): R|foo/bar/State.SnapshotMutable|
 
             public constructor(activity: R|kotlin/String|, stepCount: R|kotlin/Int|, startTimeStamp: R|kotlin/Long|, totalDistanceInMiles: R|kotlin/Float|, stepsPerSecond: R|kotlin/Double|): R|foo/bar/State.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/State.Immutable|.toSnapshotMutable(): R|foo/bar/State.SnapshotMutable|
-
-            public final fun R|foo/bar/State.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/State.Immutable|
-
-            private constructor(): R|foo/bar/State.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

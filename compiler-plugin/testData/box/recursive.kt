@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.Node.Companion.toSnapshotMutable
-import foo.bar.Node.Companion.toSnapshotSpec
 
 fun box(): String {
     val node2 = Node.Immutable(value = 2, next = null)

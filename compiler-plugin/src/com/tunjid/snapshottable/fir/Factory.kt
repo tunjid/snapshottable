@@ -1,5 +1,3 @@
-@file:OptIn(SymbolInternals::class)
-
 package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
@@ -16,7 +14,6 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
 import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
-import org.jetbrains.kotlin.fir.plugin.createCompanionObject
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createMemberProperty
 import org.jetbrains.kotlin.fir.plugin.createNestedClass
@@ -24,7 +21,6 @@ import org.jetbrains.kotlin.fir.references.builder.buildResolvedNamedReference
 import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
-import org.jetbrains.kotlin.fir.symbols.SymbolInternals
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
@@ -39,8 +35,8 @@ import org.jetbrains.kotlin.types.ConstantValueKind
 
 val CLASS_NAME_SNAPSHOT_MUTABLE = Name.identifier("SnapshotMutable")
 val MEMBER_FUN_NAME_UPDATE = Name.identifier("update")
-val COMPANION_FUN_NAME_TO_SPEC = Name.identifier("toSnapshotSpec")
-val COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable")
+val FUN_NAME_TO_SPEC = Name.identifier("toSnapshotSpec")
+val FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable")
 
 val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
@@ -60,28 +56,6 @@ inline fun <reified T : Snapshottable.Keys> FirClassSymbol<*>.requireKey(): T {
 
 fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
-
-fun FirExtension.generateCompanionDeclaration(
-    parentInterfaceSymbol: FirRegularClassSymbol,
-): FirRegularClassSymbol? = with(session.filters) {
-    if (parentInterfaceSymbol.fir.companionObjectSymbol != null) return@with null
-
-    val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
-        snapshottableInterfaceSymbol = parentInterfaceSymbol,
-    ) ?: return@with null
-
-    val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
-        ?: return@with null
-
-    val companion = createCompanionObject(
-        owner = parentInterfaceSymbol,
-        key = Snapshottable.Keys.Companion(
-            parentInterfaceClassId = parentInterfaceSymbol.classId,
-            specPrimaryConstructor = specPrimaryConstructor,
-        ),
-    )
-    return companion.symbol
-}
 
 fun FirExtension.generateMutableClass(
     parentInterfaceSymbol: FirClassSymbol<*>,
@@ -138,15 +112,14 @@ fun FirExtension.createFunSnapshotUpdate(
         .symbol
 }
 
-fun FirExtension.createFunCompanionConversion(
-    companionSymbol: FirClassSymbol<*>,
+fun FirExtension.createFunConversion(
+    key: Snapshottable.Keys.WithSpec,
     inputClassSymbol: FirClassSymbol<*>,
     outputClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
 ): FirNamedFunctionSymbol {
-    val key = companionSymbol.requireKey<Snapshottable.Keys.Companion>()
     return createMemberFunction(
-        owner = companionSymbol,
+        owner = inputClassSymbol,
         key = key,
         name = callableId.callableName,
         returnType = outputClassSymbol.constructType(
@@ -154,15 +127,7 @@ fun FirExtension.createFunCompanionConversion(
                 .map(FirTypeParameterSymbol::toConeType)
                 .toTypedArray(),
         ),
-    ) {
-        extensionReceiverType {
-            inputClassSymbol.constructType(
-                typeArguments = key.specPrimaryConstructor.typeParameterSymbols
-                    .map(FirTypeParameterSymbol::toConeType)
-                    .toTypedArray(),
-            )
-        }
-    }
+    )
         .symbol
 }
 

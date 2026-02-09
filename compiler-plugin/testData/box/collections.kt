@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.CollectionState.Companion.toSnapshotMutable
-import foo.bar.CollectionState.Companion.toSnapshotSpec
 
 fun box(): String {
     val state = CollectionState.Immutable(

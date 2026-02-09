@@ -2,7 +2,7 @@ FILE: extra_properties.kt
     package foo.bar
 
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/ExtraState.SnapshotMutable| = (Q|foo/bar/ExtraState.Companion|, Q|foo/bar/ExtraState|.R|foo/bar/ExtraState.Immutable.Immutable|(Int(1), String(extra))).R|foo/bar/ExtraState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/ExtraState.SnapshotMutable| = Q|foo/bar/ExtraState|.R|foo/bar/ExtraState.Immutable.Immutable|(Int(1), String(extra)).R|foo/bar/ExtraState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/ExtraState.SnapshotMutable.base|, Int(1)) ->  {
                 ^box String(Fail 1)
@@ -29,7 +29,7 @@ FILE: extra_properties.kt
             }
         }
 
-        lval spec: R|foo/bar/ExtraState.Immutable| = (Q|foo/bar/ExtraState.Companion|, R|<local>/state|).R|foo/bar/ExtraState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/ExtraState.Immutable| = R|<local>/state|.R|foo/bar/ExtraState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/ExtraState.Immutable.base|, Int(2)) ->  {
                 ^box String(Fail 5)
@@ -65,6 +65,8 @@ FILE: extra_properties.kt
 
             public final fun copy(base: R|kotlin/Int| = this@R|foo/bar/ExtraState.Immutable|.R|foo/bar/ExtraState.Immutable.base|, extra: R|kotlin/String| = this@R|foo/bar/ExtraState.Immutable|.R|foo/bar/ExtraState.Immutable.extra|): R|foo/bar/ExtraState.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/ExtraState.SnapshotMutable|
+
         }
 
         public abstract val extra: R|kotlin/String|
@@ -79,20 +81,11 @@ FILE: extra_properties.kt
                 public get(): R|kotlin/String|
                 public set(value: R|kotlin/String|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/ExtraState.Immutable|
+
             public final fun update(base: R|kotlin/Int| = R|kotlin/error|(), extra: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/ExtraState.SnapshotMutable|
 
             public constructor(base: R|kotlin/Int|, extra: R|kotlin/String|): R|foo/bar/ExtraState.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/ExtraState.Immutable|.toSnapshotMutable(): R|foo/bar/ExtraState.SnapshotMutable|
-
-            public final fun R|foo/bar/ExtraState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/ExtraState.Immutable|
-
-            private constructor(): R|foo/bar/ExtraState.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

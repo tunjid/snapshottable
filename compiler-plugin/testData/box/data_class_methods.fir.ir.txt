@@ -43,6 +43,15 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
           INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.DataMethodsState]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.DataMethodsState.SnapshotMutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.Immutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+              ARG id: CALL 'public final fun <get-id> (): kotlin.Int declared in foo.bar.DataMethodsState.Immutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG data: CALL 'public final fun <get-data> (): kotlin.String declared in foo.bar.DataMethodsState.Immutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.Immutable
         BLOCK_BODY
@@ -149,45 +158,6 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:data type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
                 receiver: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toString' type=foo.bar.DataMethodsState.Immutable origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
-      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DataMethodsState.Companion
-      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] visibility:private returnType:foo.bar.DataMethodsState.Companion [primary]
-        BLOCK_BODY
-          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
-      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
-        overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
-      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        overridden:
-          public open fun hashCode (): kotlin.Int declared in kotlin.Any
-      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
-        overridden:
-          public open fun toString (): kotlin.String declared in kotlin.Any
-      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.DataMethodsState.SnapshotMutable
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.Companion
-        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.DataMethodsState.Immutable
-        BLOCK_BODY
-          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (<this>: foo.bar.DataMethodsState.Immutable): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion'
-            CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-              ARG id: CALL 'public final fun <get-id> (): kotlin.Int declared in foo.bar.DataMethodsState.Immutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>(index:1): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
-              ARG data: CALL 'public final fun <get-data> (): kotlin.String declared in foo.bar.DataMethodsState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>(index:1): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
-      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.DataMethodsState.Immutable
-        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.Companion
-        VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:foo.bar.DataMethodsState.SnapshotMutable
-        BLOCK_BODY
-          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion'
-            CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
-              ARG id: CALL 'public final fun <get-id> (): kotlin.Int declared in foo.bar.DataMethodsState.SnapshotMutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>(index:1): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion.toSnapshotSpec' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-              ARG data: CALL 'public final fun <get-data> (): kotlin.String declared in foo.bar.DataMethodsState.SnapshotMutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>(index:1): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion.toSnapshotSpec' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.DataMethodsState]
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DataMethodsState.SnapshotMutable
       FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:id$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final]
@@ -219,6 +189,15 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
           public open fun toString (): kotlin.String declared in foo.bar.DataMethodsState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.DataMethodsState.Immutable
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.SnapshotMutable
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG id: CALL 'public final fun <get-id> (): kotlin.Int declared in foo.bar.DataMethodsState.SnapshotMutable' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.SnapshotMutable.toSnapshotSpec' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+              ARG data: CALL 'public final fun <get-data> (): kotlin.String declared in foo.bar.DataMethodsState.SnapshotMutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.SnapshotMutable.toSnapshotSpec' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.bar.DataMethodsState.SnapshotMutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.SnapshotMutable
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:id index:1 type:kotlin.Int
@@ -306,51 +285,43 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:state1 type:foo.bar.DataMethodsState.SnapshotMutable [val]
-        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.DataMethodsState.Immutable): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-          ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
+        CALL 'public final fun toSnapshotMutable (): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
             ARG id: CONST Int type=kotlin.Int value=1
             ARG data: CONST String type=kotlin.String value="a"
       VAR name:state2 type:foo.bar.DataMethodsState.SnapshotMutable [val]
-        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.DataMethodsState.Immutable): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-          ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
+        CALL 'public final fun toSnapshotMutable (): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
             ARG id: CONST Int type=kotlin.Int value=1
             ARG data: CONST String type=kotlin.String value="a"
       VAR name:state3 type:foo.bar.DataMethodsState.SnapshotMutable [val]
-        CALL 'public final fun toSnapshotMutable (<this>: foo.bar.DataMethodsState.Immutable): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-          ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-          ARG <this>(index:1): CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
+        CALL 'public final fun toSnapshotMutable (): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.Immutable' type=foo.bar.DataMethodsState.Immutable origin=null
             ARG id: CONST Int type=kotlin.Int value=2
             ARG data: CONST String type=kotlin.String value="b"
       WHEN type=kotlin.Unit origin=IF
         BRANCH
           if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
             ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
-              ARG arg0: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.Immutable origin=null
-                ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-                ARG <this>(index:1): GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-              ARG arg1: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.Immutable origin=null
-                ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-                ARG <this>(index:1): GET_VAR 'val state2: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+              ARG arg0: CALL 'public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+                ARG <this>: GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+              ARG arg1: CALL 'public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+                ARG <this>: GET_VAR 'val state2: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
           then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
             CONST String type=kotlin.String value="Fail 1"
       WHEN type=kotlin.Unit origin=IF
         BRANCH
           if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
-            ARG arg0: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.Immutable origin=null
-              ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-              ARG <this>(index:1): GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-            ARG arg1: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.Immutable origin=null
-              ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-              ARG <this>(index:1): GET_VAR 'val state3: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+            ARG arg0: CALL 'public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG <this>: GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+            ARG arg1: CALL 'public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG <this>: GET_VAR 'val state3: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
           then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
             CONST String type=kotlin.String value="Fail 2"
       VAR name:str type:kotlin.String [val]
         CALL 'public open fun toString (): kotlin.String declared in foo.bar.DataMethodsState.Immutable' type=kotlin.String origin=null
-          ARG <this>: CALL 'public final fun toSnapshotSpec (<this>: foo.bar.DataMethodsState.SnapshotMutable): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Companion' type=foo.bar.DataMethodsState.Immutable origin=null
-            ARG <this>(index:0): GET_OBJECT 'CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Companion] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=foo.bar.DataMethodsState.Companion
-            ARG <this>(index:1): GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
+          ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+            ARG <this>: GET_VAR 'val state1: foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.box' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
       WHEN type=kotlin.Unit origin=IF
         BRANCH
           if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null

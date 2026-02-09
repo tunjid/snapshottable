@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.InheritanceState.Companion.toSnapshotMutable
-import foo.bar.InheritanceState.Companion.toSnapshotSpec
 
 interface Base {
     val id: String

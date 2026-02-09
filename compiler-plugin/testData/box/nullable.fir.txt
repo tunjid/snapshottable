@@ -2,7 +2,7 @@ FILE: nullable.kt
     package foo.bar
 
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/NullableState.SnapshotMutable| = (Q|foo/bar/NullableState.Companion|, Q|foo/bar/NullableState|.R|foo/bar/NullableState.Immutable.Immutable|(Null(null), Null(null))).R|foo/bar/NullableState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/NullableState.SnapshotMutable| = Q|foo/bar/NullableState|.R|foo/bar/NullableState.Immutable.Immutable|(Null(null), Null(null)).R|foo/bar/NullableState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/NullableState.SnapshotMutable.name|, Null(null)) ->  {
                 ^box String(Fail 1)
@@ -36,7 +36,7 @@ FILE: nullable.kt
             }
         }
 
-        lval spec: R|foo/bar/NullableState.Immutable| = (Q|foo/bar/NullableState.Companion|, R|<local>/state|).R|foo/bar/NullableState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/NullableState.Immutable| = R|<local>/state|.R|foo/bar/NullableState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/NullableState.Immutable.name|, Null(null)) ->  {
                 ^box String(Fail 6)
@@ -69,6 +69,8 @@ FILE: nullable.kt
 
             public final fun copy(name: R|kotlin/String?| = this@R|foo/bar/NullableState.Immutable|.R|foo/bar/NullableState.Immutable.name|, count: R|kotlin/Int?| = this@R|foo/bar/NullableState.Immutable|.R|foo/bar/NullableState.Immutable.count|): R|foo/bar/NullableState.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/NullableState.SnapshotMutable|
+
         }
 
         public abstract val name: R|kotlin/String?|
@@ -86,20 +88,11 @@ FILE: nullable.kt
                 public get(): R|kotlin/Int?|
                 public set(value: R|kotlin/Int?|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/NullableState.Immutable|
+
             public final fun update(name: R|kotlin/String?| = R|kotlin/error|(), count: R|kotlin/Int?| = R|kotlin/error|()): R|foo/bar/NullableState.SnapshotMutable|
 
             public constructor(name: R|kotlin/String?|, count: R|kotlin/Int?|): R|foo/bar/NullableState.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/NullableState.Immutable|.toSnapshotMutable(): R|foo/bar/NullableState.SnapshotMutable|
-
-            public final fun R|foo/bar/NullableState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/NullableState.Immutable|
-
-            private constructor(): R|foo/bar/NullableState.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 
