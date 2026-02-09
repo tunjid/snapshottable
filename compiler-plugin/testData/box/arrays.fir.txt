@@ -2,7 +2,7 @@ FILE: arrays.kt
     package foo.bar
 
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/ArrayState.SnapshotMutable| = (Q|foo/bar/ArrayState.Companion|, Q|foo/bar/ArrayState|.R|foo/bar/ArrayState.Immutable.Immutable|(R|kotlin/intArrayOf|(vararg(Int(1), Int(2))), R|kotlin/arrayOf|<R|kotlin/String|>(vararg(String(a), String(b))))).R|foo/bar/ArrayState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/ArrayState.SnapshotMutable| = Q|foo/bar/ArrayState|.R|foo/bar/ArrayState.Immutable.Immutable|(R|kotlin/intArrayOf|(vararg(Int(1), Int(2))), R|kotlin/arrayOf|<R|kotlin/String|>(vararg(String(a), String(b)))).R|foo/bar/ArrayState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.intArray|.R|kotlin/IntArray.get|(Int(0)), Int(1)) ->  {
                 ^box String(Fail 1)
@@ -30,7 +30,7 @@ FILE: arrays.kt
             }
         }
 
-        lval spec: R|foo/bar/ArrayState.Immutable| = (Q|foo/bar/ArrayState.Companion|, R|<local>/state|).R|foo/bar/ArrayState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/ArrayState.Immutable| = R|<local>/state|.R|foo/bar/ArrayState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/ArrayState.Immutable.intArray|.R|kotlin/IntArray.get|(Int(0)), Int(3)) ->  {
                 ^box String(Fail 5)
@@ -97,6 +97,8 @@ FILE: arrays.kt
 
             public final fun copy(intArray: R|kotlin/IntArray| = this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.intArray|, stringArray: R|kotlin/Array<kotlin/String>| = this@R|foo/bar/ArrayState.Immutable|.R|foo/bar/ArrayState.Immutable.stringArray|): R|foo/bar/ArrayState.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/ArrayState.SnapshotMutable|
+
         }
 
         public abstract val intArray: R|kotlin/IntArray|
@@ -114,20 +116,11 @@ FILE: arrays.kt
                 public get(): R|kotlin/Array<kotlin/String>|
                 public set(value: R|kotlin/Array<kotlin/String>|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/ArrayState.Immutable|
+
             public final fun update(intArray: R|kotlin/IntArray| = R|kotlin/error|(), stringArray: R|kotlin/Array<kotlin/String>| = R|kotlin/error|()): R|foo/bar/ArrayState.SnapshotMutable|
 
             public constructor(intArray: R|kotlin/IntArray|, stringArray: R|kotlin/Array<kotlin/String>|): R|foo/bar/ArrayState.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/ArrayState.Immutable|.toSnapshotMutable(): R|foo/bar/ArrayState.SnapshotMutable|
-
-            public final fun R|foo/bar/ArrayState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/ArrayState.Immutable|
-
-            private constructor(): R|foo/bar/ArrayState.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

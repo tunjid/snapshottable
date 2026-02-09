@@ -7,7 +7,7 @@ FILE: inheritance.kt
 
     }
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/InheritanceState.SnapshotMutable| = (Q|foo/bar/InheritanceState.Companion|, Q|foo/bar/InheritanceState|.R|foo/bar/InheritanceState.Immutable.Immutable|(String(1), String(Name))).R|foo/bar/InheritanceState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/InheritanceState.SnapshotMutable| = Q|foo/bar/InheritanceState|.R|foo/bar/InheritanceState.Immutable.Immutable|(String(1), String(Name)).R|foo/bar/InheritanceState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/InheritanceState.SnapshotMutable.id|, String(1)) ->  {
                 ^box String(Fail 1)
@@ -34,7 +34,7 @@ FILE: inheritance.kt
             }
         }
 
-        lval spec: R|foo/bar/InheritanceState.Immutable| = (Q|foo/bar/InheritanceState.Companion|, R|<local>/state|).R|foo/bar/InheritanceState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/InheritanceState.Immutable| = R|<local>/state|.R|foo/bar/InheritanceState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/InheritanceState.Immutable.id|, String(2)) ->  {
                 ^box String(Fail 5)
@@ -67,6 +67,8 @@ FILE: inheritance.kt
 
             public final fun copy(id: R|kotlin/String| = this@R|foo/bar/InheritanceState.Immutable|.R|foo/bar/InheritanceState.Immutable.id|, name: R|kotlin/String| = this@R|foo/bar/InheritanceState.Immutable|.R|foo/bar/InheritanceState.Immutable.name|): R|foo/bar/InheritanceState.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/InheritanceState.SnapshotMutable|
+
         }
 
         public abstract val name: R|kotlin/String|
@@ -81,20 +83,11 @@ FILE: inheritance.kt
                 public get(): R|kotlin/String|
                 public set(value: R|kotlin/String|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/InheritanceState.Immutable|
+
             public final fun update(id: R|kotlin/String| = R|kotlin/error|(), name: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/InheritanceState.SnapshotMutable|
 
             public constructor(id: R|kotlin/String|, name: R|kotlin/String|): R|foo/bar/InheritanceState.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/InheritanceState.Immutable|.toSnapshotMutable(): R|foo/bar/InheritanceState.SnapshotMutable|
-
-            public final fun R|foo/bar/InheritanceState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/InheritanceState.Immutable|
-
-            private constructor(): R|foo/bar/InheritanceState.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

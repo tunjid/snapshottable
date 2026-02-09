@@ -4,7 +4,7 @@ FILE: recursive.kt
     public final fun box(): R|kotlin/String| {
         lval node2: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(2), Null(null))
         lval node1: R|foo/bar/Node.Immutable| = Q|foo/bar/Node|.R|foo/bar/Node.Immutable.Immutable|(Int(1), R|<local>/node2|)
-        lval state: R|foo/bar/Node.SnapshotMutable| = (Q|foo/bar/Node.Companion|, R|<local>/node1|).R|foo/bar/Node.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/Node.SnapshotMutable| = R|<local>/node1|.R|foo/bar/Node.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/Node.SnapshotMutable.value|, Int(1)) ->  {
                 ^box String(Fail 1)
@@ -25,7 +25,7 @@ FILE: recursive.kt
             }
         }
 
-        lval spec: R|foo/bar/Node.Immutable| = (Q|foo/bar/Node.Companion|, R|<local>/state|).R|foo/bar/Node.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/Node.Immutable| = R|<local>/state|.R|foo/bar/Node.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/Node.Immutable.next|?.{ $subj$.R|foo/bar/Node.value| }, Int(3)) ->  {
                 ^box String(Fail 4)
@@ -58,6 +58,8 @@ FILE: recursive.kt
 
             public final fun copy(value: R|kotlin/Int| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.value|, next: R|foo/bar/Node?| = this@R|foo/bar/Node.Immutable|.R|foo/bar/Node.Immutable.next|): R|foo/bar/Node.Immutable|
 
+            public final fun toSnapshotMutable(): R|foo/bar/Node.SnapshotMutable|
+
         }
 
         public final class SnapshotMutable : R|foo/bar/Node| {
@@ -69,20 +71,11 @@ FILE: recursive.kt
                 public get(): R|foo/bar/Node?|
                 public set(value: R|foo/bar/Node?|): R|kotlin/Unit|
 
+            public final fun toSnapshotSpec(): R|foo/bar/Node.Immutable|
+
             public final fun update(value: R|kotlin/Int| = R|kotlin/error|(), next: R|foo/bar/Node?| = R|kotlin/error|()): R|foo/bar/Node.SnapshotMutable|
 
             public constructor(value: R|kotlin/Int|, next: R|foo/bar/Node?|): R|foo/bar/Node.SnapshotMutable|
-
-        }
-
-        public final companion object Companion : R|kotlin/Any| {
-            public final fun R|foo/bar/Node.Immutable|.toSnapshotMutable(): R|foo/bar/Node.SnapshotMutable|
-
-            public final fun R|foo/bar/Node.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/Node.Immutable|
-
-            private constructor(): R|foo/bar/Node.Companion| {
-                super<R|kotlin/Any|>()
-            }
 
         }
 

@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.ComplexState.Companion.toSnapshotMutable
-import foo.bar.ComplexState.Companion.toSnapshotSpec
 
 data class Address(val street: String, val city: String)
 

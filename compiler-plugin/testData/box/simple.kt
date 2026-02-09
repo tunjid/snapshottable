@@ -3,8 +3,6 @@ package foo.bar
 import androidx.compose.runtime.mutableFloatStateOf
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.State.Companion.toSnapshotMutable
-import foo.bar.State.Companion.toSnapshotSpec
 
 fun box(): String {
     val state = State.Immutable().toSnapshotMutable()

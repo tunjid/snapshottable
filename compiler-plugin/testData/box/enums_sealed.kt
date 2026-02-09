@@ -2,8 +2,6 @@ package foo.bar
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
-import foo.bar.EnumSealedState.Companion.toSnapshotMutable
-import foo.bar.EnumSealedState.Companion.toSnapshotSpec
 
 enum class Status {
     IDLE, RUNNING, FINISHED

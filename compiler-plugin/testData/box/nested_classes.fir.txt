@@ -19,6 +19,8 @@ FILE: nested_classes.kt
 
                 public final fun copy(value: R|kotlin/String| = this@R|foo/bar/Outer.InnerState.Immutable|.R|foo/bar/Outer.InnerState.Immutable.value|): R|foo/bar/Outer.InnerState.Immutable|
 
+                public final fun toSnapshotMutable(): R|foo/bar/Outer.InnerState.SnapshotMutable|
+
             }
 
             public abstract val value: R|kotlin/String|
@@ -29,20 +31,11 @@ FILE: nested_classes.kt
                     public get(): R|kotlin/String|
                     public set(value: R|kotlin/String|): R|kotlin/Unit|
 
+                public final fun toSnapshotSpec(): R|foo/bar/Outer.InnerState.Immutable|
+
                 public final fun update(value: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/Outer.InnerState.SnapshotMutable|
 
                 public constructor(value: R|kotlin/String|): R|foo/bar/Outer.InnerState.SnapshotMutable|
-
-            }
-
-            public final companion object Companion : R|kotlin/Any| {
-                public final fun R|foo/bar/Outer.InnerState.Immutable|.toSnapshotMutable(): R|foo/bar/Outer.InnerState.SnapshotMutable|
-
-                public final fun R|foo/bar/Outer.InnerState.SnapshotMutable|.toSnapshotSpec(): R|foo/bar/Outer.InnerState.Immutable|
-
-                private constructor(): R|foo/bar/Outer.InnerState.Companion| {
-                    super<R|kotlin/Any|>()
-                }
 
             }
 
@@ -50,7 +43,7 @@ FILE: nested_classes.kt
 
     }
     public final fun box(): R|kotlin/String| {
-        lval state: R|foo/bar/Outer.InnerState.SnapshotMutable| = (Q|foo/bar/Outer.InnerState.Companion|, Q|foo/bar/Outer.InnerState|.R|foo/bar/Outer.InnerState.Immutable.Immutable|(String(inner))).R|foo/bar/Outer.InnerState.Companion.toSnapshotMutable|()
+        lval state: R|foo/bar/Outer.InnerState.SnapshotMutable| = Q|foo/bar/Outer.InnerState|.R|foo/bar/Outer.InnerState.Immutable.Immutable|(String(inner)).R|foo/bar/Outer.InnerState.Immutable.toSnapshotMutable|()
         when () {
             !=(R|<local>/state|.R|foo/bar/Outer.InnerState.SnapshotMutable.value|, String(inner)) ->  {
                 ^box String(Fail 1)
@@ -64,7 +57,7 @@ FILE: nested_classes.kt
             }
         }
 
-        lval spec: R|foo/bar/Outer.InnerState.Immutable| = (Q|foo/bar/Outer.InnerState.Companion|, R|<local>/state|).R|foo/bar/Outer.InnerState.Companion.toSnapshotSpec|()
+        lval spec: R|foo/bar/Outer.InnerState.Immutable| = R|<local>/state|.R|foo/bar/Outer.InnerState.SnapshotMutable.toSnapshotSpec|()
         when () {
             !=(R|<local>/spec|.R|foo/bar/Outer.InnerState.Immutable.value|, String(changed)) ->  {
                 ^box String(Fail 3)
