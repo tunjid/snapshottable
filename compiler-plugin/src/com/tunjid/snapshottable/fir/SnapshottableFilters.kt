@@ -2,10 +2,12 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import org.jetbrains.kotlin.fir.FirSession
+import org.jetbrains.kotlin.fir.declarations.FirResolvePhase
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.extensions.FirExtensionSessionComponent
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
 import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
+import org.jetbrains.kotlin.fir.scopes.getProperties
 import org.jetbrains.kotlin.fir.scopes.impl.declaredMemberScope
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirConstructorSymbol
@@ -88,8 +90,8 @@ class SnapshottableFilters(
         specSymbol: FirClassSymbol<*>,
     ): FirConstructorSymbol? {
         val scope = specSymbol.declaredMemberScope(
-            session,
-            memberRequiredPhase = null,
+            session = session,
+            memberRequiredPhase = FirResolvePhase.RAW_FIR,
         )
 
         return scope.getDeclaredConstructors()

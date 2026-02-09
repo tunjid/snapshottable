@@ -1,3 +1,5 @@
+@file:OptIn(SymbolInternals::class)
+
 package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
@@ -5,6 +7,7 @@ import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
 import org.jetbrains.kotlin.fir.declarations.FirProperty
+import org.jetbrains.kotlin.fir.declarations.FirResolvePhase
 import org.jetbrains.kotlin.fir.declarations.declaredProperties
 import org.jetbrains.kotlin.fir.declarations.utils.isInterface
 import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
@@ -21,6 +24,7 @@ import org.jetbrains.kotlin.fir.references.builder.buildResolvedNamedReference
 import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.scopes.impl.toConeType
+import org.jetbrains.kotlin.fir.symbols.SymbolInternals
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
@@ -60,7 +64,7 @@ fun FirSession.findClassSymbol(classId: ClassId) =
 fun FirExtension.generateCompanionDeclaration(
     parentInterfaceSymbol: FirRegularClassSymbol,
 ): FirRegularClassSymbol? = with(session.filters) {
-    if (parentInterfaceSymbol.resolvedCompanionObjectSymbol != null) return@with null
+    if (parentInterfaceSymbol.fir.companionObjectSymbol != null) return@with null
 
     val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
         snapshottableInterfaceSymbol = parentInterfaceSymbol,
@@ -168,23 +172,16 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     callableId: CallableId,
 ): FirProperty? {
     val isInterface = classSymbol.isInterface
-    if (isInterface) {
-        val isRedeclaration = specSymbol.declaredProperties(session)
-            .any { it.name == callableId.callableName && it.rawStatus.isOverride }
+    val specProperties = specSymbol.declaredProperties(
+        session,
+        memberRequiredPhase = FirResolvePhase.RAW_FIR,
+    )
 
-        if (isRedeclaration) return null
-    }
-
-    val valueParameterSymbols =
-        if (isInterface) session.filters.specPrimaryConstructor(specSymbol)
-            ?.valueParameterSymbols
-            ?: return null
-        else classSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
-            .specPrimaryConstructor
-            .valueParameterSymbols
-
-    val parameter = valueParameterSymbols
+    val parameter = specProperties
         .singleOrNull { it.name == callableId.callableName } ?: return null
+
+    // Check if this interface is already overriding a property from it's supertype
+    if (isInterface && parameter.rawStatus.isOverride) return null
 
     return createMemberProperty(
         owner = classSymbol,
