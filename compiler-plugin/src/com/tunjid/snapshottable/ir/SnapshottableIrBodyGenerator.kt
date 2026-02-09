@@ -6,8 +6,8 @@
 package com.tunjid.snapshottable.ir
 
 import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.fir.COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE
-import com.tunjid.snapshottable.fir.COMPANION_FUN_NAME_TO_SPEC
+import com.tunjid.snapshottable.fir.FUN_NAME_TO_SNAPSHOT_MUTABLE
+import com.tunjid.snapshottable.fir.FUN_NAME_TO_SPEC
 import com.tunjid.snapshottable.fir.MEMBER_FUN_NAME_UPDATE
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
@@ -96,8 +96,8 @@ class SnapshottableIrBodyGenerator(
             MEMBER_FUN_NAME_UPDATE ->
                 generateUpdateFunction(declaration)
 
-            COMPANION_FUN_NAME_TO_SPEC,
-            COMPANION_FUN_NAME_TO_SNAPSHOT_MUTABLE,
+            FUN_NAME_TO_SPEC,
+            FUN_NAME_TO_SNAPSHOT_MUTABLE,
             ->
                 generateConversionFunction(declaration)
 
@@ -153,10 +153,9 @@ class SnapshottableIrBodyGenerator(
         val irClass = function.returnType.getClass() ?: return null
         val constructorSymbol = irClass.primaryConstructor?.symbol ?: return null
 
-        val extensionReceiver = function.parameters
-            .first { it.kind == IrParameterKind.ExtensionReceiver }
+        val receiver = function.dispatchReceiverParameter ?: return null
 
-        val properties = extensionReceiver.type
+        val properties = receiver.type
             .getClass()
             ?.declarations
             ?.filterIsInstance<IrProperty>()
@@ -180,7 +179,7 @@ class SnapshottableIrBodyGenerator(
                         val property = properties[index]
                         val getter = requireNotNull(property.getter)
                         arguments[index] = irCall(getter).apply {
-                            dispatchReceiver = irGet(extensionReceiver)
+                            dispatchReceiver = irGet(receiver)
                         }
                     }
                 },

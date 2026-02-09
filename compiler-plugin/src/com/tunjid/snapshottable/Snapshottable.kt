@@ -29,8 +29,7 @@ object Snapshottable {
             abstract val specPrimaryConstructor: FirConstructorSymbol
         }
 
-        data class Companion(
-            val parentInterfaceClassId: ClassId,
+        data class Spec(
             override val specPrimaryConstructor: FirConstructorSymbol,
         ) : WithSpec()
 
