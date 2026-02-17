@@ -4,7 +4,7 @@ composeMultiplatform = "1.10.0"
 dokka = "2.1.0"
 
 # https://github.com/JetBrains/kotlin
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 
 # https://github.com/Kotlin/binary-compatibility-validator
 kotlin-binaryCompatibilityValidator = "0.16.3"
