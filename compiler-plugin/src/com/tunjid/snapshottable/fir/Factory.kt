@@ -1,6 +1,9 @@
+@file:OptIn(org.jetbrains.kotlin.fir.symbols.SymbolInternals::class)
+
 package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
+import com.tunjid.snapshottable.compat.CompatContext
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
@@ -14,9 +17,6 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 import org.jetbrains.kotlin.fir.expressions.builder.buildFunctionCall
 import org.jetbrains.kotlin.fir.expressions.builder.buildLiteralExpression
 import org.jetbrains.kotlin.fir.extensions.FirExtension
-import org.jetbrains.kotlin.fir.plugin.createMemberFunction
-import org.jetbrains.kotlin.fir.plugin.createMemberProperty
-import org.jetbrains.kotlin.fir.plugin.createNestedClass
 import org.jetbrains.kotlin.fir.references.builder.buildResolvedNamedReference
 import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
@@ -59,6 +59,7 @@ fun FirSession.findClassSymbol(classId: ClassId) =
 
 fun FirExtension.generateMutableClass(
     parentInterfaceSymbol: FirClassSymbol<*>,
+    compatContext: CompatContext,
 ): FirRegularClassSymbol? = with(session.filters) {
     val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
         snapshottableInterfaceSymbol = parentInterfaceSymbol,
@@ -67,49 +68,52 @@ fun FirExtension.generateMutableClass(
     val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
         ?: return@with null
 
-    createNestedClass(
-        owner = parentInterfaceSymbol,
-        name = CLASS_NAME_SNAPSHOT_MUTABLE,
-        key = Snapshottable.Keys.SnapshotMutable(
-            specPrimaryConstructor = specPrimaryConstructor,
-        ),
-    ) {
-        superType(parentInterfaceSymbol.defaultType())
-    }.symbol
+    with(compatContext) {
+        createNestedClassCompat(
+            owner = parentInterfaceSymbol,
+            name = CLASS_NAME_SNAPSHOT_MUTABLE,
+            key = Snapshottable.Keys.SnapshotMutable(
+                specPrimaryConstructor = specPrimaryConstructor,
+            ),
+        ) {
+            superType(parentInterfaceSymbol.defaultType())
+        }.symbol
+    }
 }
 
 fun FirExtension.createFunSnapshotUpdate(
     mutableClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
+    compatContext: CompatContext,
 ): FirNamedFunctionSymbol {
     val key = mutableClassSymbol.requireKey<Snapshottable.Keys.SnapshotMutable>()
-    return createMemberFunction(
-        owner = mutableClassSymbol,
-        key = mutableClassSymbol.requireKey(),
-        name = callableId.callableName,
-        returnType = mutableClassSymbol.constructType(
-            key.specPrimaryConstructor.typeParameterSymbols
-                .map(FirTypeParameterSymbol::toConeType)
-                .toTypedArray(),
-        ),
-    ) {
-        key.specPrimaryConstructor.valueParameterSymbols
-            .forEach { parameterSymbol ->
-                valueParameter(
-                    name = parameterSymbol.name,
-                    type = parameterSymbol.resolvedReturnType,
-                    hasDefaultValue = true,
-                )
-            }
-    }
-        .apply {
-            for (param in valueParameters) {
-                if (param.defaultValue != null) {
-                    param.replaceDefaultValue(buildSafeDefaultValueStub(session))
+    val symbol = with(compatContext) {
+        createMemberFunctionCompat(
+            owner = mutableClassSymbol,
+            key = mutableClassSymbol.requireKey(),
+            name = callableId.callableName,
+            returnType = mutableClassSymbol.constructType(
+                key.specPrimaryConstructor.typeParameterSymbols
+                    .map(FirTypeParameterSymbol::toConeType)
+                    .toTypedArray(),
+            ),
+        ) {
+            key.specPrimaryConstructor.valueParameterSymbols
+                .forEach { parameterSymbol ->
+                    valueParameter(
+                        name = parameterSymbol.name,
+                        type = parameterSymbol.resolvedReturnType,
+                        hasDefaultValue = true,
+                    )
                 }
-            }
         }
-        .symbol
+    }
+    for (param in symbol.fir.valueParameters) {
+        if (param.defaultValue != null) {
+            param.replaceDefaultValue(buildSafeDefaultValueStub(session))
+        }
+    }
+    return symbol
 }
 
 fun FirExtension.createFunConversion(
@@ -117,8 +121,9 @@ fun FirExtension.createFunConversion(
     inputClassSymbol: FirClassSymbol<*>,
     outputClassSymbol: FirClassSymbol<*>,
     callableId: CallableId,
-): FirNamedFunctionSymbol {
-    return createMemberFunction(
+    compatContext: CompatContext,
+): FirNamedFunctionSymbol = with(compatContext) {
+    createMemberFunctionCompat(
         owner = inputClassSymbol,
         key = key,
         name = callableId.callableName,
@@ -128,13 +133,13 @@ fun FirExtension.createFunConversion(
                 .toTypedArray(),
         ),
     )
-        .symbol
 }
 
 fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     classSymbol: FirClassSymbol<*>,
     specSymbol: FirClassSymbol<*>,
     callableId: CallableId,
+    compatContext: CompatContext,
 ): FirProperty? {
     val isInterface = classSymbol.isInterface
     val specProperties = specSymbol.declaredProperties(
@@ -148,16 +153,18 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     // Check if this interface is already overriding a property from it's supertype
     if (isInterface && parameter.rawStatus.isOverride) return null
 
-    return createMemberProperty(
-        owner = classSymbol,
-        key = if (isInterface) Snapshottable.Keys.Default else classSymbol.requireKey(),
-        name = callableId.callableName,
-        returnType = parameter.resolvedReturnType,
-        isVal = classSymbol.isInterface,
-        hasBackingField = false,
-    ) {
-        status { isOverride = !isInterface }
-        if (isInterface) modality = Modality.ABSTRACT
+    return with(compatContext) {
+        createMemberPropertyCompat(
+            owner = classSymbol,
+            key = if (isInterface) Snapshottable.Keys.Default else classSymbol.requireKey<Snapshottable.Keys>(),
+            name = callableId.callableName,
+            returnType = parameter.resolvedReturnType,
+            isVal = classSymbol.isInterface,
+            hasBackingField = false,
+        ) {
+            status { isOverride = !isInterface }
+            if (isInterface) modality = Modality.ABSTRACT
+        }
     }
 }
 

@@ -4,7 +4,7 @@ composeMultiplatform = "1.10.0"
 dokka = "2.1.0"
 
 # https://github.com/JetBrains/kotlin
-kotlin = "2.3.10"
+kotlin = "2.3.20"
 
 # https://github.com/Kotlin/binary-compatibility-validator
 kotlin-binaryCompatibilityValidator = "0.16.3"
@@ -12,6 +12,7 @@ kotlin-binaryCompatibilityValidator = "0.16.3"
 # https://github.com/gmazzo/gradle-buildconfig-plugin
 buildconfig = "5.6.5"
 mavenPublish = "0.34.0"
+shadow = "9.2.2"
 
 
 [libraries]
@@ -35,6 +36,7 @@ maven-publish-gradlePlugin = { group = "com.vanniktech", name = "gradle-maven-pu
 axionRelease = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion-release" }
 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlin-binaryCompatibilityValidator"}
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig"}
@@ -44,3 +46,5 @@ gradle-idea = { id = "idea" }
 gradle-plugin = { id = "java-gradle-plugin" }
 
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

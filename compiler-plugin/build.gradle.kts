@@ -1,8 +1,11 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.java.test.fixtures)
     alias(libs.plugins.gradle.idea)
+    alias(libs.plugins.shadow)
     id("kotlin-jvm-convention")
     id("publishing-library-convention")
 }
@@ -30,8 +33,22 @@ val composeRuntimeClasspath: Configuration by configurations.creating { isTransi
 
 val testArtifacts: Configuration by configurations.creating
 
+val embedded by configurations.dependencyScope("embedded")
+val embeddedClasspath by configurations.resolvable("embeddedClasspath") {
+    extendsFrom(embedded)
+}
+configurations.named("compileOnly").configure { extendsFrom(embedded) }
+configurations.named("testImplementation").configure { extendsFrom(embedded) }
+
 dependencies {
     compileOnly(libs.kotlin.compiler)
+
+    add(embedded.name, project(":compiler-compat"))
+    rootProject.projectDir.resolve("compiler-compat").listFiles()?.forEach { dir ->
+        if (dir.isDirectory && dir.name.startsWith("k") && File(dir, "version.txt").exists()) {
+            add(embedded.name, project(":compiler-compat:${dir.name}"))
+        }
+    }
 
     testFixturesApi(libs.kotlin.test.junit5)
     testFixturesApi(libs.kotlin.test.framework)
@@ -109,3 +126,36 @@ fun Test.setLibraryProperty(propName: String, jarName: String) {
         ?: return
     systemProperty(propName, path)
 }
+
+// Shadow jar: bundles compiler-compat + all per-version compat implementations into a single
+// fat jar with merged META-INF/services. ServiceLoader picks the right impl at plugin runtime
+// based on the hosting compiler's META-INF/compiler.version.
+tasks.named<Jar>("jar") {
+    enabled = false
+}
+
+val shadowJar = tasks.named<ShadowJar>("shadowJar") {
+    archiveClassifier.set("")
+    configurations = listOf(embeddedClasspath)
+    dependencies {
+        // Shadow defaults to including every dep; we only want the compat modules, not
+        // the Kotlin compiler (those come from the host at runtime).
+        exclude(dependency("org.jetbrains.kotlin:.*"))
+        exclude(dependency("org.jetbrains:annotations:.*"))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    mergeServiceFiles()
+}
+
+// Replace the disabled regular jar with the shadow jar in the outgoing variants so
+// downstream consumers (and mavenPublish) receive the fat jar.
+for (configurationName in arrayOf("apiElements", "runtimeElements")) {
+    configurations.named(configurationName) {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+}
+
+// Shadow's default shadowJar task depends on `jar` being enabled; since we disabled it,
+// make `assemble` still produce something.
+tasks.named("assemble") { dependsOn(shadowJar) }

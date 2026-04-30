@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.binary.compatibility.validator) apply false
     alias(libs.plugins.jetbrains.dokka) apply false
     alias(libs.plugins.buildconfig) apply false
+    alias(libs.plugins.maven.publish) apply false
 }
 
 allprojects {

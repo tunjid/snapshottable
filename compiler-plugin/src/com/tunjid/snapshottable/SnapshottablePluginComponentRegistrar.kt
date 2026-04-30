@@ -1,10 +1,9 @@
 package com.tunjid.snapshottable
 
+import com.tunjid.snapshottable.compat.CompatContext
 import com.tunjid.snapshottable.ir.SnapshottableIrGenerationExtension
-import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.fir.extensions.FirExtensionRegistrarAdapter
 
 class SnapshottablePluginComponentRegistrar : CompilerPluginRegistrar() {
     override val pluginId: String
@@ -13,7 +12,16 @@ class SnapshottablePluginComponentRegistrar : CompilerPluginRegistrar() {
         get() = true
 
     override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
-        FirExtensionRegistrarAdapter.registerExtension(SnapshottablePluginRegistrar())
-        IrGenerationExtension.registerExtension(SnapshottableIrGenerationExtension())
+        val compatContext = try {
+            CompatContext.create()
+        } catch (t: Throwable) {
+            System.err.println("[snapshottable] Skipping: no compatible CompatContext factory")
+            t.printStackTrace()
+            return
+        }
+        with(compatContext) {
+            registerFirExtensionCompat(SnapshottablePluginRegistrar(compatContext))
+            registerIrExtensionCompat(SnapshottableIrGenerationExtension())
+        }
     }
 }

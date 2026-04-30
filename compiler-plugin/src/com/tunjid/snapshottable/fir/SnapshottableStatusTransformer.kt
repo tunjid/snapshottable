@@ -1,7 +1,7 @@
 package com.tunjid.snapshottable.fir
 
+import com.tunjid.snapshottable.compat.CompatContext
 import org.jetbrains.kotlin.fir.FirSession
-import org.jetbrains.kotlin.fir.copy
 import org.jetbrains.kotlin.fir.declarations.FirDeclaration
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationStatus
 import org.jetbrains.kotlin.fir.declarations.FirProperty
@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 
 class SnapshottableStatusTransformer(
     session: FirSession,
+    private val compatContext: CompatContext,
 ) : FirStatusTransformerExtension(session) {
 
     override fun needTransformStatus(
@@ -28,5 +29,5 @@ class SnapshottableStatusTransformer(
         property: FirProperty,
         containingClass: FirClassLikeSymbol<*>?,
         isLocal: Boolean,
-    ): FirDeclarationStatus = status.copy(isOverride = true)
+    ): FirDeclarationStatus = with(compatContext) { status.copyCompat(isOverride = true) }
 }
