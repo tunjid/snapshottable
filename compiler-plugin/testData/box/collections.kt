@@ -1,12 +1,12 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 fun box(): String {
     val state = CollectionState.Immutable(
         list = listOf("a", "b"),
-        map = mapOf("key" to 1)
+        map = mapOf("key" to 1),
     ).toSnapshotMutable()
 
     if (state.list != listOf("a", "b")) return "Fail 1"
@@ -30,6 +30,6 @@ interface CollectionState {
     @SnapshotSpec
     data class Immutable(
         val list: List<String>,
-        val map: Map<String, Int>
+        val map: Map<String, Int>,
     ) : CollectionState
 }

@@ -333,10 +333,10 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.EnumSealedState.SnapshotMutable declared in foo.bar.EnumSealedState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (status: foo.bar.Status, result: foo.bar.Result) declared in foo.bar.EnumSealedState.SnapshotMutable' type=foo.bar.EnumSealedState.SnapshotMutable origin=null
-              ARG status: CALL 'public final fun <get-status> (): foo.bar.Status declared in foo.bar.EnumSealedState.Immutable' type=foo.bar.Status origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toSnapshotMutable' type=foo.bar.EnumSealedState.Immutable origin=null
-              ARG result: CALL 'public final fun <get-result> (): foo.bar.Result declared in foo.bar.EnumSealedState.Immutable' type=foo.bar.Result origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toSnapshotMutable' type=foo.bar.EnumSealedState.Immutable origin=null
+              ARG status: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:status type:foo.bar.Status visibility:private [final]' type=foo.bar.Status origin=null
+                receiver: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toSnapshotMutable' type=foo.bar.EnumSealedState.Immutable origin=null
+              ARG result: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:result type:foo.bar.Result visibility:private [final]' type=foo.bar.Result origin=null
+                receiver: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toSnapshotMutable' type=foo.bar.EnumSealedState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:foo.bar.Status [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.Immutable
         BLOCK_BODY

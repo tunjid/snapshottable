@@ -46,6 +46,7 @@ import org.jetbrains.kotlin.ir.types.typeOrNull
 import org.jetbrains.kotlin.ir.util.constructedClass
 import org.jetbrains.kotlin.ir.util.defaultType
 import org.jetbrains.kotlin.ir.util.hasDefaultValue
+import org.jetbrains.kotlin.ir.util.isFinalClass
 import org.jetbrains.kotlin.ir.util.nonDispatchParameters
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
@@ -78,8 +79,19 @@ class SnapshottableIrBodyGenerator(
 
         val declarations = declaration.declarations
 
+        // Only back the properties that correspond to primary-constructor parameters. Other
+        // compiler plugins (notably the Compose compiler with its `$stable` marker) inject
+        // synthetic properties that happen to land in `declarations` before our IR pass runs,
+        // and those have no setter / no matching constructor parameter.
+        val primaryConstructor = declaration.primaryConstructor
+        val constructorParameterNames = primaryConstructor
+            ?.parameters
+            ?.mapTo(mutableSetOf()) { it.name }
+            .orEmpty()
+
         val mutablePropertyBackings = declarations
             .filterIsInstance<IrProperty>()
+            .filter { it.name in constructorParameterNames }
             .map { generateBacking(declaration, it, context) }
 
         declarations.addAll(0, mutablePropertyBackings)
@@ -138,7 +150,7 @@ class SnapshottableIrBodyGenerator(
                 val setter = requireNotNull(property.setter)
 
                 +irCall(setter).apply {
-                    dispatchReceiver = irGet(receiver)
+                    arguments[0] = irGet(receiver)
                     arguments[MutableClassSetterArgumentIndex] = irGet(parameter)
                 }
             }
@@ -155,11 +167,14 @@ class SnapshottableIrBodyGenerator(
 
         val receiver = function.dispatchReceiverParameter ?: return null
 
-        val properties = receiver.type
+        val receiverClass = receiver.type
             .getClass()
-            ?.declarations
-            ?.filterIsInstance<IrProperty>()
             ?: return null
+
+        val propertiesByName = receiverClass
+            .declarations
+            .filterIsInstance<IrProperty>()
+            .associateBy { it.name }
 
         val irBuilder = MutableStateFunctionBuilder(
             context = context,
@@ -175,11 +190,17 @@ class SnapshottableIrBodyGenerator(
                     for ((i, typeParameterType) in constructorSymbol.typesOfTypeParameters().withIndex()) {
                         typeArguments[i] = typeParameterType
                     }
-                    for (index in properties.indices) {
-                        val property = properties[index]
-                        val getter = requireNotNull(property.getter)
-                        arguments[index] = irCall(getter).apply {
-                            dispatchReceiver = irGet(receiver)
+                    constructorSymbol.owner.parameters.forEachIndexed { index, parameter ->
+                        val property = propertiesByName[parameter.name]
+                            ?: error("No property named '${parameter.name}' on ${receiverClass.name} matching constructor parameter of ${irClass.name}")
+                        val backingField = property.backingField
+                        arguments[index] = if (receiverClass.isFinalClass && backingField != null) {
+                            irGetField(irGet(receiver), backingField)
+                        } else {
+                            val getter = requireNotNull(property.getter)
+                            irCall(getter).apply {
+                                arguments[0] = irGet(receiver)
+                            }
                         }
                     }
                 },

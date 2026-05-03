@@ -1,7 +1,7 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 interface Base {
     val id: String
@@ -10,7 +10,7 @@ interface Base {
 fun box(): String {
     val state = InheritanceState.Immutable(
         id = "1",
-        name = "Name"
+        name = "Name",
     ).toSnapshotMutable()
 
     if (state.id != "1") return "Fail 1"
@@ -34,6 +34,6 @@ interface InheritanceState : Base {
     @SnapshotSpec
     data class Immutable(
         override val id: String,
-        val name: String
+        val name: String,
     ) : InheritanceState
 }

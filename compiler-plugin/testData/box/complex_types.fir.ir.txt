@@ -184,10 +184,10 @@ FILE fqName:foo.bar fileName:/complex_types.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.ComplexState.SnapshotMutable declared in foo.bar.ComplexState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (user: kotlin.String, address: foo.bar.Address) declared in foo.bar.ComplexState.SnapshotMutable' type=foo.bar.ComplexState.SnapshotMutable origin=null
-              ARG user: CALL 'public final fun <get-user> (): kotlin.String declared in foo.bar.ComplexState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Immutable.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
-              ARG address: CALL 'public final fun <get-address> (): foo.bar.Address declared in foo.bar.ComplexState.Immutable' type=foo.bar.Address origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Immutable.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
+              ARG user: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:user type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Immutable.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
+              ARG address: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:address type:foo.bar.Address visibility:private [final]' type=foo.bar.Address origin=null
+                receiver: GET_VAR '<this>: foo.bar.ComplexState.Immutable declared in foo.bar.ComplexState.Immutable.toSnapshotMutable' type=foo.bar.ComplexState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ComplexState.Immutable
         BLOCK_BODY

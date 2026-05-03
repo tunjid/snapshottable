@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/nullable.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.NullableState.SnapshotMutable declared in foo.bar.NullableState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String?, count: kotlin.Int?) declared in foo.bar.NullableState.SnapshotMutable' type=foo.bar.NullableState.SnapshotMutable origin=null
-              ARG name: CALL 'public final fun <get-name> (): kotlin.String? declared in foo.bar.NullableState.Immutable' type=kotlin.String? origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.NullableState.Immutable declared in foo.bar.NullableState.Immutable.toSnapshotMutable' type=foo.bar.NullableState.Immutable origin=null
-              ARG count: CALL 'public final fun <get-count> (): kotlin.Int? declared in foo.bar.NullableState.Immutable' type=kotlin.Int? origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.NullableState.Immutable declared in foo.bar.NullableState.Immutable.toSnapshotMutable' type=foo.bar.NullableState.Immutable origin=null
+              ARG name: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+                receiver: GET_VAR '<this>: foo.bar.NullableState.Immutable declared in foo.bar.NullableState.Immutable.toSnapshotMutable' type=foo.bar.NullableState.Immutable origin=null
+              ARG count: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:count type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+                receiver: GET_VAR '<this>: foo.bar.NullableState.Immutable declared in foo.bar.NullableState.Immutable.toSnapshotMutable' type=foo.bar.NullableState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String? [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.NullableState.Immutable
         BLOCK_BODY

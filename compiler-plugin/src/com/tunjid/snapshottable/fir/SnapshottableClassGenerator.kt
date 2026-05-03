@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.utils.mapToSetOrEmpty
 
 fun CompatContext.snapshottableClassGenerator(
-    session: FirSession
+    session: FirSession,
 ): SnapshottableClassGenerator = SnapshottableClassGenerator(session, this)
 
 class SnapshottableClassGenerator(

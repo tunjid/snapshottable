@@ -34,8 +34,8 @@ FILE fqName:foo.bar fileName:/nested_classes.kt
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.Outer.InnerState.SnapshotMutable declared in foo.bar.Outer.InnerState.Immutable'
               CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in foo.bar.Outer.InnerState.SnapshotMutable' type=foo.bar.Outer.InnerState.SnapshotMutable origin=null
-                ARG value: CALL 'public final fun <get-value> (): kotlin.String declared in foo.bar.Outer.InnerState.Immutable' type=kotlin.String origin=null
-                  ARG <this>: GET_VAR '<this>: foo.bar.Outer.InnerState.Immutable declared in foo.bar.Outer.InnerState.Immutable.toSnapshotMutable' type=foo.bar.Outer.InnerState.Immutable origin=null
+                ARG value: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: foo.bar.Outer.InnerState.Immutable declared in foo.bar.Outer.InnerState.Immutable.toSnapshotMutable' type=foo.bar.Outer.InnerState.Immutable origin=null
         FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Outer.InnerState.Immutable
           BLOCK_BODY

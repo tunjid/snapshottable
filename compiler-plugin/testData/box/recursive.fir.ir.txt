@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/recursive.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.Node.SnapshotMutable declared in foo.bar.Node.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int, next: foo.bar.Node?) declared in foo.bar.Node.SnapshotMutable' type=foo.bar.Node.SnapshotMutable origin=null
-              ARG value: CALL 'public open fun <get-value> (): kotlin.Int declared in foo.bar.Node.Immutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
-              ARG next: CALL 'public open fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.Immutable' type=foo.bar.Node? origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
+              ARG value: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
+              ARG next: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
+                receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toSnapshotMutable' type=foo.bar.Node.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Immutable
         BLOCK_BODY

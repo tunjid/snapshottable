@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/collections.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.CollectionState.SnapshotMutable declared in foo.bar.CollectionState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (list: kotlin.collections.List<kotlin.String>, map: kotlin.collections.Map<kotlin.String, kotlin.Int>) declared in foo.bar.CollectionState.SnapshotMutable' type=foo.bar.CollectionState.SnapshotMutable origin=null
-              ARG list: CALL 'public final fun <get-list> (): kotlin.collections.List<kotlin.String> declared in foo.bar.CollectionState.Immutable' type=kotlin.collections.List<kotlin.String> origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.CollectionState.Immutable declared in foo.bar.CollectionState.Immutable.toSnapshotMutable' type=foo.bar.CollectionState.Immutable origin=null
-              ARG map: CALL 'public final fun <get-map> (): kotlin.collections.Map<kotlin.String, kotlin.Int> declared in foo.bar.CollectionState.Immutable' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.CollectionState.Immutable declared in foo.bar.CollectionState.Immutable.toSnapshotMutable' type=foo.bar.CollectionState.Immutable origin=null
+              ARG list: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:list type:kotlin.collections.List<kotlin.String> visibility:private [final]' type=kotlin.collections.List<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.CollectionState.Immutable declared in foo.bar.CollectionState.Immutable.toSnapshotMutable' type=foo.bar.CollectionState.Immutable origin=null
+              ARG map: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:map type:kotlin.collections.Map<kotlin.String, kotlin.Int> visibility:private [final]' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+                receiver: GET_VAR '<this>: foo.bar.CollectionState.Immutable declared in foo.bar.CollectionState.Immutable.toSnapshotMutable' type=foo.bar.CollectionState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.collections.List<kotlin.String> [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.CollectionState.Immutable
         BLOCK_BODY

@@ -19,7 +19,7 @@ public fun KotlinToolingVersion(kotlinVersionString: String): KotlinToolingVersi
 
     if (majorVersion == null || minorVersion == null) {
         throw IllegalArgumentException(
-            "Invalid Kotlin version: $kotlinVersionString (Failed parsing major/minor version)"
+            "Invalid Kotlin version: $kotlinVersionString (Failed parsing major/minor version)",
         )
     }
 
@@ -48,7 +48,8 @@ public class KotlinToolingVersion(
     public val minor: Int,
     public val patch: Int,
     public val classifier: String?,
-) : Comparable<KotlinToolingVersion>, Serializable {
+) : Comparable<KotlinToolingVersion>,
+    Serializable {
 
     public enum class Maturity {
         SNAPSHOT,
@@ -176,7 +177,7 @@ internal fun KotlinToolingVersion.toKotlinVersion(): KotlinVersion =
     KotlinVersion(major, minor, patch)
 
 internal fun KotlinVersion.toKotlinToolingVersion(
-    classifier: String? = null
+    classifier: String? = null,
 ): KotlinToolingVersion = KotlinToolingVersion(this, classifier)
 
 internal val KotlinToolingVersion.isSnapshot: Boolean

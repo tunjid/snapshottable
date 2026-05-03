@@ -106,16 +106,16 @@ FILE fqName:foo.bar fileName:/simple.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.State.SnapshotMutable declared in foo.bar.State.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (activity: kotlin.String, stepCount: kotlin.Int, startTimeStamp: kotlin.Long, totalDistanceInMiles: kotlin.Float, stepsPerSecond: kotlin.Double) declared in foo.bar.State.SnapshotMutable' type=foo.bar.State.SnapshotMutable origin=null
-              ARG activity: CALL 'public final fun <get-activity> (): kotlin.String declared in foo.bar.State.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
-              ARG stepCount: CALL 'public final fun <get-stepCount> (): kotlin.Int declared in foo.bar.State.Immutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
-              ARG startTimeStamp: CALL 'public final fun <get-startTimeStamp> (): kotlin.Long declared in foo.bar.State.Immutable' type=kotlin.Long origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
-              ARG totalDistanceInMiles: CALL 'public final fun <get-totalDistanceInMiles> (): kotlin.Float declared in foo.bar.State.Immutable' type=kotlin.Float origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
-              ARG stepsPerSecond: CALL 'public final fun <get-stepsPerSecond> (): kotlin.Double declared in foo.bar.State.Immutable' type=kotlin.Double origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG activity: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:activity type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG stepCount: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepCount type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG startTimeStamp: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:startTimeStamp type:kotlin.Long visibility:private [final]' type=kotlin.Long origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG totalDistanceInMiles: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:totalDistanceInMiles type:kotlin.Float visibility:private [final]' type=kotlin.Float origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
+              ARG stepsPerSecond: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stepsPerSecond type:kotlin.Double visibility:private [final]' type=kotlin.Double origin=null
+                receiver: GET_VAR '<this>: foo.bar.State.Immutable declared in foo.bar.State.Immutable.toSnapshotMutable' type=foo.bar.State.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.State.Immutable
         BLOCK_BODY

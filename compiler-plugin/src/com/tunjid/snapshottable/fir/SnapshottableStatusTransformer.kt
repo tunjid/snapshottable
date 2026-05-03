@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.fir.resolve.getContainingClass
 import org.jetbrains.kotlin.fir.symbols.impl.FirClassLikeSymbol
 
 fun CompatContext.snapshottableStatusTransformer(
-    session: FirSession
+    session: FirSession,
 ): SnapshottableStatusTransformer = SnapshottableStatusTransformer(session, this)
 
 class SnapshottableStatusTransformer(

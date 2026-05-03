@@ -1,12 +1,12 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 fun box(): String {
     val state = ArrayState.Immutable(
         intArray = intArrayOf(1, 2),
-        stringArray = arrayOf("a", "b")
+        stringArray = arrayOf("a", "b"),
     ).toSnapshotMutable()
 
     if (state.intArray[0] != 1) return "Fail 1"
@@ -33,7 +33,7 @@ interface ArrayState {
     @SnapshotSpec
     data class Immutable(
         val intArray: IntArray,
-        val stringArray: Array<String>
+        val stringArray: Array<String>,
     ) : ArrayState {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true

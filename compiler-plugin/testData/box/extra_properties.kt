@@ -1,12 +1,12 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 fun box(): String {
     val state = ExtraState.Immutable(
         base = 1,
-        extra = "extra"
+        extra = "extra",
     ).toSnapshotMutable()
 
     if (state.base != 1) return "Fail 1"
@@ -32,6 +32,6 @@ interface ExtraState {
     @SnapshotSpec
     data class Immutable(
         override val base: Int,
-        val extra: String
+        val extra: String,
     ) : ExtraState
 }

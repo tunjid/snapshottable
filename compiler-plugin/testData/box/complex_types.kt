@@ -1,7 +1,7 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 data class Address(val street: String, val city: String)
 
@@ -9,7 +9,7 @@ fun box(): String {
     val initialAddress = Address("123 Main St", "City")
     val state = ComplexState.Immutable(
         user = "User",
-        address = initialAddress
+        address = initialAddress,
     ).toSnapshotMutable()
 
     if (state.address != initialAddress) return "Fail 1"
@@ -35,6 +35,6 @@ interface ComplexState {
     @SnapshotSpec
     data class Immutable(
         val user: String,
-        val address: Address
+        val address: Address,
     ) : ComplexState
 }

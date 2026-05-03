@@ -25,7 +25,7 @@ class SnapshottablePluginComponentRegistrar : CompilerPluginRegistrar() {
         }
         if (compatContext == null) {
             System.err.println(
-                "[snapshottable] Skipping: detected Kotlin compiler version is not supported in this IDE build"
+                "[snapshottable] Skipping: detected Kotlin compiler version is not supported in this IDE build",
             )
             return
         }
@@ -33,10 +33,10 @@ class SnapshottablePluginComponentRegistrar : CompilerPluginRegistrar() {
             registerFirExtensionCompat(
                 SnapshottablePluginRegistrar(
                     compatContext = compatContext,
-                )
+                ),
             )
             registerIrExtensionCompat(
-                SnapshottableIrGenerationExtension()
+                SnapshottableIrGenerationExtension(),
             )
         }
     }

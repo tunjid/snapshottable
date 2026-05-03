@@ -204,7 +204,7 @@ public interface CompatContext {
             Available factories for: ${factories.joinToString(separator = "\n") { it.minVersion }}
             Detected version(s): ${factories.map { it.currentVersion }.distinct().joinToString(separator = "\n")}
           """
-                        .trimIndent()
+                        .trimIndent(),
                 )
         }
 
@@ -304,7 +304,7 @@ public interface CompatContext {
             public fun loadCompilerVersionString(): String {
                 return loadCompilerVersionStringOrNull()
                     ?: throw AssertionError(
-                        "'$COMPILER_VERSION_FILE' not found in the classpath or was blank"
+                        "'$COMPILER_VERSION_FILE' not found in the classpath or was blank",
                     )
             }
 

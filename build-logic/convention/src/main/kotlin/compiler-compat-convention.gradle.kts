@@ -25,7 +25,6 @@ plugins {
 
 configureKotlinJvm()
 
-
 sourceSets {
     main {
         java.setSrcDirs(listOf("src"))

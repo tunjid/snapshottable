@@ -15,10 +15,13 @@ public annotation class CompatApi(
     public enum class Reason {
         /** The native API was deleted outright. */
         DELETED,
+
         /** The native API was renamed (class, function, or member). */
         RENAMED,
+
         /** The native API exists but its signature / ABI changed. */
         ABI_CHANGE,
+
         /** Behaviour-only difference: signature is stable but semantics or availability moved. */
         COMPAT,
     }

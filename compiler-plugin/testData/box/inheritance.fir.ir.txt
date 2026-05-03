@@ -67,10 +67,10 @@ FILE fqName:foo.bar fileName:/inheritance.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.InheritanceState.SnapshotMutable declared in foo.bar.InheritanceState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.String, name: kotlin.String) declared in foo.bar.InheritanceState.SnapshotMutable' type=foo.bar.InheritanceState.SnapshotMutable origin=null
-              ARG id: CALL 'public open fun <get-id> (): kotlin.String declared in foo.bar.InheritanceState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.InheritanceState.Immutable declared in foo.bar.InheritanceState.Immutable.toSnapshotMutable' type=foo.bar.InheritanceState.Immutable origin=null
-              ARG name: CALL 'public final fun <get-name> (): kotlin.String declared in foo.bar.InheritanceState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.InheritanceState.Immutable declared in foo.bar.InheritanceState.Immutable.toSnapshotMutable' type=foo.bar.InheritanceState.Immutable origin=null
+              ARG id: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.InheritanceState.Immutable declared in foo.bar.InheritanceState.Immutable.toSnapshotMutable' type=foo.bar.InheritanceState.Immutable origin=null
+              ARG name: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.InheritanceState.Immutable declared in foo.bar.InheritanceState.Immutable.toSnapshotMutable' type=foo.bar.InheritanceState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.InheritanceState.Immutable
         BLOCK_BODY

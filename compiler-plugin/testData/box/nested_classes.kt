@@ -1,14 +1,14 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 class Outer {
     @Snapshottable
     interface InnerState {
         @SnapshotSpec
         data class Immutable(
-            val value: String
+            val value: String,
         ) : InnerState
     }
 }

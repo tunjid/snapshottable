@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/extra_properties.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.ExtraState.SnapshotMutable declared in foo.bar.ExtraState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (base: kotlin.Int, extra: kotlin.String) declared in foo.bar.ExtraState.SnapshotMutable' type=foo.bar.ExtraState.SnapshotMutable origin=null
-              ARG base: CALL 'public open fun <get-base> (): kotlin.Int declared in foo.bar.ExtraState.Immutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ExtraState.Immutable declared in foo.bar.ExtraState.Immutable.toSnapshotMutable' type=foo.bar.ExtraState.Immutable origin=null
-              ARG extra: CALL 'public final fun <get-extra> (): kotlin.String declared in foo.bar.ExtraState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ExtraState.Immutable declared in foo.bar.ExtraState.Immutable.toSnapshotMutable' type=foo.bar.ExtraState.Immutable origin=null
+              ARG base: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:base type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.ExtraState.Immutable declared in foo.bar.ExtraState.Immutable.toSnapshotMutable' type=foo.bar.ExtraState.Immutable origin=null
+              ARG extra: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:extra type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.ExtraState.Immutable declared in foo.bar.ExtraState.Immutable.toSnapshotMutable' type=foo.bar.ExtraState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ExtraState.Immutable
         BLOCK_BODY

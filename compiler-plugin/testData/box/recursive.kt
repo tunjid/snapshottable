@@ -1,7 +1,7 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 fun box(): String {
     val node2 = Node.Immutable(value = 2, next = null)
@@ -31,6 +31,6 @@ interface Node {
     @SnapshotSpec
     data class Immutable(
         override val value: Int,
-        override val next: Node?
+        override val next: Node?,
     ) : Node
 }

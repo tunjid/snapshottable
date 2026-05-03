@@ -1,12 +1,12 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 fun box(): String {
     val state = NullableState.Immutable(
         name = null,
-        count = null
+        count = null,
     ).toSnapshotMutable()
 
     if (state.name != null) return "Fail 1"
@@ -33,6 +33,6 @@ interface NullableState {
     @SnapshotSpec
     data class Immutable(
         val name: String?,
-        val count: Int?
+        val count: Int?,
     ) : NullableState
 }

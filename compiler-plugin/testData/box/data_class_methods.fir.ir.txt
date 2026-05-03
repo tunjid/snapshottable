@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/data_class_methods.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.DataMethodsState.SnapshotMutable declared in foo.bar.DataMethodsState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (id: kotlin.Int, data: kotlin.String) declared in foo.bar.DataMethodsState.SnapshotMutable' type=foo.bar.DataMethodsState.SnapshotMutable origin=null
-              ARG id: CALL 'public final fun <get-id> (): kotlin.Int declared in foo.bar.DataMethodsState.Immutable' type=kotlin.Int origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
-              ARG data: CALL 'public final fun <get-data> (): kotlin.String declared in foo.bar.DataMethodsState.Immutable' type=kotlin.String origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG id: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
+              ARG data: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:data type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.DataMethodsState.Immutable declared in foo.bar.DataMethodsState.Immutable.toSnapshotMutable' type=foo.bar.DataMethodsState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DataMethodsState.Immutable
         BLOCK_BODY

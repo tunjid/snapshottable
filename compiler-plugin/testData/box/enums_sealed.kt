@@ -1,10 +1,12 @@
 package foo.bar
 
-import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.SnapshotSpec
+import com.tunjid.snapshottable.Snapshottable
 
 enum class Status {
-    IDLE, RUNNING, FINISHED
+    IDLE,
+    RUNNING,
+    FINISHED,
 }
 
 sealed class Result {
@@ -16,7 +18,7 @@ sealed class Result {
 fun box(): String {
     val state = EnumSealedState.Immutable(
         status = Status.IDLE,
-        result = Result.None
+        result = Result.None,
     ).toSnapshotMutable()
 
     if (state.status != Status.IDLE) return "Fail 1"
@@ -44,6 +46,6 @@ interface EnumSealedState {
     @SnapshotSpec
     data class Immutable(
         val status: Status,
-        val result: Result
+        val result: Result,
     ) : EnumSealedState
 }

@@ -48,10 +48,10 @@ FILE fqName:foo.bar fileName:/arrays.kt
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.ArrayState.SnapshotMutable declared in foo.bar.ArrayState.Immutable'
             CONSTRUCTOR_CALL 'public constructor <init> (intArray: kotlin.IntArray, stringArray: kotlin.Array<kotlin.String>) declared in foo.bar.ArrayState.SnapshotMutable' type=foo.bar.ArrayState.SnapshotMutable origin=null
-              ARG intArray: CALL 'public final fun <get-intArray> (): kotlin.IntArray declared in foo.bar.ArrayState.Immutable' type=kotlin.IntArray origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
-              ARG stringArray: CALL 'public final fun <get-stringArray> (): kotlin.Array<kotlin.String> declared in foo.bar.ArrayState.Immutable' type=kotlin.Array<kotlin.String> origin=null
-                ARG <this>: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
+              ARG intArray: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:intArray type:kotlin.IntArray visibility:private [final]' type=kotlin.IntArray origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
+              ARG stringArray: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:stringArray type:kotlin.Array<kotlin.String> visibility:private [final]' type=kotlin.Array<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.ArrayState.Immutable declared in foo.bar.ArrayState.Immutable.toSnapshotMutable' type=foo.bar.ArrayState.Immutable origin=null
       FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.IntArray [operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.ArrayState.Immutable
         BLOCK_BODY
