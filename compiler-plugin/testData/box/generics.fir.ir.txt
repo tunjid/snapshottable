@@ -1,0 +1,1023 @@
+FILE fqName:foo.bar fileName:/generics.kt
+  CLASS INTERFACE name:GenericState modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState<T of foo.bar.GenericState>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Comparable<T of foo.bar.GenericState>] reified:false
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.Immutable>]
+      annotations:
+        SnapshotSpec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+      TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Comparable<T of foo.bar.GenericState.Immutable>] reified:false
+      PROPERTY name:value visibility:public modality:OPEN [val]
+        overridden:
+          public abstract value: T of foo.bar.GenericState declared in foo.bar.GenericState
+        FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'value: T of foo.bar.GenericState.Immutable declared in foo.bar.GenericState.Immutable.<init>' type=T of foo.bar.GenericState.Immutable origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:OPEN returnType:T of foo.bar.GenericState.Immutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+          correspondingProperty: PROPERTY name:value visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-value> (): T of foo.bar.GenericState declared in foo.bar.GenericState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-value> (): T of foo.bar.GenericState.Immutable declared in foo.bar.GenericState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.<get-value>' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+      PROPERTY name:label visibility:public modality:OPEN [val]
+        overridden:
+          public abstract label: kotlin.String declared in foo.bar.GenericState
+        FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'label: kotlin.String declared in foo.bar.GenericState.Immutable.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:OPEN returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+          correspondingProperty: PROPERTY name:label visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.bar.GenericState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-label> (): kotlin.String declared in foo.bar.GenericState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.<get-label>' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> [primary]
+        VALUE_PARAMETER kind:Regular name:value index:0 type:T of foo.bar.GenericState.Immutable
+        VALUE_PARAMETER kind:Regular name:label index:1 type:kotlin.String
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="default"
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.Immutable>]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.bar.GenericState.SnapshotMutable, label: kotlin.String) declared in foo.bar.GenericState.SnapshotMutable' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+              TYPE_ARG (of class) T: T of foo.bar.GenericState.SnapshotMutable
+              ARG value: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toSnapshotMutable' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              ARG label: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toSnapshotMutable' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:T of foo.bar.GenericState.Immutable [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): T of foo.bar.GenericState.Immutable declared in foo.bar.GenericState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.component1' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.String [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.String declared in foo.bar.GenericState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.component2' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        VALUE_PARAMETER kind:Regular name:value index:1 type:T of foo.bar.GenericState.Immutable
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.copy' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+        VALUE_PARAMETER kind:Regular name:label index:2 type:kotlin.String
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.copy' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (value: T of foo.bar.GenericState.Immutable, label: kotlin.String): foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.bar.GenericState.Immutable, label: kotlin.String) declared in foo.bar.GenericState.Immutable' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              TYPE_ARG (of class) T: T of foo.bar.GenericState.Immutable
+              ARG value: GET_VAR 'value: T of foo.bar.GenericState.Immutable declared in foo.bar.GenericState.Immutable.copy' type=T of foo.bar.GenericState.Immutable origin=null
+              ARG label: GET_VAR 'label: kotlin.String declared in foo.bar.GenericState.Immutable.copy' type=kotlin.String origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.equals' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.GenericState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.GenericState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> [val]
+            TYPE_OP type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=IMPLICIT_CAST typeOperand=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+              GET_VAR 'other: kotlin.Any? declared in foo.bar.GenericState.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                    receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.equals' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.equals' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.equals' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.equals' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Comparable' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.hashCode' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.GenericState.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.GenericState.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.hashCode' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.bar.GenericState.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable>
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.GenericState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.GenericState.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="value="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.bar.GenericState.Immutable visibility:private [final]' type=T of foo.bar.GenericState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toString' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="label="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toString' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.SnapshotMutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:T index:0 variance: superTypes:[kotlin.Comparable<T of foo.bar.GenericState.SnapshotMutable>] reified:false
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: T of foo.bar.GenericState.SnapshotMutable
+            ARG value: GET_VAR 'value: T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable.<init>' type=T of foo.bar.GenericState.SnapshotMutable origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.String
+            ARG value: GET_VAR 'label: kotlin.String declared in foo.bar.GenericState.SnapshotMutable.<init>' type=kotlin.String origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:0 type:T of foo.bar.GenericState.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:label index:1 type:kotlin.String
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.SnapshotMutable>]' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.GenericState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.bar.GenericState.Immutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.bar.GenericState.Immutable, label: kotlin.String) declared in foo.bar.GenericState.Immutable' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
+              TYPE_ARG (of class) T: T of foo.bar.GenericState.Immutable
+              ARG value: CALL 'public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable' type=T of foo.bar.GenericState.SnapshotMutable origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.toSnapshotSpec' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+              ARG label: CALL 'public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.toSnapshotSpec' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:1 type:T of foo.bar.GenericState.SnapshotMutable
+          EXPRESSION_BODY
+            CALL 'public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable' type=T of foo.bar.GenericState.SnapshotMutable origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:label index:2 type:kotlin.String
+          EXPRESSION_BODY
+            CALL 'public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.String origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-value> (<set-?>: T of foo.bar.GenericState.SnapshotMutable): kotlin.Unit declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'value: T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable.update' type=T of foo.bar.GenericState.SnapshotMutable origin=null
+          CALL 'public final fun <set-label> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'label: kotlin.String declared in foo.bar.GenericState.SnapshotMutable.update' type=kotlin.String origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (value: T of foo.bar.GenericState.SnapshotMutable, label: kotlin.String): foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+        overridden:
+          public abstract label: kotlin.String declared in foo.bar.GenericState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-label> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.bar.GenericState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.<get-label>' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-label> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.<set-label>' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.bar.GenericState.SnapshotMutable.<set-label>' type=kotlin.String origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+        overridden:
+          public abstract value: T of foo.bar.GenericState declared in foo.bar.GenericState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:T of foo.bar.GenericState.SnapshotMutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-value> (): T of foo.bar.GenericState declared in foo.bar.GenericState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.<get-value>' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-value> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:T of foo.bar.GenericState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.<set-value>' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable.<set-value>' type=T of foo.bar.GenericState.SnapshotMutable origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:label visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState<T of foo.bar.GenericState>
+        correspondingProperty: PROPERTY name:label visibility:public modality:ABSTRACT [val]
+    PROPERTY name:value visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:T of foo.bar.GenericState
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState<T of foo.bar.GenericState>
+        correspondingProperty: PROPERTY name:value visibility:public modality:ABSTRACT [val]
+  CLASS INTERFACE name:MapState modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState<K of foo.bar.MapState, V of foo.bar.MapState>
+    TYPE_PARAMETER name:K index:0 variance: superTypes:[kotlin.Any?] reified:false
+    TYPE_PARAMETER name:V index:1 variance: superTypes:[kotlin.Any?] reified:false
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.MapState<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>]
+      annotations:
+        SnapshotSpec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+      TYPE_PARAMETER name:K index:0 variance: superTypes:[kotlin.Any?] reified:false
+      TYPE_PARAMETER name:V index:1 variance: superTypes:[kotlin.Any?] reified:false
+      PROPERTY name:entries visibility:public modality:OPEN [val]
+        overridden:
+          public abstract entries: kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+        FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.<init>' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-entries> visibility:public modality:OPEN returnType:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+          correspondingProperty: PROPERTY name:entries visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.<get-entries>' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> [primary]
+        VALUE_PARAMETER kind:Regular name:entries index:0 type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.MapState<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (entries: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>) declared in foo.bar.MapState.SnapshotMutable' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.MapState.SnapshotMutable
+              TYPE_ARG (of class) V: V of foo.bar.MapState.SnapshotMutable
+              ARG entries: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.toSnapshotMutable' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.component1' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        VALUE_PARAMETER kind:Regular name:entries index:1 type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.copy' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>): foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>) declared in foo.bar.MapState.Immutable' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.MapState.Immutable
+              TYPE_ARG (of class) V: V of foo.bar.MapState.Immutable
+              ARG entries: GET_VAR 'entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.copy' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.equals' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.MapState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.MapState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> [val]
+            TYPE_OP type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=IMPLICIT_CAST typeOperand=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+              GET_VAR 'other: kotlin.Any? declared in foo.bar.MapState.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                    receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.equals' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                    receiver: GET_VAR 'val tmp_1: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.equals' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.MapState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.MapState.Immutable'
+            CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.collections.Map' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.hashCode' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.MapState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.MapState.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="entries="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.toString' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:K index:0 variance: superTypes:[kotlin.Any?] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:V index:1 variance: superTypes:[kotlin.Any?] reified:false
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+            ARG value: GET_VAR 'entries: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.<init>' type=kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:entries index:0 type:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.MapState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.MapState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.MapState.Immutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.bar.MapState.Immutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>) declared in foo.bar.MapState.Immutable' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.MapState.Immutable
+              TYPE_ARG (of class) V: V of foo.bar.MapState.Immutable
+              ARG entries: CALL 'public final fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.toSnapshotSpec' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:entries index:1 type:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          EXPRESSION_BODY
+            CALL 'public final fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.update' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-entries> (<set-?>: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>): kotlin.Unit declared in foo.bar.MapState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.update' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'entries: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.update' type=kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (entries: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>): foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.update' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
+        overridden:
+          public abstract entries: kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-entries> visibility:public modality:FINAL returnType:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> visibility:private [final] declared in foo.bar.MapState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.<get-entries>' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-entries> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> visibility:private [final] declared in foo.bar.MapState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> origin=null
+                receiver: GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.<set-entries>' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.<set-entries>' type=kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:entries visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-entries> visibility:public modality:ABSTRACT returnType:kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState<K of foo.bar.MapState, V of foo.bar.MapState>
+        correspondingProperty: PROPERTY name:entries visibility:public modality:ABSTRACT [val]
+  CLASS INTERFACE name:PairedState modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState<K of foo.bar.PairedState, V of foo.bar.PairedState>
+    TYPE_PARAMETER name:K index:0 variance: superTypes:[kotlin.CharSequence] reified:false
+    TYPE_PARAMETER name:V index:1 variance: superTypes:[kotlin.collections.List<kotlin.Number>] reified:false
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>]
+      annotations:
+        SnapshotSpec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+      TYPE_PARAMETER name:K index:0 variance: superTypes:[kotlin.CharSequence] reified:false
+      TYPE_PARAMETER name:V index:1 variance: superTypes:[kotlin.collections.List<kotlin.Number>] reified:false
+      PROPERTY name:key visibility:public modality:OPEN [val]
+        overridden:
+          public abstract key: K of foo.bar.PairedState declared in foo.bar.PairedState
+        FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'key: K of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable.<init>' type=K of foo.bar.PairedState.Immutable origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-key> visibility:public modality:OPEN returnType:K of foo.bar.PairedState.Immutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+          correspondingProperty: PROPERTY name:key visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-key> (): K of foo.bar.PairedState declared in foo.bar.PairedState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-key> (): K of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.<get-key>' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+      PROPERTY name:value visibility:public modality:OPEN [val]
+        overridden:
+          public abstract value: V of foo.bar.PairedState declared in foo.bar.PairedState
+        FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'value: V of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable.<init>' type=V of foo.bar.PairedState.Immutable origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:OPEN returnType:V of foo.bar.PairedState.Immutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+          correspondingProperty: PROPERTY name:value visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-value> (): V of foo.bar.PairedState declared in foo.bar.PairedState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-value> (): V of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.<get-value>' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+      CONSTRUCTOR visibility:public returnType:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> [primary]
+        VALUE_PARAMETER kind:Regular name:key index:0 type:K of foo.bar.PairedState.Immutable
+        VALUE_PARAMETER kind:Regular name:value index:1 type:V of foo.bar.PairedState.Immutable
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (key: K of foo.bar.PairedState.SnapshotMutable, value: V of foo.bar.PairedState.SnapshotMutable) declared in foo.bar.PairedState.SnapshotMutable' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.PairedState.SnapshotMutable
+              TYPE_ARG (of class) V: V of foo.bar.PairedState.SnapshotMutable
+              ARG key: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toSnapshotMutable' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              ARG value: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toSnapshotMutable' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:K of foo.bar.PairedState.Immutable [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): K of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.component1' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:V of foo.bar.PairedState.Immutable [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): V of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.component2' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        VALUE_PARAMETER kind:Regular name:key index:1 type:K of foo.bar.PairedState.Immutable
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.copy' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+        VALUE_PARAMETER kind:Regular name:value index:2 type:V of foo.bar.PairedState.Immutable
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.copy' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (key: K of foo.bar.PairedState.Immutable, value: V of foo.bar.PairedState.Immutable): foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (key: K of foo.bar.PairedState.Immutable, value: V of foo.bar.PairedState.Immutable) declared in foo.bar.PairedState.Immutable' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.PairedState.Immutable
+              TYPE_ARG (of class) V: V of foo.bar.PairedState.Immutable
+              ARG key: GET_VAR 'key: K of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable.copy' type=K of foo.bar.PairedState.Immutable origin=null
+              ARG value: GET_VAR 'value: V of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable.copy' type=V of foo.bar.PairedState.Immutable origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.equals' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.bar.PairedState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+                GET_VAR 'other: kotlin.Any? declared in foo.bar.PairedState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> [val]
+            TYPE_OP type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=IMPLICIT_CAST typeOperand=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+              GET_VAR 'other: kotlin.Any? declared in foo.bar.PairedState.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                    receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.equals' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                    receiver: GET_VAR 'val tmp_2: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.equals' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                    receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.equals' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                    receiver: GET_VAR 'val tmp_2: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.equals' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.CharSequence' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.hashCode' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.bar.PairedState.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.bar.PairedState.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.collections.List' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                  receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.hashCode' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.bar.PairedState.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable>
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.PairedState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.bar.PairedState.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="key="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:key type:K of foo.bar.PairedState.Immutable visibility:private [final]' type=K of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toString' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="value="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toString' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:K index:0 variance: superTypes:[kotlin.CharSequence] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:V index:1 variance: superTypes:[kotlin.collections.List<kotlin.Number>] reified:false
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key$SnapshottableHolder type:androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: K of foo.bar.PairedState.SnapshotMutable
+            ARG value: GET_VAR 'key: K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.<init>' type=K of foo.bar.PairedState.SnapshotMutable origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> origin=null
+            TYPE_ARG T: <none>
+            TYPE_ARG 2: V of foo.bar.PairedState.SnapshotMutable
+            ARG value: GET_VAR 'value: V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.<init>' type=V of foo.bar.PairedState.SnapshotMutable origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:key index:0 type:K of foo.bar.PairedState.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:1 type:V of foo.bar.PairedState.SnapshotMutable
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.PairedState
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.bar.PairedState.Immutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (key: K of foo.bar.PairedState.Immutable, value: V of foo.bar.PairedState.Immutable) declared in foo.bar.PairedState.Immutable' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
+              TYPE_ARG (of class) K: K of foo.bar.PairedState.Immutable
+              TYPE_ARG (of class) V: V of foo.bar.PairedState.Immutable
+              ARG key: CALL 'public final fun <get-key> (): K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable' type=K of foo.bar.PairedState.SnapshotMutable origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.toSnapshotSpec' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+              ARG value: CALL 'public final fun <get-value> (): V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable' type=V of foo.bar.PairedState.SnapshotMutable origin=null
+                ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.toSnapshotSpec' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:key index:1 type:K of foo.bar.PairedState.SnapshotMutable
+          EXPRESSION_BODY
+            CALL 'public final fun <get-key> (): K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable' type=K of foo.bar.PairedState.SnapshotMutable origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:2 type:V of foo.bar.PairedState.SnapshotMutable
+          EXPRESSION_BODY
+            CALL 'public final fun <get-value> (): V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable' type=V of foo.bar.PairedState.SnapshotMutable origin=null
+              ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-key> (<set-?>: K of foo.bar.PairedState.SnapshotMutable): kotlin.Unit declared in foo.bar.PairedState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'key: K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.update' type=K of foo.bar.PairedState.SnapshotMutable origin=null
+          CALL 'public final fun <set-value> (<set-?>: V of foo.bar.PairedState.SnapshotMutable): kotlin.Unit declared in foo.bar.PairedState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'value: V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.update' type=V of foo.bar.PairedState.SnapshotMutable origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (key: K of foo.bar.PairedState.SnapshotMutable, value: V of foo.bar.PairedState.SnapshotMutable): foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable'
+            GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
+        overridden:
+          public abstract key: K of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-key> visibility:public modality:FINAL returnType:K of foo.bar.PairedState.SnapshotMutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-key> (): K of foo.bar.PairedState declared in foo.bar.PairedState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-key> (): K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key$SnapshottableHolder type:androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.<get-key>' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-key> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:K of foo.bar.PairedState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key$SnapshottableHolder type:androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.<set-key>' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.<set-key>' type=K of foo.bar.PairedState.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+        overridden:
+          public abstract value: V of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:V of foo.bar.PairedState.SnapshotMutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-value> (): V of foo.bar.PairedState declared in foo.bar.PairedState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-value> (): V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> origin=null
+                  receiver: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.<get-value>' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-value> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:V of foo.bar.PairedState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> origin=null
+                receiver: GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.<set-value>' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.<set-value>' type=V of foo.bar.PairedState.SnapshotMutable origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:key visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-key> visibility:public modality:ABSTRACT returnType:K of foo.bar.PairedState
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState<K of foo.bar.PairedState, V of foo.bar.PairedState>
+        correspondingProperty: PROPERTY name:key visibility:public modality:ABSTRACT [val]
+    PROPERTY name:value visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:V of foo.bar.PairedState
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState<K of foo.bar.PairedState, V of foo.bar.PairedState>
+        correspondingProperty: PROPERTY name:value visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:state type:foo.bar.GenericState.SnapshotMutable<kotlin.Int> [val]
+        CALL 'public final fun toSnapshotMutable (): foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.bar.GenericState.Immutable, label: kotlin.String) declared in foo.bar.GenericState.Immutable' type=foo.bar.GenericState.Immutable<kotlin.Int> origin=null
+            TYPE_ARG (of class) T: kotlin.Int
+            ARG value: CONST Int type=kotlin.Int value=5
+            ARG label: CONST String type=kotlin.String value="five"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=5
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 1"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+              ARG arg1: CONST String type=kotlin.String value="five"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 2"
+      CALL 'public final fun <set-value> (<set-?>: T of foo.bar.GenericState.SnapshotMutable): kotlin.Unit declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+        ARG <set-?>: CONST Int type=kotlin.Int value=10
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=10
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 3"
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (value: T of foo.bar.GenericState.SnapshotMutable, label: kotlin.String): foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+          ARG label: CONST String type=kotlin.String value="ten"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=10
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 4"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+              ARG arg1: CONST String type=kotlin.String value="ten"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 5"
+      VAR name:spec type:foo.bar.GenericState.Immutable<kotlin.Int> [val]
+        CALL 'public final fun toSnapshotSpec (): foo.bar.GenericState.Immutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable' type=foo.bar.GenericState.Immutable<kotlin.Int> origin=null
+          ARG <this>: GET_VAR 'val state: foo.bar.GenericState.SnapshotMutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.SnapshotMutable<kotlin.Int> origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-value> (): T of foo.bar.GenericState.Immutable declared in foo.bar.GenericState.Immutable' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val spec: foo.bar.GenericState.Immutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.Immutable<kotlin.Int> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=10
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 6"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-label> (): kotlin.String declared in foo.bar.GenericState.Immutable' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val spec: foo.bar.GenericState.Immutable<kotlin.Int> declared in foo.bar.box' type=foo.bar.GenericState.Immutable<kotlin.Int> origin=null
+              ARG arg1: CONST String type=kotlin.String value="ten"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 7"
+      VAR name:pair type:foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> [val]
+        CALL 'public final fun toSnapshotMutable (): foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable' type=foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (key: K of foo.bar.PairedState.Immutable, value: V of foo.bar.PairedState.Immutable) declared in foo.bar.PairedState.Immutable' type=foo.bar.PairedState.Immutable<kotlin.String, kotlin.collections.List<kotlin.Int>> origin=null
+            TYPE_ARG (of class) K: kotlin.String
+            TYPE_ARG (of class) V: kotlin.collections.List<kotlin.Int>
+            ARG key: CONST String type=kotlin.String value="k1"
+            ARG value: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+              TYPE_ARG T: kotlin.Int
+              ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                CONST Int type=kotlin.Int value=1
+                CONST Int type=kotlin.Int value=2
+                CONST Int type=kotlin.Int value=3
+      CALL 'public final fun <set-value> (<set-?>: V of foo.bar.PairedState.SnapshotMutable): kotlin.Unit declared in foo.bar.PairedState.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val pair: foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> declared in foo.bar.box' type=foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> origin=null
+        ARG <set-?>: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+          TYPE_ARG T: kotlin.Int
+          ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+            CONST Int type=kotlin.Int value=4
+            CONST Int type=kotlin.Int value=5
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-value> (): V of foo.bar.PairedState.Immutable declared in foo.bar.PairedState.Immutable' type=kotlin.collections.List<kotlin.Int> origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.bar.PairedState.Immutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable' type=foo.bar.PairedState.Immutable<kotlin.String, kotlin.collections.List<kotlin.Int>> origin=null
+                  ARG <this>: GET_VAR 'val pair: foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> declared in foo.bar.box' type=foo.bar.PairedState.SnapshotMutable<kotlin.String, kotlin.collections.List<kotlin.Int>> origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                  CONST Int type=kotlin.Int value=4
+                  CONST Int type=kotlin.Int value=5
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 8"
+      VAR name:map type:foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> [val]
+        CALL 'public final fun toSnapshotMutable (): foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (entries: kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable>) declared in foo.bar.MapState.Immutable' type=foo.bar.MapState.Immutable<kotlin.String, kotlin.Int> origin=null
+            TYPE_ARG (of class) K: kotlin.String
+            TYPE_ARG (of class) V: kotlin.Int
+            ARG entries: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+              TYPE_ARG K: kotlin.String
+              TYPE_ARG V: kotlin.Int
+              ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Int
+                  ARG <this>: CONST String type=kotlin.String value="a"
+                  ARG that: CONST Int type=kotlin.Int value=1
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Int
+                  ARG <this>: CONST String type=kotlin.String value="b"
+                  ARG that: CONST Int type=kotlin.Int value=2
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val map: foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> declared in foo.bar.box' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+              ARG arg1: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Int
+                ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="a"
+                    ARG that: CONST Int type=kotlin.Int value=1
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="b"
+                    ARG that: CONST Int type=kotlin.Int value=2
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 9"
+      CALL 'public final fun <set-entries> (<set-?>: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>): kotlin.Unit declared in foo.bar.MapState.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val map: foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> declared in foo.bar.box' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+        ARG <set-?>: CALL 'public final fun mapOf <K, V> (pair: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+          TYPE_ARG K: kotlin.String
+          TYPE_ARG V: kotlin.Int
+          ARG pair: CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+            TYPE_ARG A: kotlin.String
+            TYPE_ARG B: kotlin.Int
+            ARG <this>: CONST String type=kotlin.String value="c"
+            ARG that: CONST Int type=kotlin.Int value=3
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.bar.MapState.Immutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=foo.bar.MapState.Immutable<kotlin.String, kotlin.Int> origin=null
+                  ARG <this>: GET_VAR 'val map: foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> declared in foo.bar.box' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+              ARG arg1: CALL 'public final fun mapOf <K, V> (pair: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Int
+                ARG pair: CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Int
+                  ARG <this>: CONST String type=kotlin.String value="c"
+                  ARG that: CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 10"
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (entries: kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>): foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+          ARG <this>: GET_VAR 'val map: foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> declared in foo.bar.box' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+          ARG entries: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+            TYPE_ARG K: kotlin.String
+            TYPE_ARG V: kotlin.Int
+            ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+              CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                TYPE_ARG A: kotlin.String
+                TYPE_ARG B: kotlin.Int
+                ARG <this>: CONST String type=kotlin.String value="d"
+                ARG that: CONST Int type=kotlin.Int value=4
+              CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                TYPE_ARG A: kotlin.String
+                TYPE_ARG B: kotlin.Int
+                ARG <this>: CONST String type=kotlin.String value="e"
+                ARG that: CONST Int type=kotlin.Int value=5
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.bar.MapState.Immutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable' type=foo.bar.MapState.Immutable<kotlin.String, kotlin.Int> origin=null
+                  ARG <this>: GET_VAR 'val map: foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> declared in foo.bar.box' type=foo.bar.MapState.SnapshotMutable<kotlin.String, kotlin.Int> origin=null
+              ARG arg1: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Int
+                ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="d"
+                    ARG that: CONST Int type=kotlin.Int value=4
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="e"
+                    ARG that: CONST Int type=kotlin.Int value=5
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+            CONST String type=kotlin.String value="Fail 11"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+        CONST String type=kotlin.String value="OK"

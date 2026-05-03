@@ -63,6 +63,12 @@ public class JvmBoxTestGenerated extends AbstractJvmBoxTest {
   }
 
   @Test
+  @TestMetadata("generics.kt")
+  public void testGenerics() {
+    runTest("compiler-plugin/testData/box/generics.kt");
+  }
+
+  @Test
   @TestMetadata("inheritance.kt")
   public void testInheritance() {
     runTest("compiler-plugin/testData/box/inheritance.kt");

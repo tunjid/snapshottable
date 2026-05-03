@@ -1,0 +1,207 @@
+FILE: generics.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval state: R|foo/bar/GenericState.SnapshotMutable<kotlin/Int>| = Q|foo/bar/GenericState|.R|SubstitutionOverride<foo/bar/GenericState.Immutable.Immutable>|<R|kotlin/Int|>(Int(5), String(five)).R|SubstitutionOverride<foo/bar/GenericState.Immutable.toSnapshotMutable: R|foo/bar/GenericState.SnapshotMutable<kotlin/Int>|>|()
+        when () {
+            !=(R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.value: R|kotlin/Int|>|, Int(5)) ->  {
+                ^box String(Fail 1)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.label: R|kotlin/String|>|, String(five)) ->  {
+                ^box String(Fail 2)
+            }
+        }
+
+        R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.value: R|kotlin/Int|>| = Int(10)
+        when () {
+            !=(R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.value: R|kotlin/Int|>|, Int(10)) ->  {
+                ^box String(Fail 3)
+            }
+        }
+
+        R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.update: R|foo/bar/GenericState.SnapshotMutable<kotlin/Int>|>|(String(ten))
+        when () {
+            !=(R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.value: R|kotlin/Int|>|, Int(10)) ->  {
+                ^box String(Fail 4)
+            }
+        }
+
+        when () {
+            !=(R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.label: R|kotlin/String|>|, String(ten)) ->  {
+                ^box String(Fail 5)
+            }
+        }
+
+        lval spec: R|foo/bar/GenericState.Immutable<kotlin/Int>| = R|<local>/state|.R|SubstitutionOverride<foo/bar/GenericState.SnapshotMutable.toSnapshotSpec: R|foo/bar/GenericState.Immutable<kotlin/Int>|>|()
+        when () {
+            !=(R|<local>/spec|.R|SubstitutionOverride<foo/bar/GenericState.Immutable.value: R|kotlin/Int|>|, Int(10)) ->  {
+                ^box String(Fail 6)
+            }
+        }
+
+        when () {
+            !=(R|<local>/spec|.R|SubstitutionOverride<foo/bar/GenericState.Immutable.label: R|kotlin/String|>|, String(ten)) ->  {
+                ^box String(Fail 7)
+            }
+        }
+
+        lval pair: R|foo/bar/PairedState.SnapshotMutable<kotlin/String, kotlin/collections/List<kotlin/Int>>| = Q|foo/bar/PairedState|.R|foo/bar/PairedState.Immutable.Immutable|<R|kotlin/String|, R|kotlin/collections/List<kotlin/Int>|>(String(k1), R|kotlin/collections/listOf|<R|kotlin/Int|>(vararg(Int(1), Int(2), Int(3)))).R|SubstitutionOverride<foo/bar/PairedState.Immutable.toSnapshotMutable: R|foo/bar/PairedState.SnapshotMutable<kotlin/String, kotlin/collections/List<kotlin/Int>>|>|()
+        R|<local>/pair|.R|SubstitutionOverride<foo/bar/PairedState.SnapshotMutable.value: R|kotlin/collections/List<kotlin/Int>|>| = R|kotlin/collections/listOf|<R|kotlin/Int|>(vararg(Int(4), Int(5)))
+        when () {
+            !=(R|<local>/pair|.R|SubstitutionOverride<foo/bar/PairedState.SnapshotMutable.toSnapshotSpec: R|foo/bar/PairedState.Immutable<kotlin/String, kotlin/collections/List<kotlin/Int>>|>|().R|SubstitutionOverride<foo/bar/PairedState.Immutable.value: R|kotlin/collections/List<kotlin/Int>|>|, R|kotlin/collections/listOf|<R|kotlin/Int|>(vararg(Int(4), Int(5)))) ->  {
+                ^box String(Fail 8)
+            }
+        }
+
+        lval map: R|foo/bar/MapState.SnapshotMutable<kotlin/String, kotlin/Int>| = Q|foo/bar/MapState|.R|foo/bar/MapState.Immutable.Immutable|<R|kotlin/String|, R|kotlin/Int|>(R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(vararg(String(a).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(1)), String(b).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(2))))).R|SubstitutionOverride<foo/bar/MapState.Immutable.toSnapshotMutable: R|foo/bar/MapState.SnapshotMutable<kotlin/String, kotlin/Int>|>|()
+        when () {
+            !=(R|<local>/map|.R|SubstitutionOverride<foo/bar/MapState.SnapshotMutable.entries: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|>|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(vararg(String(a).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(1)), String(b).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(2))))) ->  {
+                ^box String(Fail 9)
+            }
+        }
+
+        R|<local>/map|.R|SubstitutionOverride<foo/bar/MapState.SnapshotMutable.entries: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|>| = R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(c).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(3)))
+        when () {
+            !=(R|<local>/map|.R|SubstitutionOverride<foo/bar/MapState.SnapshotMutable.toSnapshotSpec: R|foo/bar/MapState.Immutable<kotlin/String, kotlin/Int>|>|().R|SubstitutionOverride<foo/bar/MapState.Immutable.entries: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|>|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(String(c).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(3)))) ->  {
+                ^box String(Fail 10)
+            }
+        }
+
+        R|<local>/map|.R|SubstitutionOverride<foo/bar/MapState.SnapshotMutable.update: R|foo/bar/MapState.SnapshotMutable<kotlin/String, kotlin/Int>|>|(R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(vararg(String(d).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(4)), String(e).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(5)))))
+        when () {
+            !=(R|<local>/map|.R|SubstitutionOverride<foo/bar/MapState.SnapshotMutable.toSnapshotSpec: R|foo/bar/MapState.Immutable<kotlin/String, kotlin/Int>|>|().R|SubstitutionOverride<foo/bar/MapState.Immutable.entries: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|>|, R|kotlin/collections/mapOf|<R|kotlin/String|, R|kotlin/Int|>(vararg(String(d).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(4)), String(e).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(5))))) ->  {
+                ^box String(Fail 11)
+            }
+        }
+
+        ^box String(OK)
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface GenericState<T : R|kotlin/Comparable<T>|> : R|kotlin/Any| {
+        public abstract val value: R|T|
+            public get(): R|T|
+
+        public abstract val label: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
+            public constructor<T : R|kotlin/Comparable<T>|>(value: R|T|, label: R|kotlin/String| = String(default)): R|foo/bar/GenericState.Immutable<T>| {
+                super<R|kotlin/Any|>()
+            }
+
+            public open override val value: R|T| = R|<local>/value|
+                public get(): R|T|
+
+            public open override val label: R|kotlin/String| = R|<local>/label|
+                public get(): R|kotlin/String|
+
+            public final operator fun component1(): R|T|
+
+            public final operator fun component2(): R|kotlin/String|
+
+            public final fun copy(value: R|T| = this@R|foo/bar/GenericState.Immutable|.R|foo/bar/GenericState.Immutable.value|, label: R|kotlin/String| = this@R|foo/bar/GenericState.Immutable|.R|foo/bar/GenericState.Immutable.label|): R|foo/bar/GenericState.Immutable<T>|
+
+            public final fun toSnapshotMutable(): R|foo/bar/GenericState.SnapshotMutable<T>|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
+            public final override var value: R|T|
+                public get(): R|T|
+                public set(value: R|T|): R|kotlin/Unit|
+
+            public final override var label: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            public final fun toSnapshotSpec(): R|foo/bar/GenericState.Immutable<T>|
+
+            public final fun update(value: R|T| = R|kotlin/error|(), label: R|kotlin/String| = R|kotlin/error|()): R|foo/bar/GenericState.SnapshotMutable<T>|
+
+            public constructor<T : R|kotlin/Comparable<T>|>(value: R|T|, label: R|kotlin/String|): R|foo/bar/GenericState.SnapshotMutable<T>|
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface PairedState<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|kotlin/Any| {
+        public abstract val key: R|K|
+            public get(): R|K|
+
+        public abstract val value: R|V|
+            public get(): R|V|
+
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
+            public constructor<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|>(key: R|K|, value: R|V|): R|foo/bar/PairedState.Immutable<K, V>| {
+                super<R|kotlin/Any|>()
+            }
+
+            public open override val key: R|K| = R|<local>/key|
+                public get(): R|K|
+
+            public open override val value: R|V| = R|<local>/value|
+                public get(): R|V|
+
+            public final operator fun component1(): R|K|
+
+            public final operator fun component2(): R|V|
+
+            public final fun copy(key: R|K| = this@R|foo/bar/PairedState.Immutable|.R|foo/bar/PairedState.Immutable.key|, value: R|V| = this@R|foo/bar/PairedState.Immutable|.R|foo/bar/PairedState.Immutable.value|): R|foo/bar/PairedState.Immutable<K, V>|
+
+            public final fun toSnapshotMutable(): R|foo/bar/PairedState.SnapshotMutable<K, V>|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
+            public final override var key: R|K|
+                public get(): R|K|
+                public set(value: R|K|): R|kotlin/Unit|
+
+            public final override var value: R|V|
+                public get(): R|V|
+                public set(value: R|V|): R|kotlin/Unit|
+
+            public final fun toSnapshotSpec(): R|foo/bar/PairedState.Immutable<K, V>|
+
+            public final fun update(key: R|K| = R|kotlin/error|(), value: R|V| = R|kotlin/error|()): R|foo/bar/PairedState.SnapshotMutable<K, V>|
+
+            public constructor<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|>(key: R|K|, value: R|V|): R|foo/bar/PairedState.SnapshotMutable<K, V>|
+
+        }
+
+    }
+    @R|com/tunjid/snapshottable/Snapshottable|() public abstract interface MapState<K, V> : R|kotlin/Any| {
+        public abstract val entries: R|kotlin/collections/Map<K, V>|
+            public get(): R|kotlin/collections/Map<K, V>|
+
+        @R|com/tunjid/snapshottable/SnapshotSpec|() public final data class Immutable<K, V> : R|foo/bar/MapState<K, V>| {
+            public constructor<K, V>(entries: R|kotlin/collections/Map<K, V>|): R|foo/bar/MapState.Immutable<K, V>| {
+                super<R|kotlin/Any|>()
+            }
+
+            public open override val entries: R|kotlin/collections/Map<K, V>| = R|<local>/entries|
+                public get(): R|kotlin/collections/Map<K, V>|
+
+            public final operator fun component1(): R|kotlin/collections/Map<K, V>|
+
+            public final fun copy(entries: R|kotlin/collections/Map<K, V>| = this@R|foo/bar/MapState.Immutable|.R|foo/bar/MapState.Immutable.entries|): R|foo/bar/MapState.Immutable<K, V>|
+
+            public final fun toSnapshotMutable(): R|foo/bar/MapState.SnapshotMutable<K, V>|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K, V> : R|foo/bar/MapState<K, V>| {
+            public final override var entries: R|kotlin/collections/Map<K, V>|
+                public get(): R|kotlin/collections/Map<K, V>|
+                public set(value: R|kotlin/collections/Map<K, V>|): R|kotlin/Unit|
+
+            public final fun toSnapshotSpec(): R|foo/bar/MapState.Immutable<K, V>|
+
+            public final fun update(entries: R|kotlin/collections/Map<K, V>| = R|kotlin/error|()): R|foo/bar/MapState.SnapshotMutable<K, V>|
+
+            public constructor<K, V>(entries: R|kotlin/collections/Map<K, V>|): R|foo/bar/MapState.SnapshotMutable<K, V>|
+
+        }
+
+    }

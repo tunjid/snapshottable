@@ -197,14 +197,20 @@ class SnapshottableClassGenerator(
                 key = context.owner.requireKey(),
                 isPrimary = true,
             ) {
-                val constructor = context.owner
+                val specConstructor = context.owner
                     .requireKey<Snapshottable.Keys.SnapshotMutable>()
                     .specPrimaryConstructor
 
-                constructor.valueParameterSymbols.forEach { parameter ->
+                val substitutor = specToOwnerSubstitutor(
+                    session = session,
+                    specTypeParameterSymbols = specConstructor.typeParameterSymbols,
+                    ownerTypeParameterSymbols = context.owner.typeParameterSymbols,
+                )
+
+                specConstructor.valueParameterSymbols.forEach { parameter ->
                     valueParameter(
                         name = parameter.name,
-                        type = parameter.resolvedReturnType,
+                        type = substitutor.substituteOrSelf(parameter.resolvedReturnType),
                         hasDefaultValue = false,
                     )
                 }

@@ -167,7 +167,10 @@ import com.tunjid.snapshottable.SnapshotSpec
 
 ## Known Caveats
 
--   **Generics:** Generic type parameters in the `@Snapshottable` interface or `@SnapshotSpec` class are currently not supported.
+-   **Generics:** The `@Snapshottable` interface and `@SnapshotSpec` data class must declare the same type
+    parameters in the same order. The spec must extend the interface with those type parameters as-is (e.g.
+    `data class Immutable<T : Comparable<T>>(...) : State<T>`); upper bounds, including F-bounds, are
+    propagated to the generated `SnapshotMutable`.
 -   **Visibility:** All properties in the `@SnapshotSpec` data class must be `public`. Private or internal properties
 are not supported for snapshot generation as the parent interface cannot have non-public properties.
 
