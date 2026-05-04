@@ -19,7 +19,7 @@ Snapshottable is a Kotlin compiler plugin that automatically generates mutable, 
 
     ```kotlin
     import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshotSpec
+    import com.tunjid.snapshottable.SnapshotSpec
     import kotlinx.serialization.Serializable
     import kotlinx.parcelize.Parcelize
     import android.os.Parcelable
@@ -87,7 +87,7 @@ import com.tunjid.snapshottable.SnapshotSpec
     import androidx.compose.runtime.saveable.rememberSaveable
     import androidx.compose.runtime.saveable.Saver
     import com.tunjid.snapshottable.Snapshottable
-import com.tunjid.snapshottable.SnapshotSpec
+    import com.tunjid.snapshottable.SnapshotSpec
     // Import generated extension functions
     import com.example.mypackage.State.Companion.toSnapshotMutable
     import com.example.mypackage.State.Companion.toSnapshotSpec
