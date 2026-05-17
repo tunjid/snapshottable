@@ -1,7 +1,7 @@
 # Snapshottable
 
 <p align="center">
-  <img src="docs/images/snapshottable-logo-trimmed.png" alt="Snapshottable logo" width="160"/>
+  <img src="./docs/images/snapshottable-logo-trimmed.png" alt="Snapshottable logo" width="160"/>
 </p>
 
 Snapshottable is a Kotlin compiler plugin that automatically generates mutable, snapshot-backed classes from immutable data definitions. It is designed to simplify state management in Jetpack Compose (and other Compose-based UI frameworks) by allowing you to define your state as clean, immutable interfaces and data classes, while automatically generating the mutable, observable counterparts needed for the UI.
