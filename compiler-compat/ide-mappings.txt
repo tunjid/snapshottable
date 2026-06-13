@@ -17,8 +17,10 @@
 # Android Studio Panda / Quail (canary stream).
 2.3.255-dev-255=2.3.0-dev-9992
 # IntelliJ IDEA 2026.1.1 (stable / EAP)
-2.4.0-ij261-32=2.4.0-dev-2633
-# IntelliJ IDEA 2026.1.2 (EAP)
+2.4.0-ij261-32=2.4.0-dev-2124
+# IntelliJ IDEA 2026.1.2 (stable / EAP / RC)
 2.4.0-ij261-50=2.4.0-dev-2633
+# IntelliJ IDEA 2026.1.3 (stable / EAP / RC)
+2.4.0-ij261-64=2.4.0-dev-2633
 # Android Studio Quail (canary stream).
-2.4.255-dev-255=2.4.0-dev-2631
+2.4.255-dev-255=2.4.0-dev-2633
