@@ -5,3 +5,5 @@
 .kotlin/
 build/
 out/
+sample/.idea
+local.properties
