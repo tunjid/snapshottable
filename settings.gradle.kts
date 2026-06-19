@@ -1,6 +1,13 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
         maven("https://redirector.kotlinlang.org/maven/bootstrap")
@@ -23,6 +30,8 @@ include("compiler-plugin")
 include("gradle-plugin")
 include("plugin-annotations")
 include(":compiler-compat")
+include(":sample")
+include(":macrobenchmark")
 
 // Dynamically include all per-version compat modules (directories under compiler-compat/
 // whose names start with "k" and contain a version.txt).
