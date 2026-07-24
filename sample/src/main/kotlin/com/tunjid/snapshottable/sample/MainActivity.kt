@@ -17,9 +17,10 @@ class MainActivity : ComponentActivity() {
             "Immutable" -> Mode.Immutable
             else -> Mode.SnapshotMutable
         }
+        val updateIntervalMs = intent.getLongExtra("UPDATE_INTERVAL_MS", 3_000L)
 
         setContent {
-            val repository = remember { StockRepository() }
+            val repository = remember { StockRepository(updateIntervalMs = updateIntervalMs) }
             val actions = remember { Channel<Action>(Channel.UNLIMITED) }
             var mode by remember { mutableStateOf(initialMode) }
 

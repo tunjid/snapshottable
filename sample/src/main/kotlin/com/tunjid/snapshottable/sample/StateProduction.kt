@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.tracing.trace
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.flow.collectLatest
@@ -50,7 +51,9 @@ private fun produceSnapshotState(
             state.stockStates = state.stockStates + holder
             jobs[sector] = scope.launch {
                 repository.stocks(sector).collectLatest { fresh ->
-                    holder.stocks = fresh
+                    trace("applyStockUpdate") {
+                        holder.stocks = fresh
+                    }
                 }
             }
         }
@@ -109,16 +112,18 @@ private fun produceImmutableState(
             )
             jobs[sector] = scope.launch {
                 repository.stocks(sector).collectLatest { fresh ->
-                    val s = snapshot
-                    snapshot = s.copy(
-                        stockStates = s.stockStates.map { ss ->
-                            if (ss.sector == sector) {
-                                StockState.Immutable(sector, fresh)
-                            } else {
-                                ss
-                            }
-                        },
-                    )
+                    trace("applyStockUpdate") {
+                        val s = snapshot
+                        snapshot = s.copy(
+                            stockStates = s.stockStates.map { ss ->
+                                if (ss.sector == sector) {
+                                    StockState.Immutable(sector, fresh)
+                                } else {
+                                    ss
+                                }
+                            },
+                        )
+                    }
                 }
             }
         }
