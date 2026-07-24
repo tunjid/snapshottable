@@ -54,4 +54,5 @@ dependencies {
     debugImplementation(compose.uiTooling)
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.tracing.ktx)
 }

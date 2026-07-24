@@ -38,6 +38,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.tracing.trace
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -150,7 +151,7 @@ private fun SectorPage(
 }
 
 @Composable
-private fun StockRow(stock: Stock) {
+private fun StockRow(stock: Stock) = trace("StockRow") {
     val prices = remember {
         mutableStateListOf<Double>()
     }

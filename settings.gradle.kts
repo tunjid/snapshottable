@@ -32,6 +32,7 @@ include("plugin-annotations")
 include(":compiler-compat")
 include(":sample")
 include(":macrobenchmark")
+include(":state-microbenchmark")
 
 // Dynamically include all per-version compat modules (directories under compiler-compat/
 // whose names start with "k" and contain a version.txt).

@@ -40,7 +40,9 @@ private val NOUNS_BY_SECTOR: Map<Sector, List<String>> = mapOf(
 
 private data class Company(val ticker: String, val name: String)
 
-class StockRepository {
+class StockRepository(
+    private val updateIntervalMs: Long = 3_000L,
+) {
 
     private val companiesBySector: Map<Sector, List<Company>> =
         Sector.entries.associateWith { sector ->
@@ -72,7 +74,7 @@ class StockRepository {
         }
         emit(current)
         while (true) {
-            delay(3_000)
+            delay(updateIntervalMs)
             current = current.map { stock ->
                 val drift = (Random.nextDouble() - 0.5) * 8.0
                 stock.copy(price = (stock.price + drift).coerceAtLeast(1.0))
