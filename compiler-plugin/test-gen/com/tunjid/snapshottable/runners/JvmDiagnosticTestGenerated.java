@@ -15,6 +15,10 @@ import java.util.regex.Pattern;
 @TestMetadata("compiler-plugin/testData/diagnostics")
 @TestDataPath("$PROJECT_ROOT")
 public class JvmDiagnosticTestGenerated extends AbstractJvmDiagnosticTest {
+  private void run(String fileName) {
+    runTest("compiler-plugin/testData/diagnostics/" + fileName);
+  }
+
   @Test
   public void testAllFilesPresentInDiagnostics() {
     KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler-plugin/testData/diagnostics"), Pattern.compile("^(.+)\\.kt$"), null, true);
@@ -23,6 +27,6 @@ public class JvmDiagnosticTestGenerated extends AbstractJvmDiagnosticTest {
   @Test
   @TestMetadata("SnapshottableDiagnostics.kt")
   public void testSnapshottableDiagnostics() {
-    runTest("compiler-plugin/testData/diagnostics/SnapshottableDiagnostics.kt");
+    run("SnapshottableDiagnostics.kt");
   }
 }

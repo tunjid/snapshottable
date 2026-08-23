@@ -15,6 +15,10 @@ import java.util.regex.Pattern;
 @TestMetadata("compiler-plugin/testData/box")
 @TestDataPath("$PROJECT_ROOT")
 public class JvmBoxTestGenerated extends AbstractJvmBoxTest {
+  private void run(String fileName) {
+    runTest("compiler-plugin/testData/box/" + fileName);
+  }
+
   @Test
   public void testAllFilesPresentInBox() {
     KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler-plugin/testData/box"), Pattern.compile("^(.+)\\.kt$"), null, true);
@@ -23,90 +27,90 @@ public class JvmBoxTestGenerated extends AbstractJvmBoxTest {
   @Test
   @TestMetadata("arrays.kt")
   public void testArrays() {
-    runTest("compiler-plugin/testData/box/arrays.kt");
+    run("arrays.kt");
   }
 
   @Test
   @TestMetadata("collections.kt")
   public void testCollections() {
-    runTest("compiler-plugin/testData/box/collections.kt");
+    run("collections.kt");
   }
 
   @Test
   @TestMetadata("complex_types.kt")
   public void testComplex_types() {
-    runTest("compiler-plugin/testData/box/complex_types.kt");
+    run("complex_types.kt");
   }
 
   @Test
   @TestMetadata("data_class_methods.kt")
   public void testData_class_methods() {
-    runTest("compiler-plugin/testData/box/data_class_methods.kt");
+    run("data_class_methods.kt");
   }
 
   @Test
   @TestMetadata("default_values.kt")
   public void testDefault_values() {
-    runTest("compiler-plugin/testData/box/default_values.kt");
+    run("default_values.kt");
   }
 
   @Test
   @TestMetadata("enums_sealed.kt")
   public void testEnums_sealed() {
-    runTest("compiler-plugin/testData/box/enums_sealed.kt");
+    run("enums_sealed.kt");
   }
 
   @Test
   @TestMetadata("extra_properties.kt")
   public void testExtra_properties() {
-    runTest("compiler-plugin/testData/box/extra_properties.kt");
+    run("extra_properties.kt");
   }
 
   @Test
   @TestMetadata("generics.kt")
   public void testGenerics() {
-    runTest("compiler-plugin/testData/box/generics.kt");
+    run("generics.kt");
   }
 
   @Test
   @TestMetadata("generics_sealed_bound.kt")
   public void testGenerics_sealed_bound() {
-    runTest("compiler-plugin/testData/box/generics_sealed_bound.kt");
+    run("generics_sealed_bound.kt");
   }
 
   @Test
   @TestMetadata("generics_user_bound.kt")
   public void testGenerics_user_bound() {
-    runTest("compiler-plugin/testData/box/generics_user_bound.kt");
+    run("generics_user_bound.kt");
   }
 
   @Test
   @TestMetadata("inheritance.kt")
   public void testInheritance() {
-    runTest("compiler-plugin/testData/box/inheritance.kt");
+    run("inheritance.kt");
   }
 
   @Test
   @TestMetadata("nested_classes.kt")
   public void testNested_classes() {
-    runTest("compiler-plugin/testData/box/nested_classes.kt");
+    run("nested_classes.kt");
   }
 
   @Test
   @TestMetadata("nullable.kt")
   public void testNullable() {
-    runTest("compiler-plugin/testData/box/nullable.kt");
+    run("nullable.kt");
   }
 
   @Test
   @TestMetadata("recursive.kt")
   public void testRecursive() {
-    runTest("compiler-plugin/testData/box/recursive.kt");
+    run("recursive.kt");
   }
 
   @Test
   @TestMetadata("simple.kt")
   public void testSimple() {
-    runTest("compiler-plugin/testData/box/simple.kt");
+    run("simple.kt");
   }
 }
