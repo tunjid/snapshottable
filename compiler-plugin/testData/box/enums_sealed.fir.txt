@@ -16,7 +16,7 @@ FILE: enums_sealed.kt
         }
 
         public final static val entries: R|kotlin/enums/EnumEntries<foo/bar/Status>|
-            public get(): R|kotlin/enums/EnumEntries<foo/bar/Status>|
+            public static get(): R|kotlin/enums/EnumEntries<foo/bar/Status>|
 
     }
     public sealed class Result : R|kotlin/Any| {
