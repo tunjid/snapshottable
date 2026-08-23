@@ -1,11 +1,9 @@
 package com.tunjid.snapshottable.compat.k2420_dev_6138
 
 import com.tunjid.snapshottable.compat.CompatContext
-import com.tunjid.snapshottable.compat.k2420_dev_3583.CompatContextImpl as DelegateType
+import com.tunjid.snapshottable.compat.k240.CompatContextImpl as DelegateType
 
-// 2.4.20-dev-6138 again changed the IrGeneratedDeclarationsRegistrar registration shape (Metro
-// re-pins createIrGeneratedDeclarationsRegistrar here). That API is not on the snapshottable
-// compat surface, so this is a pure chain link for precise factory selection and a future hook.
+// 2.4.20-dev-6138 does not affect the snapshottable compat surface.
 public class CompatContextImpl : CompatContext by DelegateType() {
 
     public class Factory : CompatContext.Factory {
