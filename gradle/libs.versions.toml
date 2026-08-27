@@ -1,6 +1,6 @@
 [versions]
 axion-release = "1.21.2"
-composeMultiplatform = "1.12.0-rc01"
+composeMultiplatform = "1.12.0"
 dokka = "2.2.0"
 
 agp = "9.3.1"
