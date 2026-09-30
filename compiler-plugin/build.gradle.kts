@@ -94,6 +94,11 @@ tasks.test {
 
     systemProperty("idea.ignore.disabled.plugins", "true")
     systemProperty("idea.home.path", rootDir)
+
+    systemProperty(
+        "kotlin.test.update.test.data",
+        providers.gradleProperty("kotlin.test.update.test.data").getOrElse("false"),
+    )
 }
 
 kotlin {

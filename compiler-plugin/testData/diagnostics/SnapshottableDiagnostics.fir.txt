@@ -54,7 +54,14 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/PrivateConstructor| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/PrivateConstructor| {
+            public abstract override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/PrivateConstructor.Mutable| {
             public final override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -84,7 +91,14 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/OpenSpec| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/OpenSpec| {
+            public abstract override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/OpenSpec.Mutable| {
             public final override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -127,7 +141,14 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/AbstractSpec| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/AbstractSpec| {
+            public abstract override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/AbstractSpec.Mutable| {
             public final override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -185,7 +206,26 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val pub: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/VisibilityCheck| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/VisibilityCheck| {
+            public abstract override var p: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public abstract override var pro: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public abstract override var i: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public abstract override var pub: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|diagnostics/VisibilityCheck.Mutable| {
             public final override var p: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|

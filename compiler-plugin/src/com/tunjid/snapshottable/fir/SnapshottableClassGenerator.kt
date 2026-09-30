@@ -41,6 +41,7 @@ class SnapshottableClassGenerator(
         when {
             isSnapshottableInterface(classSymbol) ->
                 setOf(
+                    CLASS_NAME_MUTABLE,
                     CLASS_NAME_SNAPSHOT_MUTABLE,
                 )
 
@@ -58,8 +59,14 @@ class SnapshottableClassGenerator(
         if (!isSnapshottableInterface(owner)) return null
 
         return when (name) {
-            CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableClass(
-                parentInterfaceSymbol = owner,
+            CLASS_NAME_MUTABLE -> generateMutableInterfaceOrSnapshottableClass(
+                rootInterfaceSymbol = owner,
+                isMutableInterface = true,
+                compatContext = compatContext,
+            )
+            CLASS_NAME_SNAPSHOT_MUTABLE -> generateMutableInterfaceOrSnapshottableClass(
+                rootInterfaceSymbol = owner,
+                isMutableInterface = false,
                 compatContext = compatContext,
             )
             else -> error("Can't generate class ${owner.classId.createNestedClassId(name).asSingleFqName()}")
@@ -82,6 +89,13 @@ class SnapshottableClassGenerator(
                 setOf(
                     FUN_NAME_TO_SNAPSHOT_MUTABLE,
                 )
+
+            isMutableInterface(classSymbol) ->
+                context.owner
+                    .requireKey<Snapshottable.Keys.MutableInterface>()
+                    .specPrimaryConstructor
+                    .valueParameterSymbols
+                    .mapToSetOrEmpty(FirValueParameterSymbol::name)
 
             isSnapshotMutable(classSymbol) ->
                 buildSet {
@@ -135,7 +149,7 @@ class SnapshottableClassGenerator(
                                 ?: return emptyList(),
                         ),
                         inputClassSymbol = owner,
-                        outputClassSymbol = nestedClassSymbolToMutableSymbol(
+                        outputClassSymbol = nestedClassSymbolToSnapshotMutableSymbol(
                             nestedClassSymbol = owner,
                         ) ?: return emptyList(),
                         callableId = callableId,
@@ -165,6 +179,21 @@ class SnapshottableClassGenerator(
                         snapshottableInterfaceSymbol = owner,
                     ) ?: return emptyList(),
                     callableId = callableId,
+                    isMutableInterface = false,
+                    compatContext = compatContext,
+                )
+                    ?.symbol
+                    ?.let(::listOf)
+                    .orEmpty()
+
+            isMutableInterface(owner) ->
+                maybeCreatePropertyOnInterfaceOrMutableClass(
+                    classSymbol = owner,
+                    specSymbol = nestedClassSymbolToSpecSymbol(
+                        nestedClassSymbol = owner,
+                    ) ?: return emptyList(),
+                    callableId = callableId,
+                    isMutableInterface = true,
                     compatContext = compatContext,
                 )
                     ?.symbol
@@ -178,6 +207,7 @@ class SnapshottableClassGenerator(
                         nestedClassSymbol = owner,
                     ) ?: return emptyList(),
                     callableId = callableId,
+                    isMutableInterface = false,
                     compatContext = compatContext,
                 )
                     ?.symbol

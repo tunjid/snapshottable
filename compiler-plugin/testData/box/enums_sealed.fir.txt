@@ -144,7 +144,18 @@ FILE: enums_sealed.kt
         public abstract val result: R|foo/bar/Result|
             public get(): R|foo/bar/Result|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/EnumSealedState| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/EnumSealedState| {
+            public abstract override var status: R|foo/bar/Status|
+                public get(): R|foo/bar/Status|
+                public set(value: R|foo/bar/Status|): R|kotlin/Unit|
+
+            public abstract override var result: R|foo/bar/Result|
+                public get(): R|foo/bar/Result|
+                public set(value: R|foo/bar/Result|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/EnumSealedState.Mutable| {
             public final override var status: R|foo/bar/Status|
                 public get(): R|foo/bar/Status|
                 public set(value: R|foo/bar/Status|): R|kotlin/Unit|

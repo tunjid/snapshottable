@@ -167,7 +167,48 @@ FILE fqName:foo.bar fileName:/recursive.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:next type:foo.bar.Node? visibility:private [final]' type=foo.bar.Node? origin=null
                 receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toString' type=foo.bar.Node.Immutable origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.Node]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.Mutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.Node
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.Node
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:next visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract next: foo.bar.Node? declared in foo.bar.Node
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-next> visibility:public modality:ABSTRACT returnType:foo.bar.Node?
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:next visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-next> (): foo.bar.Node? declared in foo.bar.Node
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-next> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Node?
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:next visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract value: kotlin.Int declared in foo.bar.Node
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-value> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node.Mutable]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.SnapshotMutable
@@ -186,20 +227,20 @@ FILE fqName:foo.bar fileName:/recursive.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:next index:1 type:foo.bar.Node?
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node]' type=foo.bar.Node.SnapshotMutable
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.Node.Mutable]' type=foo.bar.Node.SnapshotMutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.Node.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.Node
+          public open fun hashCode (): kotlin.Int declared in foo.bar.Node.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.Node
+          public open fun toString (): kotlin.String declared in foo.bar.Node.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.Node.Immutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
         BLOCK_BODY
@@ -230,12 +271,12 @@ FILE fqName:foo.bar fileName:/recursive.kt
             GET_VAR '<this>: foo.bar.Node.SnapshotMutable declared in foo.bar.Node.SnapshotMutable.update' type=foo.bar.Node.SnapshotMutable origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:next visibility:public modality:FINAL [var]
         overridden:
-          public abstract next: foo.bar.Node? declared in foo.bar.Node
+          public abstract next: foo.bar.Node? declared in foo.bar.Node.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-next> visibility:public modality:FINAL returnType:foo.bar.Node?
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:next visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-next> (): foo.bar.Node? declared in foo.bar.Node
+            public abstract fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-next> (): foo.bar.Node? declared in foo.bar.Node.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -245,6 +286,8 @@ FILE fqName:foo.bar fileName:/recursive.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Node?
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:next visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-next> (<set-?>: foo.bar.Node?): kotlin.Unit declared in foo.bar.Node.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:next$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Node?> visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Node?> origin=null
@@ -252,12 +295,12 @@ FILE fqName:foo.bar fileName:/recursive.kt
               ARG <set-?>: GET_VAR '<set-?>: foo.bar.Node? declared in foo.bar.Node.SnapshotMutable.<set-next>' type=foo.bar.Node? origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
         overridden:
-          public abstract value: kotlin.Int declared in foo.bar.Node
+          public abstract value: kotlin.Int declared in foo.bar.Node.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:kotlin.Int
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node
+            public abstract fun <get-value> (): kotlin.Int declared in foo.bar.Node.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-value> (): kotlin.Int declared in foo.bar.Node.SnapshotMutable'
               CALL 'public abstract fun <get-intValue> (): kotlin.Int declared in androidx.compose.runtime.MutableIntState' type=kotlin.Int origin=null
@@ -267,6 +310,8 @@ FILE fqName:foo.bar fileName:/recursive.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.Node.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-value> (<set-?>: kotlin.Int): kotlin.Unit declared in foo.bar.Node.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-intValue> (<set-?>: kotlin.Int): kotlin.Unit declared in androidx.compose.runtime.MutableIntState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.Node.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null

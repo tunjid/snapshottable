@@ -164,7 +164,49 @@ FILE fqName:foo.bar fileName:/generics.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
                 receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toString' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.SnapshotMutable>]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:T index:0 variance: superTypes:[kotlin.Comparable<T of foo.bar.GenericState.Mutable>] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.GenericState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract label: kotlin.String declared in foo.bar.GenericState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:ABSTRACT returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.bar.GenericState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-label> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract value: T of foo.bar.GenericState declared in foo.bar.GenericState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:T of foo.bar.GenericState.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-value> (): T of foo.bar.GenericState declared in foo.bar.GenericState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-value> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:T of foo.bar.GenericState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState.Mutable<T of foo.bar.GenericState.SnapshotMutable>]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
@@ -186,20 +228,20 @@ FILE fqName:foo.bar fileName:/generics.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:label index:1 type:kotlin.String
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.SnapshotMutable>]' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.GenericState.Mutable<T of foo.bar.GenericState.SnapshotMutable>]' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.GenericState.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState
+          public open fun hashCode (): kotlin.Int declared in foo.bar.GenericState.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.GenericState
+          public open fun toString (): kotlin.String declared in foo.bar.GenericState.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.GenericState.Immutable<T of foo.bar.GenericState.SnapshotMutable>
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
         BLOCK_BODY
@@ -231,12 +273,12 @@ FILE fqName:foo.bar fileName:/generics.kt
             GET_VAR '<this>: foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> declared in foo.bar.GenericState.SnapshotMutable.update' type=foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable> origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
         overridden:
-          public abstract label: kotlin.String declared in foo.bar.GenericState
+          public abstract label: kotlin.String declared in foo.bar.GenericState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-label> visibility:public modality:FINAL returnType:kotlin.String
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-label> (): kotlin.String declared in foo.bar.GenericState
+            public abstract fun <get-label> (): kotlin.String declared in foo.bar.GenericState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-label> (): kotlin.String declared in foo.bar.GenericState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -246,6 +288,8 @@ FILE fqName:foo.bar fileName:/generics.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-label> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.GenericState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
@@ -253,12 +297,12 @@ FILE fqName:foo.bar fileName:/generics.kt
               ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.bar.GenericState.SnapshotMutable.<set-label>' type=kotlin.String origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
         overridden:
-          public abstract value: T of foo.bar.GenericState declared in foo.bar.GenericState
+          public abstract value: T of foo.bar.GenericState.Mutable declared in foo.bar.GenericState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:T of foo.bar.GenericState.SnapshotMutable
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-value> (): T of foo.bar.GenericState declared in foo.bar.GenericState
+            public abstract fun <get-value> (): T of foo.bar.GenericState.Mutable declared in foo.bar.GenericState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-value> (): T of foo.bar.GenericState.SnapshotMutable declared in foo.bar.GenericState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -268,6 +312,8 @@ FILE fqName:foo.bar fileName:/generics.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.GenericState.SnapshotMutable<T of foo.bar.GenericState.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:T of foo.bar.GenericState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-value> (<set-?>: T of foo.bar.GenericState.Mutable): kotlin.Unit declared in foo.bar.GenericState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> visibility:private [final] declared in foo.bar.GenericState.SnapshotMutable' type=androidx.compose.runtime.MutableState<T of foo.bar.GenericState.SnapshotMutable> origin=null
@@ -408,7 +454,38 @@ FILE fqName:foo.bar fileName:/generics.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:entries type:kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> visibility:private [final]' type=kotlin.collections.Map<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
                 receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.toString' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState.Mutable<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:K index:0 variance: superTypes:[kotlin.Any?] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:V index:1 variance: superTypes:[kotlin.Any?] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.MapState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.MapState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract entries: kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-entries> visibility:public modality:ABSTRACT returnType:kotlin.collections.Map<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Mutable<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-entries> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.Mutable<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.Map<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState.Mutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
@@ -424,20 +501,20 @@ FILE fqName:foo.bar fileName:/generics.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:entries index:0 type:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.MapState.Mutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>]' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.MapState.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.MapState
+          public open fun hashCode (): kotlin.Int declared in foo.bar.MapState.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.MapState
+          public open fun toString (): kotlin.String declared in foo.bar.MapState.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.MapState.Immutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
         BLOCK_BODY
@@ -461,12 +538,12 @@ FILE fqName:foo.bar fileName:/generics.kt
             GET_VAR '<this>: foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable.update' type=foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
         overridden:
-          public abstract entries: kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+          public abstract entries: kotlin.collections.Map<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable> declared in foo.bar.MapState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-entries> visibility:public modality:FINAL returnType:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState, V of foo.bar.MapState> declared in foo.bar.MapState
+            public abstract fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable> declared in foo.bar.MapState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-entries> (): kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable> declared in foo.bar.MapState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -476,6 +553,8 @@ FILE fqName:foo.bar fileName:/generics.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.MapState.SnapshotMutable<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:entries visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-entries> (<set-?>: kotlin.collections.Map<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>): kotlin.Unit declared in foo.bar.MapState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:entries$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> visibility:private [final] declared in foo.bar.MapState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.Map<K of foo.bar.MapState.SnapshotMutable, V of foo.bar.MapState.SnapshotMutable>> origin=null
@@ -665,7 +744,50 @@ FILE fqName:foo.bar fileName:/generics.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:V of foo.bar.PairedState.Immutable visibility:private [final]' type=V of foo.bar.PairedState.Immutable origin=null
                 receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toString' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:K index:0 variance: superTypes:[kotlin.CharSequence] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:V index:1 variance: superTypes:[kotlin.collections.List<kotlin.Number>] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.PairedState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract key: K of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-key> visibility:public modality:ABSTRACT returnType:K of foo.bar.PairedState.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-key> (): K of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-key> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:K of foo.bar.PairedState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract value: V of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:V of foo.bar.PairedState.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-value> (): V of foo.bar.PairedState declared in foo.bar.PairedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-value> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:V of foo.bar.PairedState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState.Mutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
@@ -688,20 +810,20 @@ FILE fqName:foo.bar fileName:/generics.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:1 type:V of foo.bar.PairedState.SnapshotMutable
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.PairedState.Mutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>]' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.PairedState.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState
+          public open fun hashCode (): kotlin.Int declared in foo.bar.PairedState.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.PairedState
+          public open fun toString (): kotlin.String declared in foo.bar.PairedState.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.PairedState.Immutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
         BLOCK_BODY
@@ -734,12 +856,12 @@ FILE fqName:foo.bar fileName:/generics.kt
             GET_VAR '<this>: foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> declared in foo.bar.PairedState.SnapshotMutable.update' type=foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable> origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
         overridden:
-          public abstract key: K of foo.bar.PairedState declared in foo.bar.PairedState
+          public abstract key: K of foo.bar.PairedState.Mutable declared in foo.bar.PairedState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-key> visibility:public modality:FINAL returnType:K of foo.bar.PairedState.SnapshotMutable
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-key> (): K of foo.bar.PairedState declared in foo.bar.PairedState
+            public abstract fun <get-key> (): K of foo.bar.PairedState.Mutable declared in foo.bar.PairedState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-key> (): K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -749,6 +871,8 @@ FILE fqName:foo.bar fileName:/generics.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:K of foo.bar.PairedState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:key visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-key> (<set-?>: K of foo.bar.PairedState.Mutable): kotlin.Unit declared in foo.bar.PairedState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:key$SnapshottableHolder type:androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<K of foo.bar.PairedState.SnapshotMutable> origin=null
@@ -756,12 +880,12 @@ FILE fqName:foo.bar fileName:/generics.kt
               ARG <set-?>: GET_VAR '<set-?>: K of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable.<set-key>' type=K of foo.bar.PairedState.SnapshotMutable origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
         overridden:
-          public abstract value: V of foo.bar.PairedState declared in foo.bar.PairedState
+          public abstract value: V of foo.bar.PairedState.Mutable declared in foo.bar.PairedState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:V of foo.bar.PairedState.SnapshotMutable
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-value> (): V of foo.bar.PairedState declared in foo.bar.PairedState
+            public abstract fun <get-value> (): V of foo.bar.PairedState.Mutable declared in foo.bar.PairedState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-value> (): V of foo.bar.PairedState.SnapshotMutable declared in foo.bar.PairedState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -771,6 +895,8 @@ FILE fqName:foo.bar fileName:/generics.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.PairedState.SnapshotMutable<K of foo.bar.PairedState.SnapshotMutable, V of foo.bar.PairedState.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:V of foo.bar.PairedState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-value> (<set-?>: V of foo.bar.PairedState.Mutable): kotlin.Unit declared in foo.bar.PairedState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> visibility:private [final] declared in foo.bar.PairedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<V of foo.bar.PairedState.SnapshotMutable> origin=null

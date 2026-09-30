@@ -52,7 +52,18 @@ FILE: app.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<Query : R|foo/lib/CursorQueryShape|, Item> : R|foo/app/TilingShape<Query, Item>| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<Query : R|foo/lib/CursorQueryShape|, Item> : R|foo/app/TilingShape<Query, Item>| {
+            public abstract override var currentQuery: R|Query|
+                public get(): R|Query|
+                public set(value: R|Query|): R|kotlin/Unit|
+
+            public abstract override var items: R|kotlin/collections/List<Item>|
+                public get(): R|kotlin/collections/List<Item>|
+                public set(value: R|kotlin/collections/List<Item>|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<Query : R|foo/lib/CursorQueryShape|, Item> : R|foo/app/TilingShape.Mutable<Query, Item>| {
             public final override var currentQuery: R|Query|
                 public get(): R|Query|
                 public set(value: R|Query|): R|kotlin/Unit|

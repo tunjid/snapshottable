@@ -62,7 +62,18 @@ FILE: recursive.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/Node| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/Node| {
+            public abstract override var value: R|kotlin/Int|
+                public get(): R|kotlin/Int|
+                public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+            public abstract override var next: R|foo/bar/Node?|
+                public get(): R|foo/bar/Node?|
+                public set(value: R|foo/bar/Node?|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/Node.Mutable| {
             public final override var value: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|

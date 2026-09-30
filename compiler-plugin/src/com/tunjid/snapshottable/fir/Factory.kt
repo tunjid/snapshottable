@@ -2,6 +2,7 @@ package com.tunjid.snapshottable.fir
 
 import com.tunjid.snapshottable.Snapshottable
 import com.tunjid.snapshottable.compat.CompatContext
+import org.jetbrains.kotlin.descriptors.ClassKind
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
@@ -39,12 +40,14 @@ import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.types.ConstantValueKind
 
+val CLASS_NAME_MUTABLE = Name.identifier("Mutable")
 val CLASS_NAME_SNAPSHOT_MUTABLE = Name.identifier("SnapshotMutable")
 val MEMBER_FUN_NAME_UPDATE = Name.identifier("update")
 val FUN_NAME_TO_SPEC = Name.identifier("toSnapshotSpec")
 val FUN_NAME_TO_SNAPSHOT_MUTABLE = Name.identifier("toSnapshotMutable")
 
-val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
+val ClassId.mutable: ClassId get() = createNestedClassId(CLASS_NAME_MUTABLE)
+val ClassId.snapshotMutable: ClassId get() = createNestedClassId(CLASS_NAME_SNAPSHOT_MUTABLE)
 val ClassId.companion: ClassId get() = createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
 
 private val COMPOSE_STABLE_CLASS_ID = ClassId(
@@ -69,28 +72,34 @@ fun FirSession.findClassSymbol(classId: ClassId) =
     symbolProvider.getClassLikeSymbolByClassId(classId) as? FirClassSymbol
 
 @OptIn(SymbolInternals::class)
-fun FirExtension.generateMutableClass(
-    parentInterfaceSymbol: FirClassSymbol<*>,
+fun FirExtension.generateMutableInterfaceOrSnapshottableClass(
+    rootInterfaceSymbol: FirClassSymbol<*>,
+    isMutableInterface: Boolean,
     compatContext: CompatContext,
 ): FirRegularClassSymbol? = with(session.filters) {
     val specSymbol = snapshottableInterfaceSymbolToSpecSymbol(
-        snapshottableInterfaceSymbol = parentInterfaceSymbol,
+        snapshottableInterfaceSymbol = rootInterfaceSymbol,
     ) ?: return@with null
 
     val specPrimaryConstructor = specPrimaryConstructor(specSymbol)
         ?: return@with null
 
-    val key = Snapshottable.Keys.SnapshotMutable(
+    val key = if (isMutableInterface) Snapshottable.Keys.MutableInterface(
+        specPrimaryConstructor = specPrimaryConstructor,
+    )
+    else Snapshottable.Keys.SnapshotMutable(
         specPrimaryConstructor = specPrimaryConstructor,
     )
     val specTypeParameterSymbols = specPrimaryConstructor.typeParameterSymbols
 
     with(compatContext) {
         val firClass = createNestedClassCompat(
-            owner = parentInterfaceSymbol,
-            name = CLASS_NAME_SNAPSHOT_MUTABLE,
+            classKind = if (isMutableInterface) ClassKind.INTERFACE else ClassKind.CLASS,
+            owner = rootInterfaceSymbol,
+            name = if (isMutableInterface) CLASS_NAME_MUTABLE else CLASS_NAME_SNAPSHOT_MUTABLE,
             key = key,
         ) {
+            modality = if (isMutableInterface) Modality.ABSTRACT else Modality.FINAL
             specTypeParameterSymbols.forEach { specTypeParameter ->
                 typeParameter(
                     name = specTypeParameter.name,
@@ -120,7 +129,11 @@ fun FirExtension.generateMutableClass(
                 }
             }
             superType { newRefs ->
-                parentInterfaceSymbol.classId.constructClassLikeType(
+                val rootInterfaceSymbolClassId = rootInterfaceSymbol.classId
+                val immediateParentId =
+                    if (isMutableInterface) rootInterfaceSymbolClassId
+                    else rootInterfaceSymbolClassId.mutable
+                immediateParentId.constructClassLikeType(
                     typeArguments = newRefs.map { it.symbol.toConeType() }.toTypedArray(),
                     isMarkedNullable = false,
                 )
@@ -254,6 +267,7 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
     classSymbol: FirClassSymbol<*>,
     specSymbol: FirClassSymbol<*>,
     callableId: CallableId,
+    isMutableInterface: Boolean,
     compatContext: CompatContext,
 ): FirProperty? {
     val isInterface = classSymbol.isInterface
@@ -266,7 +280,7 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
         .singleOrNull { it.name == callableId.callableName } ?: return null
 
     // Check if this interface is already overriding a property from it's supertype
-    if (isInterface && parameter.rawStatus.isOverride) return null
+    if (!isMutableInterface && isInterface && parameter.rawStatus.isOverride) return null
 
     val substitutor = specToOwnerSubstitutor(
         session = session,
@@ -280,11 +294,11 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
             key = if (isInterface) Snapshottable.Keys.Default else classSymbol.requireKey<Snapshottable.Keys>(),
             name = callableId.callableName,
             returnType = substitutor.substituteOrSelf(parameter.resolvedReturnType),
-            isVal = classSymbol.isInterface,
+            isVal = classSymbol.isInterface && !isMutableInterface,
             hasBackingField = false,
         ) {
-            status { isOverride = !isInterface }
-            if (isInterface) modality = Modality.ABSTRACT
+            status { isOverride = !isInterface || isMutableInterface }
+            if (isInterface || isMutableInterface) modality = Modality.ABSTRACT
         }
     }
 }
