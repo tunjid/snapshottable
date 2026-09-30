@@ -162,7 +162,48 @@ FILE fqName:foo.bar fileName:/default_values.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:count type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
                 receiver: GET_VAR '<this>: foo.bar.DefaultState.Immutable declared in foo.bar.DefaultState.Immutable.toString' type=foo.bar.DefaultState.Immutable origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.DefaultState]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.DefaultState]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DefaultState.Mutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.DefaultState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.DefaultState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.DefaultState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:count visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract count: kotlin.Int declared in foo.bar.DefaultState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-count> visibility:public modality:ABSTRACT returnType:kotlin.Int
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:count visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-count> (): kotlin.Int declared in foo.bar.DefaultState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-count> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:count visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:name visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract name: kotlin.String declared in foo.bar.DefaultState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:ABSTRACT returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:name visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-name> (): kotlin.String declared in foo.bar.DefaultState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-name> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:name visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.DefaultState.Mutable]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.DefaultState.SnapshotMutable
@@ -181,20 +222,20 @@ FILE fqName:foo.bar fileName:/default_values.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:count index:1 type:kotlin.Int
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.DefaultState]' type=foo.bar.DefaultState.SnapshotMutable
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.DefaultState.Mutable]' type=foo.bar.DefaultState.SnapshotMutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.DefaultState
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.DefaultState.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.DefaultState
+          public open fun hashCode (): kotlin.Int declared in foo.bar.DefaultState.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.DefaultState
+          public open fun toString (): kotlin.String declared in foo.bar.DefaultState.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.DefaultState.Immutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.SnapshotMutable
         BLOCK_BODY
@@ -225,12 +266,12 @@ FILE fqName:foo.bar fileName:/default_values.kt
             GET_VAR '<this>: foo.bar.DefaultState.SnapshotMutable declared in foo.bar.DefaultState.SnapshotMutable.update' type=foo.bar.DefaultState.SnapshotMutable origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:count visibility:public modality:FINAL [var]
         overridden:
-          public abstract count: kotlin.Int declared in foo.bar.DefaultState
+          public abstract count: kotlin.Int declared in foo.bar.DefaultState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-count> visibility:public modality:FINAL returnType:kotlin.Int
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:count visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-count> (): kotlin.Int declared in foo.bar.DefaultState
+            public abstract fun <get-count> (): kotlin.Int declared in foo.bar.DefaultState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-count> (): kotlin.Int declared in foo.bar.DefaultState.SnapshotMutable'
               CALL 'public abstract fun <get-intValue> (): kotlin.Int declared in androidx.compose.runtime.MutableIntState' type=kotlin.Int origin=null
@@ -240,6 +281,8 @@ FILE fqName:foo.bar fileName:/default_values.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:count visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-count> (<set-?>: kotlin.Int): kotlin.Unit declared in foo.bar.DefaultState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-intValue> (<set-?>: kotlin.Int): kotlin.Unit declared in androidx.compose.runtime.MutableIntState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:count$SnapshottableHolder type:androidx.compose.runtime.MutableIntState visibility:private [final] declared in foo.bar.DefaultState.SnapshotMutable' type=androidx.compose.runtime.MutableIntState origin=null
@@ -247,12 +290,12 @@ FILE fqName:foo.bar fileName:/default_values.kt
               ARG <set-?>: GET_VAR '<set-?>: kotlin.Int declared in foo.bar.DefaultState.SnapshotMutable.<set-count>' type=kotlin.Int origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:name visibility:public modality:FINAL [var]
         overridden:
-          public abstract name: kotlin.String declared in foo.bar.DefaultState
+          public abstract name: kotlin.String declared in foo.bar.DefaultState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-name> visibility:public modality:FINAL returnType:kotlin.String
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:name visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-name> (): kotlin.String declared in foo.bar.DefaultState
+            public abstract fun <get-name> (): kotlin.String declared in foo.bar.DefaultState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-name> (): kotlin.String declared in foo.bar.DefaultState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -262,6 +305,8 @@ FILE fqName:foo.bar fileName:/default_values.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.DefaultState.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:name visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-name> (<set-?>: kotlin.String): kotlin.Unit declared in foo.bar.DefaultState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:name$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.bar.DefaultState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null

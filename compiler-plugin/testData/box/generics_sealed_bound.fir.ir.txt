@@ -283,7 +283,50 @@ FILE fqName:foo.app fileName:/app.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
                 receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toString' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.TilingShape
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract currentQuery: Query of foo.app.TilingShape declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-currentQuery> visibility:public modality:ABSTRACT returnType:Query of foo.app.TilingShape.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-currentQuery> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:Query of foo.app.TilingShape.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-items> visibility:public modality:ABSTRACT returnType:kotlin.collections.List<Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-items> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
@@ -306,20 +349,20 @@ FILE fqName:foo.app fileName:/app.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:items index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape
+          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.app.TilingShape
+          public open fun toString (): kotlin.String declared in foo.app.TilingShape.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
         BLOCK_BODY
@@ -352,12 +395,12 @@ FILE fqName:foo.app fileName:/app.kt
             GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
         overridden:
-          public abstract currentQuery: Query of foo.app.TilingShape declared in foo.app.TilingShape
+          public abstract currentQuery: Query of foo.app.TilingShape.Mutable declared in foo.app.TilingShape.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-currentQuery> visibility:public modality:FINAL returnType:Query of foo.app.TilingShape.SnapshotMutable
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape declared in foo.app.TilingShape
+            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape.Mutable declared in foo.app.TilingShape.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -367,6 +410,8 @@ FILE fqName:foo.app fileName:/app.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:Query of foo.app.TilingShape.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-currentQuery> (<set-?>: Query of foo.app.TilingShape.Mutable): kotlin.Unit declared in foo.app.TilingShape.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery$SnapshottableHolder type:androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> origin=null
@@ -374,12 +419,12 @@ FILE fqName:foo.app fileName:/app.kt
               ARG <set-?>: GET_VAR '<set-?>: Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable.<set-currentQuery>' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
         overridden:
-          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape.Mutable> declared in foo.app.TilingShape.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-items> visibility:public modality:FINAL returnType:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.Mutable> declared in foo.app.TilingShape.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -389,6 +434,8 @@ FILE fqName:foo.app fileName:/app.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-items> (<set-?>: kotlin.collections.List<Item of foo.app.TilingShape.Mutable>): kotlin.Unit declared in foo.app.TilingShape.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> origin=null

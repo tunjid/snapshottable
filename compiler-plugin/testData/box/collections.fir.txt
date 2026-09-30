@@ -72,7 +72,18 @@ FILE: collections.kt
         public abstract val map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
             public get(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/CollectionState| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/CollectionState| {
+            public abstract override var list: R|kotlin/collections/List<kotlin/String>|
+                public get(): R|kotlin/collections/List<kotlin/String>|
+                public set(value: R|kotlin/collections/List<kotlin/String>|): R|kotlin/Unit|
+
+            public abstract override var map: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+                public get(): R|kotlin/collections/Map<kotlin/String, kotlin/Int>|
+                public set(value: R|kotlin/collections/Map<kotlin/String, kotlin/Int>|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/CollectionState.Mutable| {
             public final override var list: R|kotlin/collections/List<kotlin/String>|
                 public get(): R|kotlin/collections/List<kotlin/String>|
                 public set(value: R|kotlin/collections/List<kotlin/String>|): R|kotlin/Unit|

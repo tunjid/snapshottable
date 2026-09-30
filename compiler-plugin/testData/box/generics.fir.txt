@@ -107,7 +107,18 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
+            public abstract override var value: R|T|
+                public get(): R|T|
+                public set(value: R|T|): R|kotlin/Unit|
+
+            public abstract override var label: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState.Mutable<T>| {
             public final override var value: R|T|
                 public get(): R|T|
                 public set(value: R|T|): R|kotlin/Unit|
@@ -153,7 +164,18 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
+            public abstract override var key: R|K|
+                public get(): R|K|
+                public set(value: R|K|): R|kotlin/Unit|
+
+            public abstract override var value: R|V|
+                public get(): R|V|
+                public set(value: R|V|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState.Mutable<K, V>| {
             public final override var key: R|K|
                 public get(): R|K|
                 public set(value: R|K|): R|kotlin/Unit|
@@ -191,7 +213,14 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K, V> : R|foo/bar/MapState<K, V>| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<K, V> : R|foo/bar/MapState<K, V>| {
+            public abstract override var entries: R|kotlin/collections/Map<K, V>|
+                public get(): R|kotlin/collections/Map<K, V>|
+                public set(value: R|kotlin/collections/Map<K, V>|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<K, V> : R|foo/bar/MapState.Mutable<K, V>| {
             public final override var entries: R|kotlin/collections/Map<K, V>|
                 public get(): R|kotlin/collections/Map<K, V>|
                 public set(value: R|kotlin/collections/Map<K, V>|): R|kotlin/Unit|

@@ -78,7 +78,18 @@ FILE: app.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<T : R|foo/lib/Marker|> : R|foo/app/MarkerState<T>| {
+        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<T : R|foo/lib/Marker|> : R|foo/app/MarkerState<T>| {
+            public abstract override var value: R|T|
+                public get(): R|T|
+                public set(value: R|T|): R|kotlin/Unit|
+
+            public abstract override var label: R|kotlin/String|
+                public get(): R|kotlin/String|
+                public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+        }
+
+        @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable<T : R|foo/lib/Marker|> : R|foo/app/MarkerState.Mutable<T>| {
             public final override var value: R|T|
                 public get(): R|T|
                 public set(value: R|T|): R|kotlin/Unit|

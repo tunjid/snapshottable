@@ -33,6 +33,10 @@ object Snapshottable {
             override val specPrimaryConstructor: FirConstructorSymbol,
         ) : WithSpec()
 
+        data class MutableInterface(
+            override val specPrimaryConstructor: FirConstructorSymbol,
+        ) : WithSpec()
+
         data class SnapshotMutable(
             override val specPrimaryConstructor: FirConstructorSymbol,
         ) : WithSpec()

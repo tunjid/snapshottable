@@ -443,7 +443,48 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
               GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:result type:foo.bar.Result visibility:private [final]' type=foo.bar.Result origin=null
                 receiver: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toString' type=foo.bar.EnumSealedState.Immutable origin=null
               CONST String type=kotlin.String value=")"
-    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.EnumSealedState]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.EnumSealedState]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.EnumSealedState.Mutable
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.EnumSealedState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.bar.EnumSealedState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.bar.EnumSealedState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:result visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract result: foo.bar.Result declared in foo.bar.EnumSealedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-result> visibility:public modality:ABSTRACT returnType:foo.bar.Result
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:result visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-result> (): foo.bar.Result declared in foo.bar.EnumSealedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-result> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Result
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:result visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:status visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract status: foo.bar.Status declared in foo.bar.EnumSealedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-status> visibility:public modality:ABSTRACT returnType:foo.bar.Status
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:status visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-status> (): foo.bar.Status declared in foo.bar.EnumSealedState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-status> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.Mutable
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Status
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:status visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.EnumSealedState.Mutable]
       annotations:
         Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.EnumSealedState.SnapshotMutable
@@ -464,20 +505,20 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
         VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:result index:1 type:foo.bar.Result
         BLOCK_BODY
           DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
-          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.EnumSealedState]' type=foo.bar.EnumSealedState.SnapshotMutable
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.bar.EnumSealedState.Mutable]' type=foo.bar.EnumSealedState.SnapshotMutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
         overridden:
-          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.EnumSealedState
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.bar.EnumSealedState.Mutable
       FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun hashCode (): kotlin.Int declared in foo.bar.EnumSealedState
+          public open fun hashCode (): kotlin.Int declared in foo.bar.EnumSealedState.Mutable
       FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
         overridden:
-          public open fun toString (): kotlin.String declared in foo.bar.EnumSealedState
+          public open fun toString (): kotlin.String declared in foo.bar.EnumSealedState.Mutable
       FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.bar.EnumSealedState.Immutable
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.SnapshotMutable
         BLOCK_BODY
@@ -508,12 +549,12 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
             GET_VAR '<this>: foo.bar.EnumSealedState.SnapshotMutable declared in foo.bar.EnumSealedState.SnapshotMutable.update' type=foo.bar.EnumSealedState.SnapshotMutable origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:result visibility:public modality:FINAL [var]
         overridden:
-          public abstract result: foo.bar.Result declared in foo.bar.EnumSealedState
+          public abstract result: foo.bar.Result declared in foo.bar.EnumSealedState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-result> visibility:public modality:FINAL returnType:foo.bar.Result
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:result visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-result> (): foo.bar.Result declared in foo.bar.EnumSealedState
+            public abstract fun <get-result> (): foo.bar.Result declared in foo.bar.EnumSealedState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-result> (): foo.bar.Result declared in foo.bar.EnumSealedState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -523,6 +564,8 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Result
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:result visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-result> (<set-?>: foo.bar.Result): kotlin.Unit declared in foo.bar.EnumSealedState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:result$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Result> visibility:private [final] declared in foo.bar.EnumSealedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Result> origin=null
@@ -530,12 +573,12 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
               ARG <set-?>: GET_VAR '<set-?>: foo.bar.Result declared in foo.bar.EnumSealedState.SnapshotMutable.<set-result>' type=foo.bar.Result origin=null
       PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:status visibility:public modality:FINAL [var]
         overridden:
-          public abstract status: foo.bar.Status declared in foo.bar.EnumSealedState
+          public abstract status: foo.bar.Status declared in foo.bar.EnumSealedState.Mutable
         FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-status> visibility:public modality:FINAL returnType:foo.bar.Status
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.SnapshotMutable
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:status visibility:public modality:FINAL [var]
           overridden:
-            public abstract fun <get-status> (): foo.bar.Status declared in foo.bar.EnumSealedState
+            public abstract fun <get-status> (): foo.bar.Status declared in foo.bar.EnumSealedState.Mutable
           BLOCK_BODY
             RETURN type=kotlin.Nothing from='public final fun <get-status> (): foo.bar.Status declared in foo.bar.EnumSealedState.SnapshotMutable'
               CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of androidx.compose.runtime.MutableState origin=null
@@ -545,6 +588,8 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
           VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.bar.EnumSealedState.SnapshotMutable
           VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:foo.bar.Status
           correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:status visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-status> (<set-?>: foo.bar.Status): kotlin.Unit declared in foo.bar.EnumSealedState.Mutable
           BLOCK_BODY
             CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
               ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:status$SnapshottableHolder type:androidx.compose.runtime.MutableState<foo.bar.Status> visibility:private [final] declared in foo.bar.EnumSealedState.SnapshotMutable' type=androidx.compose.runtime.MutableState<foo.bar.Status> origin=null

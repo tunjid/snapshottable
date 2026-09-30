@@ -26,7 +26,14 @@ FILE: nested_classes.kt
             public abstract val value: R|kotlin/String|
                 public get(): R|kotlin/String|
 
-            @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/Outer.InnerState| {
+            @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/Outer.InnerState| {
+                public abstract override var value: R|kotlin/String|
+                    public get(): R|kotlin/String|
+                    public set(value: R|kotlin/String|): R|kotlin/Unit|
+
+            }
+
+            @R|androidx/compose/runtime/Stable|() public final class SnapshotMutable : R|foo/bar/Outer.InnerState.Mutable| {
                 public final override var value: R|kotlin/String|
                     public get(): R|kotlin/String|
                     public set(value: R|kotlin/String|): R|kotlin/Unit|

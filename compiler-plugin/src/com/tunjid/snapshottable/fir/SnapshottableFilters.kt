@@ -34,9 +34,14 @@ class SnapshottableFilters(
             .toSet()
     }
 
-    // IDs for nested Mutable classes.
-    private val mutableSnapshotClassIds by lazy {
+    // IDs for nested Mutable interfaces.
+    private val mutableInterfaceIds by lazy {
         snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.mutable }
+    }
+
+    // IDs for nested Snapshot Mutable classes.
+    private val mutableSnapshotClassIds by lazy {
+        snapshottableParentInterfaces.mapToSetOrEmpty { it.classId.snapshotMutable }
     }
 
     fun isSnapshottableInterface(
@@ -46,6 +51,10 @@ class SnapshottableFilters(
     fun isSnapshotSpec(
         symbol: FirClassSymbol<*>,
     ) = snapshotSpecClasses.contains(symbol) && nestedClassSymbolToSnapshottableInterfaceClassSymbol(symbol) != null
+
+    fun isMutableInterface(
+        symbol: FirClassSymbol<*>,
+    ) = mutableInterfaceIds.contains(symbol.classId)
 
     fun isSnapshotMutable(
         symbol: FirClassSymbol<*>,
@@ -73,12 +82,12 @@ class SnapshottableFilters(
         nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = nestedClassSymbol)
             ?.let(::snapshottableInterfaceSymbolToSpecSymbol)
 
-    fun nestedClassSymbolToMutableSymbol(
+    fun nestedClassSymbolToSnapshotMutableSymbol(
         nestedClassSymbol: FirClassSymbol<*>,
     ): FirClassSymbol<*>? =
         nestedClassSymbolToSnapshottableInterfaceClassSymbol(nestedClassSymbol = nestedClassSymbol)
             ?.classId
-            ?.mutable
+            ?.snapshotMutable
             ?.let(session::findClassSymbol)
 
     fun specPrimaryConstructor(
