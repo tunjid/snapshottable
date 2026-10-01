@@ -1,0 +1,456 @@
+Module: lib
+FILE fqName:foo.lib fileName:/marker.kt
+  CLASS CLASS name:Tagged modality:FINAL visibility:public superTypes:[foo.lib.Marker]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.lib.Tagged
+    PROPERTY name:tag visibility:public modality:OPEN [val]
+      overridden:
+        public abstract tag: kotlin.String declared in foo.lib.Marker
+      FIELD PROPERTY_BACKING_FIELD name:tag type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'tag: kotlin.String declared in foo.lib.Tagged.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-tag> visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Tagged
+        correspondingProperty: PROPERTY name:tag visibility:public modality:OPEN [val]
+        overridden:
+          public abstract fun <get-tag> (): kotlin.String declared in foo.lib.Marker
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun <get-tag> (): kotlin.String declared in foo.lib.Tagged'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:tag type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.lib.Tagged declared in foo.lib.Tagged.<get-tag>' type=foo.lib.Tagged origin=null
+    CONSTRUCTOR visibility:public returnType:foo.lib.Tagged [primary]
+      VALUE_PARAMETER kind:Regular name:tag index:0 type:kotlin.String
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Tagged modality:FINAL visibility:public superTypes:[foo.lib.Marker]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.Marker
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in foo.lib.Marker
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in foo.lib.Marker
+  CLASS INTERFACE name:Marker modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.lib.Marker
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:tag visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-tag> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Marker
+        correspondingProperty: PROPERTY name:tag visibility:public modality:ABSTRACT [val]
+Module: app
+FILE fqName:foo.app fileName:/app.kt
+  CLASS INTERFACE name:MarkerState modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.MarkerState<T of foo.app.MarkerState>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[foo.lib.Marker] reified:false
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.app.MarkerState<T of foo.app.MarkerState.Immutable>]
+      annotations:
+        SnapshotSpec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+      TYPE_PARAMETER name:T index:0 variance: superTypes:[foo.lib.Marker] reified:false
+      PROPERTY name:value visibility:public modality:OPEN [val]
+        overridden:
+          public abstract value: T of foo.app.MarkerState declared in foo.app.MarkerState
+        FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'value: T of foo.app.MarkerState.Immutable declared in foo.app.MarkerState.Immutable.<init>' type=T of foo.app.MarkerState.Immutable origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:OPEN returnType:T of foo.app.MarkerState.Immutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+          correspondingProperty: PROPERTY name:value visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-value> (): T of foo.app.MarkerState declared in foo.app.MarkerState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-value> (): T of foo.app.MarkerState.Immutable declared in foo.app.MarkerState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.<get-value>' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+      PROPERTY name:label visibility:public modality:OPEN [val]
+        overridden:
+          public abstract label: kotlin.String declared in foo.app.MarkerState
+        FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'label: kotlin.String declared in foo.app.MarkerState.Immutable.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:OPEN returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+          correspondingProperty: PROPERTY name:label visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.app.MarkerState
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-label> (): kotlin.String declared in foo.app.MarkerState.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.<get-label>' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+      CONSTRUCTOR visibility:public returnType:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> [primary]
+        VALUE_PARAMETER kind:Regular name:value index:0 type:T of foo.app.MarkerState.Immutable
+        VALUE_PARAMETER kind:Regular name:label index:1 type:kotlin.String
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="default"
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.app.MarkerState<T of foo.app.MarkerState.Immutable>]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.app.MarkerState.SnapshotMutable, label: kotlin.String) declared in foo.app.MarkerState.SnapshotMutable' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.Immutable> origin=null
+              TYPE_ARG (of class) T: T of foo.app.MarkerState.Immutable
+              ARG value: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.toSnapshotMutable' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              ARG label: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.toSnapshotMutable' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:T of foo.app.MarkerState.Immutable [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): T of foo.app.MarkerState.Immutable declared in foo.app.MarkerState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.component1' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.String [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.String declared in foo.app.MarkerState.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.component2' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        VALUE_PARAMETER kind:Regular name:value index:1 type:T of foo.app.MarkerState.Immutable
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.copy' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+        VALUE_PARAMETER kind:Regular name:label index:2 type:kotlin.String
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.copy' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (value: T of foo.app.MarkerState.Immutable, label: kotlin.String): foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.app.MarkerState.Immutable, label: kotlin.String) declared in foo.app.MarkerState.Immutable' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              TYPE_ARG (of class) T: T of foo.app.MarkerState.Immutable
+              ARG value: GET_VAR 'value: T of foo.app.MarkerState.Immutable declared in foo.app.MarkerState.Immutable.copy' type=T of foo.app.MarkerState.Immutable origin=null
+              ARG label: GET_VAR 'label: kotlin.String declared in foo.app.MarkerState.Immutable.copy' type=kotlin.String origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.equals' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.app.MarkerState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+                GET_VAR 'other: kotlin.Any? declared in foo.app.MarkerState.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> [val]
+            TYPE_OP type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=IMPLICIT_CAST typeOperand=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+              GET_VAR 'other: kotlin.Any? declared in foo.app.MarkerState.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                    receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.equals' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.equals' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.equals' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.equals' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.MarkerState
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in foo.lib.Marker' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.hashCode' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.app.MarkerState.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.app.MarkerState.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.hashCode' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.app.MarkerState.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.app.MarkerState.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable>
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.MarkerState
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.app.MarkerState.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="value="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:T of foo.app.MarkerState.Immutable visibility:private [final]' type=T of foo.app.MarkerState.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.toString' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="label="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:label type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.toString' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.app.MarkerState<T of foo.app.MarkerState.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:T index:0 variance: superTypes:[foo.lib.Marker] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.MarkerState
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.MarkerState
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract label: kotlin.String declared in foo.app.MarkerState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:ABSTRACT returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.app.MarkerState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-label> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract value: T of foo.app.MarkerState declared in foo.app.MarkerState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:T of foo.app.MarkerState.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-value> (): T of foo.app.MarkerState declared in foo.app.MarkerState
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-value> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:T of foo.app.MarkerState.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.MarkerState.Mutable<T of foo.app.MarkerState.SnapshotMutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:T index:0 variance: superTypes:[foo.lib.Marker] reified:false
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> origin=null
+            TYPE_ARG T: T of foo.app.MarkerState.SnapshotMutable
+            ARG value: GET_VAR 'value: T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable.<init>' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+            TYPE_ARG T: kotlin.String
+            ARG value: GET_VAR 'label: kotlin.String declared in foo.app.MarkerState.SnapshotMutable.<init>' type=kotlin.String origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:0 type:T of foo.app.MarkerState.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:label index:1 type:kotlin.String
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.MarkerState.Mutable<T of foo.app.MarkerState.SnapshotMutable>]' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.MarkerState.Mutable
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.MarkerState.Mutable
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.MarkerState.Mutable
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.app.MarkerState.Immutable<T of foo.app.MarkerState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.app.MarkerState.Immutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.app.MarkerState.Immutable, label: kotlin.String) declared in foo.app.MarkerState.Immutable' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+              TYPE_ARG (of class) T: T of foo.app.MarkerState.SnapshotMutable
+              ARG value: CALL 'public final fun <get-value> (): T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+                ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.toSnapshotSpec' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+              ARG label: CALL 'public final fun <get-label> (): kotlin.String declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.String origin=null
+                ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.toSnapshotSpec' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:value index:1 type:T of foo.app.MarkerState.SnapshotMutable
+          EXPRESSION_BODY
+            CALL 'public final fun <get-value> (): T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+              ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.update' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:label index:2 type:kotlin.String
+          EXPRESSION_BODY
+            CALL 'public final fun <get-label> (): kotlin.String declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.String origin=null
+              ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.update' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-value> (<set-?>: T of foo.app.MarkerState.SnapshotMutable): kotlin.Unit declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.update' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'value: T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable.update' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+          CALL 'public final fun <set-label> (<set-?>: kotlin.String): kotlin.Unit declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.update' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'label: kotlin.String declared in foo.app.MarkerState.SnapshotMutable.update' type=kotlin.String origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (value: T of foo.app.MarkerState.SnapshotMutable, label: kotlin.String): foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable'
+            GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.update' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+        overridden:
+          public abstract label: kotlin.String declared in foo.app.MarkerState.Mutable
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-label> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-label> (): kotlin.String declared in foo.app.MarkerState.Mutable
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-label> (): kotlin.String declared in foo.app.MarkerState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=kotlin.String origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.app.MarkerState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                  receiver: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.<get-label>' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-label> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.String
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:label visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-label> (<set-?>: kotlin.String): kotlin.Unit declared in foo.app.MarkerState.Mutable
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:label$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.String> visibility:private [final] declared in foo.app.MarkerState.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.String> origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.<set-label>' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.String declared in foo.app.MarkerState.SnapshotMutable.<set-label>' type=kotlin.String origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+        overridden:
+          public abstract value: T of foo.app.MarkerState.Mutable declared in foo.app.MarkerState.Mutable
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-value> visibility:public modality:FINAL returnType:T of foo.app.MarkerState.SnapshotMutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-value> (): T of foo.app.MarkerState.Mutable declared in foo.app.MarkerState.Mutable
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-value> (): T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> visibility:private [final] declared in foo.app.MarkerState.SnapshotMutable' type=androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> origin=null
+                  receiver: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.<get-value>' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-value> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:T of foo.app.MarkerState.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:value visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-value> (<set-?>: T of foo.app.MarkerState.Mutable): kotlin.Unit declared in foo.app.MarkerState.Mutable
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:value$SnapshottableHolder type:androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> visibility:private [final] declared in foo.app.MarkerState.SnapshotMutable' type=androidx.compose.runtime.MutableState<T of foo.app.MarkerState.SnapshotMutable> origin=null
+                receiver: GET_VAR '<this>: foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable.<set-value>' type=foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable.<set-value>' type=T of foo.app.MarkerState.SnapshotMutable origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:label visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-label> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState<T of foo.app.MarkerState>
+        correspondingProperty: PROPERTY name:label visibility:public modality:ABSTRACT [val]
+    PROPERTY name:value visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:ABSTRACT returnType:T of foo.app.MarkerState
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.MarkerState<T of foo.app.MarkerState>
+        correspondingProperty: PROPERTY name:value visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:state type:foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> [val]
+        CALL 'public final fun toSnapshotMutable (): foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (value: T of foo.app.MarkerState.Immutable, label: kotlin.String) declared in foo.app.MarkerState.Immutable' type=foo.app.MarkerState.Immutable<foo.lib.Tagged> origin=null
+            TYPE_ARG (of class) T: foo.lib.Tagged
+            ARG value: CONSTRUCTOR_CALL 'public constructor <init> (tag: kotlin.String) declared in foo.lib.Tagged' type=foo.lib.Tagged origin=null
+              ARG tag: CONST String type=kotlin.String value="first"
+            ARG label: CONST String type=kotlin.String value="one"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-tag> (): kotlin.String declared in foo.lib.Tagged' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun <get-value> (): T of foo.app.MarkerState.SnapshotMutable declared in foo.app.MarkerState.SnapshotMutable' type=foo.lib.Tagged origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+              ARG arg1: CONST String type=kotlin.String value="first"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 1"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-label> (): kotlin.String declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+              ARG arg1: CONST String type=kotlin.String value="one"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 2"
+      CALL 'public final fun <set-value> (<set-?>: T of foo.app.MarkerState.SnapshotMutable): kotlin.Unit declared in foo.app.MarkerState.SnapshotMutable' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+        ARG <set-?>: CONSTRUCTOR_CALL 'public constructor <init> (tag: kotlin.String) declared in foo.lib.Tagged' type=foo.lib.Tagged origin=null
+          ARG tag: CONST String type=kotlin.String value="second"
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (value: T of foo.app.MarkerState.SnapshotMutable, label: kotlin.String): foo.app.MarkerState.SnapshotMutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+          ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+          ARG label: CONST String type=kotlin.String value="two"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-tag> (): kotlin.String declared in foo.lib.Tagged' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: CALL 'public open fun <get-value> (): T of foo.app.MarkerState.Immutable declared in foo.app.MarkerState.Immutable' type=foo.lib.Tagged origin=GET_PROPERTY
+                  ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.app.MarkerState.Immutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable' type=foo.app.MarkerState.Immutable<foo.lib.Tagged> origin=null
+                    ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+              ARG arg1: CONST String type=kotlin.String value="second"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 3"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-label> (): kotlin.String declared in foo.app.MarkerState.Immutable' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun toSnapshotSpec (): foo.app.MarkerState.Immutable<T of foo.app.MarkerState.SnapshotMutable> declared in foo.app.MarkerState.SnapshotMutable' type=foo.app.MarkerState.Immutable<foo.lib.Tagged> origin=null
+                  ARG <this>: GET_VAR 'val state: foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> declared in foo.app.box' type=foo.app.MarkerState.SnapshotMutable<foo.lib.Tagged> origin=null
+              ARG arg1: CONST String type=kotlin.String value="two"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 4"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+        CONST String type=kotlin.String value="OK"
