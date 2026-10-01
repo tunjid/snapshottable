@@ -1,39 +1,7 @@
 plugins {
     id("com.vanniktech.maven.publish")
-    id("pl.allegro.tech.build.axion-release")
     id("org.jetbrains.dokka")
     signing
-}
-
-scmVersion {
-    tag {
-        // Use an empty string for prefix
-        prefix.set("")
-    }
-    repository {
-        pushTagsOnly.set(true)
-    }
-    providers.gradleProperty("library.releaseBranch")
-        .orNull
-        ?.let { releaseBranch ->
-            when {
-                releaseBranch.contains("bugfix/") -> versionIncrementer("incrementPatch")
-                releaseBranch.contains("feature/") -> versionIncrementer("incrementMinor")
-                releaseBranch.contains("release/") -> versionIncrementer("incrementMajor")
-                else -> throw IllegalArgumentException("Unknown release type")
-            }
-        }
-}
-
-allprojects {
-    group = "com.tunjid.snapshottable"
-    version = scmVersion.version
-
-    task("printProjectVersion") {
-        doLast {
-            println(">> " + project.name + " version is " + version)
-        }
-    }
 }
 
 val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
