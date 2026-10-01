@@ -1,0 +1,536 @@
+Module: lib
+FILE fqName:foo.lib fileName:/cursor_query.kt
+  CLASS CLASS name:Q modality:FINAL visibility:public [data] superTypes:[foo.lib.CursorQueryShape]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.lib.Q
+    PROPERTY name:page visibility:public modality:OPEN [val]
+      overridden:
+        public abstract page: kotlin.Int declared in foo.lib.CursorQueryShape
+      FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'page: kotlin.Int declared in foo.lib.Q.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-page> visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+        correspondingProperty: PROPERTY name:page visibility:public modality:OPEN [val]
+        overridden:
+          public abstract fun <get-page> (): kotlin.Int declared in foo.lib.CursorQueryShape
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun <get-page> (): kotlin.Int declared in foo.lib.Q'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.<get-page>' type=foo.lib.Q origin=null
+    CONSTRUCTOR visibility:public returnType:foo.lib.Q [primary]
+      VALUE_PARAMETER kind:Regular name:page index:0 type:kotlin.Int
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Q modality:FINAL visibility:public [data] superTypes:[foo.lib.CursorQueryShape]' type=kotlin.Unit
+    FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.Int [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.Int declared in foo.lib.Q'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+            receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.component1' type=foo.lib.Q origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.lib.Q
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+      VALUE_PARAMETER kind:Regular name:page index:1 type:kotlin.Int
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+            receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.copy' type=foo.lib.Q origin=null
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun copy (page: kotlin.Int): foo.lib.Q declared in foo.lib.Q'
+          CONSTRUCTOR_CALL 'public constructor <init> (page: kotlin.Int) declared in foo.lib.Q' type=foo.lib.Q origin=null
+            ARG page: GET_VAR 'page: kotlin.Int declared in foo.lib.Q.copy' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.CursorQueryShape
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+              ARG arg0: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.equals' type=foo.lib.Q origin=null
+              ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.lib.Q.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.Q'
+              CONST Boolean type=kotlin.Boolean value=true
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.lib.Q
+              GET_VAR 'other: kotlin.Any? declared in foo.lib.Q.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.Q'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.lib.Q [val]
+          TYPE_OP type=foo.lib.Q origin=IMPLICIT_CAST typeOperand=foo.lib.Q
+            GET_VAR 'other: kotlin.Any? declared in foo.lib.Q.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.equals' type=foo.lib.Q origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR 'val tmp_0: foo.lib.Q declared in foo.lib.Q.equals' type=foo.lib.Q origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.Q'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.lib.Q'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in foo.lib.CursorQueryShape
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.lib.Q'
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.hashCode' type=foo.lib.Q origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.Q
+      overridden:
+        public open fun toString (): kotlin.String declared in foo.lib.CursorQueryShape
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.lib.Q'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="Q("
+            CONST String type=kotlin.String value="page="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:page type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: foo.lib.Q declared in foo.lib.Q.toString' type=foo.lib.Q origin=null
+            CONST String type=kotlin.String value=")"
+  CLASS INTERFACE name:CursorQueryShape modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.lib.CursorQueryShape
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:page visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-page> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.lib.CursorQueryShape
+        correspondingProperty: PROPERTY name:page visibility:public modality:ABSTRACT [val]
+Module: app
+FILE fqName:foo.app fileName:/app.kt
+  CLASS INTERFACE name:TilingShape modality:SEALED visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Snapshottable
+    sealedSubclasses:
+      CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape<Query of foo.app.TilingShape, Item of foo.app.TilingShape>
+    TYPE_PARAMETER name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
+    TYPE_PARAMETER name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false
+    CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>]
+      annotations:
+        SnapshotSpec
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+      TYPE_PARAMETER name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
+      TYPE_PARAMETER name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false
+      PROPERTY name:currentQuery visibility:public modality:OPEN [val]
+        overridden:
+          public abstract currentQuery: Query of foo.app.TilingShape declared in foo.app.TilingShape
+        FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'currentQuery: Query of foo.app.TilingShape.Immutable declared in foo.app.TilingShape.Immutable.<init>' type=Query of foo.app.TilingShape.Immutable origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-currentQuery> visibility:public modality:OPEN returnType:Query of foo.app.TilingShape.Immutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+          correspondingProperty: PROPERTY name:currentQuery visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape declared in foo.app.TilingShape
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-currentQuery> (): Query of foo.app.TilingShape.Immutable declared in foo.app.TilingShape.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.<get-currentQuery>' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+      PROPERTY name:items visibility:public modality:OPEN [val]
+        overridden:
+          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+        FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]
+          EXPRESSION_BODY
+            GET_VAR 'items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.<init>' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-items> visibility:public modality:OPEN returnType:kotlin.collections.List<Item of foo.app.TilingShape.Immutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+          correspondingProperty: PROPERTY name:items visibility:public modality:OPEN [val]
+          overridden:
+            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public open fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.<get-items>' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+      CONSTRUCTOR visibility:public returnType:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> [primary]
+        VALUE_PARAMETER kind:Regular name:currentQuery index:0 type:Query of foo.app.TilingShape.Immutable
+        VALUE_PARAMETER kind:Regular name:items index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Immutable modality:FINAL visibility:public [data] superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>]' type=kotlin.Unit
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Spec] name:toSnapshotMutable visibility:public modality:FINAL returnType:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotMutable (): foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (currentQuery: Query of foo.app.TilingShape.SnapshotMutable, items: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>) declared in foo.app.TilingShape.SnapshotMutable' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              TYPE_ARG (of class) Query: Query of foo.app.TilingShape.Immutable
+              TYPE_ARG (of class) Item: Item of foo.app.TilingShape.Immutable
+              ARG currentQuery: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toSnapshotMutable' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              ARG items: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toSnapshotMutable' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:Query of foo.app.TilingShape.Immutable [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component1 (): Query of foo.app.TilingShape.Immutable declared in foo.app.TilingShape.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.component1' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.collections.List<Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+              receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.component2' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        VALUE_PARAMETER kind:Regular name:currentQuery index:1 type:Query of foo.app.TilingShape.Immutable
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+              receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.copy' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+        VALUE_PARAMETER kind:Regular name:items index:2 type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable>
+          EXPRESSION_BODY
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+              receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.copy' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun copy (currentQuery: Query of foo.app.TilingShape.Immutable, items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable>): foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (currentQuery: Query of foo.app.TilingShape.Immutable, items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable>) declared in foo.app.TilingShape.Immutable' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              TYPE_ARG (of class) Query: Query of foo.app.TilingShape.Immutable
+              TYPE_ARG (of class) Item: Item of foo.app.TilingShape.Immutable
+              ARG currentQuery: GET_VAR 'currentQuery: Query of foo.app.TilingShape.Immutable declared in foo.app.TilingShape.Immutable.copy' type=Query of foo.app.TilingShape.Immutable origin=null
+              ARG items: GET_VAR 'items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.copy' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape
+        BLOCK_BODY
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.equals' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+                ARG arg1: GET_VAR 'other: kotlin.Any? declared in foo.app.TilingShape.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Immutable'
+                CONST Boolean type=kotlin.Boolean value=true
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+                GET_VAR 'other: kotlin.Any? declared in foo.app.TilingShape.Immutable.equals' type=kotlin.Any? origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> [val]
+            TYPE_OP type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=IMPLICIT_CAST typeOperand=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+              GET_VAR 'other: kotlin.Any? declared in foo.app.TilingShape.Immutable.equals' type=kotlin.Any? origin=null
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                    receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.equals' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.equals' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          WHEN type=kotlin.Unit origin=null
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                    receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.equals' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+                  ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                    receiver: GET_VAR 'val tmp_0: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.equals' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Immutable'
+                CONST Boolean type=kotlin.Boolean value=false
+          RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Immutable'
+            CONST Boolean type=kotlin.Boolean value=true
+      FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape
+        BLOCK_BODY
+          VAR name:result type:kotlin.Int [var]
+            CALL 'public open fun hashCode (): kotlin.Int declared in foo.lib.CursorQueryShape' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.hashCode' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+          SET_VAR 'var result: kotlin.Int declared in foo.app.TilingShape.Immutable.hashCode' type=kotlin.Unit origin=EQ
+            CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                ARG <this>: GET_VAR 'var result: kotlin.Int declared in foo.app.TilingShape.Immutable.hashCode' type=kotlin.Int origin=null
+                ARG other: CONST Int type=kotlin.Int value=31
+              ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.collections.List' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                  receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.hashCode' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+          RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape.Immutable'
+            GET_VAR 'var result: kotlin.Int declared in foo.app.TilingShape.Immutable.hashCode' type=kotlin.Int origin=null
+      FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable>
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.TilingShape
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in foo.app.TilingShape.Immutable'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Immutable("
+              CONST String type=kotlin.String value="currentQuery="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:currentQuery type:Query of foo.app.TilingShape.Immutable visibility:private [final]' type=Query of foo.app.TilingShape.Immutable origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toString' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              CONST String type=kotlin.String value=", "
+              CONST String type=kotlin.String value="items="
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:items type:kotlin.collections.List<Item of foo.app.TilingShape.Immutable> visibility:private [final]' type=kotlin.collections.List<Item of foo.app.TilingShape.Immutable> origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toString' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
+              CONST String type=kotlin.String value=")"
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.TilingShape
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract currentQuery: Query of foo.app.TilingShape declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-currentQuery> visibility:public modality:ABSTRACT returnType:Query of foo.app.TilingShape.Mutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-currentQuery> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:Query of foo.app.TilingShape.Mutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery visibility:public modality:ABSTRACT [var]
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+        overridden:
+          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-items> visibility:public modality:ABSTRACT returnType:kotlin.collections.List<Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+          overridden:
+            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape> declared in foo.app.TilingShape
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<set-items> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.Mutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items visibility:public modality:ABSTRACT [var]
+    CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]
+      annotations:
+        Stable
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
+      TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery$SnapshottableHolder type:androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> origin=null
+            TYPE_ARG T: Query of foo.app.TilingShape.SnapshotMutable
+            ARG value: GET_VAR 'currentQuery: Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable.<init>' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+      FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> visibility:private [final]
+        EXPRESSION_BODY
+          CALL 'public final fun mutableStateOf <T> (value: T of androidx.compose.runtime.mutableStateOf, policy: androidx.compose.runtime.SnapshotMutationPolicy<T of androidx.compose.runtime.mutableStateOf>): androidx.compose.runtime.MutableState<T of androidx.compose.runtime.mutableStateOf> declared in androidx.compose.runtime' type=androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> origin=null
+            TYPE_ARG T: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
+            ARG value: GET_VAR 'items: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<init>' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+      CONSTRUCTOR GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] visibility:public returnType:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> [primary]
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:currentQuery index:0 type:Query of foo.app.TilingShape.SnapshotMutable
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:items index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] CLASS name:SnapshotMutable modality:FINAL visibility:public superTypes:[foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>]' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in foo.app.TilingShape.Mutable
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in foo.app.TilingShape.Mutable
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in foo.app.TilingShape.Mutable
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:toSnapshotSpec visibility:public modality:FINAL returnType:foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun toSnapshotSpec (): foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable'
+            CONSTRUCTOR_CALL 'public constructor <init> (currentQuery: Query of foo.app.TilingShape.Immutable, items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable>) declared in foo.app.TilingShape.Immutable' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+              TYPE_ARG (of class) Query: Query of foo.app.TilingShape.SnapshotMutable
+              TYPE_ARG (of class) Item: Item of foo.app.TilingShape.SnapshotMutable
+              ARG currentQuery: CALL 'public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+                ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.toSnapshotSpec' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+              ARG items: CALL 'public final fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+                ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.toSnapshotSpec' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+      FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:update visibility:public modality:FINAL returnType:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:currentQuery index:1 type:Query of foo.app.TilingShape.SnapshotMutable
+          EXPRESSION_BODY
+            CALL 'public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+              ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+        VALUE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] kind:Regular name:items index:2 type:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
+          EXPRESSION_BODY
+            CALL 'public final fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+              ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+        BLOCK_BODY
+          CALL 'public final fun <set-currentQuery> (<set-?>: Query of foo.app.TilingShape.SnapshotMutable): kotlin.Unit declared in foo.app.TilingShape.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'currentQuery: Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable.update' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+          CALL 'public final fun <set-items> (<set-?>: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>): kotlin.Unit declared in foo.app.TilingShape.SnapshotMutable' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+            ARG <set-?>: GET_VAR 'items: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+          RETURN type=kotlin.Nothing from='public final fun update (currentQuery: Query of foo.app.TilingShape.SnapshotMutable, items: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>): foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable'
+            GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.update' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
+        overridden:
+          public abstract currentQuery: Query of foo.app.TilingShape.Mutable declared in foo.app.TilingShape.Mutable
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-currentQuery> visibility:public modality:FINAL returnType:Query of foo.app.TilingShape.SnapshotMutable
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-currentQuery> (): Query of foo.app.TilingShape.Mutable declared in foo.app.TilingShape.Mutable
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery$SnapshottableHolder type:androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> origin=null
+                  receiver: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<get-currentQuery>' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-currentQuery> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:Query of foo.app.TilingShape.SnapshotMutable
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:currentQuery visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-currentQuery> (<set-?>: Query of foo.app.TilingShape.Mutable): kotlin.Unit declared in foo.app.TilingShape.Mutable
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:currentQuery$SnapshottableHolder type:androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<Query of foo.app.TilingShape.SnapshotMutable> origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<set-currentQuery>' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable.<set-currentQuery>' type=Query of foo.app.TilingShape.SnapshotMutable origin=null
+      PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
+        overridden:
+          public abstract items: kotlin.collections.List<Item of foo.app.TilingShape.Mutable> declared in foo.app.TilingShape.Mutable
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<get-items> visibility:public modality:FINAL returnType:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.Mutable> declared in foo.app.TilingShape.Mutable
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable'
+              CALL 'public abstract fun <get-value> (): T of androidx.compose.runtime.MutableState declared in androidx.compose.runtime.MutableState' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+                ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> origin=null
+                  receiver: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<get-items>' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+        FUN GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:<set-items> visibility:public modality:FINAL returnType:kotlin.Unit
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable>
+          VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>
+          correspondingProperty: PROPERTY GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.SnapshotMutable] name:items visibility:public modality:FINAL [var]
+          overridden:
+            public abstract fun <set-items> (<set-?>: kotlin.collections.List<Item of foo.app.TilingShape.Mutable>): kotlin.Unit declared in foo.app.TilingShape.Mutable
+          BLOCK_BODY
+            CALL 'public abstract fun <set-value> (<set-?>: T of androidx.compose.runtime.MutableState): kotlin.Unit declared in androidx.compose.runtime.MutableState' type=kotlin.Unit origin=null
+              ARG <this>: GET_FIELD 'FIELD GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.Default] name:items$SnapshottableHolder type:androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> visibility:private [final] declared in foo.app.TilingShape.SnapshotMutable' type=androidx.compose.runtime.MutableState<kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>> origin=null
+                receiver: GET_VAR '<this>: foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<set-items>' type=foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> origin=null
+              ARG <set-?>: GET_VAR '<set-?>: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable.<set-items>' type=kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> origin=null
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:currentQuery visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-currentQuery> visibility:public modality:ABSTRACT returnType:Query of foo.app.TilingShape
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape<Query of foo.app.TilingShape, Item of foo.app.TilingShape>
+        correspondingProperty: PROPERTY name:currentQuery visibility:public modality:ABSTRACT [val]
+    PROPERTY name:items visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-items> visibility:public modality:ABSTRACT returnType:kotlin.collections.List<Item of foo.app.TilingShape>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:foo.app.TilingShape<Query of foo.app.TilingShape, Item of foo.app.TilingShape>
+        correspondingProperty: PROPERTY name:items visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:state type:foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> [val]
+        CALL 'public final fun toSnapshotMutable (): foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+          ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (currentQuery: Query of foo.app.TilingShape.Immutable, items: kotlin.collections.List<Item of foo.app.TilingShape.Immutable>) declared in foo.app.TilingShape.Immutable' type=foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> origin=null
+            TYPE_ARG (of class) Query: foo.lib.Q
+            TYPE_ARG (of class) Item: kotlin.String
+            ARG currentQuery: CONSTRUCTOR_CALL 'public constructor <init> (page: kotlin.Int) declared in foo.lib.Q' type=foo.lib.Q origin=null
+              ARG page: CONST Int type=kotlin.Int value=0
+            ARG items: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+              TYPE_ARG T: kotlin.String
+              ARG element: CONST String type=kotlin.String value="a"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-page> (): kotlin.Int declared in foo.lib.Q' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable' type=foo.lib.Q origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=0
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 1"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable' type=kotlin.collections.List<kotlin.String> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val state: foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG element: CONST String type=kotlin.String value="a"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 2"
+      TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+        CALL 'public final fun update (currentQuery: Query of foo.app.TilingShape.SnapshotMutable, items: kotlin.collections.List<Item of foo.app.TilingShape.SnapshotMutable>): foo.app.TilingShape.SnapshotMutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+          ARG <this>: GET_VAR 'val state: foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+          ARG currentQuery: CONSTRUCTOR_CALL 'public constructor <init> (page: kotlin.Int) declared in foo.lib.Q' type=foo.lib.Q origin=null
+            ARG page: CONST Int type=kotlin.Int value=1
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-page> (): kotlin.Int declared in foo.lib.Q' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun <get-currentQuery> (): Query of foo.app.TilingShape.SnapshotMutable declared in foo.app.TilingShape.SnapshotMutable' type=foo.lib.Q origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val state: foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 3"
+      VAR name:spec type:foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> [val]
+        CALL 'public final fun toSnapshotSpec (): foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.SnapshotMutable, Item of foo.app.TilingShape.SnapshotMutable> declared in foo.app.TilingShape.SnapshotMutable' type=foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> origin=null
+          ARG <this>: GET_VAR 'val state: foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.SnapshotMutable<foo.lib.Q, kotlin.String> origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-page> (): kotlin.Int declared in foo.lib.Q' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: CALL 'public open fun <get-currentQuery> (): Query of foo.app.TilingShape.Immutable declared in foo.app.TilingShape.Immutable' type=foo.lib.Q origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val spec: foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 4"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public open fun <get-items> (): kotlin.collections.List<Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable' type=kotlin.collections.List<kotlin.String> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val spec: foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> declared in foo.app.box' type=foo.app.TilingShape.Immutable<foo.lib.Q, kotlin.String> origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG element: CONST String type=kotlin.String value="a"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+            CONST String type=kotlin.String value="Fail 5"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.app'
+        CONST String type=kotlin.String value="OK"

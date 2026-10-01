@@ -36,15 +36,10 @@ import org.jetbrains.kotlin.ir.declarations.createExpressionBody
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.impl.IrDelegatingConstructorCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
-import org.jetbrains.kotlin.ir.symbols.IrConstructorSymbol
 import org.jetbrains.kotlin.ir.types.IrSimpleType
-import org.jetbrains.kotlin.ir.types.IrType
-import org.jetbrains.kotlin.ir.types.IrTypeArgument
-import org.jetbrains.kotlin.ir.types.defaultType
 import org.jetbrains.kotlin.ir.types.getClass
 import org.jetbrains.kotlin.ir.types.typeOrNull
 import org.jetbrains.kotlin.ir.util.constructedClass
-import org.jetbrains.kotlin.ir.util.defaultType
 import org.jetbrains.kotlin.ir.util.hasDefaultValue
 import org.jetbrains.kotlin.ir.util.isFinalClass
 import org.jetbrains.kotlin.ir.util.nonDispatchParameters
@@ -184,12 +179,12 @@ class SnapshottableIrBodyGenerator(
             +irReturn(
                 irCall(
                     callee = constructorSymbol,
-                    type = irClass.defaultType,
+                    type = function.returnType,
                     constructedClass = irClass,
                 ).apply {
-                    for ((i, typeParameterType) in constructorSymbol.typesOfTypeParameters().withIndex()) {
-                        typeArguments[i] = typeParameterType
-                    }
+                    (function.returnType as IrSimpleType)
+                        .arguments
+                        .forEachIndexed { i, argument -> typeArguments[i] = argument.typeOrNull }
                     constructorSymbol.owner.parameters.forEachIndexed { index, parameter ->
                         val property = propertiesByName[parameter.name]
                             ?: error("No property named '${parameter.name}' on ${receiverClass.name} matching constructor parameter of ${irClass.name}")
@@ -264,12 +259,13 @@ class SnapshottableIrBodyGenerator(
         }.apply {
             parent = klass
             initializer = factory.createExpressionBody(
-                builder.irCall(snapshotStateMetadata.factoryFunction).apply {
-                    typeArguments.addAll(
-                        snapshotStateMetadata.type
-                            .arguments
-                            .map(IrTypeArgument::typeOrNull),
-                    )
+                builder.irCall(
+                    callee = snapshotStateMetadata.factoryFunction,
+                    type = snapshotStateMetadata.type,
+                ).apply {
+                    snapshotStateMetadata.type
+                        .arguments
+                        .forEachIndexed { i, argument -> typeArguments[i] = argument.typeOrNull }
                     arguments[0] = builder.irGet(targetValueParameter)
                 },
             )
@@ -282,7 +278,10 @@ class SnapshottableIrBodyGenerator(
         ).irBlockBody {
             val dispatch = getter.dispatchReceiverParameter!!
             +irReturn(
-                irCall(snapshotStateMetadata.valueProperty.owner.getter!!).apply {
+                irCall(
+                    callee = snapshotStateMetadata.valueProperty.owner.getter!!.symbol,
+                    type = getter.returnType,
+                ).apply {
                     dispatchReceiver = irGetField(
                         receiver = irGet(dispatch),
                         field = holderField,
@@ -312,10 +311,5 @@ class SnapshottableIrBodyGenerator(
 
 private fun IrDeclarationOrigin.isSnapshottableOrigin() =
     this is GeneratedByPlugin && pluginKey is Snapshottable.Keys
-
-private fun IrConstructorSymbol.typesOfTypeParameters(): List<IrType> {
-    val allParameters = owner.constructedClass.typeParameters + owner.typeParameters
-    return allParameters.map { it.defaultType }
-}
 
 private const val MutableClassSetterArgumentIndex = 1
