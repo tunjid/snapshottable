@@ -70,7 +70,7 @@ FILE: simple.kt
         public abstract val stepsPerSecond: R|kotlin/Double|
             public get(): R|kotlin/Double|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/State| {
+        public abstract interface Mutable : R|foo/bar/State| {
             public abstract override var activity: R|kotlin/String|
                 public get(): R|kotlin/String|
                 public set(value: R|kotlin/String|): R|kotlin/Unit|

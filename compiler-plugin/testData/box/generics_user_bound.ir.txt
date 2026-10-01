@@ -222,8 +222,6 @@ FILE fqName:foo.app fileName:/app.kt
                 receiver: GET_VAR '<this>: foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> declared in foo.app.MarkerState.Immutable.toString' type=foo.app.MarkerState.Immutable<T of foo.app.MarkerState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.app.MarkerState<T of foo.app.MarkerState.Mutable>]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.MarkerState.Mutable<T of foo.app.MarkerState.Mutable>
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:T index:0 variance: superTypes:[foo.lib.Marker] reified:false
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]

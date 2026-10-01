@@ -444,8 +444,6 @@ FILE fqName:foo.bar fileName:/enums_sealed.kt
                 receiver: GET_VAR '<this>: foo.bar.EnumSealedState.Immutable declared in foo.bar.EnumSealedState.Immutable.toString' type=foo.bar.EnumSealedState.Immutable origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.EnumSealedState]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.EnumSealedState.Mutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any

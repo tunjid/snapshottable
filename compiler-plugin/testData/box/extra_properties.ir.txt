@@ -159,8 +159,6 @@ FILE fqName:foo.bar fileName:/extra_properties.kt
                 receiver: GET_VAR '<this>: foo.bar.ExtraState.Immutable declared in foo.bar.ExtraState.Immutable.toString' type=foo.bar.ExtraState.Immutable origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.ExtraState]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ExtraState.Mutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any

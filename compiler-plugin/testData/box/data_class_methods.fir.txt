@@ -60,7 +60,7 @@ FILE: data_class_methods.kt
         public abstract val data: R|kotlin/String|
             public get(): R|kotlin/String|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/DataMethodsState| {
+        public abstract interface Mutable : R|foo/bar/DataMethodsState| {
             public abstract override var id: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|

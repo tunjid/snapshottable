@@ -144,7 +144,7 @@ FILE: enums_sealed.kt
         public abstract val result: R|foo/bar/Result|
             public get(): R|foo/bar/Result|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/EnumSealedState| {
+        public abstract interface Mutable : R|foo/bar/EnumSealedState| {
             public abstract override var status: R|foo/bar/Status|
                 public get(): R|foo/bar/Status|
                 public set(value: R|foo/bar/Status|): R|kotlin/Unit|

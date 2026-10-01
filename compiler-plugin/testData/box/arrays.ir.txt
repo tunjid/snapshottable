@@ -162,8 +162,6 @@ FILE fqName:foo.bar fileName:/arrays.kt
           RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in foo.bar.ArrayState.Immutable'
             GET_VAR 'var result: kotlin.Int declared in foo.bar.ArrayState.Immutable.hashCode' type=kotlin.Int origin=null
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.ArrayState]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.ArrayState.Mutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any

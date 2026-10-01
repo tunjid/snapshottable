@@ -62,7 +62,7 @@ FILE: recursive.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/Node| {
+        public abstract interface Mutable : R|foo/bar/Node| {
             public abstract override var value: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
