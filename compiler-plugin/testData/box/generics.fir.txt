@@ -107,7 +107,7 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
+        public abstract interface Mutable<T : R|kotlin/Comparable<T>|> : R|foo/bar/GenericState<T>| {
             public abstract override var value: R|T|
                 public get(): R|T|
                 public set(value: R|T|): R|kotlin/Unit|
@@ -164,7 +164,7 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
+        public abstract interface Mutable<K : R|kotlin/CharSequence|, V : R|kotlin/collections/List<kotlin/Number>|> : R|foo/bar/PairedState<K, V>| {
             public abstract override var key: R|K|
                 public get(): R|K|
                 public set(value: R|K|): R|kotlin/Unit|
@@ -213,7 +213,7 @@ FILE: generics.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<K, V> : R|foo/bar/MapState<K, V>| {
+        public abstract interface Mutable<K, V> : R|foo/bar/MapState<K, V>| {
             public abstract override var entries: R|kotlin/collections/Map<K, V>|
                 public get(): R|kotlin/collections/Map<K, V>|
                 public set(value: R|kotlin/collections/Map<K, V>|): R|kotlin/Unit|

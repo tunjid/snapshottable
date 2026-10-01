@@ -92,7 +92,7 @@ FILE: complex_types.kt
         public abstract val address: R|foo/bar/Address|
             public get(): R|foo/bar/Address|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/ComplexState| {
+        public abstract interface Mutable : R|foo/bar/ComplexState| {
             public abstract override var user: R|kotlin/String|
                 public get(): R|kotlin/String|
                 public set(value: R|kotlin/String|): R|kotlin/Unit|

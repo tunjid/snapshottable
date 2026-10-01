@@ -54,7 +54,7 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/PrivateConstructor| {
+        public abstract interface Mutable : R|diagnostics/PrivateConstructor| {
             public abstract override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -91,7 +91,7 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/OpenSpec| {
+        public abstract interface Mutable : R|diagnostics/OpenSpec| {
             public abstract override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -141,7 +141,7 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val i: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/AbstractSpec| {
+        public abstract interface Mutable : R|diagnostics/AbstractSpec| {
             public abstract override var i: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|
@@ -206,7 +206,7 @@ FILE: SnapshottableDiagnostics.kt
         public abstract val pub: R|kotlin/Int|
             public get(): R|kotlin/Int|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|diagnostics/VisibilityCheck| {
+        public abstract interface Mutable : R|diagnostics/VisibilityCheck| {
             public abstract override var p: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|

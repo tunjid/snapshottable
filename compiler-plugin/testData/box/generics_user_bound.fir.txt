@@ -78,7 +78,7 @@ FILE: app.kt
 
         }
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable<T : R|foo/lib/Marker|> : R|foo/app/MarkerState<T>| {
+        public abstract interface Mutable<T : R|foo/lib/Marker|> : R|foo/app/MarkerState<T>| {
             public abstract override var value: R|T|
                 public get(): R|T|
                 public set(value: R|T|): R|kotlin/Unit|

@@ -139,7 +139,11 @@ fun FirExtension.generateMutableInterfaceOrSnapshottableClass(
                 )
             }
         }
-        applyComposeStableAnnotation(firClass, session, compatContext)
+        if (!isMutableInterface) applyComposeStableAnnotation(
+            firClass = firClass,
+            session = session,
+            compatContext = compatContext,
+        )
         firClass.symbol
     }
 }
@@ -156,14 +160,15 @@ internal fun specToOwnerSubstitutor(
     ownerTypeParameterSymbols: List<FirTypeParameterSymbol>,
 ): ConeSubstitutor =
     substitutorByMap(
-        specTypeParameterSymbols.zip(ownerTypeParameterSymbols) { s, o -> s to o.toConeType() }.toMap(),
-        session,
+        substitution = specTypeParameterSymbols.zip(ownerTypeParameterSymbols) { s, o ->
+            s to o.toConeType()
+        }.toMap(),
+        useSiteSession = session,
     )
 
 /**
  * Variant of [specToOwnerSubstitutor] used inside [ClassBuildingContext]/`bound` lambdas, where
- * the new type parameters are visible only as [FirTypeParameterRef] (their symbols aren't yet
- * exposed to the outer scope).
+ * the new type parameters are visible only as [FirTypeParameterRef].
  */
 private fun specToOwnerRefsSubstitutor(
     session: FirSession,
@@ -171,17 +176,16 @@ private fun specToOwnerRefsSubstitutor(
     ownerTypeParameterRefs: List<FirTypeParameterRef>,
 ): ConeSubstitutor =
     substitutorByMap(
-        specTypeParameterSymbols.zip(ownerTypeParameterRefs) { s, r -> s to r.symbol.toConeType() }.toMap(),
-        session,
+        substitution = specTypeParameterSymbols.zip(ownerTypeParameterRefs) { s, r ->
+            s to r.symbol.toConeType()
+        }.toMap(),
+        useSiteSession = session,
     )
 
 /**
  * Tags the class with `androidx.compose.runtime.Stable` so that the Compose stability checker
  * treats every snapshot-mutable instance as observably-stable: each property is backed by a
  * `MutableState`, so any mutation is recomposition-trackable.
- *
- * No-op when the Compose runtime isn't on the classpath — this plugin doesn't take a hard
- * dependency on Compose, so a non-Compose project just gets an unannotated `SnapshotMutable`.
  */
 private fun applyComposeStableAnnotation(
     firClass: org.jetbrains.kotlin.fir.declarations.FirRegularClass,
@@ -307,31 +311,29 @@ fun FirExtension.maybeCreatePropertyOnInterfaceOrMutableClass(
 private fun buildSafeDefaultValueStub(
     session: FirSession,
     message: String = "Stub!",
-): FirFunctionCall {
-    return buildFunctionCall {
-        this.coneTypeOrNull = session.builtinTypes.nothingType.coneType
-        this.calleeReference = buildResolvedNamedReference {
-            val errorFunctionSymbol = session.symbolProvider.getTopLevelFunctionSymbols(
-                packageFqName = kotlinPackageFqn,
-                name = Name.identifier("error"),
-            ).firstOrNull {
-                it.valueParameterSymbols.size == 1
-            } ?: error("Could not find kotlin.error function")
-            this.resolvedSymbol = errorFunctionSymbol
-            this.name = errorFunctionSymbol.name
-        }
-        argumentList =
-            buildResolvedArgumentList(
-                buildArgumentList {
-                    this.arguments +=
-                        buildLiteralExpression(
-                            source = null,
-                            kind = ConstantValueKind.String,
-                            value = message,
-                            setType = true,
-                        )
-                },
-                LinkedHashMap(),
-            )
+): FirFunctionCall = buildFunctionCall {
+    this.coneTypeOrNull = session.builtinTypes.nothingType.coneType
+    this.calleeReference = buildResolvedNamedReference {
+        val errorFunctionSymbol = session.symbolProvider.getTopLevelFunctionSymbols(
+            packageFqName = kotlinPackageFqn,
+            name = Name.identifier("error"),
+        ).firstOrNull {
+            it.valueParameterSymbols.size == 1
+        } ?: error("Could not find kotlin.error function")
+        this.resolvedSymbol = errorFunctionSymbol
+        this.name = errorFunctionSymbol.name
     }
+    argumentList =
+        buildResolvedArgumentList(
+            buildArgumentList {
+                this.arguments +=
+                    buildLiteralExpression(
+                        source = null,
+                        kind = ConstantValueKind.String,
+                        value = message,
+                        setType = true,
+                    )
+            },
+            LinkedHashMap(),
+        )
 }

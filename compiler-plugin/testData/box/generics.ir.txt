@@ -165,8 +165,6 @@ FILE fqName:foo.bar fileName:/generics.kt
                 receiver: GET_VAR '<this>: foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> declared in foo.bar.GenericState.Immutable.toString' type=foo.bar.GenericState.Immutable<T of foo.bar.GenericState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.GenericState<T of foo.bar.GenericState.Mutable>]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.GenericState.Mutable<T of foo.bar.GenericState.Mutable>
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:T index:0 variance: superTypes:[kotlin.Comparable<T of foo.bar.GenericState.Mutable>] reified:false
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
@@ -453,8 +451,6 @@ FILE fqName:foo.bar fileName:/generics.kt
                 receiver: GET_VAR '<this>: foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> declared in foo.bar.MapState.Immutable.toString' type=foo.bar.MapState.Immutable<K of foo.bar.MapState.Immutable, V of foo.bar.MapState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.MapState<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.MapState.Mutable<K of foo.bar.MapState.Mutable, V of foo.bar.MapState.Mutable>
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:K index:0 variance: superTypes:[kotlin.Any?] reified:false
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:V index:1 variance: superTypes:[kotlin.Any?] reified:false
@@ -742,8 +738,6 @@ FILE fqName:foo.bar fileName:/generics.kt
                 receiver: GET_VAR '<this>: foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> declared in foo.bar.PairedState.Immutable.toString' type=foo.bar.PairedState.Immutable<K of foo.bar.PairedState.Immutable, V of foo.bar.PairedState.Immutable> origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.PairedState<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.PairedState.Mutable<K of foo.bar.PairedState.Mutable, V of foo.bar.PairedState.Mutable>
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:K index:0 variance: superTypes:[kotlin.CharSequence] reified:false
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:V index:1 variance: superTypes:[kotlin.collections.List<kotlin.Number>] reified:false

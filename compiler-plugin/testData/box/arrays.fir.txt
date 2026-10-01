@@ -107,7 +107,7 @@ FILE: arrays.kt
         public abstract val stringArray: R|kotlin/Array<kotlin/String>|
             public get(): R|kotlin/Array<kotlin/String>|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/ArrayState| {
+        public abstract interface Mutable : R|foo/bar/ArrayState| {
             public abstract override var intArray: R|kotlin/IntArray|
                 public get(): R|kotlin/IntArray|
                 public set(value: R|kotlin/IntArray|): R|kotlin/Unit|

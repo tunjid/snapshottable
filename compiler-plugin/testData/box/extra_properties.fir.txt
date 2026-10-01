@@ -72,7 +72,7 @@ FILE: extra_properties.kt
         public abstract val extra: R|kotlin/String|
             public get(): R|kotlin/String|
 
-        @R|androidx/compose/runtime/Stable|() public abstract interface Mutable : R|foo/bar/ExtraState| {
+        public abstract interface Mutable : R|foo/bar/ExtraState| {
             public abstract override var base: R|kotlin/Int|
                 public get(): R|kotlin/Int|
                 public set(value: R|kotlin/Int|): R|kotlin/Unit|

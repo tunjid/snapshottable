@@ -284,8 +284,6 @@ FILE fqName:foo.app fileName:/app.kt
                 receiver: GET_VAR '<this>: foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> declared in foo.app.TilingShape.Immutable.toString' type=foo.app.TilingShape.Immutable<Query of foo.app.TilingShape.Immutable, Item of foo.app.TilingShape.Immutable> origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.app.TilingShape<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.app.TilingShape.Mutable<Query of foo.app.TilingShape.Mutable, Item of foo.app.TilingShape.Mutable>
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Query index:0 variance: superTypes:[foo.lib.CursorQueryShape] reified:false
       TYPE_PARAMETER GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] name:Item index:1 variance: superTypes:[kotlin.Any?] reified:false

@@ -168,8 +168,6 @@ FILE fqName:foo.bar fileName:/recursive.kt
                 receiver: GET_VAR '<this>: foo.bar.Node.Immutable declared in foo.bar.Node.Immutable.toString' type=foo.bar.Node.Immutable origin=null
               CONST String type=kotlin.String value=")"
     CLASS GENERATED[com.tunjid.snapshottable.Snapshottable.Keys.MutableInterface] INTERFACE name:Mutable modality:ABSTRACT visibility:public superTypes:[foo.bar.Node]
-      annotations:
-        Stable
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Node.Mutable
       FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
         VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
