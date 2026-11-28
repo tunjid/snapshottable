@@ -1,9 +1,9 @@
 [versions]
-axion-release = "1.21.4"
+axion-release = "1.21.5"
 composeMultiplatform = "1.12.1"
 dokka = "2.2.0"
 
-agp = "9.4.1"
+agp = "9.5.3"
 androidCompileSdk = "37"
 androidMinSdk = "26"
 androidTargetSdk = "36"
